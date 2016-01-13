@@ -12,32 +12,34 @@ Read on below or <a href="{{ site.baseurl }}/img/jonah_adkins_resume.pdf"> downl
 	<a href="https://www.linkedin.com/in/jonahadkins" target="_blank"><i class="fa fa-linkedin-square"></i></a>
 </span>
 <hr>
+<br>  
+
+###Volunteer Efforts
+<br>
+[Maptime! HRVA](https://twitter.com/maptimehrva) - Founder and co-organizer.  
+[Code for Hampton Roads](http://code4hr.org/) - Local Code For America Brigade.  
+[VAMLIS](http://vamlis.org) - Former Vice President 2013-2015, Virginia Association of Mapping & Land Information Systems.  
+[fyeahGIS](http://fyeahgis.tumblr.com) - tumblr dedicated to sharing & helping with GIS, over 1,000 followers.  
+
+<hr>
 <br>
 
 ###What I Know Well  
 <br>
-Mapping & Design  
-	`Esri ArcGIS Software Suite, qGIS, OpenStreetMap, JOSM, Global Mapper, TileMill, Mapbox Studio, CartoDB, Adobe Photoshop, Google Earth, Crystal Reports`  
-<br>
-Databases  
-	`Oracle, SQL Server, SDE, (starting to learn PostGIS)`  
-<br>
-Libraries  
-	`Leaflet.js, jQuery, Mapbox.js, CartoDB.js`  
-<br>
-Basic Coding  
-	`HTML, CSS, CartoCSS`  
+**Mapping & Design** - Esri ArcGIS Software Suite, qGIS, OpenStreetMap, JOSM, Global Mapper, TileMill, Mapbox Studio, CartoDB, Adobe Photoshop, Google Earth, Crystal Reports  
+**Databases** - Oracle, SQL Server, SDE, (starting to learn PostGIS)  
+**Code** - Leaflet.js, jQuery, Mapbox.js/GL.js, CartoDB.js, HTML, CSS, CartoCSS
 
 <hr>
 <br>
 
 ###Awards  
 <br>
-2006 - `Esri UC 2nd Place Best Design, Esri UC 3rd Place Most Unique`  
-2008 - `Esri Beta Program Silver Award`  
-2011 - `Esri UC 3rd Place User Application Fair`  
-2013 - `Esri UC 2nd Place Most Unique, Virginia GIS Conference 1st Place Overall, FOSS4G Runner Up Cartography`  
-2014 - `FOSS4G Runner Up Cartography, GISP Poster Contest People’s Choice, GISP Poster Contest 2nd Place Overall, Honorable Mention - Atlas of Design Volume II`  
+2006 - Esri UC 2nd Place Best Design, Esri UC 3rd Place Most Unique  
+2008 - Esri Beta Program Silver Award   
+2011 - Esri UC 3rd Place User Application Fair    
+2013 - Esri UC 2nd Place Most Unique, Va. GIS Conf. 1st Place Overall, FOSS4G Runner Up Cartography  
+2014 - FOSS4G Runner Up Cartography, GISP Poster Contest People’s Choice, GISP Poster Contest 2nd Place Overall, Honorable Mention - Atlas of Design Volume II  
 
 <hr>
 <br>
