@@ -14,6 +14,30 @@ Read on below or <a href="{{ site.baseurl }}/img/jonah_adkins_resume.pdf"> downl
 <hr>
 <br>  
 
+###Notable Projects, Talks, & Links  
+<br>
+* [My OSM Stats](http://hdyc.neis-one.org/?Jonah%20Adkins)  
+* [Paid Mappers](http://paidmappers.github.io/home)  
+* [Haunted How-To](http://maptime.io/hrva/ghosts/hauntedHRVA.html)  
+* [The Purple Mixtape](https://github.com/jonahadkins/the-purple-mixtape)  
+* [Hampton Police Open Data](http://code4hr.github.io/hampton-police-open-data/)  
+* [Re-Districing Virginia](http://code4hr.github.io/proposed-voting-districts/)  
+* [Making Great Maps](http://jonahadkins.github.io/making-great-maps/#)  
+* [Amazing-er Maps](https://github.com/jonahadkins/Amazing-Er-Maps)  
+* [Open Noland Trail](https://github.com/jonahadkins/open-noland-trail)  
+* [House Hunters Mapbox Studio Style](http://jonahadkins.github.io/house-hunters/)  
+* [Basemaps For Cats](https://github.com/jonahadkins/basemaps-for-cats)  
+* [Commonwealth](https://github.com/jonahadkins/commonwealth)  
+* [Custom Basemaps How-To](https://github.com/jonahadkins/Custom-Basemaps-In-AGOL)  
+* [Weekend Update](http://jonahadkins.github.io/weekendupdate/)  
+* [OpenStreetMap, OpenData, & You](http://jonahadkins.github.io/open-lightning-talk/#0)  
+* [Interview with GeoHipster](http://geohipster.com/2014/09/02/jonah-adkins-engaging-like-minded-geo-people-via-twitter-provides-great-unfiltered-look-whats-working-whats/)  
+
+Extra Credit - [My 11yr Olds OSM Presentation](http://sophieadkins.github.io/openstreetmap/#0)  
+
+<hr>
+<br>
+
 ###Volunteer Efforts
 <br>
 [Maptime! HRVA](https://twitter.com/maptimehrva) - Founder and co-organizer.  
