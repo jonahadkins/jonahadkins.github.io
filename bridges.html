@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <style>
+    #title {
+      position: absolute;
+      top: 72%;
+      left: 1%;
+      bottom: 0;
+      width: 450px;
+      height: 155px;
+      box-sizing: border-box;
+      border-color: #e3e6db;
+      border-width: medium;
+      border-style: ridge;
+      padding: 8px 24px;
+      font-family: 'Ropa Sans', sans-serif;
+      font-size: 9pt;
+      color: #000;
+      text-align: center;
+      background: rgba(227, 230, 219, 0.9);
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      z-index: 9999;
+      overflow: auto;
+    }
+
+    a {
+      color: #000;
+    }
+
+
+
+  </style>
+  <div id='map'></div>
+  <div id='title'>
+    <font size='6'>Bridges
+      <font size='3'>of </font size> America</font size>
+    <br>
+    <font size='3'>Mapping the <a target="blank" href="http://catalog.data.gov/dataset/national-bridge-inventory-national-geospatial-data-asset-ngda-bridges"> National Bridge Inventory</a>
+      <br>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+      <br>
+      <input id='btn' type='button' name='rtoggle' value='Traffic Count' checked='checked'>
+      <!--<label for='traffic'>traffic</label>-->
+      <input id='btn' type='button' name='rtoggle' value='Bridge Status'>
+      <!--<label for='status'>status</label>-->
+      <font size='2'>
+      <br> Traffic Count | 0 | 10k | 25k | 75k | 150k | per day
+      <br> Bridge Status | Ok | Structurally Deficient | Functionally Obsolete |
+      </font size>
+  </div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/jonahadkins/cim3kbhey0091cwm21d1dvsgo',
+      center: [-95.69, 39.92],
+      pitch: 0, // pitch in degrees
+      bearing: 0, // bearing in degrees
+      zoom: 4, // starting zoom
+      //attributionControl: true,
+      minZoom: 4,
+      maxZoom: 12
+    });
+    // Add Button Control
+    var layerList = document.getElementById('title');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(layer) {
+      var layerId = layer.target.id;
+      map.setStyle('mapbox://styles/jonahadkins/cim12p4xx004s9jm0sye25k9v');
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].onclick = switchLayer;
+    };
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.Navigation());
+  </script>
+</body>
+
+</html>
