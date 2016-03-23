@@ -11,7 +11,7 @@ github_username:  jonahadkins
 # Build settings
 markdown: kramdown
 
-highlighter: pygments
+highlighter: rogue
 
 # Pagination
 paginate: 15

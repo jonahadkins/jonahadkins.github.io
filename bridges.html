@@ -34,15 +34,15 @@
       width: 450px;
       height: 155px;
       box-sizing: border-box;
-      border-color: #e3e6db;
+      border-color: rgba(65, 73, 80, 0.9);
       border-width: medium;
-      border-style: ridge;
+      border-style: solid;
       padding: 8px 24px;
       font-family: 'Ropa Sans', sans-serif;
       font-size: 9pt;
-      color: #000;
+      color: rgba(229, 229, 216, 0.9);
       text-align: center;
-      background: rgba(227, 230, 219, 0.9);
+      background: rgba(42, 54, 60, 0.9);
       -webkit-border-radius: 4px;
       border-radius: 4px;
       z-index: 9999;
@@ -50,8 +50,9 @@
     }
 
     a {
-      color: #000;
+      color: rgba(229, 229, 216, 0.9);
     }
+
 
 
 
@@ -63,14 +64,16 @@
     <br>
     <font size='3'>Mapping the <a target="blank" href="http://catalog.data.gov/dataset/national-bridge-inventory-national-geospatial-data-asset-ngda-bridges"> National Bridge Inventory</a>
       <br>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+
       <br>
-      <input id='btn' type='button' name='rtoggle' value='Traffic Count' checked='checked'>
+      <input id='mapbox://styles/jonahadkins/cim3kbhey0091cwm21d1dvsgo' type='button' name='rtoggle' value='Traffic Count' checked='checked'>
       <!--<label for='traffic'>traffic</label>-->
-      <input id='btn' type='button' name='rtoggle' value='Bridge Status'>
+      <input id='mapbox://styles/jonahadkins/cim12p4xx004s9jm0sye25k9v' type='button' name='rtoggle' value='Bridge Status'>
       <!--<label for='status'>status</label>-->
       <font size='2'>
-      <br> Traffic Count | 0 | 10k | 25k | 75k | 150k | per day
-      <br> Bridge Status | Ok | Structurally Deficient | Functionally Obsolete |
+      <br> Traffic Count | <font color='#9ab899'> 0 </font color>| <font color='#ffa98f'>10k</font color> | <font color='#ff8880'>25k</font color> | <font color='#f56b70'>75k </font color>| <font color='#e84a5f'>150k </font color>| per day
+      <br> Bridge Status | <font color='#9ab899'> Ok </font color>| <font color='#ff8880'>Structurally Deficient </font color>| <font color='#e84a5f'>Functionally Obsolete </font color>|
+        <br> <a target="blank" href="http://jonahadkins.github.io/2016/03/22/bridges_of_america.html">Read More About This Map</a>
       </font size>
   </div>
   <script>
@@ -92,7 +95,7 @@
 
     function switchLayer(layer) {
       var layerId = layer.target.id;
-      map.setStyle('mapbox://styles/jonahadkins/cim12p4xx004s9jm0sye25k9v');
+      map.setStyle(layerId);
     }
 
     for (var i = 0; i < inputs.length; i++) {
