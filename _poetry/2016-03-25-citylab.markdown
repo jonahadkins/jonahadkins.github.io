@@ -1,0 +1,12 @@
+---
+layout: post
+title: CityLab Article
+date: 2016-03-25
+---
+Great article about the Bridges of America project. <a href="http://www.citylab.com/design/2016/03/mapping-americas-broken-bridges/475434/?utm_source=SFTwitter">Direct Link Here</a>  
+
+<div class="img_row">
+	<img class="col three" src="{{ site.baseurl }}/img/citylab.png"/>
+</div>
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">About 10 percent of America&#39;s bridges are structurally deficient. Here&#39;s where they are <a href="https://t.co/cJdXn9ympU">https://t.co/cJdXn9ympU</a> <a href="https://t.co/Fn9ZVOgGva">pic.twitter.com/Fn9ZVOgGva</a></p>&mdash; CityLab (@CityLab) <a href="https://twitter.com/CityLab/status/713469124861640704">March 25, 2016</a></blockquote> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
