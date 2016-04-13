@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Electrolize' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <style>
+    #title {
+      position: absolute;
+      top: 1.5%;
+      left: 1%;
+      bottom: 0;
+      width: 350px;
+      height: 360px;
+      box-sizing: border-box;
+      border-color: #fff;
+      border-width: medium;
+      padding: 8px 10px;
+      font-family: 'Electrolize', cursive;
+      font-size: 9pt;
+      color: #fff;
+      text-align: center;
+      background: rgba(0, 191, 255, 0.5);
+      /*background-image: url("https://akafkaesquelife.files.wordpress.com/2013/09/fog-and-smoke.gif");*/
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      z-index: 9999;
+      overflow: auto;
+    }
+
+    a {
+      color: #fff;
+    }
+
+    .mapboxgl-popup {
+      color: #000;
+      font-size: 12px;
+      line-height: 18px;
+      font: 'Electrolize', Arial, Helvetica, sans-serif;
+    }
+    #container2 {
+	clear:left;
+	float:left;
+	width:100%;
+	overflow:hidden;
+}
+#container1 {
+	float:left;
+	width:100%;
+	position:relative;
+	right:50%;
+}
+#col1 {
+	float:left;
+  text-align: left;
+	width:46%;
+	position:relative;
+	left:55%;
+	overflow:hidden;
+}
+#col2 {
+	float:left;
+  text-align: left;
+	width:46%;
+	position:relative;;
+	left:35%;
+	overflow:hidden;
+}
+  </style>
+
+  <div id='map'></div>
+  <div id='title'>
+    <font size='3'>Rise of the</font size>
+    <br>
+    <font size='6'>State of the Vapes</font size>
+      <font face='Helvetica'>
+    <br> Mapping the growth of Vape shops in Virginia
+    <br>with Mapbox GL
+    <br>
+    <br>seems like vape shops are everywhere lately. sift through
+    the haze (zoom in) in Virginia and explore. raw numbers of
+    shops opened by year below
+    <br>
+    <div id="container2">
+    	<div id="container1">
+    		<div id="col1">
+      <ul>
+        <ul>2009 : 1</ul>
+        <ul>2010 : 0</ul>
+        <ul>2011 : 0</ul>
+        <ul>2012 : 1</ul>
+
+      </ul>
+    </div>
+		<div id="col2">
+      <ul>
+        <ul>2013 : 9</ul>
+        <ul>2014 : 33</ul>
+        <ul>2015 : 42</ul>
+        <ul>2016 : 4</ul>
+      </ul>
+    </div>
+</div>
+</div>
+<br> caveat: since it's not exactly regulated yet, it's hard to find all
+retailers, meaning there's all kinds of 7-11's, sword shops, and unique
+gift stores that sell vape supplies. it's a rabbit hole.
+<br>tl;dr = this map contains shops specific to vape supplies
+<br>
+<br>Data was Purchased (!!) & Opened from <a target="blank" href="https://vabusinesses.org"> vabusinesses.org</a>
+    <br>(thanks <a target="blank" href="https://twitter.com/waldojaquith">Waldo</a>)
+    <br> <a target="blank" href="http://jonahadkins.github.io/2016/03/22/bridges_of_america.html">Read More About This Map</a>
+    by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+</font face>
+  </div>
+
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/dark-v8',
+      center: [-78.5, 37.8],
+      pitch: 45,
+      bearing: 0,
+      zoom: 7,
+      attributionControl: true,
+      minZoom: 7,
+      maxZoom: 11
+    });
+
+    map.on('style.load', function() {
+      map.addSource("vapes", {
+        type: "geojson",
+        data: "/data/vape.geojson",
+        cluster: true,
+        clusterMaxZoom: 15,
+        clusterRadius: 10
+      });
+
+      var layers = [
+        [0, 'rgba(255,255,255,0.8)']
+      ];
+
+      layers.forEach(function(layer, i) {
+        map.addLayer({
+          "id": "cluster-" + i,
+          "type": "circle",
+          "source": "vapes",
+          "paint": {
+            "circle-color": layer[0],
+            "circle-radius": 50,
+            "circle-blur": 1
+          },
+          "filter": i === layers.length - 1 ? [">=", "point_count", layer[0]] : ["all", [">=", "point_count", layer[0]],
+            ["<", "point_count", layers[i + 1][0]]
+          ]
+        }, 'waterway-label');
+      });
+
+      map.addLayer({
+        "id": "non-cluster-markers",
+        "type": "circle",
+        "source": "vapes",
+        "paint": {
+          "circle-color": 'rgba(255,255,255,0.3)',
+          "circle-radius": 50,
+          "circle-blur": 1
+        },
+        "filter": ["!=", "cluster", true]
+      }, 'waterway-label');
+
+      map.addLayer({
+        "id": "markers",
+        "type": "circle",
+        "source": "vapes",
+        "paint": {
+          "circle-radius": 12,
+          "circle-blur": 1,
+          "circle-color": "#00BFFF",
+          "circle-opacity": {
+            "stops": [
+              [7, 0.0],
+              [10, 0.6]
+            ]
+          }
+        }
+      });
+    });
+    map.addControl(new mapboxgl.Navigation());
+
+    map.on('click', function(e) {
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['markers']
+      });
+
+      if (!features.length) {
+        return;
+      }
+
+      var feature = features[0];
+
+      var popup = new mapboxgl.Popup()
+        .setLngLat(feature.geometry.coordinates)
+        .setHTML('<b>' + feature.properties.name + '</b>' +
+          '<br/>' + 'Opened: ' + feature.properties.incorporat +
+          '<br/>' + 'Status: ' + feature.properties.status)
+        .addTo(map);
+    });
+
+    map.on('mousemove', function(e) {
+      var features = map.queryRenderedFeatures(e.point, {
+        layers: ['markers']
+      });
+      map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+    });
+  </script>
+
+</body>
+
+</html>
