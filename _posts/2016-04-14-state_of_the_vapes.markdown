@@ -22,7 +22,7 @@ cloud cover from NOAA or wherever just haze the map up, and then i messed around
 </div>
 
 <br>
-ultimately i ended up using [Mapbox GL](https://www.mapbox.com/developers/), mostly to use the tilt perspective of GL with a vapor-cloud styled heat map effect. and without plugging Mapbox too too much - i really just streamed together several examples like [heatmap](https://www.mapbox.com/mapbox-gl-js/example/heatmap/) and a few others. aka _so easy_
+ultimately i ended up using [Mapbox GL](https://www.mapbox.com/developers/), mostly to use the tilt perspective of GL with a vapor-cloud styled heat map effect. and without plugging Mapbox too too much - i really just streamed together several examples like [heatmap](https://www.mapbox.com/mapbox-gl-js/example/heatmap/) and a few others. 
 
 <div class="img_row">
     <img class="col three" src="/img/posts/vape2.gif">
