@@ -2,7 +2,7 @@
 layout: post
 title: rise of the state of the vapes
 date: 2016-04-14
-description: learning all the things
+description: learning all the things, again
 ---
 
 tl;dr [state of the vapes](http://jonahadkins.github.io/vapes.html) map
