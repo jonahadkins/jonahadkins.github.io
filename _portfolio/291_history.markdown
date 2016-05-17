@@ -19,6 +19,3 @@ Was given some scans of older versions of these maps that needed updated for a n
     <img class="col three" src="/img/history-2.jpg">
 </div>
 
-<div class="img_row">
-    <img class="col three" src="/img/history-3.jpg">
-</div>
