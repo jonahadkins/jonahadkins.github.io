@@ -7,10 +7,12 @@ baseurl:  # the subpath of your site, e.g. /blog/
 url:  # the base hostname & protocol for your site
 twitter_username: jonahadkins
 github_username:  jonahadkins
+linkedin_username: jonahadkins
+facebook_username: jonahadkins
+author: jonahadkins
 
 # Build settings
 markdown: kramdown
-
 highlighter: rogue
 
 # Pagination
@@ -25,3 +27,7 @@ collections:
   poetry:
     output: true
     permalink: /poetry/:path/
+
+gems:
+  - jekyll-feed
+  - jekyll-paginate

@@ -10,4 +10,10 @@
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <meta property="og:url" content="{{ site.url }}/{{ page.url }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:description" content="{{ page.content | markdownify | strip_html | strip_newlines | truncate: 300 }}" />
+    <meta property="og:image" content="{{ site.url }}/{{ page.image }}" />
 </head>
