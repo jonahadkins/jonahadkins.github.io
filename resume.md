@@ -10,9 +10,10 @@ Read on below or <a href="{{ site.baseurl }}/img/jonah-adkins-resume-may2016.pdf
 	<a href="https://twitter.com/jonahadkins" target="_blank"><i class="fa fa-twitter-square"></i></a>
 	<a href="https://github.com/jonahadkins" target="_blank"><i class="fa fa-github-square"></i></a>
 	<a href="https://www.linkedin.com/in/jonahadkins" target="_blank"><i class="fa fa-linkedin-square"></i></a>
+	<a href="http://jonahadkins.github.io/feed.xml"><i class="fa fa-rss-square"></i></a>
 </span>
 <hr>
-<br>  
+<br>
 
 ###Notable Projects, Talks, & Links  
 <br>
@@ -38,7 +39,7 @@ Extra Credit - [My 11yr Olds OSM Presentation](http://sophieadkins.github.io/ope
 <hr>
 <br>
 
-###Volunteer Efforts
+###Volunteer Efforts  
 <br>
 [Maptime! HRVA](https://twitter.com/maptimehrva) - Founder and co-organizer.  
 [Code for Hampton Roads](http://code4hr.org/) - Local Code For America Brigade.  
