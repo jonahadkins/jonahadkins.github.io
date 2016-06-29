@@ -37,6 +37,20 @@
     .map-overlay p {
         margin: 0 0 10px;
     }
+    #fit {
+        display: block;
+        position: relative;
+        margin: 0px auto;
+        width: 50%;
+        height: 40px;
+        padding: 10px;
+        border: none;
+        border-radius: 3px;
+        font-size: 12px;
+        text-align: center;
+        color: #fff;
+        background: #ee8a65;
+    }
     </style>
 
     <div id='map'></div>
@@ -45,6 +59,17 @@
       <div class='map-overlay'>
         <h2 id='location-title'></h2>
         <p id='location-description'></p>
+        <button onclick='fit10();' id='fit'>World</button></br>
+        <button onclick='fit1();' id='fit'>Beijing</button></br>
+        <button onclick='fit2();' id='fit'>Putrajaya</button></br>
+        <button onclick='fit3();' id='fit'>Punta Del Este</button></br>
+        <button onclick='fit4();' id='fit'>Buenos Aires</button></br>
+        <button onclick='fit5();' id='fit'>Mexico City</button></br>
+        <button onclick='fit6();' id='fit'>Long Beach</button></br>
+        <button onclick='fit7();' id='fit'>Paris</button></br>
+        <button onclick='fit8();' id='fit'>Berlin</button></br>
+        <button onclick='fit9();' id='fit'>London</button></br>
+        <button onclick='fit10();' id='fit'>World</button>
       </div>
     </div>
 
@@ -52,7 +77,7 @@
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/light-v9',
+        style: 'mapbox://styles/jonahadkins/cipxz6qv70000blntj7lidf45',
         center: [116.38, 39.99],
         maxZoom: 22,
         minZoom: 9,
@@ -68,7 +93,7 @@
         "description": "===",
         "camera": {
             center: [116.38744, 39.99089],
-            bearing: -8.9,
+            bearing: 0,
             zoom: 16,
             pitch: 50
         }
@@ -78,7 +103,7 @@
         "description": "===",
         "camera": {
             center: [101.68, 2.92],
-            bearing: -8.9,
+            bearing: 0,
             zoom: 16,
             pitch: 50
         }
@@ -88,7 +113,7 @@
         "description": "===",
         "camera": {
             center: [-54.934387, -34.955779],
-            bearing: -8.9,
+            bearing: 0,
             zoom: 16,
             pitch: 50
         }
@@ -98,7 +123,7 @@
         "description": "===",
         "camera": {
             center: [-58.358495, -34.616892],
-            bearing: -8.9,
+            bearing: 0,
             zoom: 16,
             pitch: 50
         }
@@ -108,7 +133,7 @@
         "description": "===",
         "camera": {
             center: [-99.094104, 19.404794],
-            bearing: -8.9,
+            bearing: 0,
             zoom: 16,
             pitch: 50
         }
@@ -118,7 +143,7 @@
       "description": "===",
       "camera": {
           center: [-118.18870, 33.764842],
-          bearing: -8.9,
+          bearing: 0,
           zoom: 16,
           pitch: 50
       }
@@ -128,7 +153,7 @@
       "description": "===",
       "camera": {
           center: [2.312879, 48.858446],
-          bearing: -8.9,
+          bearing: 0,
           zoom: 16,
           pitch: 50
       }
@@ -138,7 +163,7 @@
       "description": "===",
       "camera": {
           center: [13.428211, 52.518505],
-          bearing: -8.9,
+          bearing: 0,
           zoom: 16,
           pitch: 50
       }
@@ -148,11 +173,21 @@
       "description": "===",
       "camera": {
           center: [-0.157241, 51.477961],
-          bearing: -8.9,
+          bearing: 0,
           zoom: 16,
           pitch: 50
       }
-     }
+     }, {
+       "id": "10",
+       "title": "World",
+       "description": "===",
+       "camera": {
+           center: [5.14, 24.33],
+           bearing: 0,
+           zoom: 1,
+           pitch: 0
+       }
+      }
     ];
 
   //  function highlightBorough(code) {
@@ -200,7 +235,7 @@
             "paint": {
                 "line-color": "#0000ff",
                 "line-width": 8,
-                "line-opacity": 0.5,
+                "line-opacity": 0.0,
                 "line-blur": 4
             },
             //"filter": ["==", "borocode", ""]
@@ -209,6 +244,97 @@
         // Start the playback animation for each borough
         playback(0);
     });
+
+
+    function fit1() {
+    map.jumpTo({
+      center: [116.38744,39.99089],
+      bearing: 0,
+      zoom: 11,
+      pitch: 50}
+    );
+}
+
+    function fit2() {
+    map.jumpTo({
+      center: [101.68, 2.92],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit3() {
+    map.jumpTo({
+      center: [-54.934387, -34.955779],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit4() {
+    map.jumpTo({
+      center: [-58.358495, -34.616892],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit5() {
+    map.jumpTo({
+      center: [-99.094104, 19.404794],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit6() {
+    map.jumpTo({
+      center: [-118.18870, 33.764842],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit7() {
+    map.jumpTo({
+      center: [2.312879, 48.858446],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit8() {
+    map.jumpTo({
+      center: [13.428211, 52.518505],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit9() {
+    map.jumpTo({
+      center: [-0.157241, 51.477961],
+      bearing: 0,
+      zoom: 16,
+      pitch: 50}
+    );
+}
+
+    function fit10() {
+    map.jumpTo({
+      center: [5.14, 24.33],
+      bearing: 0,
+      zoom: 1,
+      pitch: 0}
+    );
+}
     </script>
 
     </body>
