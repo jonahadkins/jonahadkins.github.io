@@ -1,341 +1,420 @@
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset='utf-8' />
-        <title></title>
-        <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.js'></script>
-        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.css' rel='stylesheet' />
-        <link href='https://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
-        <style>
-            body { margin:0; padding:0; }
-            #map { position:absolute; top:0; bottom:0; width:100%; }
-        </style>
-    </head>
-    <body>
+<!DOCTYPE html>
+<html>
 
-    <style>
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.20.1/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Michroma' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 20%;
+      bottom: 20%;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <style>
     .map-overlay-container {
-        position: fixed;
-        width: 200px;
-        height: 100%;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        z-index: 1;
+      margin: auto;
+      position: absolute;
+      left: 10px;
+      bottom: 24%;
+      right: 10px;
+      z-index: 1;
+      padding: 10px;
+      font: 12px/20px 'Michroma', Arial, Helvetica, sans-serif;
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.20);
+      text-align: center;
     }
 
-    .map-overlay {
-        font: 12px/20px 'Michroma', Arial, Helvetica, sans-serif;
-        background-color: #fff;
-        border-radius: 3px;
-        padding: 10px;
-        box-shadow:0 1px 2px rgba(0,0,0,0.20);
+    #button-wrap {
+      width: 90%;
+      margin: 0 auto;
     }
 
-    .map-overlay h2,
-    .map-overlay p {
-        margin: 0 0 10px;
+    .buttons {
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      font: 12px/20px 'Michroma', Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      text-align: center;
+      color: #fff;
+      background: #000fff;
     }
-    #fit {
-        display: block;
-        position: relative;
-        margin: 0px auto;
-        width: 50%;
-        height: 40px;
-        padding: 10px;
-        border: none;
-        border-radius: 3px;
-        font-size: 12px;
-        text-align: center;
-        color: #fff;
-        background: #ee8a65;
+    .buttons:hover {
+    background: #000;
     }
-    </style>
 
-    <div id='map'></div>
+    #info {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 50%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    font-size: 12px;
+    text-align: center;
+    color: #222;
+    background: #fff;
+}
+  </style>
 
-    <div class='map-overlay-container'>
-      <div class='map-overlay'>
-        <h2 id='location-title'></h2>
-        <p id='location-description'></p>
-        <button onclick='fit10();' id='fit'>World</button></br>
-        <button onclick='fit1();' id='fit'>Beijing</button></br>
-        <button onclick='fit2();' id='fit'>Putrajaya</button></br>
-        <button onclick='fit3();' id='fit'>Punta Del Este</button></br>
-        <button onclick='fit4();' id='fit'>Buenos Aires</button></br>
-        <button onclick='fit5();' id='fit'>Mexico City</button></br>
-        <button onclick='fit6();' id='fit'>Long Beach</button></br>
-        <button onclick='fit7();' id='fit'>Paris</button></br>
-        <button onclick='fit8();' id='fit'>Berlin</button></br>
-        <button onclick='fit9();' id='fit'>London</button></br>
-        <button onclick='fit10();' id='fit'>World</button>
-      </div>
-    </div>
+  <div id='map'></div>
+  <pre id='info'></pre>
 
-    <script>
+  <div class='map-overlay-container'>
+    <ul id="button-wrap">
+      <li onclick='fit10();' class='buttons'>World Map</li>
+      <li onclick='fit1();' class='buttons'>Beijing</li>
+      <li onclick='fit2();' class='buttons'>Putrajaya</li>
+      <li onclick='fit3();' class='buttons'>Punta Del Este</li>
+      <li onclick='fit4();' class='buttons'>Buenos Aires</li>
+      <li onclick='fit5();' class='buttons'>Mexico City</li>
+      <li onclick='fit6();' class='buttons'>Long Beach</li>
+      <li onclick='fit7();' class='buttons'>Paris</li>
+      <li onclick='fit8();' class='buttons'>Berlin</li>
+      <li onclick='fit9();' class='buttons'>London</li>
+      <li onclick='fit10();' class='buttons'>World Map</li>
+    </ul>
+  </div>
+  <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
     var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/jonahadkins/cipxz6qv70000blntj7lidf45',
-        center: [116.38, 39.99],
-        maxZoom: 22,
-        minZoom: 9,
-        zoom: 16
+      container: 'map',
+      style: 'mapbox://styles/jonahadkins/cipxz6qv70000blntj7lidf45',
+      center: [0,0],
+      maxZoom: 22,
+      minZoom: 0,
+      zoom: 1,
+      pitch: 25
     });
 
+/*
     var title = document.getElementById('location-title');
-    var description = document.getElementById('location-description');
 
     var locations = [{
-        "id": "1",
-        "title": "Beijing, China",
-        "description": "===",
-        "camera": {
-            center: [116.38744, 39.99089],
-            bearing: 0,
-            zoom: 16,
-            pitch: 50
-        }
+      "id": "1",
+      "title": "Beijing, China",
+      "camera": {
+        center: [116.38744, 39.99089],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
+      }
     }, {
-        "id": "2",
-        "title": "Putrajaya, Malaysia",
-        "description": "===",
-        "camera": {
-            center: [101.68, 2.92],
-            bearing: 0,
-            zoom: 16,
-            pitch: 50
-        }
+      "id": "2",
+      "title": "Putrajaya, Malaysia",
+      "camera": {
+        center: [101.68, 2.92],
+        bearing: 0,
+        zoom: 13,
+        pitch: 50
+      }
     }, {
-        "id": "3",
-        "title": "Punta Del Este, Uruguay",
-        "description": "===",
-        "camera": {
-            center: [-54.934387, -34.955779],
-            bearing: 0,
-            zoom: 16,
-            pitch: 50
-        }
+      "id": "3",
+      "title": "Punta Del Este, Uruguay",
+      "camera": {
+        center: [-54.934387, -34.955779],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
+      }
     }, {
-        "id": "4",
-        "title": "Buenos Aires, Argentina",
-        "description": "===",
-        "camera": {
-            center: [-58.358495, -34.616892],
-            bearing: 0,
-            zoom: 16,
-            pitch: 50
-        }
+      "id": "4",
+      "title": "Buenos Aires, Argentina",
+      "camera": {
+        center: [-58.358495, -34.616892],
+        bearing: 0,
+        zoom: 8,
+        pitch: 50
+      }
     }, {
-        "id": "5",
-        "title": "Mexico City, Mexico",
-        "description": "===",
-        "camera": {
-            center: [-99.094104, 19.404794],
-            bearing: 0,
-            zoom: 16,
-            pitch: 50
-        }
+      "id": "5",
+      "title": "Mexico City, Mexico",
+      "camera": {
+        center: [-99.094104, 19.404794],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
+      }
     }, {
       "id": "6",
       "title": "Long Beach, United States",
-      "description": "===",
       "camera": {
-          center: [-118.18870, 33.764842],
-          bearing: 0,
-          zoom: 16,
-          pitch: 50
+        center: [-118.18870, 33.764842],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
       }
     }, {
       "id": "7",
       "title": "Paris, France",
-      "description": "===",
       "camera": {
-          center: [2.312879, 48.858446],
-          bearing: 0,
-          zoom: 16,
-          pitch: 50
+        center: [2.312879, 48.858446],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
       }
     }, {
       "id": "8",
       "title": "Berlin, Germany",
-      "description": "===",
       "camera": {
-          center: [13.428211, 52.518505],
-          bearing: 0,
-          zoom: 16,
-          pitch: 50
+        center: [13.428211, 52.518505],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
       }
     }, {
       "id": "9",
       "title": "London, United Kingdom",
-      "description": "===",
       "camera": {
-          center: [-0.157241, 51.477961],
-          bearing: 0,
-          zoom: 16,
-          pitch: 50
+        center: [-0.157241, 51.477961],
+        bearing: 0,
+        zoom: 16,
+        pitch: 50
       }
-     }, {
-       "id": "10",
-       "title": "World",
-       "description": "===",
-       "camera": {
-           center: [5.14, 24.33],
-           bearing: 0,
-           zoom: 1,
-           pitch: 0
-       }
+    }, {
+      "id": "10",
+      "title": "World",
+      "camera": {
+        center: [5.14, 24.33],
+        bearing: 0,
+        zoom: 2,
+        pitch: 0
       }
-    ];
-
-  //  function highlightBorough(code) {
-        // Only show the polygon feature that cooresponds to `borocode` in the data
-  //      map.setFilter('highlight', ["==", "borocode", code]);
-  //  }
+    }];
 
     function playback(index) {
-        title.textContent = locations[index].title;
-        description.textContent = locations[index].description;
+      //title.textContent = locations[index].title;
 
-      //  highlightBorough(locations[index].id ? locations[index].id : '');
+      map.easeTo(locations[index].camera);
 
-        // Animate the map position based on camera properties
-        map.flyTo(locations[index].camera);
+      map.once('moveend', function() {
+          // Duration the slide is on screen after interaction
+          window.setTimeout(function() {
+              // Increment index
+              index = (index + 1 === locations.length) ? 0 : index + 1;
+              playback(index);
+          }, 3000); // After callback, show the location for 3 seconds.
+      });
+  }
 
-        map.once('moveend', function() {
-            // Duration the slide is on screen after interaction
-            window.setTimeout(function() {
-                // Increment index
-                index = (index + 1 === locations.length) ? 0 : index + 1;
-                playback(index);
-            }, 3000); // After callback, show the location for 3 seconds.
-        });
-    }
+    //title.textContent = locations[locations.length - 1].title;
 
-    // Display the last title/description first
-    title.textContent = locations[locations.length - 1].title;
-    description.textContent = locations[locations.length - 1].description;
+   map.on('load', function() {
 
-    map.on('load', function() {
-
-        // Polygon fill for each borough of new york city.
-        // Used to highlight when its borough is active.
-        map.addSource("robo", {
-            "type": "vector",
-            "url": "mapbox://jonahadkins.2khya3pg"
-        });
-
-        map.addLayer({
-            "id": "robo",
-            "type": "line",
-            "source": "robo",
-            "source-layer": "robogeojson",
-            "paint": {
-                "line-color": "#0000ff",
-                "line-width": 8,
-                "line-opacity": 0.0,
-                "line-blur": 4
-            },
-            //"filter": ["==", "borocode", ""]
-        }, 'neighborhood_small_label'); // Place polygon under the neighborhood labels.
-
-        // Start the playback animation for each borough
-        playback(0);
+      playback(0);
     });
 
+*/
+/*
+map.on('load', function() {
 
+    map.addSource("robopts", {
+        "type": "vector",
+        "url": "mapbox://jonahadkins.9o9519cu"
+    });
+
+  // add source as a layer and apply some styles
+ map.addLayer({
+     "id": "robopts",
+     "type": "symbol",
+     "source": "robopts",
+     "source-layer": "roboptsgeojson",
+     "layout": {
+       "icon-image": "marker-15"
+     },
+     "paint": {}
+ });
+});
+
+map.on('click', function (e) {
+    // Use queryRenderedFeatures to get features at a click event's point
+    // Use layer option to avoid getting results from other layers
+    var features = map.queryRenderedFeatures(e.point, { layers: ['robopts'] });
+    // if there are features within the given radius of the click event,
+    // fly to the location of the click event
+    if (features.length) {
+        // Get coordinates from the symbol and center the map on those coordinates
+        map.jumpTo({
+          center: features[0].geometry.coordinates,
+          zoom: 14
+        });
+    }
+});
+
+
+// Use the same approach as above to indicate that the symbols are clickable
+// by changing the cursor style to 'pointer'.
+map.on('mousemove', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['robopts'] });
+    map.getCanvas().style.cursor = features.length ? 'pointer' : '';
+});
+*/
     function fit1() {
-    map.jumpTo({
-      center: [116.38744,39.99089],
-      bearing: 0,
-      zoom: 11,
-      pitch: 50}
+      map.jumpTo({
+        center: [116.38744, 39.99089],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      }
     );
-}
+    map.flyTo({
+      zoom: 14,
+      bearing: 87,
+      pitch: 50
+    });
+    }
 
     function fit2() {
-    map.jumpTo({
-      center: [101.68, 2.92],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [101.6847, 2.9245],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: 110,
+        zoom: 16,
+        pitch: 40
+      });
+    }
 
     function fit3() {
-    map.jumpTo({
-      center: [-54.934387, -34.955779],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [-54.9314, -34.9539],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: -35,
+        zoom: 16,
+        pitch: 50
+      });
+    }
 
     function fit4() {
-    map.jumpTo({
-      center: [-58.358495, -34.616892],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [-58.3581, -34.6156],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: -105,
+        zoom: 16,
+        pitch: 40
+      });
+    }
 
     function fit5() {
-    map.jumpTo({
-      center: [-99.094104, 19.404794],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [-99.0944, 19.4046],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: 10,
+        zoom: 15.5,
+        pitch: 40
+      });
+    }
 
     function fit6() {
-    map.jumpTo({
-      center: [-118.18870, 33.764842],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [-118.1890, 33.7629],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: 00,
+        zoom: 15.5,
+        pitch: 40
+      });
+    }
 
     function fit7() {
-    map.jumpTo({
-      center: [2.312879, 48.858446],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [2.311, 48.8558],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: 94,
+        zoom: 15.5,
+        pitch: 40
+      });
+    }
 
     function fit8() {
-    map.jumpTo({
-      center: [13.428211, 52.518505],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [13.4251, 52.5181],
+        zoom: 8,
+        bearing: 0,
+        pitch: 0
+      });
+      map.flyTo({
+        bearing: 55,
+        zoom: 15,
+        pitch: 40
+      });
+    }
 
     function fit9() {
-    map.jumpTo({
-      center: [-0.157241, 51.477961],
-      bearing: 0,
-      zoom: 16,
-      pitch: 50}
-    );
-}
+      map.jumpTo({
+        center: [-0.1580, 51.4771],
+        zoom: 8,
+        bearing: 0,
+        pitch: 50
+      });
+      map.flyTo({
+        bearing: -17,
+        zoom: 14.5,
+        pitch: 40
+      });
+    }
 
     function fit10() {
-    map.jumpTo({
-      center: [5.14, 24.33],
-      bearing: 0,
-      zoom: 1,
-      pitch: 0}
-    );
-}
-    </script>
+      map.jumpTo({
+        center: [0,0],
+        bearing: 0,
+        zoom: 1,
+        pitch: 25
+      });
+    }
 
-    </body>
-    </html>
+    map.on('mousemove', function (e) {
+    document.getElementById('info').innerHTML =
+            // e.lngLat is the longitude, latitude geographical position of the event
+        JSON.stringify(e.lngLat);
+});
+  </script>
+
+</body>
+
+</html>
