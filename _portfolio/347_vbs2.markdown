@@ -1,0 +1,27 @@
+---
+layout: post
+title: Gaming Terrains
+description: gaming terrains built with VBS2
+img: /img/vbs2_fl.png
+tags: 'cartography, print'
+---
+
+<hr>
+<br/>
+**Fort Benning, Ga.**
+<div class="img_row">
+    <img class="col three" src="{{ site.baseurl l}}/img/vbs2_fb.png"/>
+</div>
+{% include youtubePlayer.html id="Cz00Y7gpzxE" %}
+<br/>
+**Fort Lewis, Wa.**
+<div class="img_row">
+    <img class="col three" src="{{ site.baseurl l}}/img/vbs2_fl.png"/>
+</div>
+{% include youtubePlayer.html id="7xH65aHBBXY" %}
+<br/>
+**Rolla, Mo.**
+<div class="img_row">
+    <img class="col three" src="{{ site.baseurl l}}/img/vbs2_rolla.png"/>
+</div>
+{% include youtubePlayer.html id="TO_zVn_51qM" %}

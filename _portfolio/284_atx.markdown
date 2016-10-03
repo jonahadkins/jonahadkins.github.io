@@ -1,0 +1,24 @@
+---
+layout: post
+title: Map Design for the City of Austin
+description: Carto + Design Guide
+img: /img/atx_a.png
+tags: cartography, web, design
+---
+<br/>
+<hr>
+
+<br/>
+<div class="img_row">
+	<img class="col three" src="{{ site.baseurl }}/img/atx_a.png"/>
+</div>
+<div class="col three caption">
+    <a href="{{ site.baseurl l}}/img/atx_a.png" target="_blank">View High Res Version</a>
+</div>
+<br/>
+<div class="img_row">
+	<img class="col three" src="{{ site.baseurl }}/img/atx_b.png"/>
+</div>
+<div class="col three caption">
+    <a href="{{ site.baseurl l}}/img/atx_b.png" target="_blank">View High Res Version</a>
+</div>

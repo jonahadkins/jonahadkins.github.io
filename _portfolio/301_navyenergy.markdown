@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Naval Energy Tracking
+title: Even More Naval Energy Tracking
 description: consumption info-graphics
 img: /img/navy-stream.jpg
 tags: cartography, print
