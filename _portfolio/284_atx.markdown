@@ -17,7 +17,7 @@ tags: cartography, web, design
 </div>
 <br/>
 <div class="img_row">
-	<img class="col three" src="{{ site.baseurl }}/img/atx_b.png"/>
+	<img class="col three" src="{{ site.baseurl }}/img/atx_b.PNG"/>
 </div>
 <div class="col three caption">
     <a href="{{ site.baseurl l}}/img/atx_b.png" target="_blank">View High Res Version</a>
