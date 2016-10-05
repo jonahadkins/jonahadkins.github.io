@@ -2,7 +2,7 @@
 layout: post
 title: The Purple Mixtape
 description: deep dive on cartography in Mapbox Studio  
-img: /img/purple.jpg
+img: /img/back2school.png
 tags: cartography, web
 ---
 <div class="img_row">

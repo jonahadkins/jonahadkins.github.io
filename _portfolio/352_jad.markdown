@@ -1,0 +1,23 @@
+---
+layout: post
+title: Jisr Al-Doreaa
+description: Story Board Map
+img: /img/tboc_jad.jpg
+tags: 'cartography, print'
+---
+
+<hr>
+<br/>
+<div class="img_row">
+    <img class="col three" src="{{ site.baseurl l}}/img/tboc_jad.jpg"/>
+</div>
+<div class="col three caption">
+    <a href="{{ site.baseurl l}}/img/tboc_jad.jpg" target="_blank">View High Res Version</a>
+</div>
+<br/>
+<div class="img_row">
+    <img class="col three" src="{{ site.baseurl l}}/img/army-jad.png"/>
+</div>
+<div class="col three caption">
+    <a href="{{ site.baseurl l}}/img/army-jad.png" target="_blank">View High Res Version</a>
+</div>

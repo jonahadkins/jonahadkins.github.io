@@ -17,3 +17,10 @@ i spent about 8 years in local government doing a variety of typical city-gis wo
 <div class="col three caption">
     <a href="{{ site.baseurl l}}/img/hamptonstreet.jpg" target="_blank">View High Res Version</a>
 </div>
+<br/>
+<div class="img_row">
+	<img class="col three" src="{{ site.baseurl }}/img/hpt_street.jpg"/>
+</div>
+<div class="col three caption">
+    <a href="{{ site.baseurl l}}/img/hpt_street.jpg" target="_blank">View High Res Version</a>
+</div>
