@@ -3,7 +3,7 @@ layout: page
 title: resume
 permalink: /resume/
 ---
-Read on below or <a href="{{ site.baseurl }}/img/jonah-adkins-resume-may2016.pdf"> download</a> a copy. Either way, get in touch!
+Read on below or <a href="{{ site.baseurl }}/resume_for_jonah_adkins.pdf"> download</a> a copy. Either way, get in touch!
 
 <span class="contacticon center">
 	<a href="mailto:jonahadkins@gmail.com"><i class="fa fa-envelope-square"></i></a>
