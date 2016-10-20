@@ -27,7 +27,7 @@
       left: 1%;
       bottom: 0;
       font-family: 'Slackey', cursive;
-      font-size: 14pt;
+      font-size: 10pt;
 
       text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
       color: #fff;
@@ -60,9 +60,9 @@
         // data from OpenStreetMap.
         map.on('load', function() {
           map.setLight({
-            anchor: "map",
+            anchor: "viewport",
             color: "white",
-            intensity: 0.4,
+            intensity: 0.3,
             position: [1.15, 90, 10]
           });
           map.addLayer({
@@ -73,14 +73,14 @@
               'type': 'fill',
               'minzoom': 15,
               'paint': {
-                'fill-color': '#00fff2',
+                'fill-color': 'rgb(246, 5, 10)',
                 //'fill-color': '#000',
-                'fill-translate': [2, -4],
+                'fill-translate': [3, -3],
                 'fill-extrude-height': {
                   'type': 'identity',
                   'property': 'height'
                 },
-                'fill-opacity': 0.3
+                'fill-opacity': 0.4
               }
             }, 'poi-scalerank3'),
             map.addLayer({
@@ -91,14 +91,14 @@
               'type': 'fill',
               'minzoom': 15,
               'paint': {
-                'fill-color': '#ff0000',
+                'fill-color': 'rgb(30, 242, 241)',
                 //'fill-color': '#000',
-                'fill-translate': [-4, 2],
+                'fill-translate': [-3, 3],
                 'fill-extrude-height': {
                   'type': 'identity',
                   'property': 'height'
                 },
-                'fill-opacity': 0.3
+                'fill-opacity': 0.4
               }
             }, 'poi-scalerank3'),
             map.addLayer({
@@ -118,7 +118,7 @@
                   'type': 'identity',
                   'property': 'base-height'
                 },
-                'fill-opacity': 0.6
+                'fill-opacity': 0.7
               }
             }, 'poi-scalerank3');
         });
