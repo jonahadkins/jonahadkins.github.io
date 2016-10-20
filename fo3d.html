@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    #title {
+      position: absolute;
+      top: 1.5%;
+      left: 1%;
+      bottom: 0;
+      font-family: 'Slackey', cursive;
+      font-size: 14pt;
+
+      text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+      color: #fff;
+      z-index: 9999;
+      overflow: auto;
+    }
+    a {
+  color: #fff;
+}
+  </style>
+</head>
+
+<body>
+  <div id='map'></div>
+  <div id='title'>
+    <font size='20'>FAK3 3D</font>
+    <br><font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a></font></div>
+      <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ';
+        var map = new mapboxgl.Map({
+          style: 'mapbox://styles/mapbox/satellite-streets-v9',
+          center: [-74.0066, 40.7135],
+          zoom: 15,
+          pitch: 45,
+          bearing: -17.6,
+          container: 'map'
+        });
+
+        // the 'building' layer in the mapbox-streets vector source contains building-height
+        // data from OpenStreetMap.
+        map.on('load', function() {
+          map.setLight({
+            anchor: "map",
+            color: "white",
+            intensity: 0.4,
+            position: [1.15, 90, 10]
+          });
+          map.addLayer({
+              'id': '3d-buildings3',
+              'source': 'composite',
+              'source-layer': 'building',
+              'filter': ['==', 'extrude', 'true'],
+              'type': 'fill',
+              'minzoom': 15,
+              'paint': {
+                'fill-color': '#00fff2',
+                //'fill-color': '#000',
+                'fill-translate': [2, -4],
+                'fill-extrude-height': {
+                  'type': 'identity',
+                  'property': 'height'
+                },
+                'fill-opacity': 0.3
+              }
+            }, 'poi-scalerank3'),
+            map.addLayer({
+              'id': '3d-buildings2',
+              'source': 'composite',
+              'source-layer': 'building',
+              'filter': ['==', 'extrude', 'true'],
+              'type': 'fill',
+              'minzoom': 15,
+              'paint': {
+                'fill-color': '#ff0000',
+                //'fill-color': '#000',
+                'fill-translate': [-4, 2],
+                'fill-extrude-height': {
+                  'type': 'identity',
+                  'property': 'height'
+                },
+                'fill-opacity': 0.3
+              }
+            }, 'poi-scalerank3'),
+            map.addLayer({
+              'id': '3d-buildings',
+              'source': 'composite',
+              'source-layer': 'building',
+              'filter': ['==', 'extrude', 'true'],
+              'type': 'fill',
+              'minzoom': 15,
+              'paint': {
+                'fill-color': '#fff',
+                'fill-extrude-height': {
+                  'type': 'identity',
+                  'property': 'height'
+                },
+                'fill-extrude-base': {
+                  'type': 'identity',
+                  'property': 'base-height'
+                },
+                'fill-opacity': 0.6
+              }
+            }, 'poi-scalerank3');
+        });
+      </script>
+
+</body>
+
+</html>
