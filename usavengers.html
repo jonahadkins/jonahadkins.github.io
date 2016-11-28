@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.28.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      color: #000;
+    }
+
+    hr {
+      background-color: #000;
+      width: 100%;
+      height: 2px;
+      margin-left: auto;
+      margin-right: auto;
+      border: 0 none;
+    }
+
+    img {
+      position: relative;
+      max-height: 75%;
+      max-width: 75%;
+      display: block;
+      margin-left: 42px;
+      border: 1px solid #000;
+      box-shadow: 1px 1px #ccc;
+      -moz-box-shadow: 1px 1px #ccc;
+      -webkit-box-shadow: 1px 1px #ccc;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+
+    p.block {
+      position: relative;
+      width: 250px;
+      padding: 10px;
+      margin-left: auto;
+      margin-right: 10px;
+      margin-top: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #000;
+      font-family: 'Bangers', sans-serif;
+      font-size: 100%;
+      text-align: center;
+      -webkit-border-radius: 180px;
+      -moz-border-radius: 180px;
+      border-radius: 180px;
+      border: #000 solid 2px;
+    }
+
+    p.block:before {
+      content: "";
+      position: absolute;
+      bottom: -25px;
+      left: 0px;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 25px;
+      height: 25px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      border: #000 solid 2px;
+    }
+
+    p.block:after {
+      content: "";
+      position: absolute;
+      bottom: -40px;
+      left: -20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      width: 15px;
+      height: 15px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      border: #000 solid 2px;
+    }
+
+    #info {
+      position: relative;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #000;
+      font-family: 'Bangers', sans-serif;
+      font-size: 24px;
+      line-height: 75%;
+      text-align: center;
+      letter-spacing: 0.8px;
+      width: 250px;
+      height: 350px;
+      padding: 15px;
+      margin-left: 10px;
+      margin-top: 80px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      border: #000 solid 2px;
+    }
+
+    .code {
+      position: absolute;
+      bottom: 30px;
+      right: 0;
+      font-family: 'Helvetica', sans-serif;
+      color: #000;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 5px;
+      font-size: 80%;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id='map'></div>
+  <p class='block'>
+    </br>
+    <font size='20'>U.S.Avengers</font>
+    </br>
+    <font size='3'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a></font>
+  </p>
+  <div id='info'>
+    <font size='5'>
+      U.S.Avengers #1</font>
+
+    <hr>
+    <font size='3'>
+      <p align='left'>From <a target="blank" href="https://news.marvel.com/comics/26753/introducing_usavengers_state_variants/">Marvel.com:</a></p>
+      "....The security of the Marvel Universe is fractured. The world’s first line of defense, S.H.I.E.L.D., can no longer be trusted. The United States no longer has a super-spy agency with its best interests at heart – until now. Prepare for the U.S.AVENGERS!
+      They’re the team you can trust! For the launch of this all-new series, U.S.AVENGERS #1 will feature over 50 unique variants assigning one Avenger to that state!..."
+    </font>
+  </div>
+  <div class='code'>code</br><a target="blank" href="www.jonahadkins.com">website</a></div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+    var map = new mapboxgl.Map({
+      style: 'mapbox://styles/jonahadkins/ciutw3e0l00502innabeu7wyl',
+      center: [-92.298, 38.730],
+      zoom: 3,
+      minZoom: 3,
+      maxZoom: 5,
+      container: 'map'
+    });
+
+    map.on('load', function() {
+      map.addSource('marvel', {
+        type: 'vector',
+        url: 'mapbox://jonahadkins.civomlebu01au2zt8h1qygaks-56wrw'
+      });
+    });
+
+    map.on('mousemove', function(e) {
+      var features = map.queryRenderedFeatures(e.point, ({
+        layers: ['marvel']
+      }));
+      if (features.length > 0) {
+        document.getElementById('info').innerHTML = "<img src=" + features[0].properties.img + ">" +
+          "<hr>" + "<font size='5'>" + features[0].properties.hero + "</font>" +
+          "</br>" + "<font size='4.5'>" + features[0].properties.place_name + "</font>"
+      } else {
+        document.getElementById('info').innerHTML = document.getElementById('info').innerHTML;
+      }
+    });
+
+    map.on('click', function() {
+      document.getElementById('info').innerHTML = "<font size='5'>" +
+        'U.S.Avengers #1' + "</font>" + "<hr>" + "<font size='3'>" +
+        "<p align='left'>" +
+        'From <a target="blank" href="https://news.marvel.com/comics/26753/introducing_usavengers_state_variants/">' +
+        'Marvel.com: "</a></p>' +
+        '"....The security of the Marvel Universe is fractured. The world’s first line of defense, S.H.I.E.L.D., can no longer be trusted. The United States no longer has a super-spy agency with its best interests at heart – until now. Prepare for the U.S.AVENGERS! They’re the team you can trust! For the launch of this all-new series, U.S.AVENGERS #1 will feature over 50 unique variants assigning one Avenger to that state!..."' +
+        "</font>"
+    });
+  </script>
+
+</body>
+
+</html>
