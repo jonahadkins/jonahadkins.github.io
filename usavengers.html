@@ -188,7 +188,7 @@
 
     map.on('mousemove', function(e) {
       var features = map.queryRenderedFeatures(e.point, ({
-        layers: ['marvel']
+        layers: ['marvel copy', 'marvel']
       }));
       if (features.length > 0) {
         document.getElementById('info').innerHTML = "<img src=" + features[0].properties.img + ">" +
