@@ -27,6 +27,8 @@ as the signs for the race began to crop up around the streets here, i began to f
 
 the background contains roads, water, buildings, parks, and boundaries, and a slight layer of hillshade elevation. finishing off the background are location names familiar to the local crowd. the marathon route and stops are almost neon with the same effect for the title and simple route elevation graph.
 
+I’ve made this available as a print at <a href="https://society6.com/jonahsmaps/prints" target="_blank"> my Society 6 store </a> and is a natural fit at 17x22, but will look great at any printed size!
+
 as a daily runner, i'm used to the marathon distance, just not all at once :)
 
 maybe next year.
