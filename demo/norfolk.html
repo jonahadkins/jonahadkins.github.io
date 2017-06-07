@@ -51,6 +51,9 @@
                 visualVariables: [{
                     type: "size",
                     field: "DOLLAR_EST",
+                    legendOptions: {
+                        title: "Facility Energy Cost"
+                    },
                     stops: [{
                             value: 1,
                             size: 10,
@@ -69,9 +72,9 @@
                         title: "Energy Intensity"
                     },
                     stops: [{
-                            value: 0,
-                            color: [0, 197, 255],
-                            label: "0"
+                            value: -230,
+                            color: [230, 0, 0],
+                            label: "< -1"
                         },
                         {
                             value: -1,
@@ -79,9 +82,9 @@
                             label: "-1 to 0"
                         },
                         {
-                            value: -230,
-                            color: [230, 0, 0],
-                            label: "< -1"
+                            value: 0,
+                            color: [0, 197, 255],
+                            label: "0"
                         }
                     ]
                 }]
