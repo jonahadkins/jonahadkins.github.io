@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+  <title>NSGEM Map Views</title>
+
+  <style>
+    html,
+    body {
+      font-family: 'Francois One', sans-serif;
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #map {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 60px;
+      bottom: 0;
+    }
+
+    .header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 10%;
+    }
+
+    .btns {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      overflow: auto;
+    }
+
+    .btn-switch {
+      flex-grow: 4;
+      background-color: rgba(167,219,216,1);
+      color: #FFF;
+      margin: 1px;
+      width: 50%;
+      padding: 20px;
+      overflow: auto;
+      text-align: center;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    .active-map {
+      color: #fff;
+      background-color: rgba(105,210,231,1);
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.3/"></script>
+
+  <script>
+    require([
+      "esri/views/MapView",
+      "esri/WebMap",
+      "dojo/on",
+      "dojo/domReady!"
+    ], function(
+      MapView, WebMap,
+      on
+    ) {
+
+      var webmapids = [
+        "dbc14db55d3447bbb586855a260d073b",
+        "0b386e9fd8124a8294ac0480e1a716b3",
+        "714607558c114510976a9ebcb0ede854"
+      ];
+
+      /************************************************************
+       * Create multiple WebMap instances
+       ************************************************************/
+      var webmaps = webmapids.map(function(webmapid) {
+        return new WebMap({
+          portalItem: {
+            id: webmapid
+          }
+        });
+      });
+
+      /************************************************************
+       * Initialize the View with the first WebMap
+       ************************************************************/
+      var view = new MapView({
+        map: webmaps[0],
+        container: "map"
+      });
+      on(document.querySelector(".btns"), ".btn-switch:click", function(
+        event) {
+        /************************************************************
+         * On a button click, change the map of the View
+         ************************************************************/
+        var id = event.target.getAttribute("data-id");
+        if (id) {
+          var webmap = webmaps[id];
+          view.map = webmap;
+          var nodes = document.querySelectorAll(".btn-switch");
+          for (var idx = 0; idx < nodes.length; idx++) {
+            var node = nodes[idx];
+            var mapIndex = node.getAttribute("data-id");
+            if (mapIndex === id) {
+              node.classList.add("active-map");
+            } else {
+              node.classList.remove("active-map");
+            }
+          }
+        }
+      });
+    });
+  </script>
+</head>
+
+<body>
+  <section class="header">
+    <div class="btns">
+      <div class="btn-switch active-map" data-id="0">Energy Consumption</div>
+      <div class="btn-switch" data-id="1">Estimated Cost</div>
+      <div class="btn-switch" data-id="2">Energy Intensity</div>
+    </div>
+  </section>
+  <div id="map"></div>
+</body>
+
+</html>
