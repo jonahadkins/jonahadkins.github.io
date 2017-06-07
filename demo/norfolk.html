@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>norfolk-3d</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.3/"></script>
+
+    <style>
+        html,
+        body,
+        #map {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #elevation {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 12px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+        }
+    </style>
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/FeatureLayer",
+            "esri/renderers/SimpleRenderer",
+            "esri/symbols/PolygonSymbol3D",
+            "esri/symbols/ExtrudeSymbol3DLayer",
+            "esri/widgets/Legend",
+            "dojo/dom",
+            "dojo/on",
+            "dojo/domReady!"
+        ], function(
+            Map, SceneView, FeatureLayer, SimpleRenderer, PolygonSymbol3D,
+            ExtrudeSymbol3DLayer, Legend, dom, on
+        ) {
+            var renderer = new SimpleRenderer({
+                symbol: new PolygonSymbol3D({
+                    symbolLayers: [new ExtrudeSymbol3DLayer()]
+                }),
+                visualVariables: [{
+                    type: "size",
+                    field: "DOLLAR_EST",
+                    stops: [{
+                            value: 1,
+                            size: 10,
+                            label: "$1"
+                        },
+                        {
+                            value: 300000,
+                            size: 300,
+                            label: "$300,000"
+                        }
+                    ]
+                }, {
+                    type: "color",
+                    field: "ROLLING_BE",
+                    legendOptions: {
+                        title: "Energy Intensity"
+                    },
+                    stops: [{
+                            value: 0,
+                            color: [0, 197, 255],
+                            label: "0"
+                        },
+                        {
+                            value: -1,
+                            color: [255, 127, 127],
+                            label: "-1 to 0"
+                        },
+                        {
+                            value: -230,
+                            color: [230, 0, 0],
+                            label: "< -1"
+                        }
+                    ]
+                }]
+            });
+            var nsgem = new FeatureLayer({
+                url: "http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/norfolk_3d/FeatureServer/0",
+                renderer: renderer,
+                title: "Naval Station Norfolk",
+                outFields: ["*"],
+                popupTemplate: {
+                    title: "{FACILITY_1}",
+                    content: "$ {DOLLAR_EST}",
+                    fieldInfos: [{
+                        fieldName: "DOLLAR_EST",
+                        format: {
+                            digitSeparator: true,
+                            places: 0
+                        }
+                    }]
+                },
+            });
+
+            var map = new Map({
+                basemap: "dark-gray-vector",
+                ground: "world-elevation",
+                layers: [nsgem]
+            });
+
+            var view = new SceneView({
+                container: "map",
+                map: map,
+                camera: {
+                    position: {
+                        latitude: 36.89500,
+                        longitude: -76.305000,
+                        z: 1500
+                    },
+                    tilt: 65,
+                    heading: 0
+                }
+            });
+
+            var legend = new Legend({
+                view: view
+            });
+
+            view.ui.add(legend, "top-left");
+
+            view.then(function() {
+                on(dom.byId("elevationInput"), "change", updateElevation);
+
+                function updateElevation(ev) {
+                    map.ground.layers.forEach(function(layer) {
+                        layer.visible = ev.target.checked;
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="elevation">
+        <label>Elevation:
+    <input id="elevationInput" type="checkbox" checked="yes">
+  </label>
+    </div>
+</body>
+
+</html>
