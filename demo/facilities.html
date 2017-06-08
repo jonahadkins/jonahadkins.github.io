@@ -1,0 +1,172 @@
+<html>
+
+<head>
+    <meta charset=utf-8 />
+    <title>navy facilities worldwide</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.0.8"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        #title {
+            position: absolute;
+            top: 90%;
+            left: 1%;
+            bottom: 0;
+            font-family: 'Francois One', sans-serif;
+            text-shadow: 0 0 3px #000;
+            color: #fff;
+            z-index: 9999;
+            overflow: auto;
+        }
+
+        .cluster {
+            background: #2d84c8;
+            border-radius: 50%;
+            text-align: center;
+            color: white;
+            font-weight: 500;
+        }
+
+        .cluster:before {
+            content: ' ';
+            position: absolute;
+            border-radius: 50%;
+            z-index: -1;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            border: 1px solid rgba(108, 91, 123, 0.8);
+        }
+
+        .digits-1 {
+            font-size: 14px;
+            background: rgba(108, 91, 123, 0.3);
+            height: 28px;
+            width: 28px;
+            line-height: 28px;
+            margin-top: -14px;
+            margin-left: -14px;
+        }
+
+        .digits-2 {
+            font-size: 16px;
+            background: rgba(246, 114, 128, 0.3);
+            height: 34px;
+            width: 34px;
+            line-height: 35px;
+            margin-top: -17px;
+            margin-left: -17px;
+        }
+
+        .digits-2:before {
+            border: 1px solid rgba(246, 114, 128, 0.8);
+        }
+
+        .digits-3 {
+            font-size: 18px;
+            background: rgba(192, 108, 132, 0.3);
+            height: 48px;
+            width: 47px;
+            line-height: 47px;
+            border-width: 3px;
+            margin-top: -24px;
+            margin-left: -24px;
+        }
+
+        .digits-3:before {
+            border: 1px solid rgba(192, 108, 132, 0.8);
+        }
+
+        .digits-4 {
+            font-size: 18px;
+            background: rgba(248, 177, 149, 0.3);
+            height: 58px;
+            width: 58px;
+            line-height: 57px;
+            border-width: 4px;
+            margin-top: -29px;
+            margin-left: -29px;
+        }
+
+        .digits-4:before {
+            border: 1px solid rgba(1248, 177, 149, 0.8);
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.0.4/dist/MarkerCluster.css">
+    <script src="https://unpkg.com/leaflet.markercluster@1.0.4/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/esri-leaflet-cluster@2.0.0"></script>
+
+
+    <div id="map"></div>
+    <div id='title'>
+        <font size='6'> Worldwide Navy Facilities</font size>
+
+    </div>
+    <script>
+        var map = L.map('map').setView([38, -98], 4);
+
+        var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#355C7D",
+            color: "#355C7D",
+            weight: 1,
+            opacity: 0.8,
+            fillOpacity: 0.3
+        };
+
+
+        L.esri.basemapLayer('DarkGray').addTo(map);
+
+        L.esri.Cluster.featureLayer({
+            url: 'http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/navy_facs/FeatureServer/0',
+            spiderfyOnMaxZoom: false,
+            disableClusteringAtZoom: 16,
+            polygonOptions: {
+                color: '#355C7D',
+                weight: 2,
+                opacity: 1,
+                fillOpacity: 0.5
+            },
+
+            iconCreateFunction: function(cluster) {
+                var count = cluster.getChildCount();
+                var digits = (count + '').length;
+                return new L.divIcon({
+                    html: count,
+                    className: 'cluster digits-' + digits,
+                    iconSize: null
+                });
+            },
+
+            pointToLayer: function(geojson, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+            }
+
+        }).addTo(map);
+    </script>
+
+</body>
+
+</html>
