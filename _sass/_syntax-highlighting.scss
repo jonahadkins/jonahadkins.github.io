@@ -5,6 +5,13 @@
     background: #fff;
     @extend %vertical-rhythm;
 
+<<<<<<< HEAD
+=======
+    .highlighter-rouge & {
+      background: #eef;
+    }
+
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
     .c     { color: #998; font-style: italic } // Comment
     .err   { color: #a61717; background-color: #e3d2d2 } // Error
     .k     { font-weight: bold } // Keyword

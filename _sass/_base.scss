@@ -10,6 +10,7 @@ dl, dd, ol, ul, figure {
 
 
 
+<<<<<<< HEAD
 /** Variables **********************************************/
 @import url(https://fonts.googleapis.com/css?family=Questrial);
 @import url(https://fonts.googleapis.com/css?family=Ropa+Sans);
@@ -46,10 +47,13 @@ $theme-color:   $blue;
 
 /************************************************************/
 
+=======
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 /**
  * Basic styling
  */
 body {
+<<<<<<< HEAD
     font-family: $base-font-family;
     font-size: $base-font-size;
     line-height: $base-line-height;
@@ -58,6 +62,17 @@ body {
     background-image: url(/img/acvr.png);
     background-color: rgba(255,255,255,0.3);
     -webkit-text-size-adjust: 100%;
+=======
+    font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
+    color: $text-color;
+    background-color: $background-color;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-feature-settings: "kern" 1;
+    -moz-font-feature-settings: "kern" 1;
+    -o-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    font-kerning: normal;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 }
 
 
@@ -65,6 +80,7 @@ body {
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
+<<<<<<< HEAD
 p, blockquote, pre,
 ul, ol, dl, figure,
 %vertical-rhythm {
@@ -87,6 +103,27 @@ hr{
 }
 
 
+=======
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, dl, figure,
+%vertical-rhythm {
+    margin-bottom: $spacing-unit / 2;
+}
+
+
+
+/**
+ * Images
+ */
+img {
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+
+
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 /**
  * Figures
  */
@@ -104,7 +141,11 @@ figcaption {
  * Lists
  */
 ul, ol {
+<<<<<<< HEAD
     margin-left: $horizontal-spacing-unit;
+=======
+    margin-left: $spacing-unit;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 }
 
 li {
@@ -120,14 +161,23 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
+<<<<<<< HEAD
     font-weight: 100;
 }
 
 
+=======
+    font-weight: $base-font-weight;
+}
+
+
+
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 /**
  * Links
  */
 a {
+<<<<<<< HEAD
     color: $text-color;
     text-decoration: none;
     /*
@@ -147,6 +197,18 @@ article a {
 
     &:hover {
         text-decoration: none;
+=======
+    color: $brand-color;
+    text-decoration: none;
+
+    &:visited {
+        color: darken($brand-color, 15%);
+    }
+
+    &:hover {
+        color: $text-color;
+        text-decoration: underline;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
     }
 }
 
@@ -156,10 +218,18 @@ article a {
  * Blockquotes
  */
 blockquote {
+<<<<<<< HEAD
     color: $text-color;
     border-left: 10px solid $grey-color-light;
     padding-left: $horizontal-spacing-unit / 2;
     font-size: 18px;
+=======
+    color: $grey-color;
+    border-left: 4px solid $grey-color-light;
+    padding-left: $spacing-unit / 2;
+    font-size: 18px;
+    letter-spacing: -1px;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
     font-style: italic;
 
     > :last-child {
@@ -175,8 +245,14 @@ blockquote {
 pre,
 code {
     font-size: 15px;
+<<<<<<< HEAD
     border-radius: 3px;
     background-color: $grey-color-light;
+=======
+    border: 1px solid $grey-color-light;
+    border-radius: 3px;
+    background-color: #eef;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 }
 
 code {
@@ -185,7 +261,11 @@ code {
 
 pre {
     padding: 8px 12px;
+<<<<<<< HEAD
     overflow-x: scroll;
+=======
+    overflow-x: auto;
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 
     > code {
         border: 0;
@@ -199,6 +279,7 @@ pre {
 /**
  * Wrapper
  */
+<<<<<<< HEAD
 
 .wrapper {
     max-width: -webkit-calc(800px - (#{$horizontal-spacing-unit} * 2));
@@ -212,20 +293,64 @@ pre {
     @include media-query($on-laptop) {
         max-width: -webkit-calc(800px - (#{$horizontal-spacing-unit}));
         max-width:         calc(800px - (#{$horizontal-spacing-unit}));
+=======
+.wrapper {
+    max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
+    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $spacing-unit;
+    padding-left: $spacing-unit;
+    @extend %clearfix;
+
+    @include media-query($on-laptop) {
+        max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
+        max-width:         calc(#{$content-width} - (#{$spacing-unit}));
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
         padding-right: $spacing-unit / 2;
         padding-left: $spacing-unit / 2;
     }
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
 /**
  * Clearfix
  */
 %clearfix {
+<<<<<<< HEAD
     &:before,
+=======
+
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
     &:after {
         content: "";
         display: table;
         clear: both;
     }
 }
+<<<<<<< HEAD
+=======
+
+
+
+/**
+ * Icons
+ */
+.icon {
+
+    > svg {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        vertical-align: middle;
+
+        path {
+            fill: $grey-color;
+        }
+    }
+}
+>>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
