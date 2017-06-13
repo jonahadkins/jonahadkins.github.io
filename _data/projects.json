@@ -32,6 +32,14 @@
 		"tags": ["cartogrpahy","mapbox","qgis"]
 	},
 	{
+		"slug": "Vintage Style Remix",
+		"name": "Vintage Style Remix",
+		"image": "vintage-remix.png",
+		"url": "http://jonahadkins.com/mapbox-gl-vintage-style-remix/",
+		"date": "Dec 18 2015",
+		"tags": ["cartogrpahy","mapbox"]
+	},
+	{
 		"slug": "The Voyager",
 		"name": "The Voyager",
 		"image": "voyager.jpg",
