@@ -1,46 +1,11 @@
-<<<<<<< HEAD
-# Site settings
-title: jonah
-email: jonahadkins@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  A simple, whitespace, helvetica based portfolio theme.
-baseurl:  # the subpath of your site, e.g. /blog/
-url:  # the base hostname & protocol for your site
-twitter_username: jonahadkins
-github_username:  jonahadkins
-linkedin_username: jonahadkins
-facebook_username: jonahadkins
-author: jonahadkins
-
-# Build settings
-markdown: kramdown
-highlighter: rogue
-
-# Pagination
-paginate: 15
-paginate_path: "/blog/page:num/"
-
-
-collections:
-  portfolio:
-    output: true
-    permalink: /portfolio/:path/
-  poetry:
-    output: true
-    permalink: /poetry/:path/
-
-gems:
-  - jekyll-feed
-  - jekyll-paginate
-=======
-title: Stack Problems
-description: My Personal Stack Problems
-author: Agus Makmun
-github: https://github.com/agusmakmun
-about: I am freelance developer. Currently doing more in backend, focused in Python and Django.
-disqus_shortname: stackproblems
-google_analytics: UA-XXXXXXXX-Y
-avatar_url: /static/img/avatar.jpg
+title: It all started with a map........ 
+description:
+author: Jonah Adkins
+github: https://github.com/jonahadkins
+about: Cartography, OpenStreetMap, Open Data, Music, Disney, Sports Cards, Pro-Wrestling, and Ink.
+disqus_shortname:
+google_analytics:
+avatar_url: /static/img/avatar.png
 
 enableTags: true
 tagarray: []
@@ -51,30 +16,30 @@ collections:
     permalink: /project/:path/
 
 social:
-    - icon: fa-facebook
-      link: "#"
     - icon: fa-twitter
-      link: "https://twitter.com/agusmakmun6"
+      link: "https://twitter.com/jonahadkins"
     - icon: fa-linkedin
-      link: "https://www.linkedin.com/in/summonagus"
-    - icon: fa-stack-exchange
-      link: "#"
+      link: "https://www.linkedin.com/in/jonahadkins"
     - icon: fa-github
-      link: "https://github.com/agusmakmun"
+      link: "https://github.com/jonahadkins"
+    - icon: fa-envelope
+      link: "mailto:jonahadkins@gmail.com"
 
 share:
-  twitter_username: agusmakmun6
-  fb_appid: 1749788565247320
+  twitter_username: jonahadkins
+  fb_appid:
 
 urls:
-    - text: About Me
+    - text: Resume
+      url: /resume_for_jonah_adkins.pdf
+    - text: About
       url: /about/
-    - text: My Projects
+    - text: Projects
       url: /projects/
     - text: XML Feed
       url: /feed.xml
 
-url: "https://agusmakmun.github.io"
+url: "http://jonahadkins.com/"
 baseurl: ""
 paginate: 20
 per_page: 20
@@ -88,4 +53,3 @@ compress_html:
   clippings: all
   comments: ["<!-- ", " -->"]
   endings: all
->>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab

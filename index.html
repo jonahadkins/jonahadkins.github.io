@@ -2,63 +2,6 @@
 layout: default
 ---
 
-<<<<<<< HEAD
-<div class="header-bar">
-  <img class="col zero left" src="/img/tumblr.png">
-  <h1></h1>
-  <h2>hi! my name is Jonah Adkins. i'm a cartographer from newport news, virginia.
-    I've been working with GIS technology since 1999, learning and applying my skillsets
-    with local governments, federal agencies, and recently as a consultant.
-  <br>
-  <br>
-  i'm most interested in cartographic design, openstreetmap, and civic hacking.
-  </h2>
-  <br>
-
-  <span class="contacticon center">
-  	<a href="mailto:jonahadkins@gmail.com"><i class="fa fa-envelope-square"></i></a>
-  	<a href="https://twitter.com/jonahadkins" target="_blank"><i class="fa fa-twitter-square"></i></a>
-  	<a href="https://github.com/jonahadkins" target="_blank"><i class="fa fa-github-square"></i></a>
-  	<a href="https://www.linkedin.com/in/jonahadkins" target="_blank"><i class="fa fa-linkedin-square"></i></a>
-    <a href="http://jonahadkins.github.io/feed.xml"><i class="fa fa-rss-square"></i></a>
-  </span>
-
-  <br/>
-  <hr>
-  <br/>
-</div>
-
-
-<ul class="post-list">
-    {% for post in paginator.posts %}
-      <li>
-        <h2><a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h2>
-        <p class="post-meta">{{ post.date | date: '%B %-d, %Y — %H:%M' }}</p>
-        <p>{{ post.description }}</p>
-        <br/>
-        <hr/>
-      </li>
-    {% endfor %}
-</ul>
-
-<!-- Start of StatCounter Code for Default Guide -->
-<script type="text/javascript">
-var sc_project=7998460;
-var sc_invisible=1;
-var sc_security="768fe709";
-var scJsHost = (("https:" == document.location.protocol) ?
-"https://secure." : "http://www.");
-document.write("<sc"+"ript type='text/javascript' src='" +
-scJsHost+
-"statcounter.com/counter/counter.js'></"+"script>");
-</script>
-<noscript><div class="statcounter"><a title="web analytics"
-href="http://statcounter.com/" target="_blank"><img
-class="statcounter"
-src="http://c.statcounter.com/7998460/0/768fe709/1/"
-alt="web analytics"></a></div></noscript>
-<!-- End of StatCounter Code for Default Guide -->
-=======
 <div id="home">
   <h1>{{ site.title }}</h1>
   <hr />
@@ -100,4 +43,3 @@ alt="web analytics"></a></div></noscript>
     </ul>
   {% endif %}
 </div><!-- end #home -->
->>>>>>> 575da55c2e79e0ae872d128ac5c8885066410aab
