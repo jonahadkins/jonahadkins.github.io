@@ -8,6 +8,30 @@
 		"tags": ["cartogrpahy","OpenStreetMap","photoshop"]
 	},
 	{
+		"slug": "U.S.Avengers",
+		"name": "U.S.Avengers",
+		"image": "usavengers_3.png",
+		"url": "http://jonahadkins.com/usavengers.html",
+		"date": "Nov 27 2016",
+		"tags": ["cartogrpahy","mapbox"]
+	},
+	{
+		"slug": "Paid Mappers - A Year of Edits",
+		"name": "Paid Mappers - A Year of Edits",
+		"image": "paid-mappers-2.png",
+		"url": "http://jonahadkins.com/pm_edits.html",
+		"date": "Aug 15 2016",
+		"tags": ["cartogrpahy","mapbox","openstreetmap"]
+	},
+	{
+		"slug": "Bridges of America",
+		"name": "Bridges of America",
+		"image": "bridge_traffic.png",
+		"url": "http://jonahadkins.com/bridges.html",
+		"date": "Mar 22 2016",
+		"tags": ["cartogrpahy","mapbox","qgis"]
+	},
+	{
 		"slug": "The Voyager",
 		"name": "The Voyager",
 		"image": "voyager.jpg",
@@ -29,6 +53,46 @@
 		"image": "dynamic-map-books.png",
 		"url": "http://www.esri.com/videos/watch?videoid=3803&isLegacy=true&title=dynamic-map-books",
 		"date": "Aug 01 2014",
+		"tags": ["cartogrpahy","esri","talks"]
+	},
+	{
+		"slug": "Downtown Norfolk Transit Network",
+		"name": "Downtown Norfolk Transit Network",
+		"image": "norfolk-transit.jpg",
+		"url": "#",
+		"date": "Jun 10 2014",
+		"tags": ["esri","cartogrpahy"]
+	},
+	{
+		"slug": "Open Data in Hampton Roads",
+		"name": "Open Data in Hampton Roads",
+		"image": "hr-open-data.png",
+		"url": "http://jonahadkins.com/Open-Data-In-Hampton-Roads/#/",
+		"date": "Mar 14 2014",
+		"tags": ["talks","openstreetmap"]
+	},
+	{
+		"slug": "Weekend Update",
+		"name": "Weekend Update",
+		"image": "weekend-update.png",
+		"url": "https://github.com/jonahadkins/weekendupdate",
+		"date": "Feb 05 2014",
+		"tags": ["cartogrpahy","esri","mapbox"]
+	},
+	{
+		"slug": "The World Famous Jungle Cruise",
+		"name": "The World Famous Jungle Cruise",
+		"image": "jinglecruise.jpg",
+		"url": "",
+		"date": "Dec 02 2013",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "Making Great Maps",
+		"name": "Making Great Maps",
+		"image": "making-great-maps.jpg",
+		"url": "http://www.esri.com/videos/watch?playlistid=series_159&channelid=LegacyVideo&isLegacy=true&title=how-do-vessels-move-over-time?&isLegacy=true&title=making-great-maps",
+		"date": "Aug 01 2013",
 		"tags": ["cartogrpahy","esri","talks"]
 	},
 	{

@@ -14,7 +14,7 @@ h3.project-headlines {
 }
 
 span.tags {
-  font-size: 10px;
+  font-size: 13px;
   border-bottom: 1px #888 dotted;
   margin: 0 5px;
 }
@@ -61,9 +61,9 @@ span.tags:last-child {
 span.tag-cloud {
   margin: 0 2px;
   cursor: pointer;
-  font-size: 75%;
+  font-size: 100%;
   padding: .2em .6em .3em;
-  font-weight: 700;
+  font-weight: 200;
   display: inline;
 }
 .tag-cloud.active {
