@@ -29,7 +29,7 @@ Here's a quick review of how it came to be:
 
  `tippecanoe -pf -y extra -y date -y avgdytrfc -rg -o nbi_2015.Mbtiles nbi_2015.Geojson -z3 -z14`  
 
- >The final step was loading it up to my Mapbox account, applying some scale dependent (!!!) symbology based on my static map, and lastly creating a [quick page to demo](http://jonahadkins.com/bridges.Html) the maps using Mapbox-GL-JS which I highly recommend to compare the two views I created and see the power of panning/zooming over 600k points. Here's a few static images made with the [static image generator](https://www.Mapbox.Com/blog/static-maps-with-studio/) in studio.  
+ >The final step was loading it up to my Mapbox account, applying some scale dependent (!!!) symbology based on my static map, and lastly creating a [quick page to demo](http://jonahadkins.com/bridges.html) the maps using Mapbox-GL-JS which I highly recommend to compare the two views I created and see the power of panning/zooming over 600k points. Here's a few static images made with the [static image generator](https://www.Mapbox.Com/blog/static-maps-with-studio/) in studio.  
 
 *special shot-outs to Aaron Alex, and Will for their gracious support on this project!*  
 

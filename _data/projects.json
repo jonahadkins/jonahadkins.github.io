@@ -1,5 +1,29 @@
 [
 	{
+		"slug": "ArcGIS Insights Test Drive",
+		"name": "ArcGIS Insights Test Drive",
+		"image": "insights.jpg",
+		"url": "https://www.instagram.com/p/BVAbviEABuy/",
+		"date": "Jun 06 2017",
+		"tags": ["cartogrpahy","esri","data"]
+	},
+	{
+		"slug": "Blackbeard Festival Tiles",
+		"name": "Blackbeard Festival Tiles",
+		"image": "pirate-tiles.jpg",
+		"url": "https://api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx.html?title=true&access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ#16.0/37.021364/-76.342857/0",
+		"date": "May 30 2017",
+		"tags": ["cartogrpahy","mapbox"]
+	},
+	{
+		"slug": "Songs, Places, Lyrics, Maps Part 1",
+		"name": "Songs, Places, Lyrics, Maps Part 1",
+		"image": "songs-pt1.png",
+		"url": "https://www.instagram.com/p/BUeyyZOAitH/",
+		"date": "May 24 2017",
+		"tags": ["cartogrpahy","mapbox"]
+	},
+	{
 		"slug": "one city marathon",
 		"name": "One City Marathon",
 		"image": "onecitysm.png",
