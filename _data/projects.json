@@ -48,6 +48,22 @@
 		"tags": ["cartogrpahy","photoshop"]
 	},
 	{
+		"slug": "See Click Fix Virginia Beach",
+		"name": "See Click Fix Virginia Beach",
+		"image": "see-click-fix.png",
+		"url": "http://jonahadkins.com/seeclickfix-hrva/",
+		"date": "Jun 06 2015",
+		"tags": ["cartogrpahy","leaflet","data"]
+	},
+	{
+		"slug": "Very Scary Story Map",
+		"name": "Very Scary Story Map",
+		"image": "ghost-story.png",
+		"url": "http://jonahadkins.com/ghost-stories/",
+		"date": "May 25 2015",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
 		"slug": "House Hunters",
 		"name": "House Hunters",
 		"image": "house-hunters.png",
