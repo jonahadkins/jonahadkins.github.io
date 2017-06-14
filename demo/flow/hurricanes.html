@@ -15,14 +15,14 @@
             padding: 0;
         }
     </style>
-  <script>
+    <script>
         var dojoConfig = {
             async: true,
             debug: true, // only for development
             packages: [{
                 name: 'Canvas-Flowmap-Layer',
-                location: '../demo/flow/'
-                //main: 'CanvasFlowmapLayer'
+                location: 'https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo/flow/',
+                main: 'CanvasFlowmapLayer'
             }]
         };
     </script>
@@ -51,8 +51,9 @@
 
                 map.on('load', function() {
                     var tropicalLayer = new CanvasFlowmapLayer({
+                        id: 'tropicalLayer',
                         url: 'http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/Historical_Tropical_Storm_Tracks/FeatureServer/0',
-                        id: 'tropical',
+
                         visible: true,
                         originAndDestinationFieldIds: {
                             originUniqueIdField: 'fid',
