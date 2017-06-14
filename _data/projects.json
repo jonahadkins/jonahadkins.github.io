@@ -5,7 +5,7 @@
 		"image": "insights.jpg",
 		"url": "https://www.instagram.com/p/BVAbviEABuy/",
 		"date": "Jun 06 2017",
-		"tags": ["cartogrpahy","esri","data"]
+		"tags": ["cartography","esri","data"]
 	},
 	{
 		"slug": "Blackbeard Festival Tiles",
@@ -13,7 +13,7 @@
 		"image": "pirate-tiles.jpg",
 		"url": "https://api.mapbox.com/styles/v1/tempgeocent/cj2qe6qid003a2rmrquvqgbcx.html?title=true&access_token=pk.eyJ1IjoidGVtcGdlb2NlbnQiLCJhIjoiY2l1YTNmenEyMDAwdDJ6cWZxbG55Yjg4OSJ9.QRTz4Pi3096MtXKc_QgpWQ#16.0/37.021364/-76.342857/0",
 		"date": "May 30 2017",
-		"tags": ["cartogrpahy","mapbox"]
+		"tags": ["cartography","mapbox"]
 	},
 	{
 		"slug": "Songs, Places, Lyrics, Maps Part 1",
@@ -21,7 +21,7 @@
 		"image": "songs-pt1.png",
 		"url": "https://www.instagram.com/p/BUeyyZOAitH/",
 		"date": "May 24 2017",
-		"tags": ["cartogrpahy","mapbox"]
+		"tags": ["cartography","mapbox"]
 	},
 	{
 		"slug": "one city marathon",
@@ -29,7 +29,7 @@
 		"image": "onecitysm.png",
 		"url": "",
 		"date": "Mar 20 2017",
-		"tags": ["cartogrpahy","OpenStreetMap","photoshop"]
+		"tags": ["cartography","OpenStreetMap","photoshop"]
 	},
 	{
 		"slug": "U.S.Avengers",
@@ -37,7 +37,7 @@
 		"image": "usavengers_3.png",
 		"url": "http://jonahadkins.com/usavengers.html",
 		"date": "Nov 27 2016",
-		"tags": ["cartogrpahy","mapbox"]
+		"tags": ["cartography","mapbox"]
 	},
 	{
 		"slug": "Paid Mappers - A Year of Edits",
@@ -45,7 +45,7 @@
 		"image": "paid-mappers-2.png",
 		"url": "http://jonahadkins.com/pm_edits.html",
 		"date": "Aug 15 2016",
-		"tags": ["cartogrpahy","mapbox","openstreetmap"]
+		"tags": ["cartography","mapbox","openstreetmap"]
 	},
 	{
 		"slug": "Bridges of America",
@@ -53,7 +53,7 @@
 		"image": "bridge_traffic.png",
 		"url": "http://jonahadkins.com/bridges.html",
 		"date": "Mar 22 2016",
-		"tags": ["cartogrpahy","mapbox","qgis"]
+		"tags": ["cartography","mapbox","qgis"]
 	},
 	{
 		"slug": "Vintage Style Remix",
@@ -61,7 +61,7 @@
 		"image": "vintage-remix.png",
 		"url": "http://jonahadkins.com/mapbox-gl-vintage-style-remix/",
 		"date": "Dec 18 2015",
-		"tags": ["cartogrpahy","mapbox"]
+		"tags": ["cartography","mapbox"]
 	},
 	{
 		"slug": "Noland Trail Second Edition",
@@ -69,7 +69,7 @@
 		"image": "noland-2.jpg",
 		"url": "",
 		"date": "Jul 01 2015",
-		"tags": ["cartogrpahy","photoshop"]
+		"tags": ["cartography","photoshop"]
 	},
 	{
 		"slug": "The Voyager",
@@ -77,7 +77,7 @@
 		"image": "voyager.jpg",
 		"url": "",
 		"date": "Mar 12 2015",
-		"tags": ["cartogrpahy","photoshop"]
+		"tags": ["cartography","photoshop"]
 	},
 	{
 		"slug": "See Click Fix Virginia Beach",
@@ -85,7 +85,7 @@
 		"image": "see-click-fix.png",
 		"url": "http://jonahadkins.com/seeclickfix-hrva/",
 		"date": "Jun 06 2015",
-		"tags": ["cartogrpahy","leaflet","data"]
+		"tags": ["cartography","leaflet","data"]
 	},
 	{
 		"slug": "Very Scary Story Map",
@@ -93,7 +93,7 @@
 		"image": "ghost-story.png",
 		"url": "http://jonahadkins.com/ghost-stories/",
 		"date": "May 25 2015",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "House Hunters",
@@ -101,7 +101,7 @@
 		"image": "house-hunters.png",
 		"url": "http://jonahadkins.com/house-hunters/",
 		"date": "Jan 02 2015",
-		"tags": ["cartogrpahy","mapbox"]
+		"tags": ["cartography","mapbox"]
 	},
 	{
 		"slug": "Open Noland Trail",
@@ -117,7 +117,7 @@
 		"image": "dynamic-map-books.png",
 		"url": "http://www.esri.com/videos/watch?videoid=3803&isLegacy=true&title=dynamic-map-books",
 		"date": "Aug 01 2014",
-		"tags": ["cartogrpahy","esri","talks"]
+		"tags": ["cartography","esri","talks"]
 	},
 	{
 		"slug": "Bridges of the Commonwealth",
@@ -125,7 +125,7 @@
 		"image": "bridges-1.jpg",
 		"url": "#",
 		"date": "Jun 21 2014",
-		"tags": ["esri","cartogrpahy"]
+		"tags": ["esri","cartography"]
 	},
 	{
 		"slug": "Downtown Norfolk Transit Network",
@@ -133,7 +133,7 @@
 		"image": "norfolk-transit.jpg",
 		"url": "#",
 		"date": "Jun 10 2014",
-		"tags": ["esri","cartogrpahy"]
+		"tags": ["esri","cartography"]
 	},
 	{
 		"slug": "Open Data in Hampton Roads",
@@ -149,7 +149,7 @@
 		"image": "weekend-update.png",
 		"url": "https://github.com/jonahadkins/weekendupdate",
 		"date": "Feb 05 2014",
-		"tags": ["cartogrpahy","esri","mapbox"]
+		"tags": ["cartography","esri","mapbox"]
 	},
 	{
 		"slug": "The World Famous Jungle Cruise",
@@ -157,7 +157,7 @@
 		"image": "jinglecruise.jpg",
 		"url": "",
 		"date": "Dec 02 2013",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "Making Great Maps",
@@ -165,7 +165,7 @@
 		"image": "making-great-maps.jpg",
 		"url": "http://www.esri.com/videos/watch?playlistid=series_159&channelid=LegacyVideo&isLegacy=true&title=how-do-vessels-move-over-time?&isLegacy=true&title=making-great-maps",
 		"date": "Aug 01 2013",
-		"tags": ["cartogrpahy","esri","talks"]
+		"tags": ["cartography","esri","talks"]
 	},
 	{
 		"slug": "Noland Trail First Edition",
@@ -173,7 +173,7 @@
 		"image": "noland-1.jpg",
 		"url": "",
 		"date": "Jul 15 2013",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "The Geography of Illinoise",
@@ -181,7 +181,7 @@
 		"image": "sufjan.png",
 		"url": "",
 		"date": "Nov 07 2012",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "Greetings from the Island",
@@ -189,7 +189,7 @@
 		"image": "island-postcard.jpg",
 		"url": "",
 		"date": "Aug 15 2012",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "It's A Small World",
@@ -197,7 +197,7 @@
 		"image": "smallworld.jpg",
 		"url": "http://bigthink.com/strange-maps/578-its-a-small-and-cartographically-incorrect-world-after-all",
 		"date": "Jul 12 2012",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "Wilson's Creek Staff Ride",
@@ -205,7 +205,7 @@
 		"image": "wilsons-2.jpg",
 		"url": "",
 		"date": "Jun 05 2012",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "Wilson's Creek Battlefield Map",
@@ -213,7 +213,7 @@
 		"image": "wilsons-1.jpg",
 		"url": "",
 		"date": "May 10 2012",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "The Multiverse of Fringe",
@@ -221,7 +221,7 @@
 		"image": "fringe.jpg",
 		"url": "",
 		"date": "May 01 2011",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 	{
 		"slug": "City of Hampton Street Map",
@@ -229,6 +229,6 @@
 		"image": "hampton-street.jpg",
 		"url": "",
 		"date": "Mar 01 2008",
-		"tags": ["cartogrpahy","esri"]
+		"tags": ["cartography","esri"]
 	},
 ]

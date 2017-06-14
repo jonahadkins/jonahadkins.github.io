@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
 categories: esri
-title: Esri
+title: esri
 permalink: /category/esri
 ---
