@@ -64,11 +64,19 @@
 		"tags": ["cartogrpahy","mapbox"]
 	},
 	{
+		"slug": "Noland Trail Second Edition",
+		"name": "Noland Trail Second Edition",
+		"image": "noland-2.jpg",
+		"url": "",
+		"date": "Jul 01 2015",
+		"tags": ["cartogrpahy","photoshop"]
+	},
+	{
 		"slug": "The Voyager",
 		"name": "The Voyager",
 		"image": "voyager.jpg",
 		"url": "",
-		"date": "Jun 23 2015",
+		"date": "Mar 12 2015",
 		"tags": ["cartogrpahy","photoshop"]
 	},
 	{
@@ -96,12 +104,28 @@
 		"tags": ["cartogrpahy","mapbox"]
 	},
 	{
+		"slug": "Open Noland Trail",
+		"name": "Open Noland Trail",
+		"image": "open-noland.png",
+		"url": "http://jonahadkins.com/open-noland-trail/",
+		"date": "Oct 07 2014",
+		"tags": ["openstreetmap","data"]
+	},
+	{
 		"slug": "Dynamic Map Books",
 		"name": "Dynamic Map Books",
 		"image": "dynamic-map-books.png",
 		"url": "http://www.esri.com/videos/watch?videoid=3803&isLegacy=true&title=dynamic-map-books",
 		"date": "Aug 01 2014",
 		"tags": ["cartogrpahy","esri","talks"]
+	},
+	{
+		"slug": "Bridges of the Commonwealth",
+		"name": "Bridges of the Commonwealth",
+		"image": "bridges-1.jpg",
+		"url": "#",
+		"date": "Jun 21 2014",
+		"tags": ["esri","cartogrpahy"]
 	},
 	{
 		"slug": "Downtown Norfolk Transit Network",
@@ -144,11 +168,67 @@
 		"tags": ["cartogrpahy","esri","talks"]
 	},
 	{
+		"slug": "Noland Trail First Edition",
+		"name": "Noland Trail First Edition",
+		"image": "noland-1.jpg",
+		"url": "",
+		"date": "Jul 15 2013",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "The Geography of Illinoise",
+		"name":  "The Geography of Illinoise",
+		"image": "sufjan.png",
+		"url": "",
+		"date": "Nov 07 2012",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "Greetings from the Island",
+		"name":  "Greetings from the Island",
+		"image": "island-postcard.jpg",
+		"url": "",
+		"date": "Aug 15 2012",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
 		"slug": "It's A Small World",
 		"name": "It's A Small World",
 		"image": "smallworld.jpg",
 		"url": "http://bigthink.com/strange-maps/578-its-a-small-and-cartographically-incorrect-world-after-all",
 		"date": "Jul 12 2012",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "Wilson's Creek Staff Ride",
+		"name": "Wilson's Creek Staff Ride",
+		"image": "wilsons-2.jpg",
+		"url": "",
+		"date": "Jun 05 2012",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "Wilson's Creek Battlefield Map",
+		"name": "Wilson's Creek Battlefield Map",
+		"image": "wilsons-1.jpg",
+		"url": "",
+		"date": "May 10 2012",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "The Multiverse of Fringe",
+		"name": "The Multiverse of Fringe",
+		"image": "fringe.jpg",
+		"url": "",
+		"date": "May 01 2011",
+		"tags": ["cartogrpahy","esri"]
+	},
+	{
+		"slug": "City of Hampton Street Map",
+		"name": "City of Hampton Street Map",
+		"image": "hampton-street.jpg",
+		"url": "",
+		"date": "Mar 01 2008",
 		"tags": ["cartogrpahy","esri"]
 	},
 ]
