@@ -2,7 +2,7 @@
 
 <head>
     <meta charset=utf-8 />
-    <title>navy facilities worldwide</title>
+    <title>US Alternative Fueling Stations</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <link href="https://fonts.googleapis.com/css?family=Francois+One" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
@@ -37,6 +37,9 @@
             color: #fff;
             z-index: 9999;
             overflow: auto;
+        }
+        a {
+          color: #fff;
         }
 
         .cluster {
@@ -121,7 +124,8 @@
 
     <div id="map"></div>
     <div id='title'>
-        <font size='6'> Worldwide Navy Facilities</font size>
+        <font size='6'> Alternative Fueling Stations</font size></br>
+          <font size = '3'>From <a target="blank" href="https://hifld-dhs-gii.opendata.arcgis.com/datasets/13c68a8ccb4645b587e1b9d854c7f7cd_0">HIFLD Open Data</a></font>
 
     </div>
     <script>
@@ -140,7 +144,7 @@
         L.esri.basemapLayer('DarkGray').addTo(map);
 
         L.esri.Cluster.featureLayer({
-            url: 'http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/navy_facs/FeatureServer/0',
+            url: 'https://services2.arcgis.com/1cdV1mIckpAyI7Wo/arcgis/rest/services/Non_Gasoline_Alternative_Fueling_Stations/FeatureServer/0',
             spiderfyOnMaxZoom: false,
             disableClusteringAtZoom: 16,
             polygonOptions: {

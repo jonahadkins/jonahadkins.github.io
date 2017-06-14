@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>norfolk-3d</title>
+    <title>City of Portland Buildings</title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
     <script src="https://js.arcgis.com/4.3/"></script>
@@ -50,61 +50,81 @@
                 }),
                 visualVariables: [{
                     type: "size",
-                    field: "DOLLAR_EST",
+                    field: "AVG_HEIGHT",
                     legendOptions: {
-                        title: "Facility Energy Cost"
+                        title: "Average Building Height"
                     },
                     stops: [{
                             value: 1,
                             size: 10,
-                            label: "$1"
+                            label: "Low"
                         },
                         {
-                            value: 300000,
+                            value: 1000,
                             size: 300,
-                            label: "$300,000"
+                            label: "High"
                         }
                     ]
                 }, {
                     type: "color",
-                    field: "ROLLING_BE",
+                    field: "YEAR_BUILT",
                     legendOptions: {
-                        title: "Energy Intensity"
+                        title: "Year Built"
                     },
                     stops: [{
-                            value: -230,
-                            color: [230, 0, 0],
-                            label: "< -1"
+                            value: 1600,
+                            color: [237,248,251],
+                            label: "No Data / Pre 1900"
                         },
                         {
-                            value: -1,
-                            color: [255, 127, 127],
-                            label: "-1 to 0"
+                            value: 1900,
+                            color: [191,211,230],
+                            label: "1900"
                         },
                         {
-                            value: 0,
-                            color: [0, 197, 255],
-                            label: "0"
+                            value: 1925,
+                            color: [158,188,218],
+                            label: "1925"
+                        },
+                        {
+                            value: 1950,
+                            color: [140,150,198],
+                            label: "1950"
+                        },
+                        {
+                            value: 1975,
+                            color: [140,107,177],
+                            label: "1975"
+                        },
+                        {
+                            value: 2000,
+                            color: [136,65,157],
+                            label: "2000"
+                        },
+                        {
+                            value: 2020,
+                            color: [110,1,107],
+                            label: "2020"
                         }
                     ]
                 }]
             });
             var nsgem = new FeatureLayer({
-                url: "http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/norfolk_3d/FeatureServer/0",
+                url: "https://www.portlandmaps.com/arcgis/rest/services/Public/COP_OpenData/MapServer/184",
                 renderer: renderer,
-                title: "Naval Station Norfolk",
-                outFields: ["*"],
-                popupTemplate: {
-                    title: "{FACILITY_1}",
-                    content: "$ {DOLLAR_EST}",
+                title: "Portland Buildings (Open Data) ",
+                outFields: ["*"]
+                /*popupTemplate: {
+                    title: "{BLDG_NAME}",
+                    content: "{YEAR_BUILT}",
                     fieldInfos: [{
-                        fieldName: "DOLLAR_EST",
+                        fieldName: "YEAR_BUILT",
                         format: {
                             digitSeparator: true,
                             places: 0
                         }
                     }]
-                },
+                },*/
             });
 
             var map = new Map({
@@ -118,8 +138,8 @@
                 map: map,
                 camera: {
                     position: {
-                        latitude: 36.89500,
-                        longitude: -76.305000,
+                        latitude: 45.4889,
+                        longitude: -122.6805,
                         z: 1500
                     },
                     tilt: 65,
