@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="not-ie">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <title>Cedar Example</title>
+    <meta name="description" content="Esri Cedar">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" src="https://raw.githubusercontent.com/Esri/cedar/master/site/source/scss/style.scss">
+    <link rel="stylesheet" src="https://raw.githubusercontent.com/Esri/cedar/master/site/source/scss/calcite-bootstrap.css">
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vega/2.6.1/vega.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/arcgis-cedar@0.9.1/dist/cedar.min.js"></script>
+
+    <!-- Cedar and dependencies (d3, vega) -->
+    <!-- NOTE: the pie chart examle does not work w/ latest vega (v1.5+), so here we are pulling in an oldder version (v1.4.3) -->
+
+    <!-- define packages for Cedar.js and dependencies (d3, Vega) for dojo loader -->
+    <script>
+        window.dojoConfig = {
+            async: true,
+            packages: [{
+                name: 'd3',
+                location: 'https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6',
+                main: 'd3.min'
+            }, {
+                name: 'vega',
+                location: 'https://cdnjs.cloudflare.com/ajax/libs/vega/2.6.1',
+                main: 'vega.min'
+            }, {
+                name: 'cedar',
+                location: 'https://unpkg.com/arcgis-cedar@0.7.0/dist',
+                main: 'cedar.min'
+            }]
+        };
+    </script>
+
+    <!-- NOTE: underscore is used by a few examples, but is not needed by Cedar -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+
+    <!-- NOTE: prism is used by the examples, but is not needed by Cedar -->
+    <link rel="stylesheet" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/themes/prism.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.0/prism.min.js"></script>
+</head>
+
+<body>
+
+
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            width: 80%;
+        }
+
+        #chart-container {
+            position: absolute;
+            bottom: 0px;
+            top: 0px;
+            right: 10px;
+            float: right;
+            width: 32%;
+            height: 100%;
+        }
+
+        #chart {
+            overflow: hidden;
+        }
+
+        #chart-scatter {
+            overflow: hidden;
+        }
+
+        #chart canvas,
+        #chart-scatter canvas {
+            margin: auto;
+            display: block;
+            color: #FFF;
+        }
+
+        #ex-container {
+            height: 100%;
+            overflow: hidden;
+            margin-top: -20px;
+        }
+
+        #map {
+            height: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.12/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.12/"></script>
+
+    <div id="ex-container">
+        <div id="map"></div>
+        <div id="chart-container">
+            <h5 style="padding-left:10px;"></h5>
+            <div id="chart"></div>
+            <div id="chart-scatter"></div>
+        </div>
+
+        <script>
+            require(["cedar", "esri/map", "esri/basemaps", "esri/layers/FeatureLayer", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+                "esri/renderers/SimpleRenderer", "esri/renderers/UniqueValueRenderer", "esri/Color", "dojo/domReady!"
+            ], function(Cedar, Map, esriBasemaps, FeatureLayer,
+                SimpleMarkerSymbol, SimpleLineSymbol, SimpleRenderer, UniqueValueRenderer, Color) {
+
+                var defaultSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 9,
+                    new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                        new Color([28, 107, 160, 1]), 0.5),
+                    new Color([0, 255, 255, 0.5]));
+
+                var rend = new SimpleRenderer(defaultSymbol);
+
+                var featureLayer = new FeatureLayer("http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/navy_facs/FeatureServer/0", {
+                    mode: FeatureLayer.MODE_ONDEMAND,
+                    outFields: ["*"]
+                });
+
+                //create esri map
+                var map = new Map("map", {
+                    center: [-98, 38],
+                    zoom: 2,
+                    basemap: "dark-gray",
+                    smartNavigation: false
+                });
+
+                map.on('load', function() {
+                    map.disableScrollWheelZoom();
+                });
+
+                map.on('extent-change', function() {
+                    onExtentChanged();
+                });
+
+                window.map = map;
+
+                featureLayer.setRenderer(rend);
+                map.addLayer(featureLayer);
+
+                console.log('featureLayer', featureLayer);
+
+                var dataset = {
+                    "url": "http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/navy_facs/FeatureServer/0",
+                    "query": {},
+                    
+                    "mappings": {
+                        "group": {
+                            "field": "REGION_ID",
+                            "label": "State"
+                        },
+                        "count": {
+                            "field": "CURRENT_MB",
+                            "label": "Injuries"
+                        }
+                    }
+                };
+
+                var chart = new Cedar({
+                    "specification": "https://raw.githubusercontent.com/Esri/cedar/master/site/source/data/templates/bar-complex.json",
+                    "dataset": dataset
+                });
+
+                chart.override = {
+
+                    "height": 280,
+                    "width": 445,
+                    "marks": [{
+                        "properties": {
+                            "hover": {
+                                "fill": {
+                                    "value": "#3ba3d0"
+                                }
+                            },
+                            "update": {
+                                "fill": {
+                                    "value": "#7de6ff"
+                                }
+                            }
+                        }
+                    }]
+                };
+
+                //create and render a chart
+                chart.show({
+                    'elementId': '#chart'
+                });
+
+                window.chart = chart;
+
+                chart.on('mouseover', onChartHover);
+
+
+
+
+                //chart two!
+                var scatterset = {
+                    "url": "http://services.arcgis.com/41TSzUbTxELRIXMD/ArcGIS/rest/services/navy_facs/FeatureServer/0",
+                    "query": {},
+                    "mappings": {
+                        "group": {
+                            "field": "REGION_ID",
+                            "label": "Region"
+                        },
+                        "count": {
+                            "field": "DOLLAR_EST",
+                            "label": "Cost"
+                        }
+                    }
+                };
+
+                var scatter = new Cedar({
+                    "specification": "https://raw.githubusercontent.com/Esri/cedar/master/site/source/data/templates/bar-complex.json",
+                    "dataset": scatterset
+                });
+
+                scatter.override = {
+                    "height": 280,
+                    "width": 390
+                };
+
+                //create and render a chart
+                scatter.show({
+                    'elementId': '#chart-scatter'
+                });
+                window.scatter = scatter;
+
+
+                //filter by map extent when user zooms
+                function onExtentChanged() {
+                    var extent = map.extent;
+                    extent = JSON.stringify(extent);
+                    chart.dataset.query.geometry = extent;
+                    chart.update();
+
+                    scatter.dataset.query.geometry = extent;
+                    scatter.update();
+                }
+
+                function onChartHover(e, d) {
+
+                    //get selected value for attribute in chart marker
+                    var selected = d[dataset.mappings.group.field];
+
+                    //create renderer
+                    var renderer = new UniqueValueRenderer(defaultSymbol, dataset.mappings.group.field);
+
+                    //add symbol selected value
+                    renderer.addValue(selected, new SimpleMarkerSymbol().setColor(new Color([59, 163, 208, 0.7])).setSize(8));
+
+                    featureLayer.setRenderer(renderer);
+                    //map.centerAt(map.extent.getCenter());
+                    //featureLayer.refresh();
+                    featureLayer.redraw();
+
+                }
+
+            });
+        </script>
+
+        <hr>
+        <div class="container centered-text">
+            <p class="copyright">Cedar is a project from the <a href="http://dc.esri.com">Esri DC R&amp;D Center</a> </p>
+        </div>
+
+        <!-- <script src="../../../cedar/js/script.js"></script>-->
+</body>
+
+</html>
