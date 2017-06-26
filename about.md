@@ -8,4 +8,4 @@ Hi! my name is Jonah Adkins. I am a cartographer from Newport News, Virginia. I 
 
 I'm most interested in cartographic design, OpenStreetMap, and civic hacking.
 
-[let's chat! -> email me](mailto://jonahadkins@gmail.com)
+[let's chat! -> email me](mailto:jonahadkins@gmail.com)
