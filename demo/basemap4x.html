@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>Custom Basemap with Esri Javascript 4.4</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.4/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.4/"></script>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/layers/TileLayer",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer",
+            "esri/renderers/SimpleRenderer",
+            "esri/symbols/SimpleMarkerSymbol",
+            "esri/symbols/SimpleFillSymbol",
+            "esri/symbols/TextSymbol",
+            "esri/layers/support/LabelClass",
+            "dojo/domReady!"
+        ], function(Map, TileLayer, MapView, FeatureLayer, SimpleRenderer,
+            SimpleMarkerSymbol, SimpleFillSymbol, TextSymbol, LabelClass) {
+
+            var map = new Map();
+
+            var layer = new TileLayer({
+                url: "https://servicesbeta.arcgisonline.com/arcgis/rest/services/Firefly_World_Imagery/MapServer"
+            });
+            map.add(layer);
+
+            var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                zoom: 4,
+                center: [-98, 38]
+            });
+
+            view.constraints = {
+                minZoom: 3,
+                maxZoom: 5
+            };
+
+            var statesRenderer = new SimpleRenderer({
+                symbol: new SimpleFillSymbol({
+                    color: [0, 255, 0, 0],
+                    outline: {
+                        color: [242, 253, 1, 0.3],
+                        width: 1
+                    }
+                })
+            });
+
+
+
+
+            var states = new FeatureLayer({
+                url: "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Census/MapServer/3",
+                outFields: ["STATE_ABBR"],
+                renderer: statesRenderer
+            });
+
+            //labeling 2d feature class not supported yet :(
+            var stateLabel = new TextSymbol({
+                color: "white",
+                size: 20
+            });
+
+
+            var labelClass = new LabelClass({
+                labelExpressionInfo: "{STATE_ABBR}",
+                labelPlacement: "always-horizontal",
+                symbol: stateLabel
+            });
+
+            map.add(states);
+
+            
+
+
+            var capitolRenderer = new SimpleRenderer({
+                symbol: new SimpleMarkerSymbol({
+                    size: 3,
+                    color: [255, 255, 255, 1],
+                    outline: {
+                        color: [50,200,0, 0.6],
+                        width: 4
+                    }
+                })
+            });
+
+
+
+            var capitals = new FeatureLayer({
+                url: "https://services2.arcgis.com/1cdV1mIckpAyI7Wo/ArcGIS/rest/services/State_Capitol_Buildings/FeatureServer/0",
+                renderer: capitolRenderer
+
+            });
+
+            map.add(capitals);
+
+        });
+    </script>
+</head>
+
+<body>
+    <style>
+        #title {
+            position: absolute;
+            top: 80%;
+            left: 1%;
+            bottom: 0;
+            font-family: 'Francois One', sans-serif;
+            text-shadow: 0 0 3px #000;
+            color: #fff;
+            z-index: 9999;
+            overflow: auto;
+        }
+
+        a {
+            color: #fff;
+        }
+    </style>
+    <div id="viewDiv"></div>
+    <div id='title'>
+        <font size='6'>Custom Basemap Sample</font size>
+        </br>
+        <font size='2'>Basemap = Firefly from <a target="blank" href="https://blogs.esri.com/esri/arcgis/2017/06/28/firefly-basemap/">Esri / John Nelson</a></font>
+
+        </br>
+        <font size='2'>Points = State Capital Buildings from <a target="blank" href="https://hifld-dhs-gii.opendata.arcgis.com">HIFLD Open Data</a></font>
+        </br>
+        <font size='2'>Lines = State Boundaries from <a target="blank" href="https://www.census.gov">Census.gov</a></font>
+
+    </div>
+</body>
+
+</html>
