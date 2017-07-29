@@ -1,0 +1,86 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Esri Leaflet Fallback Plugin Sample</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+    integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+    integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+    crossorigin=""></script>
+
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="https://unpkg.com/esri-leaflet@2.1.0/dist/esri-leaflet.js"
+    integrity="sha512-Tojl3UMd387f6DdAJlo+fKfJZiP55fYT+6Y58yKbHydnueOdSFOxrgLPuUxm7VW1szEt3hZVwv3V2sSUCuT35w=="
+    crossorigin=""></script>
+
+
+ <!-- Load Leaflet Fallback -->
+
+   <script src="fallback.js"></script>
+
+  <style>
+    body { margin:0; padding:0; }
+    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
+  </style>
+</head>
+<body>
+<style>
+    #zoom {
+        position: absolute;
+        top: 90%;
+        left: 1%;
+        bottom: 0;
+        font-family: 'Francois One', sans-serif;
+        text-shadow: 0 0 3px #fff;
+        font-size: 18;
+        color: #000;
+        z-index: 9999;
+        overflow: auto;
+    }
+    </style>
+
+<div id="map"></div>
+<div id='zoom'>ho</div>
+
+<script>
+
+
+  var map = L.map("map").setView([37.75, -122.23], 10);
+
+
+  //L.esri.basemapLayer("Gray").addTo(map);
+
+  var tilesFallback = L.tileLayer.fallback('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      minNativeZoom: 1,
+      maxNativeZoom: 16,
+      //minZoom: 1,
+      //maxZoom: 23,
+  });
+  tilesFallback.addTo(map);
+
+
+  map.on('zoomend', onZoomend);
+    onZoomend();
+    function onZoomend() {
+      var currentZoom = map.getZoom();
+        document.getElementById("zoom").innerHTML="Current Zoom " + currentZoom;
+
+
+  //map.on ("zoomend", function () {
+  //  var currentZoom = map.getZoom();
+  //  document.getElementById("zoom").innerHTML=currentZoom;
+  };
+
+
+
+
+</script>
+
+</body>
+</html>
