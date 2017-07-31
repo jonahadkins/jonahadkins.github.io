@@ -1,5 +1,12 @@
 [
 	{
+		"slug": "Rain Filled Cubes in ArcGIS Pro",
+		"name": "Rain Filled Cubes in ArcGIS Pro",
+		"image": "rain_cubes.jpg",
+		"url": "http://jonahadkins.com/cartography/esri/2017/07/30/rainfall-cubes.html",
+		"date": "Jul 31 2017",
+		"tags": ["cartography","esri","data"]
+	},{
 		"slug": "ArcGIS Insights Test Drive",
 		"name": "ArcGIS Insights Test Drive",
 		"image": "insights.jpg",
