@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Suffolk OSM Imports"
 date:   2015-11-11
-categories: [openstreetmap]
+categories: [OpenStreetMap]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/suffolk-OSM-imports/master/suffolk.png)

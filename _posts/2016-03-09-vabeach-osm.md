@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Virginia OSM Imports"
 date:   2016-03-09
-categories: [openstreetmap]
+categories: [OpenStreetMap]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/virginia-beach-OSM-imports/master/va-beach.png)

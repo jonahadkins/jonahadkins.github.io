@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Norfolk OSM Imports"
 date:   2016-04-16
-categories: [openstreetmap]
+categories: [OpenStreetMap]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/norfolk-OSM-imports/master/norfolk_qgis.png)
