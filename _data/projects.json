@@ -1,5 +1,12 @@
 [
 	{
+		"slug": "Songs, Places, Lyrics, Maps Part 2",
+		"name": "Songs, Places, Lyrics, Maps Part 2",
+		"image": "songs-pt2.png",
+		"url": "https://www.instagram.com/p/BXk-ngrg3FJ/",
+		"date": "Aug 09 2017",
+		"tags": ["cartography","mapbox"]
+	},{
 		"slug": "Rain Filled Cubes in ArcGIS Pro",
 		"name": "Rain Filled Cubes in ArcGIS Pro",
 		"image": "rain_cubes.jpg",
