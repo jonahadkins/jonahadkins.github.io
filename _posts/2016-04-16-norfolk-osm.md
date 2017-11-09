@@ -5,9 +5,10 @@ date:   2016-04-16
 categories: [OpenStreetMap]
 ---
 
+City of Norfolk, Virginia GIS department has provided building footprints and address points for importing into OpenStreetMap via their [Open Data Portal](http://data.orf.opendata.arcgis.com/). The data is provided as is, with compatible license.
+
 ![](https://raw.githubusercontent.com/jonahadkins/norfolk-OSM-imports/master/norfolk_qgis.png)
 
-City of Norfolk, Virginia GIS department has provided building footprints and address points for importing into OpenStreetMap via their [Open Data Portal](http://data.orf.opendata.arcgis.com/). The data is provided as is, with compatible license.  
 
 ### Post-Import Notes  
 
@@ -28,3 +29,5 @@ Imported building swill have the following `building=` tags populated:
 | residential  | 55,160  |
 | school  | 51  |
 | yes  | 7,454  |
+
+---
