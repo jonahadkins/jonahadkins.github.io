@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Hampton OSM Imports"
 date:   2015-12-30
-categories: [openstreetmap]
+categories: [osm]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/hampton-OSM-imports/master/hampton.png)

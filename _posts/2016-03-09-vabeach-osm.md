@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Virginia OSM Imports"
 date:   2016-03-09
-categories: [openstreetmap]
+categories: [osm]
 ---
 City of Virginia Beach, Virginia GIS department has provided building footprints and address points for importing into OpenStreetMap via their [Open Data Portal](http://gis.data.vbgov.com). The data is provided as is, license free.
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Poquoson OSM Imports"
 date:   2015-12-18
-categories: [openstreetmap]
+categories: [osm]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/poquoson-OSM-imports/master/poquoson.png)
