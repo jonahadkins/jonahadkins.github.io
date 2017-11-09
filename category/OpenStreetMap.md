@@ -1,6 +1,6 @@
 ---
 layout: posts_by_category
 categories: openstreetmap
-title: openstreetmap
+title: OpenStreetMap
 permalink: /category/openstreetmap
 ---

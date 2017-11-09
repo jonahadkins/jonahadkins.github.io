@@ -2,7 +2,7 @@
 layout: post
 title:  "City of Norfolk OSM Imports"
 date:   2016-04-16
-categories: [OpenStreetMap]
+categories: [openstreetmap]
 ---
 
 City of Norfolk, Virginia GIS department has provided building footprints and address points for importing into OpenStreetMap via their [Open Data Portal](http://data.orf.opendata.arcgis.com/). The data is provided as is, with compatible license.

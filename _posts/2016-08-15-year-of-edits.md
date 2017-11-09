@@ -2,7 +2,7 @@
 layout: post
 title:  "Paid Mappers - A Year of Edits"
 date:   2016-08-15
-categories: [cartography, mapbox, OpenStreetMap]
+categories: [cartography, mapbox, openstreetmap]
 ---
 
 ### tl:dr    

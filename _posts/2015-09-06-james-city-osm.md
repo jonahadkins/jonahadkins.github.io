@@ -2,7 +2,7 @@
 layout: post
 title:  "James City County OSM Imports"
 date:   2015-09-06
-categories: [OpenStreetMap]
+categories: [openstreetmap]
 ---
 
 ![](https://raw.githubusercontent.com/jonahadkins/jamescity-OSM-imports/master/jcc.jpg)
