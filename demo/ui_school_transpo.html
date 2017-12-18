@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8' />
+    <title>UI-SCHOOL</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.42.2/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Lato");
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            width: 945px;
+            height: 588px;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 70%;
+        }
+
+        .header {
+            color: #333;
+            margin: 8px;
+            text-align: left;
+            background-color: white;
+        }
+
+        .column {
+            float: left;
+            font-weight: bold;
+            padding: 10px;
+            height: 500px;
+        }
+
+        .column.side {
+            width: 25%;
+            border-right: 1px solid gray;
+        }
+
+        .column.middle {
+            width: 75%;
+            position: relative;
+            /* keeps map in the column */
+        }
+
+        .column2 {
+            float: left;
+            padding: 10px;
+            height: 30%;
+        }
+
+        .column2.side {
+            width: 25%;
+            border-right: 1px solid gray;
+        }
+
+        .column2.middle {
+            width: 55%;
+            position: relative;
+            /* keeps map in the column */
+        }
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Style the footer */
+
+        .clearboth {
+            clear: both;
+        }
+
+        .footer {
+            color: #d2d2d2;
+            font-size: 16pt;
+            margin: 8px;
+            text-align: left;
+            background-color: white;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #ECECEC;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: #1696d2;
+            background-color: #ECECEC;
+            text-align: center;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: #D2D2D2;
+        }
+
+        li..dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ECECEC;
+            color: #1696d2;
+            min-width: 160px;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: #1696d2;
+            background-color: #ECECEC;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #D2D2D2;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        #radio {
+            padding: 10px;
+        }
+
+        #info {
+        display: block;
+        position: relative;
+      }
+
+        @media (max-width: 600px) {
+            .column.side,
+            .column.middle {
+                width: 100%;
+            }
+        }
+    </style>
+
+    <div class="header">
+        <h4>Average [[[[]]]] Time for [[[[]]]] Students in [[[[]]]]</h4>
+    </div>
+
+    <div class="row">
+        <div class="column side">Select City
+            <p>
+                <ul>
+                    <li class="dropdown"><a id='places' onclick='washington_dc();' class="dropbtn">Washington DC</a>
+                        <div class="dropdown-content">
+                            <a id='places' onclick='new_york_city();'>New York City</a>
+                            <a id='places' onclick='detroit();'>Detroit</a>
+                            <a id='places' onclick='new_orleans();'>New Orleans</a>
+                            <a id='places' onclick='denver();'>Denver</a>
+                        </div>
+                    </li>
+                </ul>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                </br>
+                Select Grade
+                <div id="radio">
+                    <input id='K' onclick='kindergarten();' type='radio' name='rtoggle' value='kindergarten' checked='checked'>
+                    <label for='kindergarten'>Kindergarten</label>
+                    </br>
+                    <input id='6' onclick='sixth();' type='radio' name='rtoggle' value='sixth'>
+                    <label for='sixth'>6th Grade</label>
+                    </br>
+                    <input id='9' onclick='ninth();' type='radio' name='rtoggle' value='ninth'>
+                    <label for='ninth'>9th Grade</label>
+                    </br>
+                </div>
+                </br>
+                </br>
+                <ul>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Layers</a>
+                        <div class="dropdown-content">
+                            <a id='layers' onclick='twolayers();' href="#"> </a>
+                        </div>
+                    </li>
+                </ul>
+        </div>
+        <div class="column middle">
+            <div id='map'></div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>this is a test.
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidXJiYW5pbnN0aXR1dGUiLCJhIjoiTEJUbmNDcyJ9.mbuZTy4hI_PWXw3C3UFbDQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v9/',
+            center: [-77.01, 38.89], //Washington DC
+            zoom: 11
+        });
+
+
+        // adds functions for zoom jumping to locations in dropdown
+        function washington_dc() {
+            map.jumpTo({
+                center: [-77.01, 38.89],
+                zoom: 11,
+                bearing: 0,
+                pitch: 0
+            });
+        }
+
+        function new_york_city() {
+            map.jumpTo({
+                center: [-73.984, 40.704],
+                zoom: 9.5,
+                bearing: 0,
+                pitch: 0
+            });
+        }
+
+        function detroit() {
+            map.jumpTo({
+                center: [-83.129, 42.365],
+                zoom: 10,
+                bearing: 0,
+                pitch: 0
+            });
+        }
+
+        function new_orleans() {
+            map.jumpTo({
+                center: [-89.901, 30.027],
+                zoom: 9.5,
+                bearing: 0,
+                pitch: 0
+            });
+        }
+
+        function denver() {
+            map.jumpTo({
+                center: [-104.875, 39.753],
+                zoom: 9.5,
+                bearing: 0,
+                pitch: 0
+            });
+        }
+        map.on('mousemove', function(e) {
+            document.getElementById('places').innerHTML =
+                JSON.stringify(e.lngLat);
+        });
+
+        map.on('load', function twolayers() {
+            map.addLayer({
+                'id': 'ui_school_transit',
+                'type': 'fill',
+                "source-layer": "ui_transit_School-ac1y28",
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://urbaninstitute.092lvlsy'
+                },
+                'layout': {},
+                'paint': {
+                    'fill-opacity': 0.7,
+                    'fill-outline-color': 'rgba(255, 255, 255, 0.7)',
+                    'fill-color': {
+                        default: 'rgba(255, 255, 255, 0.3)',
+                        property: 'transit_ti',
+                        stops: [
+                            [0, '#cfe8f3'],
+                            [20, '#73bfe2'],
+                            [40, '#1696d2'],
+                            [60, '#0a4c6a'],
+                            [80, '#000']
+                        ]
+                    }
+                }
+            }, 'waterway-label');
+
+            map.addLayer({
+                'id': 'ui_school_drive',
+                'type': 'fill',
+                "source-layer": "ui_transit_School-ac1y28",
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://urbaninstitute.092lvlsy'
+                },
+                'layout': {},
+                'paint': {
+                    'fill-opacity': 0.7,
+                    'fill-outline-color': 'rgba(255, 255, 255, 0.7)',
+                    'fill-color': {
+                        default: 'rgba(255, 255, 255, 0.3)',
+                        property: 'drive_time',
+                        stops: [
+                            [0, '#cfe8f3'],
+                            [15, '#73bfe2'],
+                            [20, '#1696d2'],
+                            [25, '#0a4c6a'],
+                            [30, '#000']
+                        ]
+                    }
+                }
+            }, 'waterway-label');
+
+            map.addLayer({
+                "id": "layer-hover",
+                "type": "line",
+                "source-layer": "ui_transit_School-ac1y28",
+                'source': {
+                    'type': 'vector',
+                    'url': 'mapbox://urbaninstitute.092lvlsy'
+                },
+                'layout': {},
+                "paint": {
+                    'line-color': '#fdbf11',
+                    'line-width': 1
+                },
+        "filter": ["==", "tracta", ""]
+            });
+
+        });
+
+
+
+
+
+        function kindergarten() {
+            map.setFilter('ui_school_drive', ["==", "grade", "K"]);
+            map.setFilter('ui_school_transit', ["==", "grade", "K"]);
+        }
+
+        function sixth() {
+            map.setFilter('ui_school_drive', ["==", "grade", "6"]);
+            map.setFilter('ui_school_transit', ["==", "grade", "6"]);
+        }
+
+        function ninth() {
+            map.setFilter('ui_school_drive', ["==", "grade", "9"]);
+            map.setFilter('ui_school_transit', ["==", "grade", "9"]);
+
+        }
+
+
+
+        var toggleableLayerIds = ['ui_school_drive', 'ui_school_transit'];
+
+        for (var i = 0; i < toggleableLayerIds.length; i++) {
+            var id = toggleableLayerIds[i];
+
+            var link = document.createElement('a');
+            link.href = '#';
+            link.className = 'active';
+            link.textContent = id;
+
+            link.onclick = function(e) {
+                var clickedLayer = this.textContent;
+                e.preventDefault();
+                e.stopPropagation();
+
+                var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+                if (visibility === 'visible') {
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+                    this.className = '';
+                } else {
+                    this.className = 'active';
+                    map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+                }
+            };
+
+            var layers = document.getElementById('layers');
+            layers.appendChild(link);
+        }
+
+        /*
+                var driveLegend = document.getElementById('drive-legend');
+                var transitLegend = document.getElementById('transit-legend');
+                map.on('load', function twolayers() {
+                    if (map.getZoom() > zoomThreshold) {
+                        driveLegend.style.display = 'none';
+                        transitLegend.style.display = 'block';
+                    } else {
+                        driveLegend.style.display = 'block';
+                        transitLegend.style.display = 'none';
+                    }
+                });
+
+        */
+        
+
+
+
+        map.on("mousemove", "ui_school_drive", function(e) {
+            map.setFilter("layer-hover", ["==", "tracta", e.features[0].properties.tracta]);
+        });
+        map.on("mousemove", "ui_school_transit", function(e) {
+            map.setFilter("layer-hover", ["==", "tracta", e.features[0].properties.tracta]);
+        });
+
+        map.on("mouseleave", "ui_school_drive", function() {
+            map.setFilter("layer-hover", ["==", "tracta", ""]);
+        });
+        map.on("mouseleave", "ui_school_transit", function() {
+            map.setFilter("layer-hover", ["==", "tracta", ""]);
+        });
+    </script>
+</body>
+
+</html>
