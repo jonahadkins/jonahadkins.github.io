@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"
-  />
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <title>Breath of the World</title>
   <style>
     html,
@@ -12,8 +12,20 @@
     #viewDiv {
       padding: 0;
       margin: 0;
-      height: 100%;
+      height: 96%;
       width: 100%;
+    }
+
+    #bottom{
+      color: rgb(40,165,213);
+      text-shadow: 0 0 5px rgb(80,205,253);
+      font-family: 'Montserrat', sans-serif;
+      background: rgb(0,06,20);
+    }
+
+    #bottom a{
+
+        color: rgb(40,165,213);
     }
 
   </style>
@@ -33,6 +45,7 @@
         map: map,
         center: [-98.5795, 39.8282],
         zoom: 3,
+        maxZoom:5
       });
       var tileLyr = new VectorTileLayer({
         url: "http://arcgis.com/sharing/rest/content/items/d1ebacca50444d329b02a36cc20c46c7/resources/styles/root.json"
@@ -44,4 +57,9 @@
 <body>
   <div id="viewDiv"></div>
 </body>
+<div id ="bottom">
+<font size="6">     Breath of the World</font>
+<br>
+<font size="2">     Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a></font>
+<br><br><br><br><br><br></div>
 </html>
