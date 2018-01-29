@@ -11,6 +11,10 @@ tl;dr  [Breath of the World map!](http://jonahadkins.com/botw.html)
 
 <hr>
 
+![botwweb]({{ site.url }}/static/projects/botw_web.png)
+
+<hr>
+
 [Last week](http://jonahadkins.com/cartography/esri/2018/01/22/breath-of-the-wild.html), I made a Legend of Zelda: Breath of the Wild inspired map of [The Noland Trail](http://jonahadkins.com//static/projects/lynel.jpg). _This week_ I decided to take it a step further, and create a set of vector tiles for the world with ArcGIS Pro.
 
 To make tiles for the world I'd need global data, rather than data from my [Open Noland Trail](http://jonahadkins.com/open-noland-trail/) site. For the vector part I decided to use [Natural Earth Data](http://www.naturalearthdata.com), it's a free global dataset that's designed just for uses like this. In particular, I used:
