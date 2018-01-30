@@ -17,8 +17,7 @@ tl;dr  [Breath of the World map!](http://jonahadkins.com/botw.html)
 
 [Last week](http://jonahadkins.com/cartography/esri/2018/01/22/breath-of-the-wild.html), I made a Legend of Zelda: Breath of the Wild inspired map of [The Noland Trail](http://jonahadkins.com//static/projects/lynel.jpg). _This week_ I decided to take it a step further, and create a set of vector tiles for the world with ArcGIS Pro.
 
-To make tiles for the world I'd need global data, rather than data from my [Open Noland Trail](http://jonahadkins.com/open-noland-trail/) site. For the vector part I decided to use [Natural Earth Data](http://www.naturalearthdata.com), it's a free global dataset that's designed just for uses like this. In particular, I used:
-
+To replicate the great design of the Breath of the Wind map, I'd need global data, rather than data from my [Open Noland Trail](http://jonahadkins.com/open-noland-trail/) site. For vectors, I decided to use [Natural Earth Data](http://www.naturalearthdata.com), it's a free global dataset that's designed just for uses like this. In particular, I used:
 
 - Country Labels _(10m_admin_0_countries_lakes)_
 - State Labels _(10m_admin_1_states_provinces)_
@@ -43,7 +42,7 @@ Here's an animation of all the layers/groups in ArcGIS Pro before publishing as 
 
 <hr>
 
-After creating a tile index for the world, I published the vector tiles up to ArcGIS Online. The first vector tile package (vtpk) I published were 119mb, so I went back and did some dissolves, line simplifications, and generalizations on the data, which resulted in a 39mb publish size the second time. This is where it gets a bit tricky - I'm guessing there's some disconnect between styles and labels in Pro and the vector tile specification. Errors I've noticed mostly have to do with overlapping zoom scales and labels. Label stacking seems to get dropped, I've seen offsets applied when there were none, and a few other smaller issues.  
+After creating a tile index for the world, I published the vector tiles up to ArcGIS Online. The first vector tile package (vtpk) I published were 119mb, so I went back and did some dissolves, line simplifications, and generalizations on the data, which resulted in a 39mb publish size the second time. This is where it gets a bit tricky - I'm guessing there's some disconnect between labeling in Pro and the vector tile specification. Label stacking seems to get dropped, I've seen offsets applied when there were none, and a few other smaller issues.  
 
 <hr>
 
@@ -53,7 +52,7 @@ Below you can see a comparison of zoom level 4:
 
 <hr>
 
-The overall published result is not _that bad_ but it could be better. I still need to make changes, which is always part of the cartographers process, but it would be nice to start with what _I think_ I've published. In an [older post](http://jonahadkins.com/cartography/esri/mapbox/2017/06/15/esri-maputnik.html) I talk about editing Esri vector tiles - for this map I decided to use the [Beta Vector Style Editor](https://maps.esri.com/jg/VectorBasemapStyleEditor/) only because I knew the exact edits I would be making and this tool allows me to isolate each zoom level.  
+The overall published result is not _that bad_ but it could be better. I still need to make changes, which is always part of the cartographers process, but it would be nice to start with what _I think_ I've published. To clean these issues up, I decided to use the [Beta Vector Style Editor](https://maps.esri.com/jg/VectorBasemapStyleEditor/) - only because I had a good idea of the edits I would be making and this tool allows me to isolate layers by name and zoom level.  
 
 <hr>
 Screenshot of the [Beta Vector Style Editor](https://maps.esri.com/jg/VectorBasemapStyleEditor/)  
@@ -61,12 +60,14 @@ Screenshot of the [Beta Vector Style Editor](https://maps.esri.com/jg/VectorBase
 
 <hr>
 
-You can see all the changes I made in [this commit](https://github.com/jonahadkins/jonahadkins.github.io/commit/f056d25c3513573afa94760bad7718ffdf7b6e27) where I first uploaded the original `json` then updated/commited the edited `json`.
+You can see all the changes I made in [this commit](https://github.com/jonahadkins/jonahadkins.github.io/commit/f056d25c3513573afa94760bad7718ffdf7b6e27) where I first uploaded the original `json` then updated the edited `json`.
 
 <hr>
 Exmaple of adding label properties back into the style.  
 ![gitedits]({{ site.url }}/static/projects/git_edits.png)
 
 <hr>
+
+Overall, I've had good success creating tiles with textures, customized zoom levels, local projections, and an array of complex symbology. 
 
 Please feel free to [email me](mailto:jonahadkins@gmail.com) or hit me up on [twitter](https://twitter.com/jonahadkins) if you want some more details, copies of my ArcGIS Pro docs, or have any general questions.
