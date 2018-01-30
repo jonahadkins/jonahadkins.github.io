@@ -46,6 +46,9 @@
         map: map,
         center: [-98.5795, 39.8282],
         zoom: 3,
+        constraints: {
+      minZoom: 1,
+      maxZoom: 6},
         showAttribution: true
       });
       var tileLyr = new VectorTileLayer({
