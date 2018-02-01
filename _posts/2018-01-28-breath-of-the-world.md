@@ -17,7 +17,7 @@ tl;dr  [Breath of the World map!](http://jonahadkins.com/botw.html)
 
 [Last week](http://jonahadkins.com/cartography/esri/2018/01/22/breath-of-the-wild.html), I made a Legend of Zelda: Breath of the Wild inspired map of [The Noland Trail](http://jonahadkins.com//static/projects/lynel.jpg). _This week_ I decided to take it a step further, and create a set of vector tiles for the world with ArcGIS Pro.
 
-To replicate the great design of the Breath of the Wind map, I'd need global data, rather than data from my [Open Noland Trail](http://jonahadkins.com/open-noland-trail/) site. For vectors, I decided to use [Natural Earth Data](http://www.naturalearthdata.com), it's a free global dataset that's designed just for uses like this. In particular, I used:
+To replicate the great design of the Breath of the Wild map, I'd need global data, rather than data from my [Open Noland Trail](http://jonahadkins.com/open-noland-trail/) site. For vectors, I decided to use [Natural Earth Data](http://www.naturalearthdata.com), it's a free global dataset that's designed just for uses like this. In particular, I used:
 
 - Country Labels _(10m_admin_0_countries_lakes)_
 - State Labels _(10m_admin_1_states_provinces)_
@@ -68,6 +68,6 @@ Exmaple of adding label properties back into the style.
 
 <hr>
 
-Overall, I've had good success creating tiles with textures, customized zoom levels, local projections, and an array of complex symbology. 
+Overall, I've had good success creating tiles with textures, customized zoom levels, local projections, and an array of complex symbology.
 
 Please feel free to [email me](mailto:jonahadkins@gmail.com) or hit me up on [twitter](https://twitter.com/jonahadkins) if you want some more details, copies of my ArcGIS Pro docs, or have any general questions.
