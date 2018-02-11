@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <title>B a c k  2  S c h o o l  2</title>
+    <style>
+        html,
+        body,
+        #viewDiv {padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+        #title {
+            position: absolute;
+            top: 65%;
+            left: 1%;
+            bottom: 0;
+            width: 375px;
+            height: 175px;
+            box-sizing: border-box;
+            border-color: #fff;
+            border-width: medium;
+            padding: 8px 24px;
+            font-family: 'Homemade Apple', cursive;
+            font-size: 8pt;
+            color: #fff;
+            text-align: center;
+            background: rgba(72, 108, 89, 0.9);
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            z-index: 9999;
+            overflow: auto;
+            line-height: 1.55;
+        }
+
+        a {
+            color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.6/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.6/"></script>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/VectorTileLayer",
+            "dojo/domReady!"
+        ], function(Map, MapView, VectorTileLayer) {
+            var map = new Map();
+            var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [-98.5795, 39.8282],
+                zoom: 3,
+                constraints: {
+                    minZoom: 1,
+                    maxZoom: 6
+                },
+                showAttribution: true
+            });
+            var tileLyr = new VectorTileLayer({
+                url: "http://arcgis.com/sharing/rest/content/items/1949ed8e269649b3a6005c1916593b88/resources/styles/root.json"
+            });
+            map.add(tileLyr);
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+    <div id='title'><font size='6'>Back  2  School 2</font>
+    <font face='Helvetica'><font size='4'>Projection Boogaloo</font>
+    <br>Recreating <a target="blank" href="https://www.instagram.com/p/9CBXvmiBQi/"> this map</a>
+    with ArcGIS Pro & Vector Tiles
+    <br>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+    <br>Additional Data: <a target="blank" href="https://www.ngdc.noaa.gov/mgg/global/global.html">ETOPO 1(Polygonized)</a> & <a target="blank" href="http://www.naturalearthdata.com/">Natural Earth</a>
+      <br>Projection: Lambert Azimuthal Equal Area (North Pole)</font></div>
+
+</body>
+
+</html>
