@@ -1,4 +1,4 @@
-title: It all started with a map........ 
+title: It all started with a map........
 description:
 author: Jonah Adkins
 github: https://github.com/jonahadkins
@@ -45,7 +45,7 @@ paginate: 20
 per_page: 20
 paginate_path: "/page/:num/"
 markdown: kramdown
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-gist
 
