@@ -1,11 +1,12 @@
 title: It all started with a map........
-description:
+description: the webzone of jonah adkins
 author: Jonah Adkins
 github: https://github.com/jonahadkins
 about: Cartography, OpenStreetMap, Open Data, Music, Disney, Sports Cards, Pro-Wrestling, and Ink.
 disqus_shortname:
 google_analytics:
 avatar_url: /static/img/avatar.png
+repository: jonahadkins/jonahadkins.github.io
 
 enableTags: true
 tagarray: []
@@ -39,7 +40,7 @@ urls:
     - text: XML Feed
       url: /feed.xml
 
-url: "http://jonahadkins.com/"
+url: "https://jonahadkins.com/"
 baseurl: ""
 paginate: 20
 per_page: 20
