@@ -1,5 +1,26 @@
 [
 	{
+		"slug": "State of the Map US Program",
+		"name": "State of the Map US Program",
+		"image": "sotmus_map.jpg",
+		"url": "https://www.instagram.com/p/BiE6u6VA1sv/",
+		"date": "Oct 09 2018",
+		"tags": ["cartography","openstreetmap"]
+	},{
+		"slug": "The Road to WrestleMania",
+		"name": "The Road to WrestleMania",
+		"image": "r2w.gif",
+		"url": "https://www.instagram.com/p/BiE6u6VA1sv/",
+		"date": "June 20 2018",
+		"tags": ["cartography","esri"]
+	},{
+		"slug": "Definitive Guide to Southeastern Virginia",
+		"name": "Definitive Guide to Southeastern Virginia",
+		"image": "southeast_va.jpg",
+		"url": "https://www.instagram.com/p/BiE6u6VA1sv/",
+		"date": "May 30 2018",
+		"tags": ["cartography","esri"]
+	},{
 		"slug": "Songs, Places, Lyrics, Maps Part 3",
 		"name": "Songs, Places, Lyrics, Maps Part 3",
 		"image": "songs-pt3.png",
