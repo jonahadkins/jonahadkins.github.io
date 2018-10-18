@@ -1,5 +1,12 @@
 [
 	{
+		"slug": "NACIS Quilt 2018",
+		"name": "NACIS Quilt 2018",
+		"image": "quilt.jpg",
+		"url": "https://www.jonahadkins.com/openstreetmap/2018/10/09/sotmus.html",
+		"date": "Oct 18 2018",
+		"tags": ["cartography","openstreetmap","esri"]
+	},{
 		"slug": "ARRRTOBER Noland Trail",
 		"name": "ARRRTOBER Noland Trail",
 		"image": "noland_pirate.jpg",
