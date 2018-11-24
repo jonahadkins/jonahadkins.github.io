@@ -15,6 +15,5 @@ While i did do several walk-throughs with pencil and paper maps, i did use the [
 
 I completed the Noland Trail map in my free time over a 5 month period, and of course, proud to say it was done completely in ArcMap 10.1.  
 
-This version is available at both [my imagekind shop](http://jonahadkins.imagekind.com) and [my society6 shop](http://society6.com/jonahsmaps)  
 
 ![n1]({{ site.url }}/static/projects/noland-1.jpg)
