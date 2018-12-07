@@ -1,0 +1,665 @@
+<!doctype><html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hampton Restaurant Week</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="http://cartodb.github.io/odyssey.js/sandbox/favicon.png">
+  <link rel="icon" type="image/png" href="http://cartodb.github.io/odyssey.js/sandbox/favicon.png">
+
+  <link rel="stylesheet" href="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
+  <link rel="stylesheet" href="http://cartodb.github.io/odyssey.js/sandbox/css/slides.css">
+  <script src="http://cartodb.github.io/odyssey.js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 100%;"></div>
+
+  <div id="slides_container" style="display:block;">
+    <div id="dots"></div>
+
+    <div id="slides"></div>
+
+    <ul id="navButtons">
+      <li><a class="prev"></a></li>
+      <li><a class="next"></a></li>
+    </ul>
+  </div>
+
+  <div id="credits">
+    <span class="title" id="title">Title</span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://cartodb.github.io/odyssey.js/">Odyssey.js</a><span>
+  </span></span></div>
+
+  <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
+  <script src="http://cartodb.github.io/odyssey.js/dist/odyssey.js" charset="UTF-8"></script>
+
+  <script>
+    var resizePID;
+
+    function clearResize() {
+      clearTimeout(resizePID);
+      resizePID = setTimeout(function() { adjustSlides(); }, 100);
+    }
+
+    if (!window.addEventListener) {
+      window.attachEvent("resize", function load(event) {
+        clearResize();
+      });
+    } else {
+      window.addEventListener("resize", function load(event) {
+        clearResize();
+      });
+    }
+
+    function adjustSlides() {
+      var container = document.getElementById("slides_container"),
+          slide = document.querySelectorAll('.selected_slide')[0];
+
+      if (slide) {
+        if (slide.offsetHeight+169+40+80 >= window.innerHeight) {
+          container.style.bottom = "80px";
+
+          var h = container.offsetHeight;
+
+          slide.style.height = h-169+"px";
+          slide.classList.add("scrolled");
+        } else {
+          container.style.bottom = "auto";
+          container.style.minHeight = "0";
+
+          slide.style.height = "auto";
+          slide.classList.remove("scrolled");
+        }
+      }
+    }
+
+    var resizeAction = O.Action(function() {
+      function imageLoaded() {
+        counter--;
+
+        if (counter === 0) {
+          adjustSlides();
+        }
+      }
+      var images = $('img');
+      var counter = images.length;
+
+      images.each(function() {
+        if (this.complete) {
+          imageLoaded.call( this );
+        } else {
+          $(this).one('load', imageLoaded);
+        }
+      });
+    });
+
+    function click(el) {
+      var element = O.Core.getElement(el);
+      var t = O.Trigger();
+
+      // TODO: clean properly
+      function click() {
+        t.trigger();
+      }
+
+      if (element) element.onclick = click;
+
+      return t;
+    }
+
+    O.Template({
+      init: function() {
+        var seq = O.Triggers.Sequential();
+
+        var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+        var map = this.map = L.map('map').setView([0, 0.0], 4);
+        var basemap = this.basemap = L.tileLayer(baseurl, {
+          attribution: 'data OSM - map CartoDB'
+        }).addTo(map);
+
+        // enanle keys to move
+        O.Keys().on('map').left().then(seq.prev, seq)
+        O.Keys().on('map').right().then(seq.next, seq)
+
+        click(document.querySelectorAll('.next')).then(seq.next, seq)
+        click(document.querySelectorAll('.prev')).then(seq.prev, seq)
+
+        var slides = O.Actions.Slides('slides');
+        var story = O.Story()
+
+        this.story = story;
+        this.seq = seq;
+        this.slides = slides;
+        this.progress = O.UI.DotProgress('dots').count(0);
+      },
+
+      update: function(actions) {
+        var self = this;
+
+        if (!actions.length) return;
+
+        this.story.clear();
+
+        if (this.baseurl && (this.baseurl !== actions.global.baseurl)) {
+          this.baseurl = actions.global.baseurl || 'http://0.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+
+          this.basemap.setUrl(this.baseurl);
+        }
+
+        if (this.cartoDBLayer && ("http://"+self.cartoDBLayer.options.user_name+".cartodb.com/api/v2/viz/"+self.cartoDBLayer.options.layer_definition.stat_tag+"/viz.json" !== actions.global.vizjson)) {
+          this.map.removeLayer(this.cartoDBLayer);
+
+          this.cartoDBLayer = null;
+          this.created = false;
+        }
+
+        if (actions.global.vizjson && !this.cartoDBLayer) {
+          if (!this.created) { // sendCode debounce < vis loader
+            cdb.vis.Loader.get(actions.global.vizjson, function(vizjson) {
+              self.map.fitBounds(vizjson.bounds);
+
+              cartodb.createLayer(self.map, vizjson)
+                .done(function(layer) {
+                  self.cartoDBLayer = layer;
+
+                  var sublayer = layer.getSubLayer(0),
+                      layer_name = layer.layers[0].options.layer_name,
+                      filter = actions.global.cartodb_filter ? " WHERE "+actions.global.cartodb_filter : "";
+
+                  sublayer.setSQL("SELECT * FROM "+layer_name+filter)
+
+                  self.map.addLayer(layer);
+
+                  self._resetActions(actions);
+                }).on('error', function(err) {
+                  console.log("some error occurred: " + err);
+                });
+            });
+
+            this.created = true;
+          }
+
+          return;
+        }
+
+        this._resetActions(actions);
+      },
+
+      _resetActions: function(actions) {
+        // update footer title and author
+        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+            author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+        document.getElementById('title').innerHTML = title_;
+        document.getElementById('author').innerHTML = author_;
+        document.title = title_ + " | " + author_ +' Odyssey.js';
+
+        var sl = actions;
+
+        document.getElementById('slides').innerHTML = ''
+        this.progress.count(sl.length);
+
+        // create new story
+        for(var i = 0; i < sl.length; ++i) {
+          var slide = sl[i];
+          var tmpl = "<div class='slide' style='diplay:none'>";
+
+          tmpl += slide.html();
+          tmpl += "</div>";
+          document.getElementById('slides').innerHTML += tmpl;
+
+          this.progress.step(i).then(this.seq.step(i), this.seq)
+
+          var actions = O.Parallel(
+            this.slides.activate(i),
+            slide(this),
+            this.progress.activate(i),
+            resizeAction
+          );
+
+          actions.on("finish.app", function() {
+            adjustSlides();
+          });
+
+          this.story.addState(
+            this.seq.step(i),
+            actions
+          )
+        }
+
+        this.story.go(this.seq.current());
+      },
+
+      changeSlide: function(n) {
+        this.seq.current(n);
+      }
+    });
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-20934186-21', 'cartodb.github.io');
+    ga('send', 'pageview');
+  </script>
+
+  <script type="text/javascript" src="http://fast.fonts.net/jsapi/3af16084-ba56-49ca-b37d-0b49b59e1927.js"></script>
+
+<script id="md_template" type="text/template">```
+-baseurl: "https://{s}.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA"
+-title: "Explore Hampton Restaurant Week"
+-author: "@jonahadkins"
+```
+#Hampton Restaurant Week
+```
+- center: [37.0618, -76.3557]
+- zoom: 11
+```
+[Hampton Restaurant Week](http://www.visithampton.com/restaurantweek/) is a week long celebration of culinary excellence. From **March 1 - 8**, participating restaurants throughout the city will offer special prix - fixe menus for lunch and dinner. This is a fantastic opportunity to try some of Hampton 's best restaurants at a great price.
+
+Diners can enjoy two course lunches for $10 or a three course dinner for either $20 or $30 at participating restaurants. Reservations are recommended but not required.
+
+*Subject to availability (because some of the restaurants are only offering lunch).*
+
+#The Grey Goose
+```
+- center: [37.0251,  -76.3464]
+- zoom: 18
+L.marker([37.0251, -76.3464]).actions.addRemove(S.map)
+```
+
+*$10 Entrée served with a beverage and cupcake of choice.*  
+
+**Greek Grilled Cheese** - Spinach, feta, kalamata olive, onion, cucumber, sun-dried tomato, pepperoncini, feta dressing on toasted focaccia.  
+
+**Taj Majhal** - Smoked turkey, cheddar, pepper jack, mango chutney, on toasted focaccia.  
+
+**Cusabi Tuna** - Cusabi albacore tuna salad, cucumber slices, lettuce, and sun dried tomatoes on Phillips Home made bread.  
+
+**Chicken Pesto Salad** - Grilled chicken, tomatoes, artichokes, pasta, toasted pine nuts, pesto, grated parmesan.  
+
+**Thai Chicken Salad** - Grilled chicken, carrots, sweet red peppers, scallions, cilantro, peanuts, chopped romaine, spicy Thai peanut dressing.  
+
+
+
+#Venture Kitchen & Bar
+```
+- center: [37.02583, -76.34379]
+- zoom: 18
+L.marker([37.02583, -76.34379]).actions.addRemove(S.map)
+```
+
+*$10 Lunch: 2 Courses Available 11am until 3pm (except during Sunday Brunch)*  
+
+**Braised short rib grilled cheese** - with Taleggio on house made bread.  
+
+**Eggplant pizza** - sautéed eggplant, seasoned ricotta, caramelized onions, red sauce, mozzarella.  
+
+*with your choice of*  
+
+**Tots** - our house specialty  
+
+**Salad nicoise** - tuna, haricot verts, roasted potatoes, spinach, tomato, soft boiled egg, stone ground mustard vinaigrette.  
+
+**Spicy tomato/shrimp bisque**  
+
+*$30 Dinner ~ 3 Courses Available after 5pm*  
+
+*Appetizer*  
+
+**Grilled lamb pops** - blueberry gastrique, sweet potato puree.  
+
+*Salad or Soup*  
+
+**Salad nicoise** - tuna, haricot verts, roasted potatoes, spinach, tomato, soft boiled egg, stone ground mustard vinaigrette.  
+
+**Spicy tomato/shrimp bisque**  
+
+*Entree*  
+
+**Braised beef short rib** -  over roasted veggies with red wine reduction.  
+
+#Marker 20
+```
+- center: [37.0258, -76.3434]
+- zoom: 18
+L.marker([37.0258, -76.3434]).actions.addRemove(S.map)
+```
+*$10 LUNCH ~ 2 Courses*  
+
+**Cup of MARKER 20 Clam Chowder** - select clams, potatoes, & chunks of veggies in an herb broth.  
+
+**Fried Pickles** -  with horsey sauce for dipping.  
+
+*Entrées*  
+
+**Baked Angel Hair Pasta** -  with Italian sausage, ground beef, green peppers, stewed tomatoes, & all that cheesy goodness!  
+
+**Cod Hoagie** -  lightly breaded & fried, served with house made slaw.  
+
+
+*$30 DINNER ~ 3 Courses*  
+
+**MARKER 20 Crab Dip with Toast Points**  
+
+**Bacon Wrapped Chicken Bites**  
+
+**House Sweet Potato Fries**  
+
+*Entrées*  
+
+**Flank Steak Marsala** - thinly sliced flank steak with mixed with button mushrooms over egg noodles.  
+
+**Fried Shrimp** -  over mixed green with sautéed peppers, onions, & remoulade dressing.  
+
+**Grilled Chicken Breast** - Topped with Ham & Swiss over rice with a sherry
+cream sauce.  
+
+*Desserts*  
+
+**Heather’s Passion** - our signature dessert, made in house, a brownie crust topped with our secret recipe of chocolate, caramel, & toffee.  
+
+**Jan’s Daily Dessert**  
+
+#Regatta Grille
+```
+- center: [37.02483,  -76.3418]
+- zoom: 18
+L.marker([37.02483,  -76.3418]).actions.addRemove(S.map)
+```
+*2 Course Lunch $10*  
+
+**Mixed Greens Salad** - goat cheese, red onions cucumbers with a homemade berry vinaigrette.  
+
+**Soup of the Day**  
+
+**Fish Tacos** - Lightly fried tilapia with shredded cabbage and homemade pineapple pico.  
+
+**Gourmet Cheese Board** - A selection of gourmet cheeses served with stone ground mustard and delicious deli meats.  
+
+*Dinner $20*  
+
+*Appetizer*  
+
+**Fried Green Tomatoes**  
+
+**Fig and Cheese Flat Bread**  
+
+*Soup or Salad*  
+
+**Soup of the Day**  
+
+**Mixed Greens Salad**  
+
+*Main Course*  
+
+**Cajun Shrimp and Grits**  
+
+**Steak Oscar**  
+
+*Dessert*  
+
+**Crème Brulee Cheese Cake**  
+
+**Tiramisu**  
+
+#Monsoon
+```
+- center: [37.0447,  -76.3949]
+- zoom: 18
+L.marker([37.0447,  -76.3949]).actions.addRemove(S.map)
+```
+*Prie Fixe $20 per person*  
+
+*1st Course (Choice Of)*  
+
+**Vegetable Pakora** - Traditional South Asian fritters, lentil flour, spices.  
+**Chicken Soup** - Chicken soup, herbs, spices.  
+**Cucumber Salad** - Cucumbers, tomatoes, onions, tangy spices.  
+
+*2nd Course (Choice Of)*  
+
+**Chicken Tikka Masala** - Chunks of Chicken Tikka, fenugreek, tomatoes, onions, cream.  
+**Curry Chicken** - Dhaba style Curry, boneless chicken, onions, tomatoes, spices.  
+**Dal Makhani** - Black Lentils, tomatoes, cream, ginger, garlic.  
+
+*3rd Course (Choice Of)*  
+
+**Kheer** - Traditional Indian rice pudding, cardamom, nuts & raisins.  
+**Gajar Halwa** - Shredded Carrots, milk, nuts, raisins, served hot.  
+
+
+*Prie Fixe $30 per person*  
+
+*1st Course (Choice Of)*  
+
+**Aloo Tikki** - Spiced potato patty, special dipping sauce.  
+**Tandoori Wings** - Tandoor fired chicken wings, freshly ground spices.  
+**Lasooni Gobi** - Crispy Cauliflower florets, chili flakes, garlic tomato, chutney.  
+
+*2nd Course (Choice Of)*  
+
+**Chicken Tikka Masala** - Chunks of Chicken Tikka, fenugreek, tomatoes, onions, cream.  
+**Dhaba Style Curry Lamb** - Old Delhi style curry, onions, tomatoes, spices.  
+**Patiala Shahi Goat (Bone-In)** - Slow cooked goat, onions, tomatoes, special blend of spices.  
+**Navratan Korma** - Organic Mixed Vegetables, cashew nuts, raisins, green cardamom, cream.  
+
+*3rd Course (Choice Of)*  
+
+**Gulab Jamun** - Fried milk pastry balls, honey, Saffron, served hot.  
+**Rasmalai** - Flattened balls of Paneer, Cream, cardamom.  
+
+#Hayashi
+```
+- center: [37.0442,  -76.3948]
+- zoom: 18
+L.marker([37.0442,  -76.3948]).actions.addRemove(S.map)
+```
+*$10 Lunch*  
+
+**Bento Box and Soft Drink**  
+
+*$15 Dinner*  
+
+**Teriyaki Plate** - served with miso soup, garden salad, and steamed rice (choice of meat: chicken, new york strip loin, shrimp, scallop)and a Soft Drink.  
+
+*$5 Appetizer*  
+
+**Gyoza** - pork dumpling.  
+**Negima Beef** - beef roll with scallion and Teriyaki glaze.  
+**Shrimp Tempura**  
+**Yakisoba** - Stir-fried thin noodle with vegetables.  
+**Sushi** - 4 pieces.  
+** Sashimi** - 5 pieces.  
+
+#County Grill
+```
+- center: [ 37.0429,  -76.3463]
+- zoom: 17
+L.marker([37.0429,  -76.3463]).actions.addRemove(S.map)
+```
+
+*2 Course Lunch $10*  
+
+*1st Course Choose one*  
+
+**Side House Salad**  
+**Cup of Soup** - Chili or Soup of the Day.  
+
+*2nd Course Choose one*  
+
+**Pulled Pork Sandwich**  
+**Tumbleweed Sandwich**  
+**Smoked Buffalo Wings**  
+
+*3 Course Dinner $20*  
+
+*1st Course Choose one*  
+
+**Side House Salad**  
+**Cup of Soup** - Chili or Soup of the Day.  
+
+*2nd Course Choose one*  
+
+**Beef Brisket Pulled Pork Shoulder**  
+**Country Sausage**  
+**1/2 Chicken**  
+**St. Louis Ribs**  
+**4 Wings**  
+
+*3rd Course Choose one*  
+
+**Cheesecake**  
+**Key Lime Pie**  
+
+#Graham and Rollins, Inc.
+```
+- center: [ 37.0339,  -76.3584]
+- zoom: 17
+L.marker([37.0339,  -76.3584]).actions.addRemove(S.map)
+```
+*2 Course Lunch $10*  
+
+**Cup of Soup**  
+
+*Choose One*  
+
+**Crab Cake**  
+**Lobster Crab Cake Sandwich** - French Fries or Hush Puppies.  
+**Basket of Whiting**  
+**Basket of Trout** - French Fries or Hush Puppies.  
+
+**Non-Alcoholic Drink**  
+
+*3 Course Dinner for $20*  
+
+**Cup of Soup**  
+**Bowl of Soup**  
+
+*Choose One*  
+
+**1 Dozen Little Neck Clams**  
+**1/2 LB Steamed Medium Shrimp**  
+**1 LB Steamed Snow Crab Legs**  
+**l LB Steamed Jumbo Shrimp**  
+
+*Choose One*  
+
+**Super Seafood Combo Platter**  
+**Crab Cake**  
+**Lobster Crab Cake Dinner Platter**  
+
+**Non-Alcoholic Drink**  
+
+#Taphouse
+```
+- center: [ 37.0258,  -76.3436]
+- zoom: 18
+L.marker([37.0258,  -76.3436]).actions.addRemove(S.map)
+```
+*LUNCH $10*  
+
+*Appetizer Choices*  
+
+**Caesar Salad**  
+**Garden Salad**  
+**Hampton Clam Chowder** - Clear thyme scented broth with chopped Atlantic clams, crabmeat, hickory bacon, celery, onions, and potatoes.  
+
+*Entrée Choices*  
+
+**Grilled Chicken Quesadilla** - Filled with sliced chicken breast, black beans, corn, fresh pico, and cheddar jack cheese. Served with side house salsa, jalapenos, lime, and sour cream.  
+**Spicy Mediterranean Penne** - Sautéed mixed peppers, garlic, red onion, diced tomatoes, greek olives, and fresh basil tossed in spicy red sauce and topped with feta cheese.  
+**Fish and Chips** - Our fresh catch of the day flash fried in our signature batter and served with traditionally cut Old Bay chips and our house made slaw.  
+
+*DINNER $20*  
+
+*Appetizer Choices*  
+
+**Hampton Clam and Crab Chowder**  
+**Soup of the Day**  
+**Petite House Salad**  
+**Caesar Salad**  
+
+*Entrée Choices*   
+
+**Pan Roasted Atlantic Salmon** - Topped with a bourbon Dijon cream and served with warm fresh dill potato salad and our house vegetable trio.  
+**Grilled Boneless Center Cut Pork Chop** - Flame grilled, thick-cut, pork chop seasoned with our authentic Cajun spices on red beans and rice with slow cooked, pork rich collards.  
+**Chicken and Curried Chickpea Penne** - Sauteed diced veggies, chicken breast, and chickpeas in a creamy aromatic yellow curry sauce. Want it spicy? Just ask. We love it spicy.  
+
+*Dessert Choices*  
+
+**Double Chocolate Torte**  
+**Blackberry Cobbler**  
+**Cheesecake Du Jour**  
+
+#Conch & Bucket
+```
+- center: [ 37.0259, -76.3437]
+- zoom: 18
+L.marker([37.0259, -76.3437]).actions.addRemove(S.map)
+```
+*DINNER $30*  
+
+*Appetizer Choices*  
+
+**Solo Stuffed Shrimp** - with Creamy Crab and Chive Aioli.  
+**C&B Spicy Conch Chowder**  
+**Soup of the Day**  
+**Petite House Salad**  
+**Caesar Salad**  
+
+*Entrée Choices*  
+
+**Duck and Mushroom Penne** - A slow cooked tender confit duck leg with caramelized onions, mushrooms, and fresh tomato on a rich duck brown butter cream penne pasta with shaved parma cheese.  
+**Petite Beef Tenderloin** - Pan seared six ounce beef tenderloin with a rich brown stock and red wine wild mushroom
+ragout on our house made garlic mashed potatoes with grilled asparagus.  
+**Pan roasted Fish of the Day** - Simply seasoned and butter browned fresh catch on top of a truly delicious black eyed pea and vegetable sauté with a thyme scented rice pilaf.  
+
+*Dessert Choices*  
+
+We will prepare you a petite version of any of our ever changing house sweets!
+
+#Olde Towne Tavern
+```
+- center: [ 37.0180, -76.3212]
+- zoom: 18
+L.marker([37.0180, -76.3212]).actions.addRemove(S.map)
+```
+*Lunch $10*  
+
+**Soup or Salad**  
+**Fish n Chips** - Atlantic Cod with our handcut fries and hush pups.  
+
+*Dinner $20*  
+
+**Soup or side salad** - our in house She-Crab or New England style Clam Chowder.  
+
+*Choose one*  
+
+**Stuffed Lobster Tail** - crab stuffed lobster tail with garlic asparagus and red potatoes.  
+**Steak and Shrimp Plate** - 6 oz. sirloin and seared Shrimp with mixed veggies and smashed potatoes.  
+
+**Strawberry Margarita Cupcake**  
+
+#About
+```
+- center: [37.0691, -76.4930]
+- zoom: 13
+L.marker([37.0691, -76.4930]).actions.addRemove(S.map)
+```
+
+Made by [@jonahadkins](http://twitter.com/jonahadkins), a cartographer from Newport News, Virginia.
+
+Work [@gisincorporated](http://gisinc.com)
+
+Portfolio Available At
+ [jonahsmaps.tumblr.com](jonahsmaps.tumblr.com)
+
+Fork This Code At [Github](https://github.com/jonahadkins/hampton-restaurant-week)
+
+
+Tiles From [Mapbox](http://www.mapbox.com/)</script></body></html>

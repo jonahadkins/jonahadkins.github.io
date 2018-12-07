@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Maps and the Open Web</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/gisinc.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+    	var link = document.createElement('link');
+    	link.rel = 'stylesheet';
+    	link.type = 'text/css';
+    	link.href = 'css/print/pdf.css';
+    	document.getElementsByTagName('head')[0].appendChild(link);
+    }
+  </script>
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section>
+        <h1>Maps and the Open Web</h1>
+        <h4>data - styling - presenting - collaboration</h4>
+     </section>
+       <section>
+          <h3>follow along at:<p>
+          <a target="blank" href="http://jonahadkins.github.io/maps-and-the-open-web">jonahadkins.github.io/maps-and-the-open-web</a>
+          <p><a href="mailto:jadkins@gisinc.com?Subject=OpenStreetMap" target="blank">jadkins@gisinc.com</a>
+          <p><a href="https://twitter.com/jonahadkins" target="blank">@jonahadkins</a></h3>
+        </section>
+
+      <section>
+        <h3>let's define open</h3>
+        <h2>"free as in speech and free as in beer"**</h2>
+        <h3><strong>i <3 America, thanks 4 the beer</strong><h3>
+					<h2>**sometimes subject to attribution/sharealike</h2>
+					<h3><strong>i <3 America, thanks 4 the beer, Jonah</strong></h3>
+      </section>
+
+      <section>
+        <h3>Why Open?</h3>
+        <h3>In 2009, the President released a memo on <a href="http://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment" target="blank">Transperancy and Open Government</a> which makes 3 strong points:
+					</h3>
+        <h4><ul>
+							<p><li><strong>Government should be transparent:</strong> "Transparency promotes accountability and provides information for citizens about what their Government is doing"</li>
+							<p><li><strong>Government should be participatory:</strong> "Public engagement enhances the Government's effectiveness and improves the quality of its decisions"</li>
+							<p><li><strong>Government should be collaborative:</strong> "Collaboration actively engages Americans in the work of their Government."</li>
+						</ul></h4>
+      </section>
+
+      <section>
+        <h2>But also.....</h2>
+        <h2>
+									<p><strong>freedom to innovate</strong>
+										<p><strong>community driven</strong>
+											<p><strong>save money</strong>
+											</h2>
+      </section>
+
+      <section>
+        <h1>DATA</h1>
+        <h3><p>tabular: CSV or JSON
+              <p>small spatial: <strong>GeoJSON</strong>
+              <p>medium spatial: shapefile
+               <p>large spatial: PostGIS
+							<p>raster: GeoTIFF
+              </h3>
+        </ul>
+      </section>
+
+      <section>
+        <h2>GeoJSON</h2>
+        <pre><code data-trim>
+						{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "TCC"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.10152244567871,
+          36.785194906958274
+        ]
+      }
+    }
+  ]
+}
+					</code></pre>
+      </section>
+
+      <section>
+        <h2>GeoJSON</h2>
+        <p>
+          <h3>make your own at <a target="blank" href="http://geojson.io/#map=8/37.512/-77.997">geojson.io</a>
+					<p>simplify your data at <a target="blank" href="http://www.mapshaper.org">mapshaper.org</a>
+					<p>export from ArcGIS with <a target="blank" href="https://github.com/project-open-data/esri2open">esri2open toolbox</a></h3>
+      </section>
+
+      <section>
+        <h2>Release your data!!</h2>
+        <h3><p>dead simple: <a target="blank" href="http://www.williamsburgva.gov/Index.aspx?page=793">City of Williamsburg</a>
+					<p>fancy: <a target="blank" href="http://data.dc.gov">Washington DC</a>
+					<p>ArcGIS Open Data: <a target="blank" href="http://public.chesva.opendata.arcgis.com/">City of Chesapeake</a></h3>
+      </section>
+
+      <section>
+        <h2>Make it <strong>offical</strong>, and make it a <strong>big deal</strong></h2>
+        <h3><p>Proclamations, Resolutions, etc..
+				<p>Resources at <a target="blank" href="http://sunlightfoundation.com/policy/local/">Sunlight Foundation</a></h3>
+        <p>
+      </section>
+      <section>
+        <h3>Styling Data for the Web</h3>
+        <h2><p>ArcGIS
+							<p>QGIS
+								<P><strong>Tilemill</strong></h2>
+      </section>
+      <section>
+        <h3>TileMill</h3>
+        <img class="stretch" src="./img/tm1.png" />
+      </section>
+      <section>
+        <h2><strong>TileMill</strong></h2>
+        <h3><p>cartoCSS
+						<P>generates tiles, exports images
+							<p>photoshop-like filters</h3>
+      </section>
+      <section>
+        <h2><strong>TileMill</strong></h2>
+        <h3><p>position overrides
+						<P>specific zoom level control
+							<p>filters apply to text also</h3>
+      </section>
+      <section>
+        <h2><strong>Web Maps</strong></h2>
+        <h3><p>Too Many Options To Mention</h3>
+        <h5><p></h5>
+        <P>
+          <h1><strong>Leaflet.js</strong></h1>
+          <p>
+      </section>
+			<section>
+				<h2><strong>But first...</strong></h2>
+				<h3><p>Does your map need to be interactive?</h3>
+				<h3><p>Do you need all those layers?</h3>
+					<h3><p>Does the use = the work?</h3>
+			</section>
+      <section>
+        <h3>Leaflet.js</h3>
+        <pre><code data-trim>
+				<!-- HTML Garbage -->
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- This will be the browser tab title -->
+	<title>East Breezy Leaflet Demo</title>
+	<!-- More HTML Garbage -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<!-- This is the Leaflet stylesheet -->
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+	<!-- This says we want the map to fill the page -->
+	<style>
+		html {
+			height: 100%
+		}
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		.map {
+			height: 100%
+		}
+	</style>
+</head>
+<!-- Maps start here -->
+
+<body>
+	<div id="map" class="map"></div>
+	<!-- Loading the map guts here -->
+	<script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+	<!-- Intial map settings (coords,zoom level)-->
+	<script>
+		var map = L.map('map').setView([36.785, -76.101], 13);
+		L.tileLayer(
+			'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+				maxZoom: 18
+			}).addTo(map);
+			var marker = L.marker([36.785, -76.101]).addTo(map);
+			marker.bindPopup("<b>Hello TCC!</b>").openPopup();
+	</script>
+</body>
+
+</html>
+</code></pre>
+      </section>
+			<section>
+            <iframe src="http://jonahadkins.github.io/maps-and-the-open-web/leaflet/leaflet.html" height='900' width='100%'></iframe>
+        </section>
+				<section>
+							<iframe src="http://jonahadkins.github.io/maps-and-the-open-web/leaflet/esri.html" height='900' width='100%'></iframe>
+					</section>
+					<section>
+						<h1>Collaboration</h1>
+						<img class="stretch" src="./img/git.png" />
+					</section>
+					<section>
+						<h2><strong>GitHub</strong></h2>
+						<h3><p>Versioning for everything
+								<P>Fork, Pull, and Collaborate
+									<p>Serve Web Pages, Store Data</h3>
+					</section>
+						<section>
+							<h2><strong>GitHub</strong></h2>
+							<img class="stretch" src="./img/diff.gif" />
+						</section>
+
+         <section>
+          <h1><strong>#maptime</strong></h1>
+          <h3><p><strong>Monthly (or so) meetup for all levels of knowledge to collaborate, learn, and explore maps!</strong>
+          <p>Hampton Roads <a target="blank" href="http://maptime.github.io/hrva/">maptime.github.io/hrva</a>
+          <p>More Info At <a target="blank" href="http://www.maptime.io/">maptime.io</a></h3>
+        </section>
+        <section>
+          <h1><strong>Code For AMERICA</strong></h1>
+          <h3><p><strong>Local groups collaborating with municipalities to make their cities better</strong>
+          <p>Hampton Roads <a target="blank" href="http://codeforhamptonroads.org/">codeforhamptonroads.org</a>
+            <p>Richmond <a target="blank" href="http://www.codeforrva.org/">codeforrva.org</a>
+          <p>More Info At <a target="blank" href="http://www.codeforamerica.org/">codeforamerica.org</a></h3>
+        </section>
+				<section>
+					<h1><strong>VAMLIS</strong></h1>
+					<h3><p>State Conference In Fall 2015
+						<p>Quarterly meet ups & other events
+					<p><a target="blank" href="http://vamlis.org/">vamlis.org</a></h3>
+				</section>
+        <section>
+          <h1>Thank You!</h1>
+           <h3> Interactive Slides! <a target="blank" href="http://jonahadkins.github.io/maps-and-the-open-web">jonahadkins.github.io/maps-and-the-open-web</a>
+          <h4><a style="float: left" href="mailto:jadkins@gisinc.com?Subject=OpenStreetMap" target="blank">jadkins@gisinc.com</a>   <a style="float: right" href="https://twitter.com/jonahadkins" target="blank">@jonahadkins</a></h4>
+        </section>
+
+
+
+			</div>
+
+      <div class="top-bar"> &nbsp;	</div>
+      <a class="logo" href="http://gisinc.com/" title="Geographic Information Services, Inc."> &nbsp; </a>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+        fragments: true,
+        previewLinks: false,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+    <a href="https://github.com/jonahadkins"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+	</body>
+</html>

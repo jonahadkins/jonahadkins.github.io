@@ -1,0 +1,196 @@
+<!DOCTYPE html><html><head><title>Build a web map with open source tools!</title><meta charset='utf-8'><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<link href='big.css' rel='stylesheet' type='text/css' />
+<style>
+.edits {
+  background-image: url(./images/osm_edits.gif);
+  background-repeat: no-repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.data {
+  background-image: url(./images/data.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 25%;
+  text-shadow: 3px 3px 5px #000;
+}
+
+.beach {
+  background-image: url(./images/vabeach.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+
+.import {
+  background-image: url(./images/import.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.josm {
+  background-image: url(./images/josm.gif);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.trace {
+  background-image: url(./images/trace.gif);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.alf {
+  background-image: url(./images/alf.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.relate {
+  background-image: url(./images/relations.gif);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 75%;
+  text-shadow: 3px 3px 5px #000;
+}
+.parktiles {
+  background-image: url(./images/parktiles.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.runkeeper {
+  background-image: url(./images/runkeeper.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.routing {
+  background-image: url(./images/routing.gif);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.bnb {
+  background-image: url(./images/bnb.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 100%;
+  text-shadow: 3px 3px 5px #000;
+}
+.hotosm {
+  background-image: url(./images/hotosm.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 65%;
+  text-shadow: 3px 3px 5px #000;
+}
+.id {
+  background-image: url(./images/edita.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+.sophie {
+  background-image: url(./images/sophie.jpg);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+.sophie2 {
+  background-image: url(./images/sophie2.jpg);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+.walk {
+  background-image: url(./images/walka.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+.olive {
+  background-image: url(./images/olive.png);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+.gps {
+  background-image: url(./images/traces.gif);
+  background-repeat: repeat;
+  background-position: center 5px;
+  background-size: 90%;
+  text-shadow: 3px 3px 5px #000;
+}
+</style>
+<script src='big.js'></script>
+</head><body>
+
+<div><em>OpenStreetMap </em> and <strong>You</strong><br></div>
+<div>Follow Along At<a href='http://tinyurl.com/vamlis-osm'><br>http://tinyurl.com<br>/vamlis-osm</a></div>
+<div>The <strong>free</strong> and seamless world map</div>
+<div>Owned By <strong>Volunteers</strong></div>
+<div>Strengthened By The<br><strong>Community</strong></div>
+<div>Nodes = <em>Points</em><br>Ways = <em>Lines</em><br>Areas = <em>Polygons</em></div>
+<div data-bodyclass='relate'><br><br><br><em>Relationships</em></div>
+<div data-bodyclass='routing'><br><br><br><em>Routing</em></div>
+<div>Lots Of <br><strong>Attributes</strong></div>
+<div>Roads, highways, bridges, tunnels, Bus stops, bus routes, bike routes, railways,
+    shops, restaurants, bars, schools, churches, houses, Parks, lakes, mountains, trees,
+    Airports, power networks, mailboxes, boundaries<br>
+    <a target="blank" href="http://wiki.osm.org">Check The Wiki</a></div>
+<div><em>OSM</em> Is Everywhere!</div>
+<div data-bodyclass='parktiles'></div>
+<div data-bodyclass='runkeeper'></div>
+<div data-bodyclass='bnb'></div>
+<div data-bodyclass='hotosm'></div>
+<div>Let's Get This <em>Party Started!!</em></div>
+<div data-bodyclass='id'><br><br><br><em>iD</em></div>
+<div data-bodyclass='sophie2'></div>
+<div data-bodyclass='sophie'></div>
+<div>2 Simple Steps<br>
+    <a target="blank" href="http://osm.org">---Sign Up</a><br>
+    ------Start Editing</div>
+<div data-bodyclass='walk'><br><br><br><em>Walkthrough</em></div>
+<div data-bodyclass='olive'><br><br><br><em>Start Local</em></div>
+<div><strong>Save</strong> Your Edits &
+      <br><strong>Save</strong> Often</div>
+<div><strong>Feature / Map / Image </strong><br>services as <em>custom backgrounds </EM>in iD</div>
+<div data-bodyclass='trace'></div>
+<div data-bodyclass='gps'><br><br><br><em>GPS</em></div>
+<div>Bulk <em>IMPORTS</em></div>
+<div data-bodyclass='edits'></div>
+<div>☑ Gotta Want It<br>☑ Friends<br>☑ Follow The <em>Rules</em></div>
+<div data-bodyclass='beach'></div>
+<div>Start <br>Here ↓↓↓↓↓↓↓↓↓↓<a href='http://wiki.openstreetmap.org/wiki/Import/Guidelines'><br>wiki.openstreetmap.org<br>/wiki/Import/Guidelines</a></div>
+<div><em>PDX</em> is a great example too ↓↓↓↓↓↓↓↓↓↓<a href='https://github.com/pdxosgeo/pdxbldgimport'><br>github.com/<br>pdxosgeo/pdxbldgimport</a></div>
+<div data-bodyclass='import'></div>
+<div data-bodyclass='josm'></div>
+<div>Get Involved & Get <em>Help</em></div>
+<div>#maptime
+  <br><a target="blank" href="http://maptime.github.io/hrva/">hrva</a>
+  <br><a target="blank" href="http://maptime.github.io/dc/">dc</a></div>
+<div>Code For AMERICA
+  <br><a target="blank" href="http://codeforhamptonroads.org/">HRVA</a>
+  <br><a target="blank" href="http://www.codeforrva.org/">RVA</a>
+  <br><a target="blank" href="http://codefornrv.org">NRV</a></DIV>
+<div>Thanks!</div>
+<div><a href='https://twitter.com/jonahadkins'>@jonahadkins</a></div>
+
+
+</body>
+</html>

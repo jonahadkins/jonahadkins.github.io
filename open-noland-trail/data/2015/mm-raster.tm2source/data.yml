@@ -1,0 +1,34 @@
+_prefs: 
+  disabled: []
+  inspector: false
+  mapid: ''
+  rev: ''
+  saveCenter: true
+attribution: ''
+center: 
+  - -76.4832
+  - 37.0431
+  - 13
+description: ''
+Layer: 
+  - id: Lidar_Tree_Canopy
+    Datasource: 
+      file: "c:/Users/jadkins/Documents/Projects/Personal/The Noland Trail/open/2015\\Lidar_Tree_Canopy.tif"
+      type: gdal
+    description: ''
+    fields: {}
+    properties: 
+      "buffer-size": 0
+    srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
+  - id: terrain
+    Datasource: 
+      file: "c:/Users/jadkins/Documents/Projects/Personal/The Noland Trail/open/2015\\terrain.tif"
+      type: gdal
+    description: ''
+    fields: {}
+    properties: 
+      "buffer-size": 0
+    srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
+maxzoom: 16
+minzoom: 0
+name: ''

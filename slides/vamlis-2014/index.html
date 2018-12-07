@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Intro To OSM</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/gisinc.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section>
+          <h4>VAMLIS 2014 Workshop</h4>
+          <h1>Introduction To OpenStreetMap</h1>
+          <h3>The <strong>free</strong> and seamless world map</h3>
+        </section>
+        <section>
+          <h3>follow along at:<p>
+          <a target="blank" href="http://jonahadkins.github.io/intro-osm">jonahadkins.github.io/intro-osm</a>
+          <p><a href="mailto:jadkins@gisinc.com?Subject=OpenStreetMap" target="blank">jadkins@gisinc.com</a>
+          <p><a href="https://twitter.com/jonahadkins" target="blank">@jonahadkins</a></h3>
+        </section>
+        <section>
+          <h1>What Is OpenStreetMap?</h1>
+          <ul>
+          <h3><li><a target="blank" href="http://www.osm.org">Also Known As OSM</a> </li>
+              <li>Founded In 2004</a> </li>
+              <li>"Wikipedia Of Maps"</li>
+              <li>Anyone With An Account Can Edit</li></h3>
+            </ul>
+        </section>
+        <section>
+          <h1>What Isn't OpenStreetMap?</h1>
+          <ul>
+          <h3><li>Proprietary - Only Caveat: Must Provide Attribution (Share Alike)</li>
+              <li>Static</a> </li>
+              <li>Controlled By An Authoritative Body</li>
+              </h3>
+            </ul>
+        </section>
+         <section>
+          <h1>What Is OpenStreetMap? For Real This Time!</h1>
+
+          <h3>A Gigantic XML Database - <a target="blank" href="http://planet.osm.org/">36gb To Be Exact</a>
+              </h3>
+
+        </section>
+         <section>
+          <h1>Defined By <strong>Elements</strong> And....</h1>
+          <ul>
+          <h3><li>Nodes (Points)</li>
+              <li>Ways (Lines) </li>
+              <li>Areas (Polygons)</li>
+               <li>Relations (Groups)</li>
+              </h3>
+            </ul>
+        </section>
+        <section>
+          <h1>...And By <strong>Tags</strong></h1>
+          <ul>
+          <h3><li>highway = primary</li>
+              <li>bridge = yes</li>
+              <li>building = house</li>
+               <li>leisure = pitch & sport = baseball (Baseball Diamond)</li>
+              </h3>
+            </ul>
+        </section>
+        <section>
+          <h1>There's A <strong>Ton</strong> Of Stuff</h1>
+          <ul>
+          <h3><li>Roads, highways, bridges, and tunnels</li>
+              <li>Bus stops, bus routes, bike routes, and railways </li>
+              <li>Businesses: shops, restaurants, bars</li>
+               <li>Buildings: schools, churches, houses</li>
+               <li>Parks, lakes, mountains, and even trees </li>
+              <li>Airports, power networks, and mailboxes</li>
+               <li>Administrative boundaries</li>
+               <li><a target="blank" href="http://wiki.osm.org">Full List Here</a></li>
+              </h3>
+            </ul>
+        </section>
+          <section>
+          <h1>Companies Using <strong>OpenStreetMap</strong></h1>
+           </section>
+           <section>
+            <img class="stretch"  src="./img/foursquare.png"/>
+            <h2>foursquare</h2>
+        </section>
+        <section>
+            <img class="stretch"  src="./img/pinterest.jpg"/>
+            <h2>pinterest</h2>
+        </section>
+          <section>
+            <img class="stretch"  src="./img/craigslist.png"/>
+            <h2>craiglist</h2>
+        </section>
+        <section>
+        <h1>Agencies Using <strong>OpenStreetMap</strong></h1>
+           </section>
+           <section>
+            <iframe src="http://www.nps.gov/npmap/park-tiles/#4/39.00/-96.00" height='900' width='100%'></iframe>
+        </section>
+        <section>
+            <iframe src="http://ride.trimet.org/#/" height='900' width='100%'></iframe>
+        </section>
+              <section>
+        <h1>Design In <strong>OpenStreetMap</strong></h1>
+           </section>
+           <section>
+            <iframe src="https://a.tiles.mapbox.com/v3/examples.xqwfusor/page.html?secure=1#8/37.643/-78.898" height='900' width='100%'></iframe>
+        </section>
+        <section>
+            <iframe src="http://maps.stamen.com/toner/#8/37.903/-78.498" height='900' width='100%'></iframe>
+        </section>
+          <section>
+            <iframe src="http://dessine-moi-une-ville.makina-corpus.net/#14/43.5934/1.4357" height='900' width='100%'></iframe>
+        </section>
+           <section>
+            <iframe src="http://maps.stamen.com/watercolor/#11/37.0479/-76.3527" height='900' width='100%'></iframe>
+        </section>
+        <section>
+            <iframe src="https://a.tiles.mapbox.com/v3/examples.3hqcl3di/page.html?secure=1#8/37.612/-78.854" height='900' width='100%'></iframe>
+        </section>
+        <section>
+          <h1>Editing In OSM<p><strong>-Sooooo Easy-</strong></h1>
+        </section>
+
+        <section>
+            <img class="stretch" src="./img/sophie.jpg">
+            <h2>My 10 yr Old Does It!</h2>
+        </section>
+
+        <section>
+          <h1>2 Simple Steps</h1>
+          <ul>
+          <h3><li><a target="blank" href="http://osm.org">Sign Up For An Account</a></li>
+              <li>Start Editing</li>
+              </h3>
+            </ul>
+        </section>
+        <section>
+          <h2><strong>iD Editor</strong></h2><p>
+            <img class="stretch" src="./img/edita.png"/>
+            <h3>There Are Others But iD Is Best For Beginners</h3>
+        </section>
+           <section>
+            <img class="stretch" src="./img/walka.png"/>
+            <h2>Do The Walkthrough First</h2>
+        </section>
+            <section>
+            <img class="stretch" src="./img/oga.png"/>
+            <h2>Start Local</h2>
+        </section>
+      <section>
+          <h1><strong>Save</strong> Your Edits</h1>
+          <ul>
+          <h3><li>Save Often</li>
+              <li>Save = Linked Changeset (Like A Commit)</li>
+              <li>Include Source And Info About Your Edit</li>
+              </h3>
+            </ul>
+        </section>
+
+        <section>
+          <img class="stretch" src="./img/imagery.gif"/>
+          <h2>Imagery</h2>
+        </section>
+        <section>
+          <img class="stretch" src="./img/traces.gif"/>
+          <h2>GPS Tracks</h2>
+        </section>
+        <section>
+          <img class="stretch" src="./img/josm.gif"/>
+          <h2>JOSM</h2>
+        </section>
+        <section>
+          <h1><strong>Importing GIS Data: Case Study</strong></h1>
+          <ul>
+          <h3>
+            <li>New York City</li>
+            <li>1 Million Buildings & 900,000 Addresses</li>
+              <li>City notified of changes</li>
+
+              </h3>
+            </ul>
+        </section>
+         <section>
+            <img class="stretch"  src="./img/nyc.gif"/>
+            <h2>new york city</h2>
+        </section>
+        <section>
+          <h1>Walkthrough</h1>
+        </section>
+         <section>
+          <h1>Further<strong> Reading</strong></h1>
+          <ul>
+          <h3><li><a target="blank" href="http://wiki.openstreetmap.org/wiki/Beginners'_guide">Official Beginners Guide</a></li>
+              <li><a target="blank" href="http://learnosm.org/en/">Step By Step Learning</a></li>
+              <li><a target="blank" href="http://switch2osm.org/">Switching To OSM Maps</a></li>
+              </h3>
+            </ul>
+        </section>
+         <section>
+          <h1>Get<strong> INVOLVED!</strong></h1>
+          <h2> Start with the OSM <a target="blank" href="http://wiki.openstreetmap.org/wiki/Main_Page">Homepage</a> </h2>
+        </section>
+         <section>
+          <h1><strong>#maptime</strong></h1>
+          <h3><p><strong>Monthly (or so) meetup for all levels of knowledge to collaborate, learn, and explore maps!</strong>
+          <p>Hampton Roads <a target="blank" href="http://maptime.github.io/hrva/">maptime.github.io/hrva</a>
+          <p>More Info At <a target="blank" href="http://www.maptime.io/">maptime.io</a></h3>
+        </section>
+        <section>
+          <h1><strong>Code For AMERICA</strong></h1>
+          <h3><p><strong>Local groups collaborating with municipalities to make their cities better</strong>
+          <p>Hampton Roads <a target="blank" href="http://codeforhamptonroads.org/">codeforhamptonroads.org</a>
+            <p>Richmond <a target="blank" href="http://www.codeforrva.org/">codeforrva.org</a>
+          <p>More Info At <a target="blank" href="http://www.codeforamerica.org/">codeforamerica.org</a></h3>
+        </section>
+				<section>
+					<h1><strong>VAMLIS</strong></h1>
+					<h3><p>State Conference In Fall 2015
+						<p>Quarterly meet ups & other events
+					<p><a target="blank" href="http://vamlis.org/">vamlis.org</a></h3>
+				</section>
+        <section>
+          <h1>Thank You!</h1>
+           <h3> Interactive Slides! <a target="blank" href="http://jonahadkins.github.io/intro-osm">jonahadkins.github.io/intro-osm</a>
+          <h4><a style="float: left" href="mailto:jadkins@gisinc.com?Subject=OpenStreetMap" target="blank">jadkins@gisinc.com</a>   <a style="float: right" href="https://twitter.com/jonahadkins" target="blank">@jonahadkins</a></h4>
+        </section>
+
+
+
+			</div>
+
+      <div class="top-bar"> &nbsp;	</div>
+      <a class="logo" href="http://gisinc.com/" title="Geographic Information Services, Inc."> &nbsp; </a>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+        fragments: true,
+        previewLinks: false,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+    <a href="https://github.com/jonahadkins"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png"></a>
+	</body>
+</html>

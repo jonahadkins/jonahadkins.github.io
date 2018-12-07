@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>Esri Imagery w/ Leaflet</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Load Leaflet from CDN-->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+  <!-- Load Esri Leaflet from CDN -->
+  <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+
+  <style>
+    body {margin:0;padding:0;}
+    #map {position: absolute;top:0;bottom:0;right:0;left:0;}
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+  var map = L.map('map').setView([36.785, -76.101], 14);
+L.esri.basemapLayer('Imagery').addTo(map);
+var marker = L.marker([36.785, -76.101]).addTo(map);
+marker.bindPopup("<b>Hello TCC!</b>").openPopup();
+</script>
+
+</body>
+</html>
