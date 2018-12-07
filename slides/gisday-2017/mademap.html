@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>We Made A Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.41.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        #title {
+            position: absolute;
+            top: 1.5%;
+            left: 1%;
+            bottom: 0;
+            width: 300px;
+            height: 200px;
+            box-sizing: border-box;
+            border-color: #fff;
+            border-width: medium;
+            padding: 8px 10px;
+            font-family: 'Ropa Sans', sans-serif;
+            font-size: 9pt;
+            color: #fff;
+            text-align: center;
+            background: rgba(38, 38, 38, 0.8);/*background-image: url("https://akafkaesquelife.files.wordpress.com/2013/09/fog-and-smoke.gif");*/
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            z-index: 9999;
+            overflow: auto;
+        }
+
+        a {
+            color: rgba(229, 229, 216, 0.9);
+        }
+    </style>
+    <div id='map'></div>
+    <div id='title'>
+        <font size='6'><b>Fatal Crashes in Virginia</b></font size>
+        <br>
+        <font size='3'>2016-2017</font size>
+        <br>
+        <font size='2'>Mapping <a target="blank" href="http://www.virginiaroads.org/datasets"> Open VDOT Data</a>
+            <br>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+            <font size='4'>
+                <br> <b><font color='#FABED6'> Fatal Accidents |  4,024 </font color>
+    <br> <font color='#25B38F'> Fatal Pedestrian Accidents | 579 </font color></font size>
+      <br> <a target="blank" href="http://jonahadkins.com/letsmakeamap">Read More About This Map</a>
+    </b></font size>
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+        var map = new mapboxgl.Map({
+            container: 'map', // container id
+            style: 'mapbox://styles/mapbox/dark-v9', // stylesheet location
+            center: [-79.234, 37.701], // starting position [lng, lat]
+            zoom: 7 // starting zoom
+        });
+
+        map.on('style.load', function() {
+            map.addSource("crashes", {
+                type: "geojson",
+                data: "https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/VirginiaCrashes/FeatureServer/0/query?where=CRASH_YEAR%20%3E%3D%202016%20AND%20CRASH_YEAR%20%3C%3D%202017%20AND%20NO_OF_TOTAL_FATALITIES%20%3E%3D%201%20AND%20NO_OF_TOTAL_FATALITIES%20%3C%3D%20100&outFields=CRASH_YEAR,NO_OF_PED_FATALITIES,CRASH_SEVERITY,CRASH_DATE,COLLISION_TYPE,CRASH_WEATHER,NO_OF_VEHICLES,LIGHT_CONDITIONS,SURFACE_CONDITIONS&outSR=4326&f=geojson"
+            });
+
+            map.addLayer({
+                "id": "markers",
+                "type": "circle",
+                "source": "crashes",
+                "paint": {
+                    "circle-radius": {
+                        'base': 5,
+                        'stops': [
+                            [5, 5],
+                            [10, 25],
+                            [15, 50]
+                        ]
+                    },
+                    "circle-opacity": 0.4,
+                    "circle-color": {
+                        property: 'CRASH_SEVERITY',
+                        type: 'categorical',
+                        stops: [
+                            ['Pedestrian Fatal Crash', '#25B38F'],
+                            ['Fatal Crash', '#FABED6']
+                        ]
+                    }
+                },
+            }, 'waterway-label');
+
+        });
+        // Create a popup, but don't add it to the map yet.
+        var popup = new mapboxgl.Popup({
+            closeButton: false,
+            closeOnClick: false
+        });
+
+        map.on('mouseenter', 'markers', function(e) {
+            // Change the cursor style as a UI indicator.
+            map.getCanvas().style.cursor = 'pointer';
+
+            // Populate the popup and set its coordinates
+            // based on the feature found.
+            popup.setLngLat(e.features[0].geometry.coordinates)
+                .setHTML('<b>' + e.features[0].properties.CRASH_SEVERITY + ' - ' + e.features[0].properties.CRASH_YEAR + '</b>' +
+                    '<br/>' + 'Weather: ' + e.features[0].properties.CRASH_WEATHER +
+                    '<br/>' + 'Light: ' + e.features[0].properties.LIGHT_CONDITIONS +
+                    '<br/>' + 'Surface: ' + e.features[0].properties.SURFACE_CONDITIONS)
+                .addTo(map);
+        });
+
+        map.on('mouseleave', 'markers', function() {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
+
+        // Add geolocate control to the map.
+        map.addControl(new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        }));
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>
+
+</body>
+
+</html>

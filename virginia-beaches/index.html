@@ -1,0 +1,455 @@
+<!doctype><html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Odyssey.js Slides</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/x-icon" href="http://cartodb.github.io/odyssey.js/sandbox/favicon.png">
+  <link rel="icon" type="image/png" href="http://cartodb.github.io/odyssey.js/sandbox/favicon.png">
+
+  <link rel="stylesheet" href="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/themes/css/cartodb.css">
+  <link rel="stylesheet" href="http://cartodb.github.io/odyssey.js/sandbox/css/slides.css">
+  <script src="http://cartodb.github.io/odyssey.js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 100%;"></div>
+
+  <div id="slides_container" style="display:block;">
+    <div id="dots"></div>
+
+    <div id="slides"></div>
+
+    <ul id="navButtons">
+      <li><a class="prev"></a></li>
+      <li><a class="next"></a></li>
+    </ul>
+  </div>
+
+  <div id="credits">
+    <span class="title" id="title">Title</span>
+    <span class="author"><strong id="author">By Name using</strong> <a href="http://cartodb.github.io/odyssey.js/">Odyssey.js</a><span>
+  </span></span></div>
+
+  <script src="http://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/cartodb.js"></script>
+  <script src="http://cartodb.github.io/odyssey.js/dist/odyssey.js" charset="UTF-8"></script>
+
+  <script>
+    var resizePID;
+
+    function clearResize() {
+      clearTimeout(resizePID);
+      resizePID = setTimeout(function() { adjustSlides(); }, 100);
+    }
+
+    if (!window.addEventListener) {
+      window.attachEvent("resize", function load(event) {
+        clearResize();
+      });
+    } else {
+      window.addEventListener("resize", function load(event) {
+        clearResize();
+      });
+    }
+
+    function adjustSlides() {
+      var container = document.getElementById("slides_container"),
+          slide = document.querySelectorAll('.selected_slide')[0];
+
+      if (slide) {
+        if (slide.offsetHeight+169+40+80 >= window.innerHeight) {
+          container.style.bottom = "80px";
+
+          var h = container.offsetHeight;
+
+          slide.style.height = h-169+"px";
+          slide.classList.add("scrolled");
+        } else {
+          container.style.bottom = "auto";
+          container.style.minHeight = "0";
+
+          slide.style.height = "auto";
+          slide.classList.remove("scrolled");
+        }
+      }
+    }
+
+    var resizeAction = O.Action(function() {
+      function imageLoaded() {
+        counter--;
+
+        if (counter === 0) {
+          adjustSlides();
+        }
+      }
+      var images = $('img');
+      var counter = images.length;
+
+      images.each(function() {
+        if (this.complete) {
+          imageLoaded.call( this );
+        } else {
+          $(this).one('load', imageLoaded);
+        }
+      });
+    });
+
+    function click(el) {
+      var element = O.Core.getElement(el);
+      var t = O.Trigger();
+
+      // TODO: clean properly
+      function click() {
+        t.trigger();
+      }
+
+      if (element) element.onclick = click;
+
+      return t;
+    }
+
+    O.Template({
+      init: function() {
+        var seq = O.Triggers.Sequential();
+
+        var baseurl = this.baseurl = 'http://{s}.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+        var map = this.map = L.map('map').setView([0, 0.0], 4);
+        var basemap = this.basemap = L.tileLayer(baseurl, {
+          attribution: 'data OSM - map CartoDB'
+        }).addTo(map);
+
+        // enanle keys to move
+        O.Keys().on('map').left().then(seq.prev, seq)
+        O.Keys().on('map').right().then(seq.next, seq)
+
+        click(document.querySelectorAll('.next')).then(seq.next, seq)
+        click(document.querySelectorAll('.prev')).then(seq.prev, seq)
+
+        var slides = O.Actions.Slides('slides');
+        var story = O.Story()
+
+        this.story = story;
+        this.seq = seq;
+        this.slides = slides;
+        this.progress = O.UI.DotProgress('dots').count(0);
+      },
+
+      update: function(actions) {
+        var self = this;
+
+        if (!actions.length) return;
+
+        this.story.clear();
+
+        if (this.baseurl && (this.baseurl !== actions.global.baseurl)) {
+          this.baseurl = actions.global.baseurl || 'http://0.api.cartocdn.com/base-light/{z}/{x}/{y}.png';
+
+          this.basemap.setUrl(this.baseurl);
+        }
+
+        if (this.cartoDBLayer && ("http://"+self.cartoDBLayer.options.user_name+".cartodb.com/api/v2/viz/"+self.cartoDBLayer.options.layer_definition.stat_tag+"/viz.json" !== actions.global.vizjson)) {
+          this.map.removeLayer(this.cartoDBLayer);
+
+          this.cartoDBLayer = null;
+          this.created = false;
+        }
+
+        if (actions.global.vizjson && !this.cartoDBLayer) {
+          if (!this.created) { // sendCode debounce < vis loader
+            cdb.vis.Loader.get(actions.global.vizjson, function(vizjson) {
+              self.map.fitBounds(vizjson.bounds);
+
+              cartodb.createLayer(self.map, vizjson)
+                .done(function(layer) {
+                  self.cartoDBLayer = layer;
+
+                  var sublayer = layer.getSubLayer(0),
+                      layer_name = layer.layers[0].options.layer_name,
+                      filter = actions.global.cartodb_filter ? " WHERE "+actions.global.cartodb_filter : "";
+
+                  sublayer.setSQL("SELECT * FROM "+layer_name+filter)
+
+                  self.map.addLayer(layer);
+
+                  self._resetActions(actions);
+                }).on('error', function(err) {
+                  console.log("some error occurred: " + err);
+                });
+            });
+
+            this.created = true;
+          }
+
+          return;
+        }
+
+        this._resetActions(actions);
+      },
+
+      _resetActions: function(actions) {
+        // update footer title and author
+        var title_ = actions.global.title === undefined ? '' : actions.global.title,
+            author_ = actions.global.author === undefined ? 'Using' : 'By '+actions.global.author+' using';
+
+        document.getElementById('title').innerHTML = title_;
+        document.getElementById('author').innerHTML = author_;
+        document.title = title_ + " | " + author_ +' Odyssey.js';
+
+        var sl = actions;
+
+        document.getElementById('slides').innerHTML = ''
+        this.progress.count(sl.length);
+
+        // create new story
+        for(var i = 0; i < sl.length; ++i) {
+          var slide = sl[i];
+          var tmpl = "<div class='slide' style='diplay:none'>";
+
+          tmpl += slide.html();
+          tmpl += "</div>";
+          document.getElementById('slides').innerHTML += tmpl;
+
+          this.progress.step(i).then(this.seq.step(i), this.seq)
+
+          var actions = O.Parallel(
+            this.slides.activate(i),
+            slide(this),
+            this.progress.activate(i),
+            resizeAction
+          );
+
+          actions.on("finish.app", function() {
+            adjustSlides();
+          });
+
+          this.story.addState(
+            this.seq.step(i),
+            actions
+          )
+        }
+
+        this.story.go(this.seq.current());
+      },
+
+      changeSlide: function(n) {
+        this.seq.current(n);
+      }
+    });
+  </script>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-20934186-21', 'cartodb.github.io');
+    ga('send', 'pageview');
+  </script>
+
+
+<script id="md_template" type="text/template">
+```
+-baseurl: "http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg"
+-title: "Virginia Beaches - Visualizing A Washington Post Story By Jane Elizabeth"
+-author: "@jonahadkins"
+```
+
+#Skip the boardwalk, tunnels: 5 Virginia beaches you’ve never heard of
+```
+- center: [37.5358, -77.4536]
+- zoom: 9
+L.marker([37.5358, -77.4536]).actions.addRemove(S.map)
+```
+
+[**By Jane Elizabeth**  
+June 4, 2013](http://wapo.st/1rVomKF)  
+
+If you’re a little beach in the big shadow of Virginia Beach, what do you offer visitors when you’ve got no boardwalks, no nightclubs, no taffy and T-shirt shops?
+
+Birds. Turtles. Peace. Quiet. A fighting chance at finding the perfect shells and sea glass before someone else does.
+
+If you want a break from the boardwalk, consider this list of five beaches not far from Virginia Beach — five quiet, locally famous beaches you might never have heard of.
+
+And if driving through tunnels annoys you/scares you/brings out the road rage in you, here’s an added bonus: You won’t travel through any tunnels to get to these beaches from the Washington region.
+
+
+#Yorktown Beach
+```
+- center: [37.2362, -76.5057]
+- zoom: 16
+L.marker([37.2362, -76.5057]).actions.addRemove(S.map)
+```
+
+![Yorktown Beach](http://img.washingtonpost.com/rf/image_1484w/2010-2019/WashingtonPost/2013/06/04/Local/Images/Yorktown%20Beachfront.jpg?uuid=qxTTms05EeKfGhp83uIChw)
+(Courtesy of York County)  
+
+In many ways, Yorktown Beach is a typical small beach, with about three acres of beachfront, a fishing pier and places to play and picnic.
+
+But visitors there are often treated to a couple of unusual events.
+
+Yorktown Beach is a place where a wedding can break out at any time – about 100 times a year, in fact. Couples can get married there by filling out a simple permit but they can’t close the beach – meaning that hundreds of strangers wearing bathing suits become witnesses to the nuptials.
+
+Another happy surprise can be the sudden appearance of tall ships on the York River – those traditional sailing ships with the huge masts that arrive from countries around the world. “You never know when they’re going to show up,” said Gail Whittaker, a spokesperson for York County.
+
+Yorktown Beach, about a 20-minute drive from Williamsburg on the Colonial Parkway, has been a recreational beach since colonial times. York County took over its management in the 1970s, and today there are 10 acres of recreation space, shower facilities that are open all summer and a fishing pier with no entry fee and no requirement for a fishing license. Flounder and spot are favorite catches there, said parks and recreation manager Brian Fuller.
+
+Riverwalk Landing, a shopping and entertainment development that includes several restaurants, and a mile-long riverwalk, are next-door to the beach. Free Thursday night concerts during the summer are held at Riverwalk Landing, and the music can be heard on the beach.
+
+**Location:** 425 Water St., Yorktown
+
+**Parking:** Cars were once allowed on the beach, but no longer. However, there’s plenty of parking around the beach and at a garage on “the hill” in town that’s within easy walking distance.
+
+**Tip:** Bring your mountain bike for a side trip on the 6.5-mile trail at New Quarter Park, about a 15-minute drive from the beach.
+
+**More information:** [York County Website](www.yorkcounty.gov/Default.aspx?tabid=5152)
+
+
+#Buckroe Beach
+```
+- center: [37.0401, -76.2903]
+- zoom: 16
+L.marker([37.0401, -76.2903]).actions.addRemove(S.map)
+```
+
+![Buckroe Beach](http://hampton.gov/ImageRepository/Path?filePath=%2fdocuments%2f00000000-0000-0000-0000-000000000000%2f320%2f333%2fbuckroe+beach_201305131346274903.jpg&thumbnailSize=Thumb400X400&preserveAspect=true)
+(Courtesy of City of Hampton) 
+
+Buckroe Beach on the Chesapeake Bay has a colorful backstory, starting with the 17th-century Frenchmen who settled in the region, figuring it would be a good place to start vineyard and silk processing operations.
+
+Apparently that didn’t work out, and sadly there are no vestiges of any wine-making activities in the area.
+
+Instead, Buckroe became part of the Hampton Roads region’s fishing culture and later a resort area. Longtime locals still remember the Buckroe Beach carousel and roller coaster; the carousel has been reestablished next to the Virginia Air and Space Center in downtown Hampton.
+
+As trains brought visitors from Richmond and points north in the 20th century, Buckroe became segregated. A section of the beach called Bayshore Park was for African Americans only, and the two areas existed side by side until segregation faded away in the 1960s.
+
+Today, lifeguards are posted on the beach, which measures just under a mile. At one end is a fishing pier, rebuilt in 2009 after it was destroyed by Hurricane Isabel. Adults can fish for $8 a day, or $6 if they have a Virginia saltwater fishing license.
+
+If you hear an uproar on the pier, it likely means someone has caught a big, tasty cobia – Buckroe’s most sought-after catch, which can grow to well over 100 pounds. There’s also croaker, spot, flounder – and, said pier manager Lynn Waldrop, the occasional loggerhead turtle trying to steal bait from fishing lines.
+
+There are large picnic shelters that can be rented through Hampton’s parks department, a food vendor on site and snacks at the fishing pier. And there several bathrooms – referred to as “comfort stations” in gentile Southern fashion.
+
+**Location:** 100 First St. South, Hampton
+
+**Parking:** Large parking lot on site; more parking on surrounding streets.
+
+**Tip:** Don’t bring the dog. Pets are not allowed on the beach during the summer months.
+
+**More information:** [Hampton Website](http://hampton.gov/Facilities/Facility/Details/Buckroe-Beach-and-Park-46)
+
+
+#Jamestown Beach
+```
+- center: [37.2246, -76.7888]
+- zoom: 16
+L.marker([37.2246, -76.7888]).actions.addRemove(S.map)
+```
+
+![James City](http://www.jamescitycountyva.gov/images/recreation/jamestown-beach/Beach.JPG)
+(Courtesy of James City County)
+
+Jamestown Beach is particularly great if you’ve got a bunch of kids in tow: An abundance of shade trees are unusually close to the sand line, making it convenient to get the little ones out of the sun and heat for awhile. And the James River water is shallow and quiet, all along the 1,325 linear feet of sandy beach.
+
+“People bring their families and set up for the day,” said Nancy Ellis, park administrator for James City County. Charcoal grills are available, or you can bring your own.
+
+There are actually three beaches at Jamestown, separated by breakwaters and equally populated by visitors, Ellis said. The first two beaches have been restored with more sand and more space, and upgrades for the third beach are underway.
+
+Tired of sunbathing? At one end of the beach, you can embark on the Jamestown Ferry and take a free, 15-minute ride to Surry County on the other side of the James – and then return to the beach for more swimming.
+
+The beach also is near Eco Discovery Park, a private, nonprofit park that features an environmental learning center as well as marina, store and kayak rentals. Also next door is the Jamestown Settlement, where you can explore exhibits and reenactments of the first permanent English settlement on the North American mainland.
+
+As the day ends, the beach often gets even busier. The sunset over the James River is a well-known favorite subject for photographers and artists, who arrive before sundown to set up their equipment. And don’t be surprised if you run into a wedding ceremony at sunset.
+
+**Location:** 2205 Jamestown Rd., Williamsburg
+
+**Parking:** Parking lot near the first beach
+
+**Tip:** If you hop on the ferry, you can visit local landmark Edwards Ham and sample a traditional Virginia ham biscuit. The business began in 1926 when S. Wallace Edwards, a captain on the Jamestown-Surry ferry, started selling ham sandwiches to his passengers.
+
+**More information:** [James City Website]( www.jamescitycountyva.gov/recreation/parks/jamestown-beach.html)
+
+#Grandview Nature Preserve
+```
+- center: [37.1019, -76.2864]
+- zoom: 16
+L.marker([37.1019, -76.2864]).actions.addRemove(S.map)
+```
+
+![Grandview](http://www.hampton.gov/ImageRepository/Path?filePath=%2fdocuments%2f00000000-0000-0000-0000-000000000000%2f320%2f331%2fgrandview_201305131346274903.jpg&thumbnailSize=Thumb400X400&preserveAspect=true)
+(Courtesy of City of Hampton)
+
+A popular refuge for birds and bird-watchers, Grandview Nature Preserve is a little-known stretch of beach on the Chesapeake Bay that long ago included a lighthouse and a fish oil factory. Those were destroyed by storms and hurricanes, leaving behind only the name of “Factory Point” at one end of the 3.5-mile beach and a historic lighthouse marker at the other end.
+
+To get to the beach, located between Poquoson and Hampton, you need to walk down a half-mile, picturesque trail of sand, dirt and rocks. But even if you have to carry the kids or bags of beach paraphernalia on your trek, it’s worth it: The trail opens to a breathtaking view of a natural beach, dotted with old cypress tree stumps and moss-covered ledges.
+
+Walk a few more yards and there’s plenty of sand to stretch out on, nap or read a book.
+
+If you’re up for it, you can hike all the way around to Factory Point, or what the locals call “Party Island” – a sand spit where boaters sometimes congregate with their grills, umbrellas, music and coolers. Alcohol is prohibited, however, and the area is patrolled by several law enforcement agencies in boats.
+
+Also on Factory Point is a protected bird-nesting area, clearly marked by signs warning away visitors, said chief park ranger Art Mertz. But most of the beach is open to birdwatchers, who look for migratory birds and waterfowl feeding along the shoreline, including least terns and skimmers.
+
+Take note: There are no public bathrooms, and the nearest store is a 7-Eleven about two miles from the beach entrance.
+
+**Location:** Near the intersection of Beach Road and State Park Drive in Hampton
+
+**Parking:** Street parking on State Park Drive. (Read the street signs for parking rules.)
+
+**Tip:** Dolphins and loggerhead sea turtles often can be spotted, and occasionally a creature is stranded. Take a photo and call the Virginia Stranding Team 24-hour hotline at 757-385-7576.
+
+**More information:** [Hampton Website](http://www.hampton.gov/Facilities/Facility/Details/Grandview-Nature-Preserve-and-Factory-Po-26)
+
+
+#Fort Monroe
+```
+- center: [37.0176, -76.2970]
+- zoom: 16
+L.marker([37.0176, -76.2970]).actions.addRemove(S.map)
+```
+
+![Fort Monroe](http://www.fmauthority.com/wp-content/uploads/banner-beach.jpg)
+(Courtesy of Fort Monroe Authority)
+
+This could be the most unusual beach day you’ll ever have. Where else can you sunbathe with a fortified moat and a Civil War stockade as a backdrop? Where Edgar Allen Poe stayed in a fancy hotel and read his poems to admirers? Where the Kecoughtan Indians lived, fished and hunted?
+
+Today at Fort Monroe, young lifeguards protect the modern beaches flanked by old batteries where soldiers once stood ready to fire at enemies approaching from the water.
+
+Fort Monroe was built by the Union army to defend the entrance to Hampton Roads Harbor. The first iteration was built in 1609 by colonial settlers; when it was completed in 1834 it became the largest enclosed fort in the nation.
+
+Former Confederate President Jefferson Davis was held prisoner there; he and his wife eventually were allowed to stroll around the grounds. Fort Monroe also was a safe haven for hundreds of escaped slaves during the Civil War.
+
+Today, much of Fort Monroe is open to the public – including 3.5 miles of sandy beach on the Chesapeake Bay, eight miles of waterfront and 2.5 miles of seawall. The Paradise Beach Club offers beach access for a fee, along with a new indoor restaurant, a pool and an outdoor snack bar. There’s also waterfront access near the Fort Monroe campground.
+
+The Engineers Fishing Pier is open daily; there’s no fee but you must have a Virginia saltwater fishing license. Bring a bicycle, too. Cyclists can ride freely and easily around Fort Monroe’s hundreds of acres; traffic and hills are minimal.
+
+**Location:** Fenwick Road, Hampton
+
+**Parking:** Plenty of parking around the beach; more spaces within walking distance.
+
+**Tip:** For a break from rain or heat, head over to Fort Monroe’s spectacular Casemate Museum. Even the kids will like it, and it’s free.
+
+**More information:** [Fort Monroe Website](http://www.fmauthority.com/explore/outdoors-and-recreation/beaches/)
+
+#About
+```
+- center: [37.0691, -76.4930]
+- zoom: 14
+L.marker([37.0691, -76.4930]).actions.addRemove(S.map)
+```
+
+![Me](https://avatars2.githubusercontent.com/u/5178200?s=460)
+
+Made by [@jonahadkins](http://twitter.com/jonahadkins)
+
+Cartographer from Newport News, Virginia
+
+Work [@gisincorporated](http://gisinc.com) 
+
+Portfolio Available At
+ [jonahsmaps.tumblr.com](jonahsmaps.tumblr.com)
+ 
+Fork This Code At [Github](https://github.com/jonahadkins/virginia-beaches)
+
+
+Tiles Courtesy of [Mapquest](http://www.mapquest.com/) 
+
+</script></body></html>

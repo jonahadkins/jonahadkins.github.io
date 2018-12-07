@@ -1,0 +1,147 @@
+label {
+	/*font-size: 8pt;*/
+}
+
+#lensWin {
+	border-radius: 180px;
+	background-color: transparent;
+	border: 0px solid #444;
+	border-bottom: 0px solid #444;
+	height:158px;/*317px; 415px;*/
+	overflow: visible;
+	position: absolute;
+	width:175px; /*317px; 415px; */
+	cursor: move;
+	top:0px;
+	left:0px;
+	display: none;
+} 
+
+#lensTool {
+ 	position: absolute;
+	top: 30px; /*70px; /*  77px; */
+	left: 3px; /*20px; /* 77px; */
+	width: 159px;/*280px; /* 261px; */
+	height: 97px; /*180px; /* 261px; */
+	background-repeat: no-repeat;
+	z-index: 39 !important;
+}
+#lensWin {
+	background: url('../../../../resources/icons/sprite-icons.png') -1322px -1653px;
+	/*background: url('../../../../resources/icons/sprite-icons.png') -1244px -1577px;
+	background: url('../../../../resources/icons/sprite-icons.png') -1195px -1952px;*/
+}
+/*
+#lensTool.twoLayers {
+	background: url('../../../../resources/icons/sprite-icons.png') -1195px -1952px;
+}
+
+#lensTool.twoMaps {
+	background: url('../../../../resources/icons/sprite-icons.png') -536px -841px;
+}
+#lensTool.safariFix {
+	background: url('../../../../resources/icons/sprite-icons.png') -536px -530px;
+}
+
+#lensMapNode.safariFix #lensMapNode_container {
+	clip: rect(9px 252px 252px 9px) !important;
+}
+*/
+
+#infoWindow {
+	position: absolute;
+	right: -245px;
+	width: 250px;
+	height: 355px;
+	margin-top: -177px;
+	top: 50%;
+	z-index: 40;
+}
+
+#infoWindow.disable{
+	display: none;
+}
+
+.mobile-view #infoWindow {
+	display: none;
+}
+
+#infoWindowTitle {
+	height: 25px;
+	background-color: grey;
+	border-top: 1px black solid;
+	border-right: 1px black solid;
+	border-left: 1px black solid;
+	text-align: center;
+	font-weight: bold;
+	line-height: 25px;
+	vertical-align: middle;
+}
+
+#infoWindowContent {
+	height: 330px;
+	top: 25px;
+	background-color: #ececec;
+	border-left: 1px black solid;
+	border-bottom: 1px black solid;
+	border-right: 1px black solid;
+}
+
+.noFeature {
+	position: absolute;
+	top: 46%;
+	height: 50%;
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+	padding-right: 14px;
+}
+
+#infoWindowTabImg {
+	bottom: 50%;
+	cursor: pointer;
+	height: 45px;
+	left: -25px;
+	margin-bottom: -30px;
+	position: absolute;
+	width: 25px;
+	background: url('../../../../resources/icons/sprite-icons.png') 0 -992px;
+	opacity: 0.75;
+}
+
+#infoWindowTabImg:hover {
+	opacity: 1;
+}
+
+#infoWindowTabImg.closeImg {
+	background: url('../../../../resources/icons/sprite-icons.png') 0 -802px;
+	opacity: 0.75;
+}
+
+#infoWindowTabImg.closeImg:hover {
+	opacity: 1;
+}
+
+.mobile-view #infoWindowTabImg {
+	display: none;
+}
+
+/*esri popup stuff*/
+
+.header {
+	/*text-align: center;*/
+}
+
+.gallery {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+
+.esriViewPopup {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.hidePopup{
+	visibility: hidden !important;
+}

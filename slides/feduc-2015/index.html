@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+	<title>Esri UC 2015</title>
+
+	<meta name="description" content="Communicating Big [Energy] Data to the Navy">
+	<meta name="author" content="Jonah Adkins">
+
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+	<!-- Code syntax highlighting -->
+	<link rel="stylesheet" href="lib/css/zenburn.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+	var link = document.createElement( 'link' );
+	link.rel = 'stylesheet';
+	link.type = 'text/css';
+	link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+	document.getElementsByTagName( 'head' )[0].appendChild( link );
+	</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Communicating Big <a>Energy</a> Data to the Navy</h1>
+					<!--<h3>to the Navy</h3>-->
+					<p>
+						<small>Sandrine Schultz / <a href="http://twitter.com/jonahadkins">sandrine.schultz@navy.mil</a></small></br>
+						<small>Jonah Adkins / <a href="http://twitter.com/jonahadkins">@jonahadkins</a></small>
+					</p>
+				</section>
+				<section>
+					<h1>What is <a href="http://bit.ly/1mNu0Zu">NSGEM</a>?</h1>
+					<h3><strong>NAVY Shore Geospatial Energy Module</strong></h3>
+				</section>
+				<section data-transition="none">
+					<h3>Integrated With Existing NAVY Capabilities</h3>
+					<img height="500px" src="./img/GRX.png"/>
+				</section>
+				<section data-transition="none">
+					<h3>Integrated With Existing NAVY Capabilities</h3>
+					<img height="500px" src="./img/NSGEM.png"/>
+				</section>
+				<section>
+					<h3><a>Under the Hood</a></h3>
+					<p>ArcGIS Server 10.1
+					<p>Oracle 11g
+					<p>ASP.NET (web services)
+					<P>Apache Flex (front-end)
+					<p>amCharts
+					<p>Crystal Reports Runtime
+					<p>Sphinx (Help Documentation)
+				</section>	
+				<section>
+				<h3><a>Behind the Wheel</a></h3>
+				<p>4 week development sprints
+				<p>2 week promotion sprints
+				<p>Jira + Agile (Project Tracking)
+				<p>Stash (Git)
+				<p>Spiceworks (Help Tickets)
+				<p>Slack (Internal Communication)
+			</section>
+			<section>
+				<h1>What is <a>Big Data</a> to us?</h1>
+
+			</section>
+
+			<section>
+				<h1><strong>50,000 </strong>facilities tracked monthly since 2005</h1></br>
+				<h3><strong>(50,000 facilities x 12 months) x 10 years = 6 Million Records Analyzed Monthly</strong></h3>
+			</section> 
+
+			<section>
+				<h1>Oh, That's All?</h1></br>
+				<h3>The data is compiled monthly from 5 disparate business systems througout the Navy. We receive exports of the source data in various formats like <a>.txt, .xls, .csv, and .html</a></h3></br>
+			</section>
+
+			<section>
+				<h4>
+					<a>iNFADS | 500k :</a> Monthly Real Property
+					(Who occupies, who pays the bill, category codes)
+				</br>
+			</br>
+				<a>CIRCUITS | 1.5mil :</a> Monthly Commodity Usage
+				(mbtu's - electricity, steam, water, gas, & fuel)
+				</br>
+			</br>
+			<a>DUERS | 15k :</a> Quarterly Energy Reporting
+			(Measures progress toward Sec. of Navy Goals)
+		</br>
+		</br>
+		<a>GOALS | 35k:</a> Semi-Annual Benchmark Establishment (Highlights areas for improvement)</br>
+	</br>
+	<a>CIP | 1.5mil :</a> Monthly GIS (Common Installation Picture Boundaries and Building Footprints)</br>
+</h4>
+</section>
+<section>
+<h1><a>NOAA | 1.8mil</a></h1>
+<h3>We get daily temperature information for over <a>400</a> sites in the US. We calculate historic averages and degree days to help managers plan for changes in consumption.  </h3>
+</section>
+<section>
+	<h1>How do we effectively <a>communicate</a> all of this data to our users?</h1></br>
+</section>
+<section>
+	<h2>Commanding Officers
+	</br>Energy Managers
+</br>Building Managers
+</br>Stakeholders
+</br>Navy Civilians & Contractors</h2>
+</section>
+<section>
+	<h1><a>Maps</a></h1>
+</section>
+<section>
+	<img width="900px" src="./img/grey.png"/>
+</section>
+<section>
+	<img width="900px" src="./img/legend.png"/>
+</section>
+<section>
+	<img width="700px" src="./img/layers.gif"/>
+</section>
+<section>
+	<div style="width:400px;float:left;display:inline-block;">
+		<h1> 
+		</br>
+		<div><a>Charts</a></div></h1>
+		<h4> Over 30 different interactive charts display pre-defined analysis of consumption filtered from a single facility to the entire Navy
+
+		</div>
+		<div style="margin-left:500px;">
+
+			<img width="350px" src="./img/charts.gif"/>
+		</div>
+	</section>
+	<section>
+	<img width="500px" src="./img/comm.gif"/>
+</section>
+<section>
+	<img width="500px" src="./img/fiscal.gif"/>
+</section>
+	<section>
+		<h1><a>Reports</a></h1>
+	</section>
+	<section>
+	<img width="800px" src="./img/tenant.png"/>
+</section>
+	<section>
+	<img width="800px" src="./img/faclist.png"/>
+</section>
+	<section>
+	<img width="800px" src="./img/prep.png"/>
+</section>
+	<section>
+		<h1><a>Mapbooks</a></h1>
+	</section>
+	<section>
+		<img height="600px" src="./img/mb1.png"/>
+	</section>
+
+
+	<section>
+		<img height="600px" src="./img/mb3.png"/>
+	</section>
+
+	<section>
+		<img height="600px" src="./img/mb2.png"/>
+	</section>
+	<section>
+		<h1><a>Posters</a></h1>
+	</section>
+	<section>
+		<img height="600px" src="./img/se.png"/>
+	</section>
+
+
+	<section>
+		<img height="600px" src="./img/norfolk.png"/>
+	</section>
+	
+	<section>
+		<img height="600px" src="./img/norfolk2.png"/>
+	</section>
+
+	<section>
+		<img height="600px" src="./img/perf.png"/>
+	</section>
+
+
+	<section>
+		<img height="600px" src="./img/streamy.png"/>
+	</section>
+
+<section>
+<h1>For More Info
+	<p><a href="http://cnic.navy.mil">cnic.navy.mil</a></h1>
+<h4><a>Ms. Sandrine Schultz, CEM
+<p>CNIC, Energy Program Manager
+<p>DSN: 288-6293 COMM: 202-433-6293
+<p>E-Mail: sandrine.schultz@navy.mil</a>
+</h4>
+
+</section>
+<section>
+<h1>Learn Even More While You Are Here This Week!
+<h4><a>Wednesday - 3:15 - Room 28 A
+<p>Thursday - 8:30 - Room 28 B
+<p>Thursday - 8:30 - Room 25 C
+<p>Map Gallery - All Week!</a>
+</h4>
+
+</section>
+</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+				{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+				{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: 'plugin/zoom-js/zoom.js', async: true },
+				{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+			</script>
+
+		</body>
+		</html>

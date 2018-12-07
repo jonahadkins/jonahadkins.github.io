@@ -1,0 +1,48 @@
+<!-- HTML Garbage -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- This will be the browser tab title -->
+  <title>East Breezy Leaflet Demo</title>
+  <!-- More HTML Garbage -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- This is the Leaflet stylesheet -->
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+  <!-- This says we want the map to fill the page -->
+  <style>
+    html {
+      height: 100%
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .map {
+      height: 100%
+    }
+  </style>
+</head>
+<!-- Maps start here -->
+
+<body>
+  <div id="map" class="map"></div>
+  <!-- Loading the map guts here -->
+  <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+  <!-- Intial map settings (coords,zoom level)-->
+  <script>
+    var map = L.map('map').setView([36.785, -76.101], 13);
+    L.tileLayer(
+      'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        maxZoom: 18
+      }).addTo(map);
+      var marker = L.marker([36.785, -76.101]).addTo(map);
+      marker.bindPopup("<b>Hello TCC!</b>").openPopup();
+  </script>
+</body>
+
+</html>

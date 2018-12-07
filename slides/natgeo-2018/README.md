@@ -1,0 +1,51 @@
+# osm-talk
+slides for an OSM talk
+
+
+- Let's talk about OpenStreetMap
+- OSM is a community!
+  - A global community of mappers, developers, volunteers, funders, PEOPLE.
+  - there is * literally * a tool for everything
+  - also HOTOSM, YouthMappers, etc.
+- Database
+  - Uncompressed XML
+  - Also PBF
+  - And Mirrors!
+  - Minutely, Daily, Weekly Diffs & Versions
+- Elements
+  - Points (NODES)
+  - Lines (WAYS)
+  - Polygons (ALSO WAYS)
+  - Relations (NODES + WAYS)
+- Tags (ATTRIBUTES)
+  - id, coords, timestamp, changeset (CHANGESETS!!!)
+- Searches & Queries
+  - Nominatim (normal map searching)
+  - Overpass-Turbo  (advanced searching, export, styling)
+- Editing
+  - iD the default web editor
+  - JSOM advanced editing, importing
+- License
+  - ODBL 1.0
+  - Attribution required
+- Extracts
+  - many types of extracts and extract tools
+  - planet, countries, regions, places
+  - anything under 0.25sq degrees / 10k elements
+    - JSOM / Overpass
+    - QGIS
+    - ArcGIS (currently a ArcToolbox download for ArcMap, no ETA for an ArcGIS Pro version)
+- Replication
+  - ideal for keeping an up to date mirror for high availability
+  - lots of tools for automating
+- Project Examples
+  - Small Area
+    - quick extract using QGIS/ArcGIS to shapefile
+  - Large Area
+    - MBTile Extract to GeoJson
+    - Filter GeoJson to MBTiles
+    - MBTiles to MapboxGL
+  - The World
+    - Weekly updates of planet
+    - Processed to vector tiles via SQL/Filtering
+- Questions

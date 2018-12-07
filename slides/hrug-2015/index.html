@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Map Trends</title>
+
+  <meta name="description" content="Map Trends">
+  <meta name="author" content="Jonah Adkins">
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+  <link rel="stylesheet" href="css/reveal.css">
+  <link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+  <!-- Code syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+    document.getElementsByTagName('head')[0].appendChild(link);
+  </script>
+
+  <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+
+  <div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <section data-background="./img/gisi-5.png" data-background-size="400px">
+        <section>
+          <div>
+            <div style="width:500px;float:left;display:inline-block;">
+              <h1>
+                <p>What's
+                  <strong>Hot</strong> With Open Source Mapping
+              </h1>
+            </div>
+            <div style="margin-left:500px;">
+              <img width="400px" src="./img/fire.gif" />
+            </div>
+          </div>
+        </section>
+        <section><h2>
+          DATA <strong>PROCESSING</strong> PRESENTATION <strong>DATA</strong> PROCESSING <strong>PRESENTATION</strong>
+          DATA <strong>PROCESSING</strong> PRESENTATION <strong>DATA</strong> PROCESSING <strong>PRESENTATION</strong>
+          DATA <strong>PROCESSING</strong> PRESENTATION <strong>DATA</strong> PROCESSING <strong>PRESENTATION</strong>
+          DATA <strong>PROCESSING</strong> PRESENTATION <strong>DATA</strong> PROCESSING <strong>PRESENTATION</strong>
+        
+        </h2></section>
+        <section>
+          <h2>
+            <h2><a target="blank" href="https://www.openstreetmap.org/#map=5/39.741/-91.099">openstreetmap</a></h2>
+            <img width="800px" src="./img/osm.gif" />
+          </h2>
+        </section>
+        <section>
+          <h2><a target="blank" href="http://geojson.io/#map=9/38.4267/-90.1181">GeoJSON</a></h2>
+          </h2>
+          <pre>
+            <code data-trim>
+              {
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "marker-color": "#ff0000",
+        "marker-size": "small",
+        "marker-symbol": "star",
+        "Name": "St. Louis",
+        "Type": "City",
+        "Population": "2,890,000"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.186767578125,
+          38.61901643727863
+        ]
+      }
+    }
+  ]
+}
+            </code>
+          </pre>
+        </section>
+        <section>
+          <h2><a target="blank" href="https://github.com/mapbox/vector-tile-spec/wiki/Implementations">Vector Tiles</a></h2>
+          <img width="900px" src="./img/tiles.png" />
+        </section>
+        <section>
+          <h2><a target="blank" href="https://github.com/mapbox/vector-tile-spec/wiki/Implementations">Vector Tiles</a></h2>
+          <iframe src="http://jonahadkins.github.io/mapbox-gl-js-test/" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h2><a target="blank" href="http://turfjs.org/">Turf.js</a></h2>
+          <iframe src="https://www.mapbox.com/bites/00087/" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h2><a target="blank" href="https://github.com/tangrams/tangram">WebGL</a></h2>
+          <iframe src="http://tangrams.github.io/tangram-docs-assets/?procedural/tronish.yaml#16/38.6265/-90.1903" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h2><a target="blank" href="http://d3js.org/">D3</a></h2>
+          <iframe src="http://bl.ocks.org/NPashaP/raw/a74faf20b492ad377312/" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h2><a target="blank" href="http://cartodb.com/">CartoDB</a></h2>
+          <iframe src="https://srogers.cartodb.com/viz/337d9194-6458-11e3-85b5-e5e70547d141/embed_map" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h2><a target="blank" href="http://leafletjs.com/">Leaflet</a></h2>
+          <iframe src="http://leafletjs.com/examples/layers-control-example.html" height='500' width='100%'></iframe>
+        </section>
+        <section>
+          <h1><strong>Open For Business</strong></h1>
+          <h4>Third Thursday of Every Month @ 1pm est</h4>
+          <img width="800px" src="./img/open.gif" />
+        </h2>
+        </section>
+        <section>
+          <h1><strong>#maptime</strong></h1>
+          <h3>Monthly (or so) meetup for all levels of knowledge to collaborate, learn, and explore maps!
+						<p>More Info At <a target="blank" href="http://www.maptime.io/">maptime.io</a></h3>
+        </section>
+        <section>
+          <img width="1000px" src="./img/ask.gif" />
+        </section>
+      </section>
+
+    </div>
+
+  </div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.js"></script>
+
+  <script>
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      center: true,
+
+      transition: 'zoom', // none/fade/slide/convex/concave/zoom
+
+      // Optional reveal.js plugins
+      dependencies: [{
+        src: 'lib/js/classList.js',
+        condition: function() {
+          return !document.body.classList;
+        }
+      }, {
+        src: 'plugin/markdown/marked.js',
+        condition: function() {
+          return !!document.querySelector('[data-markdown]');
+        }
+      }, {
+        src: 'plugin/markdown/markdown.js',
+        condition: function() {
+          return !!document.querySelector('[data-markdown]');
+        }
+      }, {
+        src: 'plugin/highlight/highlight.js',
+        async: true,
+        condition: function() {
+          return !!document.querySelector('pre code');
+        },
+        callback: function() {
+          hljs.initHighlightingOnLoad();
+        }
+      }, {
+        src: 'plugin/zoom-js/zoom.js',
+        async: true
+      }, {
+        src: 'plugin/notes/notes.js',
+        async: true
+      }]
+    });
+  </script>
+
+</body>
+
+</html>
