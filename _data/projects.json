@@ -1,5 +1,12 @@
 [
 	{
+		"slug": "QGIS Map Design Volume 2",
+		"name": "QGIS Map Design Volume 2",
+		"image": "qgis_b.jpg",
+		"url": "https://www.jonahadkins.com/qgis/cartography/2018/12/09/qgis-vol2.html",
+		"date": "Dec 09 2018",
+		"tags": ["cartography","qgis"]
+	},{
 		"slug": "NACIS Quilt 2018",
 		"name": "NACIS Quilt 2018",
 		"image": "quilt.jpg",
