@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>woahhh</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+
+    <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #title {
+          position: absolute;
+          top: 2%;
+          left: 2%;
+          bottom: 0;
+          font-family: 'Slackey', cursive;
+          font-size: 10pt;
+
+          text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+          color: #fff;
+          z-index: 9999;
+          overflow: auto;
+        }
+        a {
+      color: #fff;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+    <div id='title'>
+      <font size='20'>woahhh
+      <br>these are
+      <br>esri
+      <br>vector tiles in
+      <br>mapbox gl
+    </font>
+      <br><font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a></font></div>
+
+    <script>
+        var woahh = {
+            "layers": [{
+                    "id": "ne_background",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "ne_background",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#4BAFD7",
+                        "fill-outline-color": "#6E6E6E"
+                    }
+                }, {
+                    "id": "etopo_m6000/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_m6000",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#0A4B64"
+                    }
+                }, {
+                    "id": "etopo_m200/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_m200",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#BEC8D7"
+                    }
+                }, {
+                    "id": "etopo_0/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_0",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#4B825A"
+                    }
+                }, {
+                    "id": "etopo_0to200/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_0to200",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#6EA07D"
+                    }
+                }, {
+                    "id": "etopo_300/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_300",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#ECC465"
+                    }
+                }, {
+                    "id": "etopo_600/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_600",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#D2824B"
+                    }
+                }, {
+                    "id": "etopo_1500/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_1500",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#D25A3C"
+                    }
+                }, {
+                    "id": "etopo_3000/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "etopo_3000",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#8C503C"
+                    }
+                }, {
+                    "id": "ne_lakes/1",
+                    "type": "fill",
+                    "source": "esri",
+                    "source-layer": "ne_lakes",
+                    "layout": {},
+                    "paint": {
+                        "fill-color": "#4BAFD7"
+                    }
+                }, {
+                    "id": "ne_rivers",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_rivers",
+                    "minzoom": 4,
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "#4BAFD7",
+                        "line-width": 1.33333
+                    }
+                }, {
+                    "id": "ne_graticules",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_graticules",
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "rgba(52,52,52,0.7)",
+                        "line-width": 0.133333
+                    }
+                }, {
+                    "id": "ne_geographic_lines",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_geographic_lines",
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "rgba(52,52,52,0.8)",
+                        "line-dasharray": [5, 5],
+                        "line-width": 1.33333
+                    }
+                }, {
+                    "id": "ne_state_lines/1",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_state_lines",
+                    "minzoom": 3,
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "#F03250",
+                        "line-width": 2.66667
+                    }
+                }, {
+                    "id": "ne_state_lines/0",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_state_lines",
+                    "minzoom": 3,
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "#343434",
+                        "line-dasharray": [6, 9],
+                        "line-width": 1.33333
+                    }
+                }, {
+                    "id": "ne_country_lines/1",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_country_lines",
+                    "minzoom": 3,
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "rgba(240,50,80,0.89)",
+                        "line-width": 5.33333
+                    }
+                }, {
+                    "id": "ne_country_lines/0",
+                    "type": "line",
+                    "source": "esri",
+                    "source-layer": "ne_country_lines",
+                    "minzoom": 3,
+                    "layout": {
+                        "line-cap": "round",
+                        "line-join": "round"
+                    },
+                    "paint": {
+                        "line-color": "#343434",
+                        "line-dasharray": [3, 3],
+                        "line-width": 1.33333
+                    }
+                }, {
+                    "id": "ne_lakes/label/large",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_lakes/label",
+                    "minzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Italic"],
+                        "text-size": 10.6667,
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_rivers/label/large",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_rivers/label",
+                    "minzoom": 4,
+                    "layout": {
+                        "symbol-placement": "line",
+                        "text-font": ["Lucida Sans Italic"],
+                        "text-size": 9.33333,
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_country_label/label/small",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_country_label/label",
+                    "filter": ["==", "_label_class", 0],
+                    "minzoom": 0,
+                    "maxzoom": 2.9,
+                    "layout": {
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-letter-spacing": 0.3,
+                        "text-max-width": 9,
+                        "text-line-height": 0.9,
+                        "text-size": 10,
+                        "text-field": "{_name}",
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_country_label/label/medium",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_country_label/label",
+                    "filter": ["==", "_label_class", 1],
+                    "minzoom": 3,
+                    "maxzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 16,
+                        "text-letter-spacing": 0.1,
+                        "text-line-height": 0.9,
+                        "text-max-width": 9,
+                        "text-field": "{_name}",
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_country_label/label/large",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_country_label/label",
+                    "filter": ["==", "_label_class", 2],
+                    "minzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 21.3333,
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_ocean_labels/label/small",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_ocean_labels/label",
+                    "filter": ["==", "_label_class", 0],
+                    "minzoom": 0,
+                    "maxzoom": 2.9,
+                    "layout": {
+                        "text-font": ["Lucida Sans Italic"],
+                        "text-letter-spacing": 0.3,
+                        "text-size": 10,
+                        "text-max-width": 4,
+                        "text-line-height": 0.9,
+                        "text-field": "{_name}",
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_ocean_labels/label/medium",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_ocean_labels/label",
+                    "filter": ["==", "_label_class", 1],
+                    "minzoom": 3,
+                    "maxzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Italic"],
+                        "text-size": 13,
+                        "text-letter-spacing": 0.3,
+                        "text-max-width": 5,
+                        "text-line-height": 0.9,
+                        "text-field": "{_name}",
+                        "text-allow-overlap": true,
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_ocean_labels/label/large",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_ocean_labels/label",
+                    "filter": ["==", "_label_class", 2],
+                    "minzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Italic"],
+                        "text-size": 16,
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_geographic_lines/label/Class 1",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_geographic_lines/label",
+                    "layout": {
+                        "symbol-placement": "line",
+                        "text-font": ["Lucida Sans Regular"],
+                        "text-size": 10,
+                        "text-offset": [0, -0.5],
+                        "text-letter-spacing": 0.3,
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "places_plus_one_million/Over1M",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "places_plus_one_million",
+                    "filter": ["==", "_symbol", 0],
+                    "minzoom": 4,
+                    "layout": {
+                        "icon-image": "places_plus_one_million/Over1M",
+                        "icon-allow-overlap": true,
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 16,
+                        "text-anchor": "left",
+                        "text-offset": [0.5, 0],
+                        "text-field": "{_name}",
+                        "text-optional": false,
+                        "text-allow-overlap": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "icon-color": "#E60000",
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "places_one_million/1M",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "places_one_million",
+                    "filter": ["==", "_symbol", 0],
+                    "minzoom": 4,
+                    "layout": {
+                        "icon-image": "places_one_million/1M",
+                        "icon-allow-overlap": true,
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 13.33333,
+                        "text-anchor": "bottom-right",
+                        "text-offset": [-6, 0],
+                        "text-field": "{_name}",
+                        "text-allow-overlap": true,
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "icon-color": "#E60000",
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "places_less_than_500k/500K",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "places_less_than_500k",
+                    "filter": ["==", "_symbol", 2],
+                    "minzoom": 4,
+                    "layout": {
+                        "icon-image": "places_less_than_500k/500K",
+                        "icon-allow-overlap": true,
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 10.6667,
+                        "text-anchor": "left",
+                        "text-offset": [0.3125, 0],
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "icon-color": "#E60000",
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "places_less_than_500k/100K",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "places_less_than_500k",
+                    "filter": ["==", "_symbol", 1],
+                    "minzoom": 4,
+                    "layout": {
+                        "icon-image": "places_less_than_500k/100K",
+                        "icon-allow-overlap": true,
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 10.6667,
+                        "text-anchor": "left",
+                        "text-offset": [0.3125, 0],
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "icon-color": "#E60000",
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "places_less_than_500k/50K",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "places_less_than_500k",
+                    "filter": ["==", "_symbol", 0],
+                    "minzoom": 4,
+                    "layout": {
+                        "icon-image": "places_less_than_500k/50K",
+                        "icon-allow-overlap": true,
+                        "text-font": ["Lucida Sans Demibold Roman"],
+                        "text-size": 10.6667,
+                        "text-anchor": "left",
+                        "text-offset": [0.3125, 0],
+                        "text-field": "{_name}",
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "icon-color": "#E60000",
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_50m_state_point/large",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_50m_state_point",
+                    "filter": ["==", "_label_class", 0],
+                    "minzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Regular"],
+                        "text-size": 13.3333,
+                        "text-anchor": "center",
+                        "text-field": "{_name}",
+                        "text-ignore-placement": false,
+                        "text-optional": true,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }, {
+                    "id": "ne_50m_state_point/medium",
+                    "type": "symbol",
+                    "source": "esri",
+                    "source-layer": "ne_50m_state_point",
+                    "minzoom": 3,
+                    "maxzoom": 4,
+                    "layout": {
+                        "text-font": ["Lucida Sans Regular"],
+                        "text-ignore-placement": true,
+                        "text-allow-overlap": true,
+                        "text-size": 10,
+                        "text-anchor": "center",
+                        "text-field": "{postal}",
+                        "text-optional": false,
+                        "visibility": "visible"
+                    },
+                    "paint": {
+                        "text-color": "#000000"
+                    }
+                }
+
+            ],
+            "version": 8,
+            "sprite": "https://tiles.arcgis.com/tiles/41TSzUbTxELRIXMD/arcgis/rest/services/2cool2school/VectorTileServer/resources/styles/../sprites/sprite",
+            "glyphs": "https://tiles.arcgis.com/tiles/41TSzUbTxELRIXMD/arcgis/rest/services/2cool2school/VectorTileServer/resources/styles/../fonts/{fontstack}/{range}.pbf",
+            "sources": {
+                "esri": {
+                    "type": "vector",
+                    "tiles": ["https://tiles.arcgis.com/tiles/41TSzUbTxELRIXMD/arcgis/rest/services/2cool2school/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                }
+            },
+        };
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: woahh,
+            center: [-67.7300, 61.6666],
+            pitch: 45,
+            bearing: 0,
+            attributionControl: true,
+            zoom: 2.8,
+            minZoom: 1,
+            maxZoom: 6
+        });
+
+
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>
+
+</body>
+
+</html>
