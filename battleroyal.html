@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8' />
+    <title>let's get ready to rumbleeeeeeeeeeeee</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.51.0/mapbox-gl.css' rel='stylesheet' />
+<link href="https://fonts.googleapis.com/css?family=Londrina+Solid" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #title {
+          position: absolute;
+          top: 65%;
+          right: 1%;
+          bottom: 0;
+          width: 350px;
+          height: 185px;
+          box-sizing: border-box;
+          border-color: rgba(255, 255, 255, 0.3);
+          border-width: medium;
+          border-style: solid;
+          padding: 8px 24px;
+          font-family: 'Londrina Solid', cursive;
+          font-size: 9pt;
+          color: rgba(255, 255, 255, 0.6);
+          text-align: center;
+          background: rgba(55, 55, 55, 0.9);
+          -webkit-border-radius: 4px;
+          border-radius: 4px;
+          z-index: 9999;
+          overflow: auto;
+        }
+        #menu {
+       position: absolute;
+       background: #fff;
+       padding: 10px;
+       font-family: 'Open Sans', sans-serif;
+   }
+    </style>
+</head>
+
+<body>
+    <div id='map'></div>
+
+    <div id='title'>
+      <font size='6'>Vector Tile Battle Royal</font size><font size='4'>
+        <br>a quick look at the OpenStreetMap roads from<font color=#f71568><strong> mapbox</strong></font>
+         ( mapbox streets: road ) and <font align="left" color=#41f4f4><strong>esri</strong></font> ( OpenStreetMap_FTS_v2: road + road (bridge) + road (tunnel) + road link + service road + railway + track + path + other path ) vector tiles.
+</font size>
+      </div>
+    <script>
+
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/dark-v9',
+            center: [-76.91, 37.12],
+            attributionControl: true,
+            zoom: 6,
+            minZoom: 5,
+            maxZoom: 14
+        });
+/*
+        var currentZoom = map.getZoom();
+        document.getElementById("menu").innerHTML=currentZoom;
+*/
+        map.on('load', function() {
+
+            map.addLayer({
+                "id": "road",
+                "type": "line",
+                "source": {
+                    type: 'vector',
+                    url: 'mapbox://mapbox.mapbox-streets-v7'
+                },
+                "source-layer": "road",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(247,21,104,0.7)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road2",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "road",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road3",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "road (bridge)",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road4",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "road link",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road5",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "service road",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road6",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "railway",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road7",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "track",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road8",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "path",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road9",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "other path",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road10",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "road (tunnel)",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+            map.addLayer({
+                "id": "road12",
+                "type": "line",
+                "source": {
+                        "type": "vector",
+                        "tiles": ["https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_FTS_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf"]
+                },
+                "source-layer": "road (access type)",
+                "layout": {
+                    "line-cap": "butt",
+                    "line-join": "miter"
+                },
+                "paint": {
+                    "line-color": "rgba(65,244,244,0.3)",
+                    "line-width": 3
+                }
+            }, 'waterway-label');
+        });
+
+        map.addControl(new mapboxgl.NavigationControl());
+
+    </script>
+
+</body>
+
+</html>
