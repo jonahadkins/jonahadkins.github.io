@@ -15,7 +15,7 @@ A few examples of this might be:
 
 <hr>
 
-![amenities]({{ site.url }}/static/projects/vt_3a.jpg)  
+![amenities](https://www.jonahadkins.com/static/projects/vt_3a.jpg)  
 
 <hr>
 
@@ -38,7 +38,7 @@ adding amenities / POI's from OpenStreetMap to their locally published basemap -
 
 <hr>
 
-![amenities]({{ site.url }}/static/projects/vt_3b.jpg)  
+![amenities](https://www.jonahadkins.com/static/projects/vt_3b.jpg)  
 
 <hr>
 
