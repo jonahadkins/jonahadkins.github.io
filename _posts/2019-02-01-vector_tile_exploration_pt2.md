@@ -58,7 +58,7 @@ Please enjoy these post-published screenshots!
 
 <hr>
 
-![mag3]({{ site.url }}/static/projects/mag3.png)  
+![mag3](https://www.jonahadkins.com/static/projects/mag3.png)  
 
 <hr>
 
@@ -66,7 +66,7 @@ _ArcGIS Vector Tile Style Editor screenshot [High-Res Version](https://www.jonah
 
 <hr>
 
-![mag1]({{ site.url }}/static/projects/mag1.png)  
+![mag1](https://www.jonahadkins.com/static/projects/mag1.png)  
 
 <hr>
 
@@ -74,7 +74,7 @@ _Phoenix Mountains Preserve area [High-Res Version](https://www.jonahadkins.com/
 
 <hr>
 
-![mag2]({{ site.url }}/static/projects/mag2.png)  
+![mag2](https://www.jonahadkins.com/static/projects/mag2.png)  
 
 <hr>
 

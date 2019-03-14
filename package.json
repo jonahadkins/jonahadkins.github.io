@@ -1,0 +1,7 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "netlify-cli": "^2.8.3"
+  }
+}

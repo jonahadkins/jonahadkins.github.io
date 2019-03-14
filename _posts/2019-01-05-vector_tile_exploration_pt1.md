@@ -13,7 +13,7 @@ After some recent online conversations, I was pleasantly surprised to learn with
 
 <hr>
 
-![amenities]({{ site.url }}/static/projects/vt_2b.png)  
+![amenities](https://www.jonahadkins.com/static/projects/vt_2b.png)  
 
 <hr>
 
@@ -22,7 +22,7 @@ To test this out first I grabbed my azimuthal vector tiles called ["Back to Scho
 
 <hr>
 
-![amenities]({{ site.url }}/static/projects/vt_2a.jpg)  
+![amenities](https://www.jonahadkins.com/static/projects/vt_2a.jpg)  
 
 <hr>
 
