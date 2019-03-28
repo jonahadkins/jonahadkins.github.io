@@ -1,0 +1,101 @@
+
+global:
+    esri_name: |
+        function() {
+            { return feature._name; }
+        }
+sources:
+    esri:
+        type: MVT
+        url: https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_v2/VectorTileServer/tile/{z}/{y}/{x}.pbf
+scene:
+    background:
+        color: '#cfd3d4'
+
+layers:
+    land small scale:
+        data: { source: esri, layer: 'land (small scale)' }
+        draw:
+            polygons:
+                order: 0
+                color: '#f4f4f4'
+    water:
+        data: { source: esri, layer: 'water area' }
+        filter:
+            _symbol: 6
+        draw:
+            polygons:
+                order: 1
+                color: '#cfd3d4'
+
+    country boundary:
+        data: { source: esri, layer: 'country boundary' }
+        draw:
+            lines:
+                order: 10
+                color: '#cccccc'
+                width: [[0,0.2px],[3,1px]]
+
+    state boundary:
+        data: { source: esri, layer: 'administrative boundary' }
+        filter:
+            _symbol: 2
+        draw:
+            lines:
+                order: 10
+                color: '#dfe0dd'
+                width: [[0,0.2px],[3,1px]]
+
+    places:
+        data: { source: esri, layer: 'place (high importance)' }
+        filter:
+            all:
+                - $zoom: { min: 4 }
+        draw:
+            points:
+                order: 12
+                size: 5px
+                color: '#cfd3d4'
+                outline:
+                    color: '#353635'
+                    width: 0.5px
+            text:
+                priority: 11
+                anchor: right
+                offset: [2px, 0]
+                text_source: global.esri_name
+                font:
+                    size: [[7,10],[10,12]]
+                    fill: '#b4b4b4'
+                    stroke:
+                        color: '#f7f7f7'
+                        width: 2
+
+    country label:
+        data: { source: esri, layer: 'country/label' }
+        draw:
+            text:
+                priority: 10
+                anchor: center
+                text_source: global.esri_name
+                font:
+                    size: [[2,12],[5,14]]
+                    transform: uppercase
+                    fill: '#aaafac'
+                    stroke:
+                        color: '#f7f7f7'
+                        width: 2
+    capital label:
+        data: { source: esri, layer: 'capital' }
+        draw:
+            text:
+                priority: 10
+                anchor: center
+                text_source: global.esri_name
+                font:
+                    size: [[3,10],[5,12]]
+                    fill: '#aaafac'
+                    stroke:
+                        color: '#f7f7f7'
+                        width: 2
+   
