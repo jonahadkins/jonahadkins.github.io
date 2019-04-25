@@ -305,8 +305,8 @@
 		"slug": "Geographical Study of LOST (2010)",
 		"name": "Geographical Study of LOST (2010)",
 		"image": "LOST_2010.jpg",
-		"url": "",
-		"date": "Mar 01 2006",
+		"url": "https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/static/projects/LOST_2010.jpg",
+		"date": "Mar 01 2010",
 		"tags": ["cartography","esri"]
 	},
 	{
@@ -322,7 +322,7 @@
 		"slug": "Geographical Study of LOST (2006)",
 		"name": "Geographical Study of LOST (2006)",
 		"image": "LOST_2006.jpg",
-		"url": "",
+		"url": "https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/static/projects/LOST_2006.jpg",
 		"date": "Mar 01 2006",
 		"tags": ["cartography","esri"]
 	}
