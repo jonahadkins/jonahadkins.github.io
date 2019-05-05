@@ -25,7 +25,7 @@
 
 <div id='map'></div>
 <div id='menu'>
-    <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/tangram-js/berlin-final.yaml?token=ABHQGWEDRK77ORC454IK26C43A6CO' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
+    <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin.json?token=ABHQGWGFQJATPBEBMUF46FS42I6YI' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
     <label for='streets'>Berlin Base</label>
     <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin-day-reduced.json?token=ABHQGWFWPA4KZVOHCOJNVNC4ZIHAE' type='radio' name='rtoggle' value='Berlin Day'>
     <label for='light'>Berlin Day</label>
@@ -36,7 +36,7 @@
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/tangram-js/berlin-final.yaml?token=ABHQGWEDRK77ORC454IK26C43A6CO',
+    style: 'https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin.json?token=ABHQGWGFQJATPBEBMUF46FS42I6YI',
     zoom: 2,
     center: [-76.91, 37.12]
 });
