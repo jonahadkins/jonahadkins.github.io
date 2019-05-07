@@ -25,18 +25,18 @@
 
 <div id='map'></div>
 <div id='menu'>
-    <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin.json?token=ABHQGWGFQJATPBEBMUF46FS42I6YI' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin.json' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
     <label for='streets'>Berlin Base</label>
-    <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin-day-reduced.json?token=ABHQGWFWPA4KZVOHCOJNVNC4ZIHAE' type='radio' name='rtoggle' value='Berlin Day'>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin-day-reduced.json' type='radio' name='rtoggle' value='Berlin Day'>
     <label for='light'>Berlin Day</label>
-    <input id='https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin-night-reduced.json?token=ABHQGWGTHTVW5CDGIEVTNDS4ZIHD2' type='radio' name='rtoggle' value='Berlin Night'>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin-night-reduced.json' type='radio' name='rtoggle' value='Berlin Night'>
     <label for='dark'>Berlin Night</label>
 </div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'https://raw.githubusercontent.com/jonahadkins/here-vector-tile-conversion/master/mapbox-gl/berlin.json?token=ABHQGWGFQJATPBEBMUF46FS42I6YI',
+    style: 'https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin.json',
     zoom: 2,
     center: [-76.91, 37.12]
 });
