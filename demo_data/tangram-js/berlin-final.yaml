@@ -18,21 +18,14 @@ fonts:
     FiraGo:
         # regular
         - weight: 400
-          url: https://github.com/bBoxType/FiraGO/blob/master/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Regular.ttf
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Regular.ttf
         # regular italics
         - weight: 400
         - style: italics
-          url: https://github.com/bBoxType/FiraGO/blob/master/Fonts/FiraGO_TTF_1001/Italic/FiraGO-Italic.ttf
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Italic/FiraGO-Italic.ttf
         # medium
         - weight: 500
-          url:  https://github.com/bBoxType/FiraGO/blob/master/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Medium.ttf
-    Fira Sans:
-        # regular
-        - weight: 400
-          url: https://github.com/mozilla/Fira/blob/master/ttf/FiraSans-Regular.ttf
-        # medium
-        - weight: 500
-          url: https://github.com/mozilla/Fira/blob/master/ttf/FiraSans-Medium.ttf
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Medium.ttf
 
 
 ## set source in Mapbox Vector Tile (mvt) format
@@ -66,6 +59,7 @@ layers:
             draw:
                 text:
                     font:
+                        family: FiraGO
                         text_source: global.language_text_source
                         text_wrap: 10
                         order: global.sort_rank
@@ -406,6 +400,7 @@ layers:
             draw:
                 text:
                     font:
+                        family: FiraGO
                         text_source: global.language_text_source
                         text_wrap: 10
                         order: global.sort_rank
@@ -471,6 +466,7 @@ layers:
             draw:
                 text:
                     font:
+
                         text_source: global.language_text_source
                         family: FiraGo
                         size: 16
@@ -816,6 +812,7 @@ layers:
         draw:
             text:
                 font:
+                    family: FiraGO
                     text_source: global.language_text_source
                     size: 27.2
                     priority: 200
@@ -858,6 +855,7 @@ layers:
                     weight: 400
                     fill: '#3F1821'
                     size: 30
+                    priority: 1
 
 
     country:
@@ -871,6 +869,7 @@ layers:
                 text_wrap: 30
                 priority: 10
                 font:
+                    family: FiraGo
                     size: [
                         [1, 8],
                         [2, 10],
@@ -884,7 +883,7 @@ layers:
                         width: 1.5px
                         }
                     transform: uppercase
-                    weight: 500
+                    weight: 400
 
 
     locality_10million_capital:
@@ -896,6 +895,7 @@ layers:
                 text_wrap: 30
                 priority: 39
                 font:
+                    family: FiraGo
                     weight: bold
                     size: [
                         [1, 9.6],
@@ -941,6 +941,7 @@ layers:
                         [10, 32]
                         ]
                     fill: '#090A0B'
+                    family: FiraGO
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.5],
                         width: [
@@ -973,6 +974,7 @@ layers:
                         [11, 32]
                         ]
                     fill: '#090A0B'
+                    family: FiraGO
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.50],
                         width: [
@@ -1005,6 +1007,7 @@ layers:
                         [11, 27.2]
                         ]
                     fill: '#090A0B'
+                    family: FiraGO
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.50],
                         width: [
@@ -1024,7 +1027,7 @@ layers:
                 text_wrap: 30
                 priority: 42
                 font:
-                    family: Fira Sans
+                    family: FiraGO
                     weight: 400
                     size: [
                         [4, 9.6],
@@ -1114,6 +1117,7 @@ layers:
                         [15, 19.2]
                         ]
                     fill: '#090A0B'
+                    family: FiraGO
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.50],
                         width: 2px
@@ -1156,6 +1160,7 @@ layers:
                 font:
                     size: 14.4
                     fill: '#A9A9A9'
+                    family: FiraGO
                     stroke: {
                         color: '#595959',
                         width: 2px
