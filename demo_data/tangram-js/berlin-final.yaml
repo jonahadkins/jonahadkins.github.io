@@ -1,3 +1,8 @@
+lights:
+    type: directional
+    direction: [1, 1, -.9]
+    diffuse: 0.5
+    ambient: 0.85
 ##set globals for order and fonts
 global:
     language: en
@@ -33,6 +38,7 @@ sources:
     berlin:
         type: MVT
         url: https://xyz.api.here.com/tiles/herebase.02/{z}/{x}/{y}/omv?access_token=AA2O8362IQ98hAUBPbckQQ8
+
     osm:
         type: MVT
         url: https://xyz.api.here.com/tiles/osmbase/256/all/{z}/{x}/{y}.mvt?access_token=AA2O8362IQ98hAUBPbckQQ8
@@ -64,9 +70,24 @@ layers:
                         text_wrap: 10
                         order: global.sort_rank
                         size: 12.8
-                        priority: 2
+                        priority: 100
                         fill: '#012337'
                         stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
+                        }
+        lakes:
+            filter:
+            - $geometry: point
+            draw:
+                text:
+                    font:
+                        family: FiraGO
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: 12.8
+                        priority: 100
+                        fill: '#012337'
+                        stroke: {color: [1.000, 1.000, 1.000, 0.30,], width: 2
                         }
 
 
@@ -662,7 +683,7 @@ layers:
                         }
         label_high:
             filter:
-                 - $zoom: { min: 14 }
+                 - $zoom: { min: 13 }
             draw:
                 text:
                     repeat_distance: 100px
@@ -786,8 +807,8 @@ layers:
             - kind: region
         draw:
             border_line:
-                style: lines
-                color: [0.788, 0.039, 0.039, 1.00]
+                style: lines'
+                color: '#7C7C7C'
                 order: function() { return feature.sort_rank + 5; }
                 width: [
                         [2, 1200],
@@ -830,11 +851,7 @@ layers:
             text:
                 text_source: global.language_text_source
                 text_wrap: 40
-                priority: [
-                            [2, 120],
-                            [3, 100],
-                            [4, 60]
-                ]
+                priority: 1
                 font:
                     family: FiraGo
                     weight: 400
@@ -888,7 +905,7 @@ layers:
 
     locality_10million_capital:
         data: { source: berlin , layer: places}
-        filter: function() { return ((feature.kind == 'locality' && feature.population) && (feature.population > 10000000 || feature.country_capital) && feature.country_capital)}
+        filter: function() { return ((((feature.kind == 'locality' )&& feature.population) && (feature.population > 10000000 || feature.country_capital))&& feature.country_capital)}
         draw:
             text:
                 text_source: global.language_text_source
@@ -954,7 +971,7 @@ layers:
 
     locality_label_1million:
         data: { source: berlin , layer: places}
-        filter: function() { return ( feature.kind == 'locality' && feature.population) && (feature.population > 1000000  || feature.region_capital)}
+        filter: function() { return (feature.kind = 'locality' && feature.population && (feature.region_capital || feature.population > 1000000))}
         draw:
             text:
                 text_source: global.language_text_source
@@ -989,7 +1006,7 @@ layers:
 
     locality_label_400k:
         data: { source: berlin , layer: places}
-        filter: function() { return $zoom > 5 ( feature.kind == 'locality' && feature.population && feature.population > 400000 )}
+        filter: function() { return (feature.kind = 'locality' && feature.population && feature.population > 400000)}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1011,6 +1028,7 @@ layers:
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.50],
                         width: [
+                            [4, 1],
                             [6, 2],
                             [8, 3],
                             [10, 4],
@@ -1020,7 +1038,10 @@ layers:
 
     locality_label_100k:
         data: { source: berlin , layer: places}
-        filter: function() { return $zoom > 7 ( feature.kind == 'locality' && feature.population && feature.population > 100000 )}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 100000)}
+                - $zoom: {min: 5}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1044,7 +1065,8 @@ layers:
                     stroke: {
                         color: [1.000, 1.000, 1.000, 0.50],
                         width: [
-                            [8, 2],
+                            [5, 1],
+                            [8, 3],
                             [10, 4],
                             [12, 5]
                         ]
@@ -1052,7 +1074,9 @@ layers:
 
     locality_label_50k:
         data: { source: berlin , layer: places}
-        filter: function() { return $zoom > 7 && ( feature.kind == 'locality' && feature.population && feature.population > 50000 )}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 50000)}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1077,7 +1101,10 @@ layers:
 
     locality_label_10k:
         data: { source: berlin , layer: places}
-        filter: function() { return $zoom > 7 && ( feature.kind == 'locality' && feature.population && feature.population > 10000)}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 10000)}
+                - $zoom: {min: 9}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1103,7 +1130,10 @@ layers:
 
     locality_label:
         data: { source: berlin , layer: places}
-        filter: function() { return ( feature.kind == 'locality' && feature.population && feature.population <= 10000 )}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population <= 10000)}
+                - $zoom: {min: 11}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1142,7 +1172,7 @@ layers:
             - $zoom: {min: 15}
         draw:
             _transparent:
-                color: [0.929, 0.906, 0.882, 0.50]
+                color: [0.639, 0.671, 0.659, 0.90]
                 order: global.sort_rank
                 extrude: function() { return feature.height; }
 
