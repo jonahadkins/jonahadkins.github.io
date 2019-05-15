@@ -1,9 +1,4 @@
-lights:
-    type: directional
-    direction: [1, 1, -.9]
-    diffuse: 0.5
-    ambient: 0.85
-##set globals for order and fonts
+
 global:
     language: en
     language_text_source: |
