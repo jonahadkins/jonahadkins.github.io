@@ -71,7 +71,9 @@ layers:
                         }
         lakes:
             filter:
-            - $geometry: point
+                all:
+                - function() {return feature.min_zoom <= ($zoom)}
+                - $geometry: point
             draw:
                 text:
                     font:
@@ -857,6 +859,8 @@ layers:
     earth_layer_land_label:
         data: { source: berlin , layer: earth}
         filter:
+            all:
+            - kind: continent
             not:
                 - kind: island
         draw:
