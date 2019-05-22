@@ -1,46 +1,32 @@
-## HERE Berlin Night Reduced Style
 
-##include lighting
-##comment from jonah
-    ## the lighting direction for light1 parameters seem wrong
-    ## guessing intensity = attenuation
-    ## guessing diffuse = color (could also be specular)
-lights:
-    ambient1:
-        type: ambient
-        diffuse: '#C9CACC'
-        attenuation: 0.8
-    light1:
-        type: directional
-        #direction: [1, 0, 1]
-        diffuse: '#C5C7CA'
-        attenuation: 0.4
-    light2:
-        type: directional
-        direction: [-1, 0, 1]
-        diffuse: '#B6B6B6'
-        attenuation: 0.4
-## set global style for font
-fonts:
-    FiraSans:
-        - weight: 400
-          url: https://fonts.gstatic.com/s/firasans/v9/va9E4kDNxMZdWfMOD5VvlIjLazX3dGTP.woff2
-        - weight: 400
-          style: italic
-          url: https://fonts.gstatic.com/s/firasans/v9/va9C4kDNxMZdWfMOD5VvkrjFYTLVdlTOr0s.woff2
-        - weight: 700
-          url:  https://fonts.gstatic.com/s/firasans/v9/va9B4kDNxMZdWfMOD5VnLK3eQhf6Xl7Gl3LX.woff2
-##set global style for language
 global:
     language: en
     language_text_source: |
         function() {
             return (global.language && feature['name:'+global.language]) || feature.name;
         }
+    sort_rank: |
+        function() {
+            return (feature.sort_rank)
+            }
 ##set map background color
 scene:
     background:
         color: '#4A4D4E'
+
+fonts:
+    FiraGo:
+        # regular
+        - weight: 400
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Regular.ttf
+        # regular italics
+        - weight: 400
+        - style: italics
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Italic/FiraGO-Italic.ttf
+        # medium
+        - weight: 500
+          url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Medium.ttf
+
 
 ## set source in Mapbox Vector Tile (mvt) format
 sources:
@@ -48,37 +34,68 @@ sources:
         type: MVT
         url: https://xyz.api.here.com/tiles/herebase.02/{z}/{x}/{y}/omv?access_token=AA2O8362IQ98hAUBPbckQQ8
 
-#begin styling layers
+    osm:
+        type: MVT
+        url: https://xyz.api.here.com/tiles/osmbase/256/all/{z}/{x}/{y}.mvt?access_token=AA2O8362IQ98hAUBPbckQQ8
+
+styles:
+    _transparent:
+        base: polygons
+        blend: overlay
+
 layers:
-##jonah - dont see any zoom settings or filters for water labels
     water:
         data: { source: berlin, layer: water }
-        filter:
-            - $geometry: polygon
-        draw:
-            water fill:
-                style: polygons
-                order: 5
-                color: '#3A3C3E'
-            text:
-                text_source: global.language_text_source
-                font:
-                    size: 12.8
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 2}
-#landuse style layers
-## jonah - urban layer does not return data
+
+        water fill:
+            filter:
+                - $geometry: polygon
+            draw:
+                polygons:
+                    order: global.sort_rank
+                    color: '#3A3C3E'
+        rivers:
+            filter:
+            - $geometry: line
+            draw:
+                text:
+                    font:
+                        family: FiraGO
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: 12.8
+                        priority: 100
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
+                        }
+        lakes:
+            filter:
+                all:
+                - function() {return feature.min_zoom <= ($zoom)}
+                - $geometry: point
+            draw:
+                text:
+                    font:
+                        family: FiraGO
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: 12.8
+                        priority: 100
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
+                        }
+
+
     urban:
         data: { source: berlin , layer: landuse}
         filter:
-            all:
-            - $geometry: polygon
-            - kind: urban
+            function() { return feature.kind.startsWith ('urban');}
         draw:
             polygons:
-                color: '#525556'
-                order: 0
-##jonah - this layer disappears around z10
+                color:  '#525556'
+                order: global.sort_rank
     urban_area:
         data: { source: berlin , layer: landuse}
         filter:
@@ -87,15 +104,8 @@ layers:
             - kind: urban_area
         draw:
             polygons:
-                color: [
-                         [7, '#646668'],
-                         [8, '#646668'],
-                         [9, '#616465'],
-                         [10, '#616365'],
-                         [11, '#616365'],
-                         [12, '#646668']
-                         ]
-                order: 0.1
+                color: '#525556'
+                order: global.sort_rank
 
     park_national:
         data: { source: berlin , layer: landuse}
@@ -106,7 +116,7 @@ layers:
         draw:
             polygons:
                 color: '#454849'
-                order: 1
+                order: global.sort_rank
     park:
         data: { source: berlin , layer: landuse}
         filter:
@@ -129,7 +139,8 @@ layers:
         draw:
             polygons:
                 color: '#474A4B'
-                order: 0.2
+                order: global.sort_rank
+
     pitch:
         data: { source: berlin , layer: landuse}
         filter:
@@ -139,7 +150,8 @@ layers:
         draw:
             polygons:
                 color: '#444748'
-                order: 1
+                order: global.sort_rank
+
     hopital:
         data: { source: berlin , layer: landuse}
         filter:
@@ -149,7 +161,8 @@ layers:
         draw:
             polygons:
                 color: '#46484A'
-                order: 0.1
+                order: global.sort_rank
+
     cemetery:
         data: { source: berlin , layer: landuse}
         filter:
@@ -159,8 +172,8 @@ layers:
         draw:
             polygons:
                 color: '#444748'
-                order: 0.1
-##jonah - couldnt find any of these
+                order: global.sort_rank
+
     bridge:
         data: { source: berlin , layer: landuse}
         filter:
@@ -170,7 +183,8 @@ layers:
         draw:
             polygons:
                 color: '#505355'
-                order: 1
+                order: global.sort_rank
+
     zoo:
         data: { source: berlin , layer: landuse}
         filter:
@@ -185,8 +199,8 @@ layers:
         draw:
             polygons:
                 color: '#414345'
-                order: 1
-##jonah - didnt see any of these
+                order: global.sort_rank
+
     religion:
         data: { source: berlin , layer: landuse}
         filter:
@@ -196,7 +210,8 @@ layers:
         draw:
             polygons:
                 color: '#616466'
-                order: 1
+                order: global.sort_rank
+
     industrial:
         data: { source: berlin , layer: landuse}
         filter:
@@ -212,8 +227,8 @@ layers:
         draw:
             polygons:
                 color: '#444748'
-                order: 0
-##jonah - zoo is included here too?
+                order: global.sort_rank
+
     farmyard:
         data: { source: berlin , layer: landuse}
         filter:
@@ -230,19 +245,21 @@ layers:
         draw:
             polygons:
                 color: '#616364'
-                order: 0
-##jonah - im not sure there's a like operator for the
-##        part where kind $= '_site'
+                order: global.sort_rank
+
     beach:
         data: { source: berlin , layer: landuse}
         filter:
             all:
             - $geometry: polygon
+            any:
             - kind: beach
+            - function() { return feature.kind.endsWith ('_site');}
         draw:
             polygons:
                 color: '#5B5E5F'
-                order: 1
+                order: global.sort_rank
+
     aerodrome:
         data: { source: berlin , layer: landuse}
         filter:
@@ -252,8 +269,8 @@ layers:
         draw:
             polygons:
                 color: '#444748'
-                order: 0.3
-##jonah - not sure what the 'final' operator translates too
+                order: global.sort_rank
+
     runway:
         data: { source: berlin , layer: landuse}
         filter:
@@ -263,34 +280,32 @@ layers:
         draw:
             polygons:
                 color: '#3F4243'
-                order: 20
-#start road features
-##jonah - didnt see any equal functions for fadeNear, fadeFar, or clipping (maybe tile_edges but that defaults to false )
+                order: global.sort_rank
+
     pier:
         data: {source: berlin, layer: roads}
         filter:
             all:
-            - not: { kind:[rail] }
+            #- not: { kind:[rail] }
             any:
             - kind_detail: pier
             - landuse_kind: pier
         draw:
             lines:
                 color: '#333334'
-                order: 10
+                order: global.sort_rank
                 width: [
-                        [13, 1.5px],
-                        [14, 1.2px],
-                        [15, 0.9px]
+                        [13, 3],
+                        [14, 2.4],
+                        [15, 1.8]
                         ]
+
     railway_industrial:
         data: {source: berlin, layer: roads}
         filter:
             all:
             - $geometry: line
-            - kind:
-                - rail
-            any:
+            - kind: rail
             - kind_detail:
                 - rail
                 - light_rail
@@ -301,133 +316,84 @@ layers:
                 - yard
                 - spur
                 - crossover
-##jonah - no width parameter given
+
         draw:
             lines:
                 color: '#606164'
                 width: 2
-                order: 5
-##jonah - didnt see any equal function xclippling
+                order: global.sort_rank
+
     railway_s_bahn:
         data: {source: berlin, layer: roads}
         filter:
             all:
             - $geometry: line
-            - kind: rail
-            not:
-                - is_tunnel: true
-            any:
-            - kind_detail:
+            - kind:
                 - rail
                 - light_rail
                 - tram
+            not:
+                - is_tunnel: true
         draw:
-            lines:
-                order: 5.2
+            background:
+                style: lines
+                order: global.sort_rank
                 color: '#6A6C6F'
                 width: [
-                    [13, 3.5],
-                    [14, 1.5],
-                    [15, 0.5]
+                    [13, 7],
+                    [14, 3],
+                    [15, 1]
                     ]
+            dashes:
+                style: lines
+                order: function() { return feature.sort_rank + 1.25; }
+                color: '#7B7E81'
+                width: 5
+                dash: [0.2,2]
+
     railway_s_bahn_tunnel:
         data: {source: berlin, layer: roads}
         filter:
             all:
             - $geometry: line
-            - kind: rail
-            - is_tunnel: true
-            any:
-            - kind_detail:
+            - kind:
                 - rail
                 - light_rail
                 - tram
+            - is_tunnel: true
         draw:
-            lines:
-                order: 5.1
+            background:
+                style: lines
+                order: global.sort_rank
                 color: '#6A6C6F'
                 width: [
-                    [13, 3.5],
-                    [14, 2.5]
+                    [13, 7],
+                    [14, 5]
                     ]
-    railway_s_bahn_dashes:
-        data: {source: berlin, layer: roads}
-        filter:
-            all:
-            - $geometry: line
-            - kind: rail
-            not:
-                - is_tunnel: true
-            any:
-            - kind_detail:
-                - rail
-                - light_rail
-                - tram
-        draw:
-            lines:
-##jonah - not sure zoom levels work for dashes this way, ill look into it some more
-                dash: [
-                    [ 10, [1, 100 ] ],
-                    [ 11, [1, 40 ] ],
-                    [ 12, [1, 24 ] ],
-                    [ 13, [1, 30 ] ],
-                    [ 14, [1, 25 ] ],
-                    [ 15, [1, 15 ] ],
-                    [ 16, [1, 8 ] ]
-                    ]
-                order: 5.25
-                color: '#7B7E81'
-                width: 3.75
-    railway_s_bahn_dashes_tunnel:
-        data: {source: berlin, layer: roads}
-        filter:
-            all:
-            - $geometry: line
-            - kind: rail
-            - is_tunnel: true
-            any:
-            - kind_detail:
-                - rail
-                - light_rail
-                - tram
-        draw:
-            lines:
-##jonah - not sure zoom levels work for dashes this way, ill look into it some more
-                dash: [
-                    [ 10, [1, 100 ] ],
-                    [ 11, [1, 40 ] ],
-                    [ 12, [1, 24 ] ],
-                    [ 13, [1, 30 ] ],
-                    [ 14, [1, 25 ] ],
-                    [ 15, [1, 15 ] ],
-                    [ 16, [1, 8 ] ]
-                    ]
-                order: 5.55
+            dashes:
+                style: lines
+                order: function() { return feature.sort_rank + 1.25; }
                 color: '#454648'
-                width: [
-                    [13, 2.75 ],
-                    [14, 1.75 ]
-                    ]
+                width: 5
+                dash: [0.2,2]
+
     tram:
         data: {source: berlin, layer: roads}
         filter:
             all:
+            - $geometry: line
             - kind: rail
             - kind_detail: tram
-            any:
-            - kind_detail:
-                - rail
-                - light_rail
-                - tram
         draw:
             lines:
                 color: '#57585B'
                 width: [
-                        [13, 1.5],
-                        [16, 0.75],
-                        [17, 0.4]
+                        [13, 6],
+                        [16, 3],
+                        [17, 1.6]
                         ]
-                order: 50
+                order: global.sort_rank
+
     ferry:
         data: {source: berlin, layer: roads}
         filter:
@@ -439,35 +405,35 @@ layers:
             lines:
                 color: '#484A4C'
                 width: [
-                        [5, 320],
-                        [6, 160],
-                        [7, 80],
-                        [8, 40],
-                        [9, 15],
-                        [10, 9],
-                        [11, 6],
-                        [12, 3],
-                        [13, 1.5],
-                        [14, 1]
+                        [12, 6],
+                        [13, 3],
+                        [14, 2]
                         ]
-                order: 10
-                dash: [2,2]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 12.8
-                    priority: 25
-                    order: 12
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+                order: global.sort_rank
+                dash: [8,4]
+
+        label:
+            filter:
+                - $zoom: { min: 15 }
+            draw:
+                text:
+                    font:
+                        family: FiraGO
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: 12
+                        priority: 25
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
-##jonah - this was a TODO in the source
+
     parking_aisles:
         data: {source: berlin, layer: roads}
         filter:
             not:
                 - kind: rail
-            any:
+            all:
             - kind_detail:
                 - driveway
                 - drive_through
@@ -476,7 +442,8 @@ layers:
             lines:
                 color: '#5E6062'
                 width: 5
-                order: 10
+                order: global.sort_rank
+
     pedestrian:
         data: {source: berlin, layer: roads}
         filter:
@@ -504,218 +471,227 @@ layers:
             sidewalk_casing:
                 style: lines
                 color: '#5D5F62'
-                width: 3
-                order: 10.3
+                width: 6
+                order: global.sort_rank
             sidewalk_line:
                 style: lines
                 color: '#353637'
-                width: 2.5
-                order: 12.3
-            text:
-                font:
-                    text_source: kind_detail
-                    size: 16
-                    priority: 15
-                    order: 12
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+                width: 5
+                order: function() { return feature.sort_rank + 2; }
+        label:
+            filter:
+                - $zoom: { min: 15}
+            draw:
+                text:
+                    font:
+
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        order: function() { return feature.sort_rank + 1; }
+                        priority: 15
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 1.00], width: 2
                         }
+
     residential:
         data: {source: berlin, layer: roads}
-        filter:
-            all:
-            - not:
-                - kind: rail
-            - kind: minor_road
-            any:
-            - kind_detail:
-                - residential
-                - service
-                - unclassified
+        filter: function() { return $zoom > 12 && (feature.kind != 'rail' && (feature.kind == 'minor_road' && ( feature.kind_detail== 'unclassified') || feature.kind_detail == 'residential' || feature.kind_detail == 'service' ))}
+
         draw:
             road_casing:
                 style: lines
                 color: '#535557'
-                order: 11
+                order: global.sort_rank
                 width: [
-                        [10, 42],
-                        [11, 28],
-                        [12, 18],
-                        [13, 7],
-                        [14, 4]
+                        [10, 84],
+                        [11, 56],
+                        [12, 36],
+                        [13, 14],
+                        [14, 8]
                         ]
             road_line:
                 style: lines
                 color: '#3B3D3F'
-##jonah source order level renders below casing, adjusted to 11.5
-                order: 11.5
+                order: function() { return feature.sort_rank + 0.5; }
                 width: [
-                        [10, 38],
-                        [11, 24],
-                        [12, 13],
-                        [13, 5],
-                        [14, 3]
+                        [10, 76],
+                        [11, 48],
+                        [12, 26],
+                        [13, 10],
+                        [14, 6]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 12.8
-                    priority: 15
-                    order: 12
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+        label:
+            filter:
+                - $zoom: { min: 16 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 15
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
     secondary:
         data: {source: berlin, layer: roads}
-        filter:
-             all:
-                - not:
-                    - kind: rail
-                - kind: major_road
-                - kind_detail: secondary
+        filter: function() {return (feature.kind != 'rail' && (feature.kind == 'major_road' && feature.kind_detail.startsWith('secondary')))}
         draw:
             road_casing:
                 style: lines
                 color: '#616467'
-                order: 10.3
+                order: global.sort_rank
                 width: [
-                        [7, 180],
-                        [8, 110],
-                        [9, 45],
-                        [10, 30],
-                        [11, 20],
-                        [12, 16],
-                        [13, 9],
-                        [14, 6]
+                        [7, 360],
+                        [8, 220],
+                        [9, 90],
+                        [10, 60],
+                        [11, 40],
+                        [12, 32],
+                        [13, 18],
+                        [14, 12]
                         ]
             road_line:
                 style: lines
                 color: '#393A3C'
-                order: 15.3
+                order: function() { return feature.sort_rank + 0.5; }
                 width: [
-                        [7, 180],
-                        [8, 110],
-                        [9, 45],
-                        [10, 30],
-                        [11, 20],
-                        [12, 12],
-                        [13, 7],
-                        [14, 5]
+                        [7, 360],
+                        [8, 220],
+                        [9, 90],
+                        [10, 60],
+                        [11, 40],
+                        [12, 24],
+                        [13, 14],
+                        [14, 10]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 16
-                    priority: 15
-                    order: 12
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+        label:
+            filter:
+                - $zoom: { min: 14 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 15
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
     tertiary:
         data: {source: berlin, layer: roads}
-        filter:
-            all:
-                - not:
-                    - kind: rail
-                - kind: major_road
-            any:
-                - kind_detail:
-                    - primary
-                    - tertiary
+        filter: function() {return (feature.kind != 'rail' && (feature.kind == 'major_road' && ( $zoom > 10 && (feature.kind_detail.startsWith('tertiary'))) || (( $zoom > 7 &&feature.kind_detail.startsWith('primary')))))}
         draw:
             road_casing:
                 style: lines
                 color: '#56585B'
-                order: 10.3
+                order: global.sort_rank
                 width: [
-                        [6, 550],
-                        [7, 300],
-                        [8, 100],
-                        [9, 70],
-                        [10, 38],
-                        [11, 24],
-                        [12, 14],
-                        [13, 7],
-                        [14, 5]
+                        [6, 1100],
+                        [7, 600],
+                        [8, 200],
+                        [9, 140],
+                        [10, 56],
+                        [11, 48],
+                        [12, 28],
+                        [13, 14],
+                        [14, 10]
                         ]
             road_line:
                 style: lines
                 color: '#3D3E41'
-                order: 15.3
+                order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [5, 830],
-                        [6, 410],
-                        [7, 220],
-                        [8, 100],
-                        [9, 50],
-                        [10, 30],
-                        [11, 20],
-                        [12, 11],
-                        [13, 6],
-                        [14, 4]
+                        [5, 1660],
+                        [6, 820],
+                        [7, 440],
+                        [8, 200],
+                        [9, 100],
+                        [10, 60],
+                        [11, 40],
+                        [12, 22],
+                        [13, 12],
+                        [14, 8]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 16
-                    priority: 20
-                    order: 13
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+        label:
+            filter:
+                - $zoom: { min: 15 }
+            draw:
+                text:
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 20
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
     primary:
         data: {source: berlin, layer: roads}
-        filter:
-            all:
-                - not:
-                    - kind: rail
-                - kind: highway
-            any:
-                - kind_detail:
-                    - primary
-                    - motorway
+        filter: function() { return ( feature.kind != 'rail' && (feature.kind == 'highway' && (feature.kind_detail.startsWith('motorway') || feature.kind_detail.startsWith('primary'))))}
         draw:
             road_casing:
                 style: lines
                 color: '#56585B'
-                order: 10.4
+                order: global.sort_rank
                 width: [
-                        [6, 700],
-                        [7, 400],
-                        [8, 250],
-                        [9, 120],
-                        [10, 50],
-                        [11, 33],
-                        [12, 16],
-                        [13, 11],
-                        [14, 7]
+                        [6, 1400],
+                        [7, 800],
+                        [8, 500],
+                        [9, 240],
+                        [10, 100],
+                        [11, 66],
+                        [12, 32],
+                        [13, 22],
+                        [14, 14]
                         ]
             road_line:
                 style: lines
                 color: '#3C3D3F'
-                order: 15.4
+                order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [5, 830],
-                        [6, 550],
-                        [7, 300],
-                        [8, 150],
-                        [9, 70],
-                        [10, 35],
-                        [11, 22],
-                        [12, 12],
-                        [13, 8],
-                        [14, 6]
+                        [5, 1660],
+                        [6, 1100],
+                        [7, 600],
+                        [8, 300],
+                        [9, 140],
+                        [10, 70],
+                        [11, 44],
+                        [12, 24],
+                        [13, 16],
+                        [14, 12]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 16
-                    priority: 25
-                    order: 10
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+        label_low:
+            filter:
+                all:
+                - function() { return feature.name.length < 6}
+                - $zoom: {min: 13}
+            draw:
+                text:
+                    repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 25
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
-##jonah - this disappears at z10
+        label_high:
+            filter:
+                 - $zoom: { min: 13 }
+            draw:
+                text:
+                    repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 25
+                        fill: '#999999'
+                        stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
+                        }
     country_border:
         data: { source: berlin, layer: boundaries }
         filter:
@@ -726,50 +702,42 @@ layers:
             boundary_case:
                 style: lines
                 color: '#373A3C'
-                order: 4
+                order: global.sort_rank
                 width: [
-                        [1, 10000],
-                        [2, 8000],
-                        [3, 7000],
-                        [4, 5000],
-                        [5, 3000],
-                        [6, 2000],
-                        [7, 1000],
-                        [8, 500],
-                        [9, 250],
-                        [10, 120],
-                        [11, 80],
-                        [12, 40],
-                        [13, 20],
-                        [14, 10]
+                        [1, 20000],
+                        [2, 16000],
+                        [3, 14000],
+                        [4, 10000],
+                        [5, 6000],
+                        [6, 4000],
+                        [7, 2000],
+                        [8, 1000],
+                        [9, 500],
+                        [10, 240],
+                        [11, 160],
+                        [12, 80],
+                        [13, 40],
+                        [14, 20]
                         ]
             boundary_fill:
                 style: lines
                 color: '#2E3234'
-                order: 4.1
+                order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [2, 2000],
-                        [3, 1400],
-                        [4, 1000],
-                        [5, 500],
-                        [6, 220],
-                        [7, 90],
-                        [8, 50],
-                        [9, 30],
-                        [10, 20],
-                        [11, 15],
-                        [12, 10],
-                        [13, 5],
-                        [14, 2]
+                        [2, 4000],
+                        [3, 2800],
+                        [4, 2000],
+                        [5, 1000],
+                        [6, 440],
+                        [7, 180],
+                        [8, 100],
+                        [9, 60],
+                        [10, 40],
+                        [11, 30],
+                        [12, 20],
+                        [13, 10],
+                        [14, 4]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 12.8
-                    priority: 100
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
-                        }
     disputed_border:
         data: { source: berlin, layer: boundaries }
         filter:
@@ -786,65 +754,48 @@ layers:
         draw:
             boundary_casing:
                 style: lines
-##jonah - see previous note about zoom based dash
-                dash: [5,5 ]
+                dash: [2,2 ]
                 color: '#373A3C'
-                order: 4.1
+                order: global.sort_rank
                 width: [
-                        [1, 10000],
-                        [2, 8000],
-                        [3, 7000],
-                        [4, 5000],
-                        [5, 3000],
-                        [6, 2000],
-                        [7, 1000],
-                        [8, 500],
-                        [9, 250],
-                        [10, 120],
-                        [11, 80],
-                        [12, 40],
-                        [13, 20],
-                        [14, 10]
+                        [1, 20000],
+                        [2, 16000],
+                        [3, 14000],
+                        [4, 10000],
+                        [5, 6000],
+                        [6, 4000],
+                        [7, 2000],
+                        [8, 1000],
+                        [9, 500],
+                        [10, 240],
+                        [11, 160],
+                        [12, 80],
+                        [13, 40],
+                        [14, 20]
                         ]
             boundary_fill:
                 style: lines
-                dash: [
-                    [ 10, [1, 100 ] ],
-                    [ 11, [1, 40 ] ],
-                    [ 12, [1, 24 ] ],
-                    [ 13, [1, 30 ] ],
-                    [ 14, [1, 25 ] ],
-                    [ 15, [1, 15 ] ],
-                    [ 16, [1, 8 ] ]
-                    ]
+                dash: [2,2]
                 color: '#2E3234'
-                order: 4
+                order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [2, 4000],
-                        [3, 2600],
-                        [4, 1500],
-                        [5, 1000],
-                        [6, 720],
-                        [7, 520],
-                        [8, 270],
-                        [9, 140],
-                        [10, 90],
-                        [11, 60],
-                        [12, 30],
-                        [13, 15],
-                        [14, 10],
-                        [15, 5],
-                        [16, 2]
+                        [2, 8000],
+                        [3, 5200],
+                        [4, 3000],
+                        [5, 2000],
+                        [6, 1440],
+                        [7, 1040],
+                        [8, 540],
+                        [9, 280],
+                        [10, 180],
+                        [11, 120],
+                        [12, 60],
+                        [13, 30],
+                        [14, 20],
+                        [15, 10],
+                        [16, 4]
                         ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 12.8
-                    priority: 100
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
-                        }
-##jonah - there's a duplication in the source where i think it should a line + line case
+
     region_border:
         data: { source: berlin, layer: boundaries }
         filter:
@@ -853,33 +804,25 @@ layers:
             - kind: region
         draw:
             border_line:
-                style: lines
+                style: lines'
                 color: '#7C7C7C'
-                order: 4.1
+                order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [2, 600],
-                        [3, 300],
-                        [4, 150],
-                        [5, 100],
-                        [6, 60],
-                        [7, 30],
-                        [8, 20],
-                        [9, 12],
-                        [10, 8],
-                        [11, 5],
-                        [12, 3],
-                        [13, 2],
-                        [14, 1]
+                        [2, 1200],
+                        [3, 600],
+                        [4, 300],
+                        [5, 200],
+                        [6, 120],
+                        [7, 60],
+                        [8, 40],
+                        [9, 24],
+                        [10, 16],
+                        [11, 10],
+                        [12, 6],
+                        [13, 4],
+                        [14, 2]
                     ]
-            text:
-                font:
-                    text_source: global.language_text_source
-                    size: 12.8
-                    priority: 90
-                    fill: '#999999'
-                    stroke: {color: '#141414', width: 1
-                        }
-##jonah -- this layer is missing a description
+
     some_layer:
         data: { source: berlin, layer: boundaries }
         filter:
@@ -887,148 +830,88 @@ layers:
         draw:
             text:
                 font:
+                    family: FiraGO
                     text_source: global.language_text_source
                     size: 27.2
                     priority: 200
                     fill: '#999999'
-                    stroke: {color: '#141414', width: 1
+                    stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 1
                         }
-    earth_layer:
+    #island labels
+    earth_layer_island_label:
         data: { source: berlin , layer: earth}
+        filter:
+            all:
+            - $zoom: {min: 11}
+            - kind: island
         draw:
-            land_label:
-                style: text
-                filter:
-                - not:
-                    - kind: island
-                priority: [
-                            [2, 120],
-                            [3, 100],
-                            [4, 60]
-                ]
-                font:
-                    text_source: global.language_text_source
-                    fill: '#f4f4f4'
-                    stroke: {color: '#000000', width: 1
-                        }
-                    transform: capitalize
-                    size: 16
-            island_label:
+            text:
                 text_source: global.language_text_source
-                style: text
-                filter:
-                    - kind: island
+                text_wrap: 40
+                priority: 1
                 font:
+                    family: FiraGo
+                    weight: 400
                     fill: '#f4f4f4'
-                    stroke: {color: '#000000', width: 1
-                        }
                     size: 16
-    country_label_10million:
+
+    #continent labels
+    earth_layer_land_label:
+        data: { source: berlin , layer: earth}
+        filter:
+            all:
+            - kind: continent
+            not:
+                - kind: island
+        draw:
+            text:
+                text_source: global.language_text_source
+                font:
+                    family: FiraGo
+                    weight: 400
+                    fill: '#f4f4f4'
+                    size: 30
+                    priority: 1
+
+
+    country:
         data: { source: berlin , layer: places}
         filter:
             all:
             - kind: country
-            - function() { return feature.population > 10000000; }
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 100
+                text_wrap: 30
+                priority: 10
                 font:
-                    size: [
-                        [1, 11.2],
-                        [2, 12.8],
-                        [3, 19.2],
-                        [4, 22.4],
-                        [5, 25.6]
-                        ]
-                    fill: '#ffffff'
-                    stroke: {
-                        color: '#000000',
-                        width: 1px
-                        }
-                    transform: uppercase
-    country_label_1million:
-        data: { source: berlin , layer: places}
-        filter:
-            all:
-            - kind: country
-            - function() { return feature.population > 1000000; }
-        draw:
-            text:
-                text_source: global.language_text_source
-                priority: 100
-                font:
+                    family: FiraGo
                     size: [
                         [1, 8],
-                        [2, 9.6],
-                        [3, 12.8],
-                        [4, 16],
-                        [5, 19.2]
-                        ]
-                    fill: '#ffffff'
-                    stroke: {
-                        color: '#000000',
-                        width: 1px
-                        }
-                    transform: uppercase
-    country_label:
-        data: { source: berlin , layer: places}
-        filter:
-            all:
-            - kind: country
-##jonah added a population filter here
-            - function() { return feature.population < 1000000; }
-        draw:
-            text:
-                text_source: global.language_text_source
-                priority: 90
-                font:
-                    size: [
-                        [1, 6.4],
-                        [2, 11.2],
-                        [3, 9.6],
-                        [4, 12.8],
+                        [2, 10],
+                        [3, 12],
+                        [4, 14],
                         [5, 16]
                         ]
                     fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: 1.5px
                         }
                     transform: uppercase
-    region_label:
+                    weight: 400
+
+
+    locality_10million_capital:
         data: { source: berlin , layer: places}
-        filter:
-            - kind: region
-        draw:
-            text:
-                priority: 65
-                font:
-                    size: [
-                        [3, 9.6],
-                        [4, 10.88],
-                        [5, 12.8],
-                        [6, 14.4]
-                        ]
-                    fill: '#ffffff'
-                    stroke: {
-                        color: '#000000',
-                        width: 1px
-                        }
-                    transform: uppercase
-    locality_label_10million:
-        data: { source: berlin , layer: places}
-        filter:
-            all:
-            - kind: locality
-            - function() { return feature.population > 10000000; }
-            - population: true
-            - country_capital: true
+        filter: function() { return ((((feature.kind == 'locality' )&& feature.population) && (feature.population > 10000000 || feature.country_capital))&& feature.country_capital)}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 61
+                text_wrap: 30
+                priority: 39
                 font:
+                    family: FiraGo
                     weight: bold
                     size: [
                         [1, 9.6],
@@ -1044,22 +927,55 @@ layers:
                         ]
                     fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [4, 2],
+                            [6, 3],
+                            [10, 6],
+                            [12, 8]
+                        ]
                         }
-                    transform: uppercase
-    locality_label_1million:
+    locality_10million:
         data: { source: berlin , layer: places}
-        filter:
-            all:
-            - kind: locality
-            - function() { return feature.population > 1000000; }
-            - population: true
-            - region_capital: true
+        filter: function() { return ((feature.kind == 'locality' && feature.population) && (feature.population > 10000000 || feature.country_capital))}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 59
+                text_wrap: 30
+                priority: 39
+                font:
+                    size: [
+                        [1, 9.6],
+                        [2, 11.2],
+                        [3, 12.8],
+                        [4, 14.4],
+                        [5, 16],
+                        [6, 19.2],
+                        [7, 22.4],
+                        [8, 25.6],
+                        [9, 28.8],
+                        [10, 32]
+                        ]
+                    family: FiraGO
+                    fill: '#ffffff'
+                    stroke: {
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [4, 1.5],
+                            [6, 2],
+                            [10, 4],
+                            [12, 5]
+                        ]
+                        }
+
+    locality_label_1million:
+        data: { source: berlin , layer: places}
+        filter: function() { return (feature.kind = 'locality' && feature.population && (feature.region_capital || feature.population > 1000000))}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 40
                 font:
                     size: [
                         [2, 9.6],
@@ -1073,22 +989,28 @@ layers:
                         [10, 28.8],
                         [11, 32]
                         ]
-                    fill: '#f4f4f4'
+                    family: FiraGO
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [2, 1],
+                            [4, 1.5],
+                            [6, 2],
+                            [10, 4],
+                            [12, 5]
+                        ]
                         }
+
+
     locality_label_400k:
         data: { source: berlin , layer: places}
-        filter:
-            all:
-            - kind: locality
-            - function() { return feature.population > 400000; }
-            - population: true
+        filter: function() { return (feature.kind = 'locality' && feature.population && feature.population > 400000)}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 59
+                text_wrap: 30
+                priority: 41
                 font:
                     size: [
                         [4, 11.2],
@@ -1100,23 +1022,33 @@ layers:
                         [10, 25.6],
                         [11, 27.2]
                         ]
-                    fill: '#f4f4f4'
+                    family: FiraGO
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [4, 1],
+                            [6, 2],
+                            [8, 3],
+                            [10, 4],
+                            [12, 5]
+                        ]
                         }
+
     locality_label_100k:
         data: { source: berlin , layer: places}
         filter:
             all:
-            - kind: locality
-            - function() { return feature.population > 100000; }
-            - population: true
+                - function() { return (feature.kind = 'locality' && feature.population > 100000)}
+                - $zoom: {min: 5}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 58
+                text_wrap: 30
+                priority: 42
                 font:
+                    family: FiraGO
+                    weight: 400
                     size: [
                         [4, 9.6],
                         [5, 11.2],
@@ -1128,46 +1060,58 @@ layers:
                         [11, 24],
                         [12, 25.6]
                         ]
-                    fill: '#f4f4f4'
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [5, 1],
+                            [8, 3],
+                            [10, 4],
+                            [12, 5]
+                        ]
                         }
+
     locality_label_50k:
         data: { source: berlin , layer: places}
         filter:
             all:
-            - kind: locality
-            - function() { return feature.population > 50000; }
-            - population: true
+                - function() { return (feature.kind = 'locality' && feature.population > 50000)}
+                - $zoom: {min: 5}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 57
+                text_wrap: 30
+                priority: 43
                 font:
+                    family: FiraGo
                     size: [
                         [10, 16],
                         [11, 19.2],
                         [12, 22.4],
                         [13, 24]
                         ]
-                    fill: '#f4f4f4'
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [10, 2],
+                            [12, 3]
+                        ]
                         }
+
     locality_label_10k:
         data: { source: berlin , layer: places}
         filter:
             all:
-            - kind: locality
-            - function() { return feature.population > 10000; }
-            - population: true
+                - function() { return (feature.kind = 'locality' && feature.population > 10000)}
+                - $zoom: {min: 9}
         draw:
             text:
                 text_source: global.language_text_source
-                priority: 56
+                text_wrap: 30
+                priority: 44
                 font:
+                    family: FiraGo
                     size: [
                         [11, 16],
                         [12, 17.6],
@@ -1175,18 +1119,21 @@ layers:
                         [14, 20.8],
                         [15, 22.4]
                         ]
-                    fill: '#f4f4f4'
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: [
+                            [10, 2],
+                            [12, 3]
+                        ]
                         }
+
     locality_label:
         data: { source: berlin , layer: places}
         filter:
             all:
-            - kind: locality
-            - function() { return feature.population <= 10000; }
-            - population: true
+                - function() { return (feature.kind = 'locality' && feature.population <= 10000)}
+                - $zoom: {min: 11}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1199,42 +1146,52 @@ layers:
                         [14, 17.6],
                         [15, 19.2]
                         ]
-                    fill: '#f4f4f4'
+                    family: FiraGO
+                    fill: '#ffffff'
                     stroke: {
-                        color: '#000000',
-                        width: 1px
+                        color: [0.000, 0.000, 0.000, 0.50],
+                        width: 2px
                         }
-    building_level15:
-        data: { source: berlin, layer: buildings }
-            #- function() {return feature.level >=15;}
-        draw:
-            polygon_fill:
-                filter:
-                    - $geometry: polygon
-                style: polygons
-                order: 2000
-                color: '#7C7F81'
-                extrude: function() { return feature.height; }
-            polygon_outlines:
-                filter:
-                    - $geometry: lines
-                style: lines
-                color: '#2F3233'
-                width: 25
-    building_address:
+
+    building_outline:
         data: { source: berlin, layer: buildings }
         filter:
-            any:
-             - kind: address
-             - $geometry: point
+            all:
+            - $zoom: {min: 14}
+        draw:
+            lines:
+                color: '#2F3233'
+                order: global.sort_rank
+                width: 1
+
+    building_extrusion:
+        data: { source: berlin , layer: buildings}
+        filter:
+            all:
+            - $geometry: polygon
+            - $zoom: {min: 15}
+        draw:
+            _transparent:
+                color: '#323436'
+                order: global.sort_rank
+                extrude: function() { return feature.height; }
+
+    building_address:
+        data: { source: berlin , layer: buildings}
+        filter:
+            all:
+            - $geometry: point
+            - $zoom: {min: 21}
+            - kind: address
         draw:
             text:
                 text_source: addr_housenumber
-                priority: 100
+                order: global.sort_rank
                 font:
-                    size: 14.4
-                    fill: '#131313'
+                    size: 8
+                    fill: '#A9A9A9'
+                    family: FiraGO
                     stroke: {
-                        color: '#070707',
-                        width: 1px
+                        color: '#595959',
+                        width: 2px
                         }

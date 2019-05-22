@@ -1076,6 +1076,7 @@ layers:
         filter:
             all:
                 - function() { return (feature.kind = 'locality' && feature.population > 50000)}
+                - $zoom: {min: 5}
         draw:
             text:
                 text_source: global.language_text_source
@@ -1180,14 +1181,14 @@ layers:
         filter:
             all:
             - $geometry: point
-            - $zoom: {min: 20}
+            - $zoom: {min: 21}
             - kind: address
         draw:
             text:
                 text_source: addr_housenumber
                 order: global.sort_rank
                 font:
-                    size: 14.4
+                    size: 8
                     fill: '#A9A9A9'
                     family: FiraGO
                     stroke: {
