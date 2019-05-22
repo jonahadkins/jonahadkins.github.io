@@ -10,7 +10,7 @@
       ]
     }
   },
-  "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  "glyphs": "https://cdn.jsdelivr.net/gh/jonahadkins/jonahadkins.github.io/demo_data/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
@@ -518,6 +518,9 @@
           ]
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(177, 181, 182, 1)",
         "line-width": {
@@ -1433,8 +1436,24 @@
           ]
         ],
         "visibility": "visible",
-        "text-size": 11,
-        "symbol-placement": "point"
+        "text-size": {
+          "stops": [
+            [
+              2,
+              14
+            ],
+            [
+              4,
+              14
+            ]
+          ]
+        },
+        "symbol-placement": "point",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-max-width": 6,
+        "text-line-height": 1
       },
       "paint": {
         "text-color": "rgba(1, 35, 55, 1)",
@@ -1457,6 +1476,9 @@
         ]
       ],
       "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [
@@ -1480,278 +1502,12 @@
       }
     },
     {
-      "id": "region-border-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none"
-      },
-      "paint": {
-        "line-width": {
-          "stops": [
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ]
-          ]
-        },
-        "line-color": "rgba(124, 124, 124, 1)",
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "region-border-label-line",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none",
-        "symbol-placement": "line",
-        "text-field": "{name}",
-        "text-size": 12.8
-      },
-      "paint": {}
-    },
-    {
-      "id": "region-border-label-point",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none",
-        "symbol-placement": "point",
-        "text-field": "{name}",
-        "text-size": 12.8
-      },
-      "paint": {}
-    },
-    {
-      "id": "country-label-10million",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "country"
-        ],
-        [
-          ">",
-          "population",
-          10000000
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              1,
-              11.2
-            ],
-            [
-              2,
-              12.8
-            ],
-            [
-              3,
-              19.2
-            ],
-            [
-              4,
-              22.4
-            ],
-            [
-              5,
-              25.6
-            ]
-          ]
-        },
-        "visibility": "none"
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": 1,
-        "text-color": "rgba(63, 24, 33, 0.8)"
-      }
-    },
-    {
-      "id": "country-label-1million",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "country"
-        ],
-        [
-          ">",
-          "population",
-          1000000
-        ],
-        [
-          "<",
-          "population",
-          10000000
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              1,
-              8
-            ],
-            [
-              2,
-              9.6
-            ],
-            [
-              3,
-              12.8
-            ],
-            [
-              4,
-              16
-            ],
-            [
-              5,
-              19.2
-            ]
-          ]
-        },
-        "visibility": "none"
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": 1,
-        "text-color": "rgba(63, 24, 33, 0.8)"
-      }
-    },
-    {
       "id": "building_level15_outline",
       "type": "line",
       "source": "berlin",
       "source-layer": "buildings",
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "line-color": "rgba(23, 32, 35, 0.2)",
@@ -1790,6 +1546,9 @@
       ],
       "layout": {
         "text-field": "{name}",
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-size": {
           "stops": [
             [
@@ -1863,6 +1622,9 @@
       ],
       "layout": {
         "symbol-placement": "line",
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [
@@ -1885,7 +1647,8 @@
               16
             ]
           ]
-        }
+        },
+        "visibility": "visible"
       },
       "paint": {
         "text-color": "rgba(0, 0, 0, 1)",
@@ -1921,8 +1684,7 @@
       ],
       "layout": {
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "text-field": [
           "coalesce",
@@ -2011,8 +1773,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "text-allow-overlap": false,
         "text-max-angle": 45
@@ -2050,6 +1811,9 @@
       ],
       "layout": {
         "symbol-placement": "line-center",
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [
@@ -2116,6 +1880,9 @@
       ],
       "layout": {
         "symbol-placement": "line-center",
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [
@@ -2196,8 +1963,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible"
       },
@@ -2235,11 +2001,6 @@
           ">",
           "population",
           10000
-        ],
-        [
-          "<",
-          "population",
-          50000
         ]
       ],
       "layout": {
@@ -2267,8 +2028,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible"
       },
@@ -2306,11 +2066,6 @@
           ">",
           "population",
           50000
-        ],
-        [
-          "<",
-          "population",
-          100000
         ]
       ],
       "layout": {
@@ -2333,7 +2088,7 @@
             ],
             [
               9,
-              16
+              18
             ],
             [
               11,
@@ -2346,8 +2101,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible"
       },
@@ -2389,11 +2143,6 @@
           ">",
           "population",
           100000
-        ],
-        [
-          "<",
-          "population",
-          400000
         ]
       ],
       "layout": {
@@ -2415,12 +2164,12 @@
               12
             ],
             [
-              7,
-              15
+              6,
+              16
             ],
             [
-              9,
-              20
+              8,
+              22
             ],
             [
               11,
@@ -2429,13 +2178,12 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-color": "rgba(255, 255, 255, 0.4)",
         "text-halo-width": {
           "stops": [
             [
@@ -2445,10 +2193,6 @@
             [
               7,
               1.5
-            ],
-            [
-              9,
-              2
             ],
             [
               11,
@@ -2476,11 +2220,6 @@
           ">",
           "population",
           400000
-        ],
-        [
-          "<",
-          "population",
-          1000000
         ]
       ],
       "layout": {
@@ -2499,19 +2238,15 @@
           "stops": [
             [
               3,
-              11
+              12
             ],
             [
-              5,
-              13
+              6,
+              18
             ],
             [
-              7,
-              16
-            ],
-            [
-              9,
-              24
+              8,
+              26
             ],
             [
               11,
@@ -2520,8 +2255,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible",
         "text-allow-overlap": false
@@ -2557,7 +2291,7 @@
       "source": "berlin",
       "source-layer": "places",
       "filter": [
-        "all",
+        "any",
         [
           "==",
           "region_capital",
@@ -2567,11 +2301,6 @@
           ">",
           "population",
           1000000
-        ],
-        [
-          "<",
-          "population",
-          10000000
         ]
       ],
       "layout": {
@@ -2590,18 +2319,14 @@
           "stops": [
             [
               3,
-              12
+              13
             ],
             [
-              5,
-              15
+              6,
+              20
             ],
             [
-              7,
-              18
-            ],
-            [
-              9,
+              8,
               24
             ],
             [
@@ -2611,8 +2336,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible"
       },
@@ -2680,7 +2404,7 @@
             ],
             [
               3,
-              12
+              14
             ],
             [
               5,
@@ -2697,8 +2421,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Bold",
-          "Arial Unicode MS Regular"
+          "Fira GO Bold"
         ],
         "visibility": "visible",
         "symbol-placement": "point",
@@ -2706,7 +2429,7 @@
         "text-ignore-placement": false
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-color": "rgba(255, 255, 255, 0.4)",
         "text-halo-width": {
           "stops": [
             [
@@ -2773,8 +2496,7 @@
           ]
         },
         "text-font": [
-          "Open Sans Bold",
-          "Arial Unicode MS Regular"
+          "Fira GO Regular"
         ],
         "visibility": "visible",
         "symbol-placement": "point"
@@ -2818,7 +2540,7 @@
             ],
             [
               3,
-              12
+              15
             ],
             [
               5,
@@ -2827,7 +2549,11 @@
           ]
         },
         "visibility": "visible",
-        "text-transform": "uppercase"
+        "text-transform": "uppercase",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-max-width": 18
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 0.5)",
@@ -2847,73 +2573,6 @@
       }
     },
     {
-      "id": "disputed-border-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "disputed",
-          "indefinite",
-          "indeterminate",
-          "lease_limit",
-          "line_of_control",
-          "overlay_limit"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-size": 12.8,
-        "visibility": "none"
-      },
-      "paint": {}
-    },
-    {
-      "id": "country-border-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "country"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-size": 12.8,
-        "visibility": "none"
-      },
-      "paint": {}
-    },
-    {
       "id": "earth-labels-island",
       "type": "symbol",
       "source": "berlin",
@@ -2928,6 +2587,9 @@
         ]
       ],
       "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [
@@ -2973,6 +2635,9 @@
         ]
       ],
       "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-field": [
           "coalesce",
           [

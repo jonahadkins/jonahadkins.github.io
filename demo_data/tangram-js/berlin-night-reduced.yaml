@@ -19,6 +19,7 @@ fonts:
         # regular
         - weight: 400
           url: https://cdn.jsdelivr.net/gh/bBoxType/FiraGO/Fonts/FiraGO_TTF_1001/Roman/FiraGO-Regular.ttf
+
         # regular italics
         - weight: 400
         - style: italics
