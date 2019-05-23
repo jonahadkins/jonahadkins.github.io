@@ -10,7 +10,7 @@
       ]
     }
   },
-  "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  "glyphs": "https://cdn.jsdelivr.net/gh/jonahadkins/jonahadkins.github.io/demo_data/fonts/{fontstack}/{range}.pbf",
   "layers": [
     {
       "id": "background",
@@ -25,13 +25,13 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "urban"
-        ]
+        "==",
+        "kind",
+        "urban"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(201, 195, 179, 1)"
       }
@@ -42,59 +42,18 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "==",
-          "kind",
-          "urban_area"
-        ]
+          "get",
+          "kind"
+        ],
+        "urban_area"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
-        "fill-color": {
-          "stops": [
-            [
-              7,
-              "rgba(250, 246, 239, 1)"
-            ],
-            [
-              8,
-              "rgba(250, 246, 239, 1)"
-            ],
-            [
-              9,
-              "rgba(242, 238, 229, 1)"
-            ],
-            [
-              10,
-              "rgba(242, 238, 229, 1)"
-            ],
-            [
-              11,
-              "rgba(241, 236, 227, 1)"
-            ],
-            [
-              12,
-              "rgba(250, 246, 239, 1)"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "landuse-park-national",
-      "type": "fill",
-      "source": "berlin",
-      "source-layer": "landuse",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "national_park"
-        ]
-      ],
-      "paint": {
-        "fill-color": "rgba(192, 185, 164, 1)"
+        "fill-color": "rgba(201, 195, 179, 0.8)"
       }
     },
     {
@@ -103,10 +62,12 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "match",
         [
-          "in",
-          "kind",
+          "get",
+          "kind"
+        ],
+        [
           "nature",
           "park",
           "wood",
@@ -119,10 +80,32 @@
           "garden",
           "nature_reserve",
           "protected_area"
-        ]
+        ],
+        true,
+        false
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(190, 185, 168, 1)"
+      }
+    },
+    {
+      "id": "landuse-park-national",
+      "type": "fill",
+      "source": "berlin",
+      "source-layer": "landuse",
+      "filter": [
+        "==",
+        [
+          "get",
+          "kind"
+        ],
+        "national_park"
+      ],
+      "paint": {
+        "fill-color": "rgba(192, 185, 164, 1)"
       }
     },
     {
@@ -131,13 +114,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "in",
-          "kind",
-          "pitch"
-        ]
+          "get",
+          "kind"
+        ],
+        "pitch"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(188, 182, 166, 1)"
       }
@@ -148,13 +134,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "in",
-          "kind",
-          "hospital"
-        ]
+          "get",
+          "kind"
+        ],
+        "hospital"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(190, 183, 167, 1)"
       }
@@ -165,13 +154,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "in",
-          "kind",
-          "cemetery"
-        ]
+          "get",
+          "kind"
+        ],
+        "cemetery"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(188, 182, 166, 1)"
       }
@@ -182,15 +174,47 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "in",
-          "kind",
-          "bridge"
-        ]
+          "get",
+          "kind"
+        ],
+        "bridge"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(196, 191, 176, 1)"
+      }
+    },
+    {
+      "id": "landuse-farmyard",
+      "type": "fill",
+      "source": "berlin",
+      "source-layer": "landuse",
+      "filter": [
+        "match",
+        [
+          "get",
+          "kind"
+        ],
+        [
+          "animal",
+          "aviary",
+          "zoo",
+          "farm",
+          "farmland",
+          "farmyard"
+        ],
+        true,
+        false
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "fill-color": "rgba(245, 243, 222, 1)"
       }
     },
     {
@@ -199,15 +223,19 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "match",
         [
-          "in",
-          "kind",
+          "get",
+          "kind"
+        ],
+        [
           "sport",
           "sports_centre",
           "attraction",
           "zoo"
-        ]
+        ],
+        true,
+        false
       ],
       "paint": {
         "fill-color": "rgba(185, 179, 163, 1)"
@@ -219,13 +247,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "==",
-          "kind",
-          "religion"
-        ]
+          "get",
+          "kind"
+        ],
+        "religion"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(234, 240, 231, 1)"
       }
@@ -236,41 +267,26 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "match",
         [
-          "in",
-          "kind",
+          "get",
+          "kind"
+        ],
+        [
           "common",
           "surface",
           "miltary",
           "industrial",
           "commercial"
-        ]
+        ],
+        true,
+        false
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(188, 181, 166, 1)"
-      }
-    },
-    {
-      "id": "landuse-farmyard",
-      "type": "fill",
-      "source": "berlin",
-      "source-layer": "landuse",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "animal",
-          "aviary",
-          "zoo",
-          "farm",
-          "farmland",
-          "farmyard"
-        ]
-      ],
-      "paint": {
-        "fill-color": "rgba(245, 243, 222, 1)"
       }
     },
     {
@@ -279,13 +295,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "any",
+        "==",
         [
-          "in",
-          "kind",
-          "beach"
-        ]
+          "get",
+          "kind"
+        ],
+        "beach"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(224, 219, 200, 1)"
       }
@@ -296,13 +315,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "==",
-          "kind",
-          "aerodrome"
-        ]
+          "get",
+          "kind"
+        ],
+        "aerodrome"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(188, 181, 166, 1)"
       }
@@ -313,13 +335,16 @@
       "source": "berlin",
       "source-layer": "landuse",
       "filter": [
-        "all",
+        "==",
         [
-          "==",
-          "kind",
-          "runway"
-        ]
+          "get",
+          "kind"
+        ],
+        "aeroway"
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "fill-color": "rgba(184, 178, 161, 1)"
       }
@@ -329,25 +354,19 @@
       "type": "fill",
       "source": "berlin",
       "source-layer": "water",
-      "layout": {},
-      "paint": {
-        "fill-color": "rgba(177, 172, 156, 1)"
-      }
-    },
-    {
-      "id": "water-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "water",
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "Polygon"
+        ]
+      ],
       "layout": {
-        "text-field": "{name}",
-        "visibility": "none",
-        "text-size": 11.2
+        "visibility": "visible"
       },
       "paint": {
-        "text-color": "rgba(105, 106, 96, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1
+        "fill-color": "#B1AC9C"
       }
     },
     {
@@ -373,6 +392,9 @@
           "pier"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(228, 224, 212, 1)",
         "line-width": {
@@ -394,94 +416,133 @@
       }
     },
     {
+      "id": "pedestrian-case",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+        [
+          "any",
+          [
+            "in",
+            "kind_detail",
+            "pedestrian",
+            "path",
+            "footway"
+          ],
+          [
+            "in",
+            "landuse_kind",
+            "resedential",
+            "park",
+            "footway",
+            "garden",
+            "pedestrian",
+            "grass",
+            "allotments",
+            "forest",
+            "cemetery",
+            "natural_wood"
+          ]
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(207, 203, 190, 1)",
+        "line-width": {
+          "stops": [
+            [
+              14,
+              1.5
+            ],
+            [
+              16,
+              5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "pedestrian",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+        [
+          "any",
+          [
+            "in",
+            "kind_detail",
+            "pedestrian",
+            "path",
+            "footway"
+          ],
+          [
+            "in",
+            "landuse_kind",
+            "resedential",
+            "park",
+            "footway",
+            "garden",
+            "pedestrian",
+            "grass",
+            "allotments",
+            "forest",
+            "cemetery",
+            "natural_wood"
+          ]
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(210, 201, 177, 1)",
+        "line-width": {
+          "stops": [
+            [
+              14,
+              1
+            ],
+            [
+              16,
+              4
+            ]
+          ]
+        }
+      }
+    },
+    {
       "id": "residential-case",
       "type": "line",
       "source": "berlin",
       "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "minor_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "unclassified",
-          "residential",
-          "service"
-        ]
-      ],
-      "paint": {
-        "line-color": "rgba(196, 188, 164, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          10,
-          1,
-          18,
-          12
-        ]
-      }
-    },
-    {
-      "id": "residential",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "minor_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "unclassified",
-          "residential",
-          "service"
-        ]
-      ],
-      "paint": {
-        "line-color": "rgba(220, 216, 203, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          10,
-          0.1,
-          18,
-          10
-        ]
-      }
-    },
-    {
-      "id": "residential-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
+      "minzoom": 12,
       "filter": [
         "all",
         [
@@ -503,18 +564,77 @@
         ]
       ],
       "layout": {
-        "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ],
-        "text-field": "{name}",
-        "symbol-placement": "line",
-        "text-size": 16
+        "visibility": "visible"
       },
       "paint": {
-        "text-color": "rgba(54, 53, 49, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1
+        "line-color": "rgba(196, 188, 164, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          1,
+          13,
+          1.4,
+          14,
+          2,
+          16,
+          7
+        ]
+      }
+    },
+    {
+      "id": "residential",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "minor_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "unclassified",
+          "residential",
+          "service"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(220, 216, 203, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          0.5,
+          13,
+          0.7,
+          14,
+          1,
+          16,
+          5
+        ]
       }
     },
     {
@@ -540,8 +660,11 @@
           "secondary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
-        "line-color": "rgba(215, 211, 195, 1)",
+        "line-color": "rgba(196, 188, 164, 1)",
         "line-width": [
           "interpolate",
           [
@@ -551,9 +674,13 @@
             "zoom"
           ],
           7,
-          1,
-          18,
-          12
+          0.4,
+          12,
+          1.4,
+          14,
+          3,
+          16,
+          10
         ]
       }
     },
@@ -580,8 +707,11 @@
           "secondary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
-        "line-color": "rgba(196, 188, 164, 1)",
+        "line-color": "rgba(215, 211, 195, 1)",
         "line-width": [
           "interpolate",
           [
@@ -591,43 +721,14 @@
             "zoom"
           ],
           7,
-          0.1,
-          18,
-          10
+          0.2,
+          12,
+          0.7,
+          14,
+          2,
+          16,
+          8
         ]
-      }
-    },
-    {
-      "id": "secondary-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "secondary"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": "{name}"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 49, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1
       }
     },
     {
@@ -654,6 +755,9 @@
           "tertiary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(196, 188, 164, 1)",
         "line-width": [
@@ -664,10 +768,14 @@
           [
             "zoom"
           ],
-          6,
-          1,
-          18,
-          14
+          5,
+          0.4,
+          12,
+          1.8,
+          14,
+          2.5,
+          16,
+          9
         ]
       }
     },
@@ -695,6 +803,9 @@
           "tertiary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(221, 217, 202, 1)",
         "line-width": [
@@ -705,45 +816,15 @@
           [
             "zoom"
           ],
-          6,
-          0.5,
-          18,
-          12
+          5,
+          0.2,
+          12,
+          0.9,
+          14,
+          1.5,
+          16,
+          7
         ]
-      }
-    },
-    {
-      "id": "tertiary-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "primary",
-          "tertiary"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": "{name}"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 49, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1
       }
     },
     {
@@ -770,6 +851,9 @@
           "primary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(196, 188, 164, 1)",
         "line-width": [
@@ -780,10 +864,14 @@
           [
             "zoom"
           ],
-          6,
-          1,
-          18,
-          14
+          5,
+          0.4,
+          12,
+          1.1,
+          14,
+          3,
+          16,
+          11
         ]
       }
     },
@@ -811,6 +899,9 @@
           "primary"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(209, 205, 188, 1)",
         "line-width": [
@@ -821,45 +912,15 @@
           [
             "zoom"
           ],
-          6,
-          0.5,
-          18,
-          12
+          5,
+          0.2,
+          12,
+          1,
+          14,
+          2,
+          16,
+          9
         ]
-      }
-    },
-    {
-      "id": "primary-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "highway"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "motorway",
-          "primary"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": "{name}"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 49, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1
       }
     },
     {
@@ -880,6 +941,9 @@
           "ferry"
         ]
       ],
+      "layout": {
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(142, 143, 130, 1)",
         "line-width": {
@@ -1030,11 +1094,12 @@
       "layout": {
         "symbol-placement": "line",
         "text-field": "{name}",
-        "text-size": 12.8
+        "text-size": 12.8,
+        "visibility": "none"
       },
       "paint": {
-        "text-color": "rgba(153, 153, 153, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(96, 96, 88, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
         "text-halo-width": 1
       }
     },
@@ -1058,146 +1123,12 @@
           "drive_through"
         ]
       ],
+      "layout": {
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(189, 185, 170, 1)",
         "line-width": 5
-      }
-    },
-    {
-      "id": "pedestrian-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "pedestrian",
-          "path",
-          "footway"
-        ],
-        [
-          "==",
-          "kind",
-          "path"
-        ],
-        [
-          "in",
-          "landuse_kind",
-          "resedential",
-          "park",
-          "footway",
-          "garden",
-          "pedestrian",
-          "grass",
-          "allotments",
-          "forest",
-          "cemetery",
-          "natural_wood"
-        ]
-      ],
-      "paint": {
-        "line-color": "rgba(210, 201, 177, 1)",
-        "line-width": 3
-      }
-    },
-    {
-      "id": "pedestrian",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "pedestrian",
-          "path",
-          "footway"
-        ],
-        [
-          "==",
-          "kind",
-          "path"
-        ],
-        [
-          "in",
-          "landuse_kind",
-          "resedential",
-          "park",
-          "footway",
-          "garden",
-          "pedestrian",
-          "grass",
-          "allotments",
-          "forest",
-          "cemetery",
-          "natural_wood"
-        ]
-      ],
-      "paint": {
-        "line-color": "rgba(207, 203, 190, 1)",
-        "line-width": 2.5
-      }
-    },
-    {
-      "id": "pedestrian-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "pedestrian",
-          "path",
-          "footway"
-        ],
-        [
-          "==",
-          "kind",
-          "path"
-        ],
-        [
-          "in",
-          "landuse_kind",
-          "resedential",
-          "park",
-          "footway",
-          "garden",
-          "pedestrian",
-          "grass",
-          "allotments",
-          "forest",
-          "cemetery",
-          "natural_wood"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": "{kind_detail}"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 49, 1)",
-        "text-halo-width": 1,
-        "text-halo-color": "rgba(255, 255, 255, 1)"
       }
     },
     {
@@ -1229,6 +1160,9 @@
           "crossover"
         ]
       ],
+      "layout": {
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(175, 171, 157, 1)",
         "line-width": 1.5
@@ -1254,6 +1188,9 @@
           "tram"
         ]
       ],
+      "layout": {
+        "visibility": "none"
+      },
       "paint": {
         "line-color": "rgba(196, 191, 177, 1)",
         "line-width": {
@@ -1275,10 +1212,11 @@
       }
     },
     {
-      "id": "Railway-S-Bahn-case",
+      "id": "Railway-S-Bahn",
       "type": "line",
       "source": "berlin",
       "source-layer": "roads",
+      "minzoom": 13,
       "filter": [
         "all",
         [
@@ -1294,105 +1232,28 @@
           "tram"
         ],
         [
-          "==",
-          "is_tunnel",
-          true
+          "!has",
+          "is_tunnel"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
         "line-color": "rgba(174, 166, 145, 1)",
         "line-width": {
           "stops": [
             [
               13,
-              3.5
-            ],
-            [
-              14,
-              2.5
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "Railway-S-Bahn-dash-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "rail",
-          "light_rail",
-          "tram"
-        ],
-        [
-          "==",
-          "is_tunnel",
-          true
-        ]
-      ],
-      "paint": {
-        "line-color": "rgba(155, 151, 137, 1)",
-        "line-width": 3.75,
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
+              0.2
             ],
             [
               15,
-              [
-                1,
-                1
-              ]
+              1
             ],
             [
-              16,
-              [
-                1,
-                1
-              ]
+              17,
+              1.5
             ]
           ]
         }
@@ -1403,6 +1264,7 @@
       "type": "line",
       "source": "berlin",
       "source-layer": "roads",
+      "minzoom": 13,
       "filter": [
         "all",
         [
@@ -1418,78 +1280,35 @@
           "tram"
         ],
         [
-          "==",
-          "is_tunnel",
-          true
+          "!has",
+          "is_tunnel"
         ]
       ],
+      "layout": {
+        "visibility": "visible"
+      },
       "paint": {
-        "line-color": "rgba(213, 209, 196, 1)",
+        "line-color": "rgba(179, 170, 146, 1)",
         "line-width": {
           "stops": [
             [
               13,
-              2.75
-            ],
-            [
-              14,
-              1.75
-            ]
-          ]
-        },
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
+              2
             ],
             [
               15,
-              [
-                1,
-                1
-              ]
+              2
             ],
             [
-              16,
-              [
-                1,
-                1
-              ]
+              17,
+              8
             ]
           ]
-        }
+        },
+        "line-dasharray": [
+          0.2,
+          1
+        ]
       }
     },
     {
@@ -1506,69 +1325,10 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
-        "line-width": {
-          "stops": [
-            [
-              1,
-              1
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ]
-          ]
-        },
+        "line-width": 0.5,
         "line-color": "rgba(167, 162, 145, 1)"
       }
     },
@@ -1586,95 +1346,11 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
-        "line-width": {
-          "stops": [
-            [
-              1,
-              1
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ]
-          ]
-        },
+        "line-width": 0.25,
         "line-color": "rgba(139, 134, 118, 1)"
-      }
-    },
-    {
-      "id": "country-border-label",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "country"
-        ]
-      ],
-      "layout": {
-        "symbol-placement": "line",
-        "text-field": "{name}",
-        "text-size": 12.8,
-        "visibility": "none"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 50, 1)",
-        "text-halo-width": 1,
-        "text-halo-color": "rgba(255, 255, 255, 1)"
       }
     },
     {
@@ -1696,117 +1372,12 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
-        "line-width": {
-          "stops": [
-            [
-              1,
-              1
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ],
-            [
-              15,
-              1
-            ],
-            [
-              16,
-              1
-            ]
-          ]
-        },
+        "line-width": 1,
         "line-color": "rgba(167, 162, 145, 1)",
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
-            ]
-          ]
-        }
+        "line-dasharray": []
       }
     },
     {
@@ -1828,512 +1399,149 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
-        "line-width": {
-          "stops": [
-            [
-              1,
-              1
-            ],
-            [
-              2,
-              1
-            ],
-            [
-              3,
-              1
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ],
-            [
-              15,
-              1
-            ],
-            [
-              16,
-              1
-            ]
-          ]
-        },
+        "line-width": 0.5,
         "line-color": "rgba(139, 134, 118, 1)",
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
-            ]
-          ]
-        }
+        "line-dasharray": [
+          4,
+          4
+        ]
       }
     },
     {
-      "id": "disputed-border-label",
+      "id": "lake-label",
       "type": "symbol",
       "source": "berlin",
-      "source-layer": "boundaries",
+      "source-layer": "water",
       "filter": [
         "all",
         [
-          "in",
-          "kind",
-          "disputed",
-          "indefinite",
-          "indeterminate",
-          "lease_limit",
-          "line_of_control",
-          "overlay_limit"
+          "==",
+          "$type",
+          "Point"
         ]
       ],
       "layout": {
-        "symbol-placement": "line",
-        "text-field": "{name}",
-        "text-size": 12.8,
-        "visibility": "none"
-      },
-      "paint": {
-        "text-color": "rgba(54, 53, 50, 1)",
-        "text-halo-width": 1,
-        "text-halo-color": "rgba(255, 255, 255, 1)"
-      }
-    },
-    {
-      "id": "region-border-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none"
-      },
-      "paint": {
-        "line-width": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "visibility": "visible",
+        "text-size": {
           "stops": [
             [
               2,
-              1
-            ],
-            [
-              3,
-              1
+              14
             ],
             [
               4,
-              1
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              6,
-              1
-            ],
-            [
-              7,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              9,
-              1
-            ],
-            [
-              10,
-              1
-            ],
-            [
-              11,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
+              14
             ]
           ]
         },
-        "line-color": "rgba(124, 124, 124, 1)",
-        "line-dasharray": {
-          "stops": [
-            [
-              10,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              11,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              12,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              13,
-              [
-                1,
-                1
-              ]
-            ],
-            [
-              14,
-              [
-                1,
-                1
-              ]
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "region-border-label-line",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none",
-        "symbol-placement": "line",
-        "text-field": "{name}",
-        "text-size": 12.8
-      },
-      "paint": {}
-    },
-    {
-      "id": "region-border-label-point",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "region"
-        ]
-      ],
-      "layout": {
-        "visibility": "none",
         "symbol-placement": "point",
-        "text-field": "{name}",
-        "text-size": 12.8
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-max-width": 6,
+        "text-line-height": 1
       },
       "paint": {
-        "text-color": "rgba(54, 53, 50, 1)",
-        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(105, 106, 96, 1)",
+        "text-opacity": 1,
+        "text-halo-color": "rgba(255, 255, 255, 0.3)",
         "text-halo-width": 1
       }
     },
     {
-      "id": "earth-labels-island",
+      "id": "river-label",
       "type": "symbol",
       "source": "berlin",
-      "source-layer": "earth",
-      "filter": [
-        "any",
-        [
-          "in",
-          "kind",
-          "island"
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": 14
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(119, 112, 101, 1)"
-      }
-    },
-    {
-      "id": "earth-labels",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "earth",
-      "filter": [
-        "any",
-        [
-          "!in",
-          "kind",
-          "island"
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": 14
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(143, 139, 123, 1)"
-      }
-    },
-    {
-      "id": "country-label-10million",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
+      "source-layer": "water",
       "filter": [
         "all",
         [
-          "in",
-          "kind",
-          "country"
-        ],
-        [
-          ">",
-          "population",
-          10000000
+          "==",
+          "$type",
+          "LineString"
         ]
       ],
       "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              1,
-              11.2
-            ],
-            [
-              2,
-              12.8
-            ],
-            [
-              3,
-              19.2
-            ],
-            [
-              4,
-              22.4
-            ],
-            [
-              5,
-              25.6
-            ]
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
           ]
-        }
+        ],
+        "visibility": "visible",
+        "text-size": 11,
+        "symbol-placement": "line-center"
       },
       "paint": {
-        "text-halo-color": "rgba(0, 0, 0, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(255, 255, 255, 1)"
+        "text-color": "rgba(1, 35, 55, 1)",
+        "text-opacity": 1,
+        "text-halo-color": "rgba(255, 255, 255, 0.3)",
+        "text-halo-width": 1
       }
     },
     {
-      "id": "country-label-1million",
-      "type": "symbol",
+      "id": "building_level15_outline",
+      "type": "line",
       "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "country"
-        ],
-        [
-          ">",
-          "population",
-          1000000
-        ],
-        [
-          "<",
-          "population",
-          10000000
-        ]
-      ],
+      "source-layer": "buildings",
       "layout": {
-        "text-field": "{name}",
-        "text-size": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(191, 188, 178, 0.2)",
+        "line-blur": 0,
+        "line-width": {
           "stops": [
             [
-              1,
-              8
+              13,
+              0
             ],
             [
-              2,
-              9.6
-            ],
-            [
-              3,
-              12.8
-            ],
-            [
-              4,
-              16
-            ],
-            [
-              5,
-              19.2
+              14,
+              1
             ]
           ]
         }
-      },
-      "paint": {
-        "text-halo-color": "rgba(0, 0, 0, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(255, 255, 255, 1)"
       }
     },
     {
-      "id": "country-label",
-      "type": "symbol",
+      "id": "building_level15",
+      "type": "fill-extrusion",
       "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "country"
-        ],
-        [
-          "<",
-          "population",
-          1000000
-        ]
-      ],
+      "source-layer": "buildings",
+      "minzoom": 14,
       "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              1,
-              6.4
-            ],
-            [
-              2,
-              11.2
-            ],
-            [
-              3,
-              9.6
-            ],
-            [
-              4,
-              12.8
-            ],
-            [
-              5,
-              16
-            ]
-          ]
-        }
+        "visibility": "visible"
       },
       "paint": {
-        "text-halo-color": "rgba(0, 0, 0, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(255, 255, 255, 1)"
+        "fill-extrusion-color": "rgba(242, 236, 224, 1)",
+        "fill-extrusion-opacity": 0.9,
+        "fill-extrusion-height": [
+          "get",
+          "height"
+        ]
       }
     },
     {
@@ -2351,6 +1559,9 @@
       ],
       "layout": {
         "text-field": "{name}",
+        "text-font": [
+          "Fira GO Regular"
+        ],
         "text-size": {
           "stops": [
             [
@@ -2370,19 +1581,364 @@
               14.4
             ]
           ]
-        }
+        },
+        "visibility": "none"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
         "text-halo-width": 1,
-        "text-color": "rgba(65, 63, 57, 1)"
+        "text-color": "rgba(6, 6, 6, 0.8)"
       }
     },
     {
-      "id": "locality-label-10million",
+      "id": "pedestrian-label",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 14,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+        [
+          "any",
+          [
+            "in",
+            "kind_detail",
+            "pedestrian",
+            "path",
+            "footway"
+          ],
+          [
+            "in",
+            "landuse_kind",
+            "resedential",
+            "park",
+            "footway",
+            "garden",
+            "pedestrian",
+            "grass",
+            "allotments",
+            "forest",
+            "cemetery",
+            "natural_wood"
+          ]
+        ]
+      ],
+      "layout": {
+        "symbol-placement": "line",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              14,
+              4
+            ],
+            [
+              16,
+              16
+            ]
+          ]
+        },
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-color": "rgba(54, 53, 49, 1)",
+        "text-halo-width": 1,
+        "text-halo-color": "rgba(255, 255, 255, 0.5)"
+      }
+    },
+    {
+      "id": "residential-label",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 15,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "minor_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "unclassified",
+          "residential",
+          "service"
+        ]
+      ],
+      "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "symbol-placement": "line-center",
+        "text-size": {
+          "stops": [
+            [
+              14,
+              12
+            ],
+            [
+              16,
+              16
+            ]
+          ]
+        },
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-color": "rgba(54, 53, 49, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "secondary-label",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "secondary"
+        ]
+      ],
+      "layout": {
+        "symbol-placement": "line-center",
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "visibility": "visible",
+        "text-size": {
+          "stops": [
+            [
+              12,
+              12
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              16,
+              16
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-allow-overlap": false,
+        "text-max-angle": 45
+      },
+      "paint": {
+        "text-color": "rgba(54, 53, 49, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "tertiary-label",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "primary",
+          "tertiary"
+        ]
+      ],
+      "layout": {
+        "symbol-placement": "line-center",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "visibility": "visible",
+        "text-size": {
+          "stops": [
+            [
+              12,
+              12
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              16,
+              16
+            ]
+          ]
+        },
+        "symbol-avoid-edges": false,
+        "text-allow-overlap": false,
+        "text-ignore-placement": false,
+        "text-rotation-alignment": "auto",
+        "text-pitch-alignment": "auto",
+        "text-padding": 1
+      },
+      "paint": {
+        "text-color": "rgba(54, 53, 49, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "primary-label",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "motorway",
+          "primary"
+        ]
+      ],
+      "layout": {
+        "symbol-placement": "line-center",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "visibility": "visible",
+        "text-size": {
+          "stops": [
+            [
+              12,
+              14
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              16,
+              16
+            ]
+          ]
+        },
+        "text-padding": 2
+      },
+      "paint": {
+        "text-color": "rgba(54, 53, 49, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": 1
+      }
+    },
+    {
+      "id": "locality-label",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
+      "minzoom": 10,
       "filter": [
         "all",
         [
@@ -2391,73 +1947,365 @@
           "locality"
         ],
         [
-          "has",
-          "population"
-        ],
-        [
-          "has",
-          "country_capital"
-        ],
-        [
-          ">",
+          "<=",
           "population",
-          10000000
+          10000
         ]
       ],
       "layout": {
-        "text-field": "{name}",
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
         "text-size": {
           "stops": [
             [
-              1,
-              9.6
-            ],
-            [
-              2,
-              11.2
-            ],
-            [
-              3,
-              12.8
-            ],
-            [
-              4,
-              14.4
-            ],
-            [
-              5,
-              16
-            ],
-            [
-              6,
-              19.2
-            ],
-            [
-              7,
-              22.4
-            ],
-            [
-              8,
-              25.6
-            ],
-            [
-              9,
-              28.8
-            ],
-            [
               10,
-              32
+              13
+            ],
+            [
+              12,
+              14.4
             ]
           ]
         },
         "text-font": [
-          "Open Sans Bold",
-          "Arial Unicode MS Regular"
-        ]
+          "Fira GO Regular"
+        ],
+        "visibility": "visible"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              10,
+              1
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        },
+        "text-color": "rgba(65, 64, 59, 1)"
+      }
+    },
+    {
+      "id": "locality-label-10k",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 7,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "locality"
+        ],
+        [
+          ">",
+          "population",
+          10000
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              7,
+              14
+            ],
+            [
+              9,
+              14
+            ],
+            [
+              11,
+              18
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ]
+          ]
+        },
+        "text-color": "rgba(65, 64, 59, 1)"
+      }
+    },
+    {
+      "id": "locality-label-50k",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 7,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "locality"
+        ],
+        [
+          ">",
+          "population",
+          50000
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              7,
+              14
+            ],
+            [
+              9,
+              18
+            ],
+            [
+              11,
+              22
+            ],
+            [
+              13,
+              24
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              7,
+              1
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              11,
+              1.5
+            ]
+          ]
+        },
+        "text-color": "rgba(65, 64, 59, 1)"
+      }
+    },
+    {
+      "id": "locality-label-100k",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "locality"
+        ],
+        [
+          ">",
+          "population",
+          100000
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              5,
+              12
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              8,
+              22
+            ],
+            [
+              11,
+              24
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "visibility": "visible",
+        "text-max-width": 24
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.4)",
+        "text-halo-width": {
+          "stops": [
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              1.5
+            ],
+            [
+              11,
+              3
+            ]
+          ]
+        },
+        "text-color": "rgba(65, 64, 59, 1)"
+      }
+    },
+    {
+      "id": "locality-label-400k",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 3,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "locality"
+        ],
+        [
+          ">",
+          "population",
+          400000
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              3,
+              12
+            ],
+            [
+              6,
+              18
+            ],
+            [
+              8,
+              26
+            ],
+            [
+              11,
+              28
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "visibility": "visible",
+        "text-allow-overlap": false,
+        "text-max-width": 22
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              3,
+              0.5
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              7,
+              1.5
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              11,
+              3
+            ]
+          ]
+        },
         "text-color": "rgba(65, 64, 59, 1)"
       }
     },
@@ -2467,19 +2315,11 @@
       "source": "berlin",
       "source-layer": "places",
       "filter": [
-        "all",
+        "any",
         [
-          "in",
-          "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
-        [
-          "has",
-          "region_capital"
+          "==",
+          "region_capital",
+          true
         ],
         [
           ">",
@@ -2488,324 +2328,219 @@
         ]
       ],
       "layout": {
-        "text-field": "{name}",
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
         "text-size": {
           "stops": [
             [
-              2,
-              9.6
+              3,
+              13
+            ],
+            [
+              6,
+              16
+            ],
+            [
+              8,
+              24
+            ],
+            [
+              10,
+              32
+            ],
+            [
+              12,
+              16
+            ]
+          ]
+        },
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              3,
+              0.5
+            ],
+            [
+              7,
+              1.5
+            ],
+            [
+              9,
+              2
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        },
+        "text-color": "rgba(65, 64, 59, 1)"
+      }
+    },
+    {
+      "id": "locality-label-10million-capital",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 1,
+      "filter": [
+        "any",
+        [
+          "==",
+          "country_capital",
+          true
+        ],
+        [
+          ">",
+          "population",
+          10000000
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              1,
+              10
             ],
             [
               3,
-              11.2
-            ],
-            [
-              4,
-              12.8
+              14
             ],
             [
               5,
-              14.4
-            ],
-            [
-              6,
-              16
+              18
             ],
             [
               7,
-              19.2
-            ],
-            [
-              8,
-              22.4
+              24
             ],
             [
               9,
-              25.6
-            ],
-            [
-              11,
-              28.8
-            ],
-            [
-              12,
-              32
+              28
             ]
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
+          "Fira GO Bold"
+        ],
+        "visibility": "visible",
+        "symbol-placement": "point",
+        "text-allow-overlap": false,
+        "text-ignore-placement": false
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(65, 64, 59, 1)"
-      }
-    },
-    {
-      "id": "locality-label-400k",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
-        [
-          ">",
-          "population",
-          400000
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": {
+        "text-halo-color": "rgba(255, 255, 255, 0.4)",
+        "text-halo-width": {
           "stops": [
             [
-              4,
-              11.2
+              1,
+              0.5
+            ],
+            [
+              3,
+              1.5
             ],
             [
               5,
-              12.8
-            ],
-            [
-              6,
-              16
+              2
             ],
             [
               7,
-              19.2
-            ],
-            [
-              8,
-              22.4
+              3
             ],
             [
               9,
-              24
-            ],
-            [
-              10,
-              25.6
-            ],
-            [
-              11,
-              27.2
+              3
             ]
           ]
         },
-        "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
         "text-color": "rgba(65, 64, 59, 1)"
       }
     },
     {
-      "id": "locality-label-100k",
+      "id": "locality-label-10million",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
+      "minzoom": 1,
       "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
+        "any",
         [
           ">",
           "population",
-          100000
+          10000000
         ]
       ],
       "layout": {
-        "text-field": "{name}",
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
         "text-size": {
           "stops": [
             [
-              4,
-              9.6
+              3,
+              12
             ],
             [
               5,
-              11.2
-            ],
-            [
-              6,
-              12.8
-            ],
-            [
-              7,
-              16
-            ],
-            [
-              8,
-              19.2
-            ],
-            [
-              9,
-              20.8
-            ],
-            [
-              10,
-              22.4
-            ],
-            [
-              11,
-              24
-            ],
-            [
-              12,
-              25.6
+              18
             ]
           ]
         },
         "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
+          "Fira GO Regular"
+        ],
+        "visibility": "visible",
+        "symbol-placement": "point"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
         "text-halo-width": 1,
         "text-color": "rgba(65, 64, 59, 1)"
       }
     },
     {
-      "id": "locality-label-50k",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
-        [
-          ">",
-          "population",
-          50000
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              10,
-              16
-            ],
-            [
-              11,
-              19.2
-            ],
-            [
-              12,
-              22.4
-            ],
-            [
-              13,
-              24
-            ]
-          ]
-        },
-        "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(65, 64, 59, 1)"
-      }
-    },
-    {
-      "id": "locality-label-10k",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
-        [
-          ">",
-          "population",
-          10000
-        ]
-      ],
-      "layout": {
-        "text-field": "{name}",
-        "text-size": {
-          "stops": [
-            [
-              11,
-              16
-            ],
-            [
-              12,
-              17.6
-            ],
-            [
-              13,
-              19.2
-            ],
-            [
-              14,
-              20.8
-            ],
-            [
-              15,
-              22.4
-            ]
-          ]
-        },
-        "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(65, 64, 59, 1)"
-      }
-    },
-    {
-      "id": "locality-label",
+      "id": "country-label",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
@@ -2814,68 +2549,157 @@
         [
           "in",
           "kind",
-          "locality"
-        ],
-        [
-          "has",
-          "population"
-        ],
-        [
-          "<=",
-          "population",
-          10000
+          "country"
         ]
       ],
       "layout": {
-        "text-field": "{name}",
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              1,
+              9
+            ],
+            [
+              3,
+              15
+            ],
+            [
+              5,
+              16
+            ]
+          ]
+        },
+        "visibility": "visible",
+        "text-transform": "uppercase",
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-max-width": 18
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.5)",
+        "text-halo-width": {
+          "stops": [
+            [
+              3,
+              0.5
+            ],
+            [
+              5,
+              1
+            ]
+          ]
+        },
+        "text-color": "rgba(119, 112, 101, 1)"
+      }
+    },
+    {
+      "id": "earth-labels-island",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "earth",
+      "minzoom": 11,
+      "filter": [
+        "any",
+        [
+          "in",
+          "kind",
+          "island"
+        ]
+      ],
+      "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
         "text-size": {
           "stops": [
             [
               11,
-              12.8
-            ],
-            [
-              12,
-              14.4
+              14
             ],
             [
               13,
               16
-            ],
-            [
-              14,
-              17.6
-            ],
-            [
-              15,
-              19.2
             ]
           ]
         },
-        "text-font": [
-          "Open Sans Regular",
-          "Arial Unicode MS Regular"
-        ]
+        "visibility": "visible"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 1,
-        "text-color": "rgba(65, 64, 59, 1)"
+        "text-halo-color": "rgba(255, 255, 255, 0.6)",
+        "text-halo-width": 0,
+        "text-color": "rgba(143, 139, 123, 1)"
       }
     },
     {
-      "id": "building_level_>=15",
-      "type": "fill-extrusion",
+      "id": "earth-labels",
+      "type": "symbol",
       "source": "berlin",
-      "source-layer": "buildings",
-      "layout": {},
-      "paint": {
-        "fill-extrusion-color": "rgba(242, 236, 224, 1)",
-        "fill-extrusion-opacity": 0.9,
-        "fill-extrusion-height": [
-          "get",
-          "height"
+      "source-layer": "earth",
+      "filter": [
+        "all",
+        [
+          "!in",
+          "kind",
+          "island"
         ]
+      ],
+      "layout": {
+        "text-font": [
+          "Fira GO Regular"
+        ],
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name:en"
+          ],
+          [
+            "get",
+            "name"
+          ]
+        ],
+        "text-size": {
+          "stops": [
+            [
+              1,
+              24
+            ],
+            [
+              3,
+              24
+            ]
+          ]
+        },
+        "visibility": "visible",
+        "text-transform": "uppercase"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.6)",
+        "text-halo-width": 0,
+        "text-color": "rgba(119, 112, 101, 1)"
       }
     },
     {
@@ -2892,14 +2716,9 @@
         ]
       ],
       "layout": {
-        "text-field": "{addr_housenumber}",
-        "text-size": 14.4
+        "visibility": "none"
       },
-      "paint": {
-        "text-color": "rgba(192, 189, 177, 1)",
-        "text-halo-width": 1,
-        "text-halo-color": "rgba(144, 141, 125, 1)"
-      }
+      "paint": {}
     }
   ],
   "id": "berlin"
