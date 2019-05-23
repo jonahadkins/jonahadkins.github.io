@@ -2534,9 +2534,9 @@
         "symbol-placement": "point"
       },
       "paint": {
-        "text-halo-color": "rgba(0, 0, 0, 0.5)",
+        "text-halo-color": "rgba(0, 0, 0, 0.4)",
         "text-halo-width": 1,
-        "text-color": "rgba(0, 0, 0, 1)"
+        "text-color": "rgba(255, 255, 255, 1)"
       }
     },
     {
