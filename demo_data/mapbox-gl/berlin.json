@@ -20,6 +20,21 @@
       }
     },
     {
+      "id": "landuse-urban-copy",
+      "type": "fill",
+      "source": "berlin",
+      "source-layer": "landuse",
+      "filter": [
+        "all"
+      ],
+      "layout": {
+        "visibility": "none"
+      },
+      "paint": {
+        "fill-color": "rgba(220, 1, 195, 1)"
+      }
+    },
+    {
       "id": "landuse-urban",
       "type": "fill",
       "source": "berlin",
@@ -266,6 +281,7 @@
       "type": "fill",
       "source": "berlin",
       "source-layer": "landuse",
+      "minzoom": 4,
       "filter": [
         "match",
         [
@@ -273,11 +289,10 @@
           "kind"
         ],
         [
-          "common",
-          "surface",
-          "miltary",
+          "military",
           "industrial",
-          "commercial"
+          "surface",
+          "common"
         ],
         true,
         false
@@ -416,525 +431,13 @@
       }
     },
     {
-      "id": "pedestrian-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "path"
-        ],
-        [
-          "any",
-          [
-            "in",
-            "kind_detail",
-            "pedestrian",
-            "path",
-            "footway"
-          ],
-          [
-            "in",
-            "landuse_kind",
-            "resedential",
-            "park",
-            "footway",
-            "garden",
-            "pedestrian",
-            "grass",
-            "allotments",
-            "forest",
-            "cemetery",
-            "natural_wood"
-          ]
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(58, 76, 105, 1)",
-        "line-width": {
-          "stops": [
-            [
-              14,
-              1.5
-            ],
-            [
-              16,
-              5
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "pedestrian",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "path"
-        ],
-        [
-          "any",
-          [
-            "in",
-            "kind_detail",
-            "pedestrian",
-            "path",
-            "footway"
-          ],
-          [
-            "in",
-            "landuse_kind",
-            "resedential",
-            "park",
-            "footway",
-            "garden",
-            "pedestrian",
-            "grass",
-            "allotments",
-            "forest",
-            "cemetery",
-            "natural_wood"
-          ]
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(177, 181, 182, 1)",
-        "line-width": {
-          "stops": [
-            [
-              14,
-              1
-            ],
-            [
-              16,
-              4
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "residential-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "minzoom": 12,
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "minor_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "unclassified",
-          "residential",
-          "service"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(58, 76, 105, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          12,
-          1,
-          13,
-          1.4,
-          14,
-          2,
-          16,
-          7
-        ]
-      }
-    },
-    {
-      "id": "residential",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "minzoom": 12,
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "minor_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "unclassified",
-          "residential",
-          "service"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(237, 236, 217, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          12,
-          0.5,
-          13,
-          0.7,
-          14,
-          1,
-          16,
-          5
-        ]
-      }
-    },
-    {
-      "id": "secondary-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "secondary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(58, 76, 105, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          7,
-          0.4,
-          12,
-          1.4,
-          14,
-          3,
-          16,
-          10
-        ]
-      }
-    },
-    {
-      "id": "secondary",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "secondary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(227, 212, 154, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          7,
-          0.2,
-          12,
-          0.7,
-          14,
-          2,
-          16,
-          8
-        ]
-      }
-    },
-    {
-      "id": "tertiary-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "primary",
-          "tertiary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(58, 76, 105, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          5,
-          0.4,
-          12,
-          1.8,
-          14,
-          2.5,
-          16,
-          9
-        ]
-      }
-    },
-    {
-      "id": "tertiary",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "major_road"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "primary",
-          "tertiary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(240, 232, 181, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          5,
-          0.2,
-          12,
-          0.9,
-          14,
-          1.5,
-          16,
-          7
-        ]
-      }
-    },
-    {
-      "id": "primary-case",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "highway"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "motorway",
-          "primary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(58, 76, 105, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          5,
-          0.4,
-          12,
-          1.1,
-          14,
-          3,
-          16,
-          11
-        ]
-      }
-    },
-    {
-      "id": "primary",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "filter": [
-        "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
-        [
-          "==",
-          "kind",
-          "highway"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "motorway",
-          "primary"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(214, 199, 137, 1)",
-        "line-width": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          5,
-          0.2,
-          12,
-          1,
-          14,
-          2,
-          16,
-          9
-        ]
-      }
-    },
-    {
       "id": "ferry",
       "type": "line",
       "source": "berlin",
       "source-layer": "roads",
+      "minzoom": 11,
       "filter": [
         "all",
-        [
-          "!=",
-          "kind",
-          "rail"
-        ],
         [
           "==",
           "kind",
@@ -942,135 +445,15 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "line-color": "rgba(24, 79, 110, 1)",
-        "line-width": {
-          "stops": [
-            [
-              5,
-              320
-            ],
-            [
-              6,
-              160
-            ],
-            [
-              7,
-              80
-            ],
-            [
-              8,
-              40
-            ],
-            [
-              9,
-              15
-            ],
-            [
-              10,
-              9
-            ],
-            [
-              11,
-              6
-            ],
-            [
-              12,
-              3
-            ],
-            [
-              13,
-              1.5
-            ],
-            [
-              14,
-              1
-            ]
-          ]
-        },
-        "line-dasharray": {
-          "stops": [
-            [
-              6,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              7,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              8,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              9,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              10,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              11,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              12,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              13,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              14,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              15,
-              [
-                4,
-                4
-              ]
-            ],
-            [
-              16,
-              [
-                4,
-                4
-              ]
-            ]
-          ]
-        }
+        "line-width": 1,
+        "line-dasharray": [
+          4,
+          4
+        ]
       }
     },
     {
@@ -1095,12 +478,964 @@
         "symbol-placement": "line",
         "text-field": "{name}",
         "text-size": 12.8,
-        "visibility": "none"
+        "visibility": "visible",
+        "text-font": [
+          "Fira GO Regular"
+        ]
       },
       "paint": {
         "text-color": "rgba(0, 0, 0, 1)",
         "text-halo-color": "rgba(255, 255, 255, 0.5)",
         "text-halo-width": 1
+      }
+    },
+    {
+      "id": "Railway-S-Bahn-dash",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "rail"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "rail",
+          "light_rail",
+          "tram"
+        ],
+        [
+          "!has",
+          "is_tunnel"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(105, 106, 107, 1)",
+        "line-width": {
+          "stops": [
+            [
+              9,
+              0.1
+            ],
+            [
+              13,
+              2.5
+            ],
+            [
+              15,
+              6
+            ],
+            [
+              17,
+              8
+            ]
+          ]
+        },
+        "line-dasharray": [
+          0.2,
+          2
+        ]
+      }
+    },
+    {
+      "id": "Railway-S-Bahn",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "rail"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "rail",
+          "light_rail",
+          "tram"
+        ],
+        [
+          "!has",
+          "is_tunnel"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(105, 106, 107, 1)",
+        "line-width": {
+          "stops": [
+            [
+              9,
+              0.75
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1
+            ],
+            [
+              15,
+              1.5
+            ],
+            [
+              17,
+              1.5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "pedestrian-case",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+        [
+          "any",
+          [
+            "in",
+            "kind_detail",
+            "pedestrian",
+            "footway"
+          ]
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": {
+          "stops": [
+            [
+              13,
+              2
+            ],
+            [
+              14,
+              2.5
+            ],
+            [
+              16,
+              3
+            ],
+            [
+              18,
+              3.5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "pedestrian",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "path"
+        ],
+        [
+          "any",
+          [
+            "in",
+            "kind_detail",
+            "pedestrian",
+            "footway"
+          ]
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(177, 181, 182, 1)",
+        "line-width": {
+          "stops": [
+            [
+              13,
+              1
+            ],
+            [
+              14,
+              1.5
+            ],
+            [
+              16,
+              2
+            ],
+            [
+              18,
+              2.5
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "case-residential",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "minor_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "unclassified",
+          "residential",
+          "service"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          13,
+          3,
+          14,
+          4,
+          16,
+          8,
+          18,
+          10
+        ]
+      }
+    },
+    {
+      "id": "case-secondary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 10,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "secondary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          2,
+          11,
+          3,
+          12,
+          4,
+          13,
+          5,
+          14,
+          6,
+          16,
+          7,
+          18,
+          8
+        ]
+      }
+    },
+    {
+      "id": "case-tertiary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "tertiary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          11,
+          2.5,
+          12,
+          3.5,
+          13,
+          4.5,
+          14,
+          5.5,
+          16,
+          6.5,
+          18,
+          7.5
+        ]
+      }
+    },
+    {
+      "id": "case-trunk",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "trunk"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1,
+          6,
+          2.25,
+          7,
+          2.5,
+          8,
+          3,
+          9,
+          3.5,
+          10,
+          4,
+          11,
+          4.5,
+          12,
+          5,
+          13,
+          5.5,
+          14,
+          6,
+          16,
+          6.5,
+          18,
+          7
+        ]
+      }
+    },
+    {
+      "id": "case-primary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "primary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          2.5,
+          9,
+          3,
+          10,
+          3.5,
+          11,
+          4,
+          12,
+          4.5,
+          13,
+          5,
+          14,
+          5.5,
+          16,
+          6,
+          18,
+          6.5
+        ]
+      }
+    },
+    {
+      "id": "case-highway-link",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "has",
+          "is_link"
+        ],
+        [
+          "==",
+          "kind",
+          "highway"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          3.5,
+          13,
+          4,
+          14,
+          5,
+          16,
+          10,
+          18,
+          15
+        ]
+      }
+    },
+    {
+      "id": "case-highway",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(58, 76, 105, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1.5,
+          6,
+          3,
+          7,
+          4,
+          8,
+          4.5,
+          9,
+          5,
+          10,
+          5.5,
+          11,
+          6,
+          12,
+          7,
+          13,
+          7.5,
+          14,
+          8,
+          16,
+          19.5,
+          18,
+          25.5
+        ]
+      }
+    },
+    {
+      "id": "road-residential",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 12,
+      "filter": [
+        "all",
+        [
+          "!=",
+          "kind",
+          "rail"
+        ],
+        [
+          "==",
+          "kind",
+          "minor_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "unclassified",
+          "residential",
+          "service"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(209, 208, 191, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          13,
+          2,
+          14,
+          3.5,
+          16,
+          7.5,
+          18,
+          9.5
+        ]
+      }
+    },
+    {
+      "id": "road-secondary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 10,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "secondary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(227, 212, 154, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          10,
+          1,
+          11,
+          2,
+          12,
+          3,
+          13,
+          4,
+          14,
+          5,
+          16,
+          6,
+          18,
+          7
+        ]
+      }
+    },
+    {
+      "id": "road-tertiary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "tertiary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "rgba(234, 228, 196, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          11,
+          1.5,
+          12,
+          2.5,
+          13,
+          3.5,
+          14,
+          4.5,
+          16,
+          5.5,
+          18,
+          6.5
+        ]
+      }
+    },
+    {
+      "id": "road-trunk",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "trunk"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "rgba(240, 232, 181, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1,
+          6,
+          1.25,
+          7,
+          1.5,
+          8,
+          2,
+          9,
+          2.5,
+          10,
+          3,
+          11,
+          3.5,
+          12,
+          4,
+          13,
+          4.5,
+          14,
+          5,
+          16,
+          5.5,
+          18,
+          6
+        ]
+      }
+    },
+    {
+      "id": "road-primary",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "major_road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "primary"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(240, 232, 181, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          8,
+          1.5,
+          9,
+          2,
+          10,
+          2.5,
+          11,
+          3,
+          12,
+          3.5,
+          13,
+          4,
+          14,
+          4.5,
+          16,
+          5,
+          18,
+          5.5
+        ]
+      }
+    },
+    {
+      "id": "road-highway-link",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "has",
+          "is_link"
+        ],
+        [
+          "==",
+          "kind",
+          "highway"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(214, 199, 137, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          12,
+          3,
+          13,
+          3.5,
+          14,
+          4,
+          16,
+          9,
+          18,
+          14
+        ]
+      }
+    },
+    {
+      "id": "road-highway",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 5,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "highway"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "rgba(214, 199, 137, 1)",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          5,
+          1.5,
+          6,
+          2.5,
+          7,
+          3,
+          8,
+          3.5,
+          9,
+          4,
+          10,
+          4.5,
+          11,
+          5,
+          12,
+          5.5,
+          13,
+          6,
+          14,
+          6.5,
+          16,
+          18,
+          18,
+          24
+        ]
       }
     },
     {
@@ -1209,106 +1544,6 @@
             ]
           ]
         }
-      }
-    },
-    {
-      "id": "Railway-S-Bahn",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "minzoom": 13,
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "rail",
-          "light_rail",
-          "tram"
-        ],
-        [
-          "!has",
-          "is_tunnel"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(105, 106, 107, 1)",
-        "line-width": {
-          "stops": [
-            [
-              13,
-              0.2
-            ],
-            [
-              15,
-              1
-            ],
-            [
-              17,
-              1.5
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "Railway-S-Bahn-dash",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "roads",
-      "minzoom": 13,
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "rail"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "rail",
-          "light_rail",
-          "tram"
-        ],
-        [
-          "!has",
-          "is_tunnel"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-color": "rgba(105, 106, 107, 1)",
-        "line-width": {
-          "stops": [
-            [
-              13,
-              2
-            ],
-            [
-              15,
-              2
-            ],
-            [
-              17,
-              8
-            ]
-          ]
-        },
-        "line-dasharray": [
-          0.2,
-          1
-        ]
       }
     },
     {
@@ -1492,7 +1727,9 @@
         ],
         "visibility": "visible",
         "text-size": 11,
-        "symbol-placement": "line-center"
+        "symbol-placement": "line-center",
+        "text-max-angle": 45,
+        "text-letter-spacing": 0
       },
       "paint": {
         "text-color": "rgba(1, 35, 55, 1)",
@@ -1893,7 +2130,7 @@
         ]
       ],
       "layout": {
-        "symbol-placement": "line-center",
+        "symbol-placement": "line",
         "text-font": [
           "Fira GO Regular"
         ],
@@ -1925,7 +2162,21 @@
             ]
           ]
         },
-        "text-padding": 2
+        "text-padding": 5,
+        "icon-padding": 2,
+        "icon-rotation-alignment": "auto",
+        "icon-ignore-placement": false,
+        "icon-allow-overlap": false,
+        "icon-optional": false,
+        "text-optional": true,
+        "text-keep-upright": true,
+        "text-justify": "center",
+        "text-pitch-alignment": "auto",
+        "text-rotation-alignment": "auto",
+        "text-ignore-placement": false,
+        "text-allow-overlap": false,
+        "symbol-avoid-edges": false,
+        "symbol-spacing": 1000
       },
       "paint": {
         "text-color": "rgba(0, 0, 0, 1)",
