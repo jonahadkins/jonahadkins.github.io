@@ -341,9 +341,12 @@ layers:
                 order: global.sort_rank
                 color: '#6A6C6F'
                 width: [
-                    [13, 7],
-                    [14, 3],
-                    [15, 1]
+                    [9, 300],
+                    [11, 70],
+                    [13, 18],
+                    [14, 10],
+                    [15, 5],
+                    [17, 1.5]
                     ]
             dashes:
                 style: lines
@@ -406,6 +409,13 @@ layers:
             lines:
                 color: '#484A4C'
                 width: [
+                        [5, 640],
+                        [6, 320],
+                        [7, 160],
+                        [8, 80],
+                        [9, 30],
+                        [10, 18],
+                        [11, 12],
                         [12, 6],
                         [13, 3],
                         [14, 2]
@@ -447,37 +457,27 @@ layers:
 
     pedestrian:
         data: {source: berlin, layer: roads}
-        filter:
-            not:
-            - kind: rail
-            all:
-            - kind: path
-            any:
-            - kind_detail:
-                - pedestrian
-                - path
-                - footway
-            - landuse_kind:
-                - park
-                - residential
-                - footway
-                - garden
-                - allotments
-                - pedestrian
-                - grass
-                - forest
-                - cemetary
-                - natural_wood
+        filter: function() {return (feature.kind == 'path' && (feature.kind_detail.startsWith('pedestrian') || feature.kind_detail.startsWith('footway')))}
         draw:
             sidewalk_casing:
                 style: lines
                 color: '#5D5F62'
-                width: 6
+                width: [
+                        [13, 26],
+                        [14, 18],
+                        [16, 9],
+                        [18, 7]
+                        ]
                 order: global.sort_rank
             sidewalk_line:
                 style: lines
                 color: '#353637'
-                width: 5
+                width: [
+                        [13, 26],
+                        [14, 18],
+                        [16, 7],
+                        [18, 5]
+                        ]
                 order: function() { return feature.sort_rank + 2; }
         label:
             filter:
@@ -497,7 +497,7 @@ layers:
 
     residential:
         data: {source: berlin, layer: roads}
-        filter: function() { return $zoom > 12 && (feature.kind != 'rail' && (feature.kind == 'minor_road' && ( feature.kind_detail== 'unclassified') || feature.kind_detail == 'residential' || feature.kind_detail == 'service' ))}
+        filter: function() { return (feature.kind == 'minor_road' && ( feature.kind_detail== 'unclassified') || (feature.kind_detail == 'residential') || (feature.kind_detail == 'service' ))}
 
         draw:
             road_casing:
@@ -505,22 +505,20 @@ layers:
                 color: '#535557'
                 order: global.sort_rank
                 width: [
-                        [10, 84],
-                        [11, 56],
-                        [12, 36],
-                        [13, 14],
-                        [14, 8]
+                        [13, 40],
+                        [14, 36],
+                        [16, 12],
+                        [18, 10]
                         ]
             road_line:
                 style: lines
                 color: '#3B3D3F'
                 order: function() { return feature.sort_rank + 0.5; }
                 width: [
-                        [10, 76],
-                        [11, 48],
-                        [12, 26],
-                        [13, 10],
-                        [14, 6]
+                        [13, 40],
+                        [14, 28],
+                        [16, 9],
+                        [18, 8]
                         ]
         label:
             filter:
@@ -537,35 +535,33 @@ layers:
                         }
     secondary:
         data: {source: berlin, layer: roads}
-        filter: function() {return (feature.kind != 'rail' && (feature.kind == 'major_road' && feature.kind_detail.startsWith('secondary')))}
+        filter: function() {return (feature.kind == 'major_road' && feature.kind_detail.startsWith('secondary'))}
         draw:
             road_casing:
                 style: lines
                 color: '#616467'
                 order: global.sort_rank
                 width: [
-                        [7, 360],
-                        [8, 220],
-                        [9, 90],
-                        [10, 60],
-                        [11, 40],
-                        [12, 32],
-                        [13, 18],
-                        [14, 12]
+                        [10, 500],
+                        [11, 260],
+                        [12, 140],
+                        [13, 70],
+                        [14, 60],
+                        [16, 18],
+                        [18, 14]
                         ]
             road_line:
                 style: lines
                 color: '#393A3C'
                 order: function() { return feature.sort_rank + 0.5; }
                 width: [
-                        [7, 360],
-                        [8, 220],
-                        [9, 90],
-                        [10, 60],
-                        [11, 40],
-                        [12, 24],
-                        [13, 14],
-                        [14, 10]
+                        [10, 320],
+                        [11, 180],
+                        [12, 100],
+                        [13, 56],
+                        [14, 46],
+                        [16, 14],
+                        [18, 12]
                         ]
         label:
             filter:
@@ -582,38 +578,31 @@ layers:
                         }
     tertiary:
         data: {source: berlin, layer: roads}
-        filter: function() {return (feature.kind != 'rail' && (feature.kind == 'major_road' && ( $zoom > 10 && (feature.kind_detail.startsWith('tertiary'))) || (( $zoom > 7 &&feature.kind_detail.startsWith('primary')))))}
+        filter: function() {return (feature.kind == 'major_road' && (feature.kind_detail.startsWith('tertiary')))}
         draw:
             road_casing:
                 style: lines
                 color: '#56585B'
                 order: global.sort_rank
                 width: [
-                        [6, 1100],
-                        [7, 600],
-                        [8, 200],
-                        [9, 140],
-                        [10, 56],
-                        [11, 48],
-                        [12, 28],
-                        [13, 14],
-                        [14, 10]
+                        [11, 220],
+                        [12, 120],
+                        [13, 66],
+                        [14, 46],
+                        [16, 15],
+                        [18, 12]
                         ]
             road_line:
                 style: lines
                 color: '#3D3E41'
                 order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [5, 1660],
-                        [6, 820],
-                        [7, 440],
-                        [8, 200],
-                        [9, 100],
-                        [10, 60],
-                        [11, 40],
-                        [12, 22],
-                        [13, 12],
-                        [14, 8]
+                        [11, 140],
+                        [12, 90],
+                        [13, 50],
+                        [14, 36],
+                        [16, 12],
+                        [18, 10]
                         ]
         label:
             filter:
@@ -628,40 +617,79 @@ layers:
                         fill: '#999999'
                         stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
                         }
-    primary:
+    trunk:
         data: {source: berlin, layer: roads}
-        filter: function() { return ( feature.kind != 'rail' && (feature.kind == 'highway' && (feature.kind_detail.startsWith('motorway') || feature.kind_detail.startsWith('primary'))))}
+        filter: function() { return (feature.kind == 'highway' && (feature.kind_detail.startsWith('trunk')))}
         draw:
             road_casing:
                 style: lines
                 color: '#56585B'
                 order: global.sort_rank
                 width: [
-                        [6, 1400],
-                        [7, 800],
-                        [8, 500],
-                        [9, 240],
-                        [10, 100],
-                        [11, 66],
-                        [12, 32],
-                        [13, 22],
-                        [14, 14]
+                        [5, 5000],
+                        [6, 3000],
+                        [7, 2200],
+                        [8, 1900],
+                        [9, 1200],
+                        [10, 640],
+                        [11, 340],
+                        [12, 180],
+                        [13, 90],
+                        [14, 70],
+                        [16, 22],
+                        [18, 16]
                         ]
             road_line:
                 style: lines
                 color: '#3C3D3F'
                 order: function() { return feature.sort_rank + 5; }
                 width: [
-                        [5, 1660],
-                        [6, 1100],
-                        [7, 600],
-                        [8, 300],
-                        [9, 140],
-                        [10, 70],
-                        [11, 44],
-                        [12, 24],
-                        [13, 16],
-                        [14, 12]
+                        [5, 5000],
+                        [6, 3000],
+                        [7, 2200],
+                        [8, 1300],
+                        [9, 800],
+                        [10, 440],
+                        [11, 240],
+                        [12, 130],
+                        [13, 70],
+                        [14, 54],
+                        [16, 18],
+                        [18, 14]
+                        ]
+    primary:
+        data: {source: berlin, layer: roads}
+        filter: function() { return (feature.kind == 'major_road' && ( feature.kind_detail.startsWith('primary')))}
+        draw:
+            road_casing:
+                style: lines
+                color: '#56585B'
+                order: global.sort_rank
+                width: [
+                        [8, 1900],
+                        [9, 1200],
+                        [10, 640],
+                        [11, 340],
+                        [12, 180],
+                        [13, 90],
+                        [14, 70],
+                        [16, 22],
+                        [18, 16]
+                        ]
+            road_line:
+                style: lines
+                color: '#3C3D3F'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [8, 1300],
+                        [9, 800],
+                        [10, 440],
+                        [11, 240],
+                        [12, 130],
+                        [13, 70],
+                        [14, 54],
+                        [16, 18],
+                        [18, 14]
                         ]
         label_low:
             filter:
@@ -692,6 +720,86 @@ layers:
                         priority: 25
                         fill: '#999999'
                         stroke: {color: [0.078, 0.078, 0.078, 0.50], width: 2
+                        }
+    highway:
+        data: {source: berlin, layer: roads}
+        filter: function() { return (feature.kind == 'highway' && (feature.kind_detail.startsWith('motorway')))}
+        draw:
+            road_casing:
+                style: lines
+                color: '#56585B'
+                order: global.sort_rank
+                width: [
+                        [5, 7000],
+                        [6, 4600],
+                        [7, 3200],
+                        [8, 2400],
+                        [9, 1400],
+                        [10, 800],
+                        [11, 430],
+                        [12, 240],
+                        [13, 130],
+                        [14, 90],
+                        [16, 30],
+                        [18, 18]
+                        ]
+            road_line:
+                style: lines
+                color: '#3C3D3F'
+                order: function() { return feature.sort_rank + 5; }
+                width: [
+                        [5, 7000],
+                        [6, 4600],
+                        [7, 3200],
+                        [8, 1700],
+                        [9, 1020],
+                        [10, 600],
+                        [11, 320],
+                        [12, 190],
+                        [13, 104],
+                        [14, 70],
+                        [16, 26],
+                        [18, 16]
+                        ]
+        link:
+            filter: { is_link: true }
+            draw:
+                link_casing:
+                    style: lines
+                    color: '#3A4C69'
+                    order: global.sort_rank
+                    width: [
+                            [12, 120],
+                            [13, 50],
+                            [14, 36],
+                            [16, 18],
+                            [18, 14]
+                            ]
+                link_line:
+                    style: lines
+                    color: '#D6C789'
+                    order: function() { return feature.sort_rank + 5; }
+                    width: [
+                            [12, 100],
+                            [13, 40],
+                            [14, 24],
+                            [16, 14],
+                            [18, 12]
+                            ]
+        label:
+            filter:
+                all:
+                - $zoom: {min: 13}
+            draw:
+                text:
+                    repeat_distance: 100px
+                    font:
+                        text_source: global.language_text_source
+                        family: FiraGo
+                        size: 16
+                        priority: 25
+                        fill: '#000000'
+                        stroke: {color: [1.000, 1.000, 1.000, 0.50,], width: 2
                         }
     country_border:
         data: { source: berlin, layer: boundaries }
