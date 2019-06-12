@@ -12,7 +12,7 @@
   "sources": {
     "openmaptiles": {
       "type": "vector",
-      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key={p41h4rA12BGTJ06cRHuR}"
+      "url": "https://api.maptiler.com/tiles/v3/tiles.json?key=p41h4rA12BGTJ06cRHuR"
     },
     "mapbox-streets": {
       "type": "vector",
@@ -20,7 +20,7 @@
     }
   },
   "sprite": "https://openmaptiles.github.io/klokantech-basic-gl-style/sprite",
-  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key={p41h4rA12BGTJ06cRHuR}",
+  "glyphs": "https://api.maptiler.com/fonts/{fontstack}/{range}.pbf?key=p41h4rA12BGTJ06cRHuR",
   "layers": [
     {
       "id": "background",
