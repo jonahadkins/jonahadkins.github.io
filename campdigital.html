@@ -25,27 +25,27 @@
 
 <div id='map'></div>
 <div id='menu'>
-    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin.json' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
-    <label for='streets'>Berlin Base</label>
-    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin-day-reduced.json' type='radio' name='rtoggle' value='Berlin Day'>
-    <label for='light'>Berlin Day</label>
-    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin-night-reduced.json' type='radio' name='rtoggle' value='Berlin Night'>
-    <label for='dark'>Berlin Night</label>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/Rayyan_Shabazz.json' type='radio' name='rtoggle' value='Rayyan' checked='checked'>
+    <label for='streets'>Rayyan</label>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/harper-basic.json' type='radio' name='rtoggle' value='Harper'>
+    <label for='light'>Harper</label>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/julius.json' type='radio' name='rtoggle' value='Julius'>
+    <label for='dark'>Julius</label>
 </div>
 <script>
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/mapbox-gl/berlin.json',
+    style: 'https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/Rayyan_Shabazz.json',
     zoom: 2,
     center: [-76.91, 37.12],
     attributionControl: false
 });
 
-map.addControl(new mapboxgl.AttributionControl({
-  compact: false,
-  customAttribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox GL JS</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a>'
-}));
+//map.addControl(new mapboxgl.AttributionControl({
+//  compact: false,
+ // customAttribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox GL JS</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a>'
+//}));
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
