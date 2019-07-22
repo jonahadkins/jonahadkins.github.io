@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+    #menu {
+        position: absolute;
+        background: #000;
+        color: #fff;
+        padding: 10px;
+        font-family: 'Open Sans', sans-serif;
+    }
+</style>
+
+<div id='map'></div>
+<div id='menu'>
+    <input id='https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/figaro/here_az.json' type='radio' name='rtoggle' value='Berlin Base' checked='checked'>
+    <label for='streets'>Demo Style</label>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/demo_data/figaro/here_az.json',
+    zoom: 2,
+    center: [-76.91, 37.12],
+    attributionControl: false
+});
+
+map.addControl(new mapboxgl.AttributionControl({
+  compact: false,
+  customAttribution: '<a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox GL JS</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a>'
+}));
+
+var layerList = document.getElementById('menu');
+var inputs = layerList.getElementsByTagName('input');
+
+function switchLayer(layer) {
+    var layerId = layer.target.id;
+    map.setStyle(layerId);
+}
+
+for (var i = 0; i < inputs.length; i++) {
+    inputs[i].onclick = switchLayer;
+}
+</script>
+
+</body>
+</html>
