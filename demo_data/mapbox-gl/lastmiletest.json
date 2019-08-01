@@ -6,7 +6,7 @@
     "berlin": {
       "type": "vector",
       "tiles": [
-        "https://xyz.api.here.com/tiles/herebase.02/{z}/{x}/{y}/omv?access_token=qv5mxWbZBm6NTd2xjwgIAIow0Kw2JJnxz7J5r-bo-2E"
+        "https://vector.hereapi.com/v2/vectortiles/base/{z}/{x}/{y}/omv?access_token=qv5mxWbZBm6NTd2xjwgIAIow0Kw2JJnxz7J5r-bo-2E"
       ]
     }
   },
