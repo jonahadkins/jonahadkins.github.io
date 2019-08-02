@@ -1,12 +1,12 @@
 {
   "version": 8,
-  "name": "",
+  "name": "here-amazon",
   "metadata": {},
   "sources": {
     "berlin": {
       "type": "vector",
       "tiles": [
-        "https://xyz.api.here.com/tiles/herebase.02/{z}/{x}/{y}/omv?access_token=AA2O8362IQ98hAUBPbckQQ8"
+        "https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?apikey=qv5mxWbZBm6NTd2xjwgIAIow0Kw2JJnxz7J5r-bo-2E"
       ]
     }
   },
@@ -675,7 +675,7 @@
       "filter": [
         "all",
         [
-          "==",
+          "<=",
           "kind_detail",
           2
         ],
@@ -748,7 +748,7 @@
       "filter": [
         "all",
         [
-          "==",
+          "<=",
           "kind_detail",
           2
         ],
@@ -1676,112 +1676,6 @@
         "fill-color": "rgba(105, 192, 209, 1)",
         "fill-antialias": false,
         "fill-translate-anchor": "viewport"
-      }
-    },
-    {
-      "id": "iceshelf-edge",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "landuse",
-      "minzoom": 2,
-      "maxzoom": 8,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Polygon"
-        ],
-        [
-          "in",
-          "kind",
-          "glacier"
-        ]
-      ],
-      "layout": {
-        "visibility": "none"
-      },
-      "paint": {
-        "line-width": 5,
-        "line-opacity": {
-          "stops": [
-            [
-              2,
-              0
-            ],
-            [
-              2.5,
-              0.2
-            ],
-            [
-              7,
-              0.2
-            ],
-            [
-              8,
-              0
-            ]
-          ]
-        },
-        "line-blur": 5,
-        "line-translate": [
-          0,
-          0.25
-        ],
-        "line-color": "rgba(255, 255, 255, 1)"
-      }
-    },
-    {
-      "id": "iceshelf",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "landuse",
-      "minzoom": 2,
-      "maxzoom": 8,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "Polygon"
-        ],
-        [
-          "in",
-          "kind",
-          "glacier"
-        ]
-      ],
-      "layout": {
-        "visibility": "none"
-      },
-      "paint": {
-        "line-width": 5,
-        "line-opacity": {
-          "stops": [
-            [
-              2,
-              0
-            ],
-            [
-              2.5,
-              0.2
-            ],
-            [
-              7,
-              0.2
-            ],
-            [
-              8,
-              0
-            ]
-          ]
-        },
-        "line-blur": 5,
-        "line-translate": [
-          0,
-          0.25
-        ],
-        "line-color": "rgba(255, 255, 255, 1)"
       }
     },
     {
@@ -3290,7 +3184,7 @@
     },
     {
       "id": "aeroway-runway-casing",
-      "type": "line",
+      "type": "fill",
       "source": "berlin",
       "source-layer": "landuse",
       "minzoom": 12,
@@ -3307,140 +3201,7 @@
         "visibility": "visible"
       },
       "paint": {
-        "line-width": {
-          "stops": [
-            [
-              13,
-              1
-            ],
-            [
-              14,
-              1
-            ],
-            [
-              15,
-              0.7
-            ],
-            [
-              17,
-              1
-            ]
-          ]
-        },
-        "line-gap-width": {
-          "stops": [
-            [
-              12,
-              3
-            ],
-            [
-              13,
-              6
-            ],
-            [
-              15,
-              20
-            ],
-            [
-              17,
-              80
-            ],
-            [
-              19,
-              310
-            ],
-            [
-              20,
-              630
-            ]
-          ]
-        },
-        "line-opacity": {
-          "stops": [
-            [
-              12.5,
-              0
-            ],
-            [
-              13,
-              1
-            ]
-          ]
-        },
-        "line-color": {
-          "stops": [
-            [
-              15,
-              "rgba(196, 183, 214, 1)"
-            ],
-            [
-              16,
-              "rgba(200, 190, 205, 1)"
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "aeroway-runway",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "landuse",
-      "minzoom": 12,
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind",
-          "runway",
-          "taxiway"
-        ]
-      ],
-      "layout": {
-        "visibility": "visible"
-      },
-      "paint": {
-        "line-width": {
-          "stops": [
-            [
-              12,
-              3
-            ],
-            [
-              13,
-              6
-            ],
-            [
-              15,
-              20
-            ],
-            [
-              17,
-              80
-            ],
-            [
-              19,
-              310
-            ],
-            [
-              20,
-              630
-            ]
-          ]
-        },
-        "line-opacity": {
-          "stops": [
-            [
-              12.2,
-              0
-            ],
-            [
-              13,
-              1
-            ]
-          ]
-        },
-        "line-color": {
+        "fill-color": {
           "stops": [
             [
               15,
@@ -3451,7 +3212,20 @@
               "rgba(216, 213, 222, 1)"
             ]
           ]
-        }
+        },
+        "fill-outline-color": {
+          "stops": [
+            [
+              15,
+              "rgba(196, 183, 214, 1)"
+            ],
+            [
+              16,
+              "rgba(200, 190, 205, 1)"
+            ]
+          ]
+        },
+        "fill-antialias": true
       }
     },
     {
@@ -5192,7 +4966,7 @@
       }
     },
     {
-      "id": "road-motorway-ramp-casing",
+      "id": "road-motorway-ramp",
       "type": "line",
       "source": "berlin",
       "source-layer": "roads",
@@ -5900,7 +5674,9 @@
         ]
       ],
       "layout": {
-        "visibility": "visible"
+        "visibility": "visible",
+        "line-join": "round",
+        "line-cap": "round"
       },
       "paint": {
         "line-width": {
@@ -5963,7 +5739,8 @@
         ]
       ],
       "layout": {
-        "visibility": "visible"
+        "visibility": "visible",
+        "line-join": "round"
       },
       "paint": {
         "line-width": {
@@ -6027,8 +5804,7 @@
       ],
       "layout": {
         "visibility": "visible",
-        "line-join": "round",
-        "line-cap": "square"
+        "line-join": "round"
       },
       "paint": {
         "line-width": {
@@ -8691,69 +8467,6 @@
       }
     },
     {
-      "id": "admin-sub-state-over",
-      "type": "line",
-      "source": "berlin",
-      "source-layer": "boundaries",
-      "minzoom": 16,
-      "filter": [
-        "all",
-        [
-          "in",
-          "kind_detail",
-          5,
-          6
-        ],
-        [
-          "==",
-          "$type",
-          "LineString"
-        ]
-      ],
-      "layout": {
-        "visibility": "none"
-      },
-      "paint": {
-        "line-width": {
-          "stops": [
-            [
-              2,
-              0.5
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              12,
-              1
-            ],
-            [
-              14,
-              2
-            ]
-          ]
-        },
-        "line-opacity": {
-          "stops": [
-            [
-              15,
-              1
-            ],
-            [
-              15.7,
-              0
-            ]
-          ]
-        },
-        "line-dasharray": [
-          2,
-          1
-        ],
-        "line-color": "rgba(151, 147, 147, 1)"
-      }
-    },
-    {
       "id": "landuse-military-edge",
       "type": "line",
       "source": "berlin",
@@ -8774,7 +8487,7 @@
         ]
       ],
       "layout": {
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "line-width": {
@@ -8822,6 +8535,64 @@
       }
     },
     {
+      "id": "admin-sub-state-over",
+      "type": "line",
+      "source": "berlin",
+      "source-layer": "boundaries",
+      "minzoom": 1,
+      "maxzoom": 16,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ]
+      ],
+      "layout": {
+        "visibility": "visible"
+      },
+      "paint": {
+        "line-width": {
+          "stops": [
+            [
+              2,
+              0.5
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              12,
+              1
+            ],
+            [
+              14,
+              2
+            ]
+          ]
+        },
+        "line-opacity": {
+          "stops": [
+            [
+              15,
+              1
+            ],
+            [
+              15.7,
+              0
+            ]
+          ]
+        },
+        "line-dasharray": [
+          2,
+          1
+        ],
+        "line-color": "rgba(151, 147, 147, 1)"
+      }
+    },
+    {
       "id": "city-label-g",
       "type": "symbol",
       "source": "berlin",
@@ -8831,23 +8602,25 @@
       "filter": [
         "all",
         [
-          "in",
-          "kind_detail",
-          "city",
-          "town",
-          "village"
-        ],
-        [
           "==",
           "$type",
           "Point"
+        ],
+        [
+          "!has",
+          "region_capital"
+        ],
+        [
+          "<",
+          "population",
+          10000
         ]
       ],
       "layout": {
         "text-line-height": 1,
         "text-max-width": 5,
         "text-letter-spacing": 0,
-        "text-field": "{name:en}",
+        "text-field": "{name}",
         "text-offset": [
           0,
           0
@@ -8867,8 +8640,7 @@
         "text-anchor": "bottom",
         "text-font": [
           "Amazon_Ember_Rg"
-        ],
-        "visibility": "none"
+        ]
       },
       "paint": {
         "text-halo-color": "rgba(236, 236, 236, 1)",
@@ -8908,23 +8680,30 @@
       "filter": [
         "all",
         [
-          "in",
-          "kind_detail",
-          "city",
-          "town",
-          "village"
-        ],
-        [
           "==",
           "$type",
           "Point"
+        ],
+        [
+          ">=",
+          "population",
+          10000
+        ],
+        [
+          "!has",
+          "region_capital"
+        ],
+        [
+          "<",
+          "population",
+          50000
         ]
       ],
       "layout": {
         "text-line-height": 1,
         "text-max-width": 5,
         "text-letter-spacing": 0,
-        "text-field": "{name_en}",
+        "text-field": "{name}",
         "text-offset": [
           0,
           -0.2
@@ -8952,8 +8731,7 @@
         "text-anchor": "bottom",
         "text-font": [
           "Amazon_Ember_Rg"
-        ],
-        "visibility": "none"
+        ]
       },
       "paint": {
         "text-halo-color": "rgba(236, 236, 236, 1)",
@@ -8995,7 +8773,250 @@
       }
     },
     {
-      "id": "city-label-c-capital",
+      "id": "city-label-e",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 9,
+      "maxzoom": 15,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "Point"
+        ],
+        [
+          ">=",
+          "population",
+          50000
+        ],
+        [
+          "!has",
+          "region_capital"
+        ],
+        [
+          "<",
+          "population",
+          100000
+        ]
+      ],
+      "layout": {
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-letter-spacing": 0,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.2
+        ],
+        "text-size": {
+          "stops": [
+            [
+              9,
+              12
+            ],
+            [
+              10,
+              14
+            ],
+            [
+              11,
+              14
+            ],
+            [
+              12,
+              16
+            ]
+          ]
+        },
+        "text-anchor": "bottom",
+        "icon-size": 0.35,
+        "icon-image": "citydot",
+        "text-font": [
+          "Amazon_Ember_Rg"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(236, 236, 236, 1)",
+        "text-halo-blur": 0.5,
+        "text-color": {
+          "stops": [
+            [
+              10,
+              "rgba(38, 38, 38, 1)"
+            ],
+            [
+              11,
+              "rgba(10, 10, 10, 1)"
+            ]
+          ]
+        },
+        "text-halo-width": 1.25,
+        "icon-opacity": {
+          "stops": [
+            [
+              9,
+              0
+            ],
+            [
+              9.5,
+              0.65
+            ],
+            [
+              10.5,
+              0.65
+            ],
+            [
+              11,
+              0
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              9,
+              0
+            ],
+            [
+              9.5,
+              1
+            ],
+            [
+              14.5,
+              1
+            ],
+            [
+              15,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-label-d",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "places",
+      "minzoom": 8,
+      "maxzoom": 14,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "Point"
+        ],
+        [
+          ">=",
+          "population",
+          100000
+        ],
+        [
+          "!has",
+          "region_capital"
+        ],
+        [
+          "<",
+          "population",
+          400000
+        ]
+      ],
+      "layout": {
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-letter-spacing": 0,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.2
+        ],
+        "text-size": {
+          "stops": [
+            [
+              9,
+              12
+            ],
+            [
+              10,
+              14
+            ],
+            [
+              12,
+              16
+            ]
+          ]
+        },
+        "text-anchor": "bottom",
+        "icon-size": 0.35,
+        "icon-image": "citydot",
+        "text-font": [
+          "Amazon_Ember_Rg"
+        ]
+      },
+      "paint": {
+        "text-halo-color": "rgba(240, 240, 240, 1)",
+        "text-halo-blur": 0.5,
+        "text-color": {
+          "stops": [
+            [
+              9,
+              "rgba(38, 38, 38, 1)"
+            ],
+            [
+              10,
+              "rgba(10, 10, 10, 1)"
+            ]
+          ]
+        },
+        "text-halo-width": 1.25,
+        "icon-opacity": {
+          "stops": [
+            [
+              8,
+              0
+            ],
+            [
+              8.5,
+              0.65
+            ],
+            [
+              9.5,
+              0.65
+            ],
+            [
+              10,
+              0
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              8,
+              0
+            ],
+            [
+              8.5,
+              1
+            ],
+            [
+              13.5,
+              1
+            ],
+            [
+              14,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "city-label-c",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
@@ -9004,29 +9025,33 @@
       "filter": [
         "all",
         [
-          "in",
-          "kind_detail",
-          "city",
-          "town"
-        ],
-        [
           "==",
           "$type",
           "Point"
         ],
         [
-          "has",
+          ">=",
+          "population",
+          400000
+        ],
+        [
+          "!has",
           "region_capital"
+        ],
+        [
+          "<",
+          "population",
+          1000000
         ]
       ],
       "layout": {
         "text-line-height": 1,
         "text-max-width": 5,
         "text-letter-spacing": 0,
-        "text-field": "{name:en}",
+        "text-field": "{name}",
         "text-offset": [
           0,
-          -0.3
+          -0.2
         ],
         "text-size": {
           "stops": [
@@ -9050,7 +9075,7 @@
         },
         "text-anchor": "bottom",
         "icon-size": 0.4,
-        "icon-image": "citydot-open",
+        "icon-image": "citydot",
         "text-font": [
           "Amazon-Ember-Medium"
         ],
@@ -9068,18 +9093,18 @@
             ],
             [
               8,
-              1.5
+              1.25
             ]
           ]
         },
         "icon-opacity": {
           "stops": [
             [
-              4.5,
+              6,
               0
             ],
             [
-              5,
+              6.5,
               1
             ],
             [
@@ -9095,11 +9120,11 @@
         "text-opacity": {
           "stops": [
             [
-              4.5,
+              6,
               0
             ],
             [
-              5,
+              6.5,
               1
             ],
             [
@@ -9184,7 +9209,8 @@
         "text-padding": 3,
         "text-font": [
           "BookerlyLCD_Bd"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(240, 240, 240, 0.75)",
@@ -9379,7 +9405,8 @@
         "text-padding": 3,
         "text-font": [
           "BookerlyLCD_Bd"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(240, 240, 240, 0.75)",
@@ -9630,7 +9657,7 @@
         "text-font": [
           "BookerlyLCD_It"
         ],
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 0.3)",
@@ -9688,7 +9715,8 @@
         "symbol-placement": "line",
         "text-font": [
           "BookerlyLCD_It"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 0.3)",
@@ -9742,7 +9770,8 @@
         "text-allow-overlap": true,
         "text-font": [
           "BookerlyLCD_It"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 0.3)",
@@ -9790,7 +9819,8 @@
         "symbol-placement": "line",
         "text-font": [
           "BookerlyLCD_It"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 0.3)",
@@ -9843,7 +9873,8 @@
         },
         "text-font": [
           "BookerlyLCD_It"
-        ]
+        ],
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(225, 225, 225, 1)",
@@ -9927,16 +9958,16 @@
           "name"
         ],
         [
-          "!in",
+          "in",
           "kind",
-          ""
+          "historical"
         ]
       ],
       "layout": {
         "text-line-height": 1,
         "text-max-width": 5,
         "text-letter-spacing": 0.05,
-        "text-field": "{name:en}",
+        "text-field": "{name}",
         "text-offset": [
           0,
           -0.3
@@ -9957,6 +9988,97 @@
       }
     },
     {
+      "id": "poi-civic",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "pois",
+      "minzoom": 15,
+      "filter": [
+        "all",
+        [
+          "has",
+          "name"
+        ],
+        [
+          "in",
+          "kind",
+          "station",
+          "ferry_terminal",
+          "museum",
+          "artwork"
+        ]
+      ],
+      "layout": {
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-letter-spacing": 0.05,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.3
+        ],
+        "text-size": 10,
+        "text-anchor": "bottom",
+        "icon-size": 0.35,
+        "icon-image": "poi-civic",
+        "text-font": [
+          "Amazon_Ember_Rg"
+        ]
+      },
+      "paint": {
+        "text-halo-color": "rgba(240, 240, 240, 1)",
+        "text-halo-blur": 0.6,
+        "text-color": "rgba(36, 67, 145, 1)",
+        "text-halo-width": 0.8
+      }
+    },
+    {
+      "id": "poi-prominent",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "pois",
+      "minzoom": 15,
+      "filter": [
+        "all",
+        [
+          "has",
+          "name"
+        ],
+        [
+          "in",
+          "kind",
+          "airport",
+          "tourist_attraction",
+          "attraction"
+        ]
+      ],
+      "layout": {
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-letter-spacing": 0.05,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.3
+        ],
+        "text-size": 10,
+        "text-anchor": "bottom",
+        "icon-size": 0.35,
+        "icon-image": "poi-prominent",
+        "text-font": [
+          "Amazon_Ember_Rg"
+        ],
+        "icon-padding": 1,
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(243, 243, 243, 1)",
+        "text-halo-blur": 0.6,
+        "text-color": "rgba(181, 90, 29, 1)",
+        "text-halo-width": 0.8
+      }
+    },
+    {
       "id": "island-label-small",
       "type": "symbol",
       "source": "berlin",
@@ -9969,6 +10091,11 @@
           "==",
           "kind",
           "island"
+        ],
+        [
+          ">=",
+          "min_zoom",
+          12
         ]
       ],
       "layout": {
@@ -10032,6 +10159,87 @@
       }
     },
     {
+      "id": "island-label-large",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "earth",
+      "minzoom": 10,
+      "maxzoom": 16,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "island"
+        ],
+        [
+          ">=",
+          "min_zoom",
+          10
+        ]
+      ],
+      "layout": {
+        "text-transform": "uppercase",
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-letter-spacing": 0.1,
+        "text-field": "{name:en}",
+        "text-size": {
+          "stops": [
+            [
+              13,
+              10
+            ],
+            [
+              16,
+              12
+            ]
+          ]
+        },
+        "text-anchor": "bottom",
+        "text-font": [
+          "Amazon_Ember_Rg"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(221, 220, 214, 1)",
+        "text-color": {
+          "stops": [
+            [
+              13,
+              "rgba(110, 110, 110, 1)"
+            ],
+            [
+              16,
+              "rgba(110, 110, 110, 0.8)"
+            ]
+          ]
+        },
+        "text-halo-width": 0.65,
+        "text-opacity": {
+          "stops": [
+            [
+              12.75,
+              0
+            ],
+            [
+              13,
+              1
+            ],
+            [
+              15.5,
+              1
+            ],
+            [
+              16,
+              0
+            ]
+          ]
+        }
+      }
+    },
+    {
       "id": "park-label-small",
       "type": "symbol",
       "source": "berlin",
@@ -10054,7 +10262,7 @@
       "layout": {
         "text-line-height": 1,
         "text-max-width": 5,
-        "text-field": "{name:en}",
+        "text-field": "{name}",
         "text-size": {
           "stops": [
             [
@@ -10073,8 +10281,7 @@
         },
         "text-font": [
           "BookerlyLCD_It"
-        ],
-        "visibility": "visible"
+        ]
       },
       "paint": {
         "text-halo-color": "rgba(225, 230, 210, 1)",
@@ -10093,6 +10300,69 @@
             ]
           ]
         }
+      }
+    },
+    {
+      "id": "park-label-large",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "landuse",
+      "minzoom": 14,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "kind",
+          "park"
+        ],
+        [
+          "==",
+          "$type",
+          "Point"
+        ]
+      ],
+      "layout": {
+        "text-line-height": 1,
+        "text-max-width": 5,
+        "text-field": "{name}",
+        "text-size": {
+          "stops": [
+            [
+              14,
+              10.5
+            ],
+            [
+              15,
+              10.75
+            ],
+            [
+              16,
+              14
+            ]
+          ]
+        },
+        "text-font": [
+          "BookerlyLCD_It"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(225, 230, 210, 1)",
+        "text-halo-blur": 0.6,
+        "text-color": {
+          "stops": [
+            [
+              15,
+              "rgba(46, 100, 5, 1)"
+            ],
+            [
+              16,
+              "rgba(66, 120, 25, 1)"
+            ]
+          ]
+        },
+        "text-halo-width": 0.8
       }
     },
     {
@@ -10212,96 +10482,6 @@
       }
     },
     {
-      "id": "shields-eu-route",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "roads",
-      "minzoom": 8,
-      "maxzoom": 24,
-      "filter": [
-        "all",
-        [
-          "==",
-          "$type",
-          "LineString"
-        ],
-        [
-          "has",
-          "ref"
-        ],
-        [
-          "in",
-          "kind_detail",
-          "motorway",
-          "trunk",
-          "primary",
-          "secondary"
-        ],
-        [
-          "!has",
-          "is_link"
-        ]
-      ],
-      "layout": {
-        "icon-rotation-alignment": "viewport",
-        "text-field": "{ref}",
-        "text-size": {
-          "stops": [
-            [
-              8,
-              10
-            ],
-            [
-              13,
-              12
-            ]
-          ]
-        },
-        "icon-text-fit": "width",
-        "icon-size": {
-          "stops": [
-            [
-              6,
-              0.4
-            ],
-            [
-              9,
-              0.55
-            ],
-            [
-              13,
-              0.65
-            ]
-          ]
-        },
-        "symbol-placement": "line",
-        "icon-image": "shield-rectangle-green-light",
-        "text-font": [
-          "AmazonEmber_Bd"
-        ],
-        "symbol-spacing": 500,
-        "text-letter-spacing": -0.03,
-        "icon-text-fit-padding": [
-          0,
-          24,
-          0,
-          24
-        ],
-        "text-offset": [
-          0,
-          0.2
-        ],
-        "text-rotation-alignment": "viewport",
-        "visibility": "none"
-      },
-      "paint": {
-        "text-halo-color": "rgba(18, 33, 17, 0.8)",
-        "text-halo-blur": 0.5,
-        "text-color": "rgba(255, 255, 255, 1)",
-        "text-halo-width": 0.5
-      }
-    },
-    {
       "id": "shields-generic-8-14",
       "type": "symbol",
       "source": "berlin",
@@ -10385,60 +10565,61 @@
       ],
       "layout": {
         "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0,
         "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
         "text-size": {
           "stops": [
             [
+              7,
+              10.5
+            ],
+            [
+              12,
+              11.5
+            ],
+            [
               15,
-              10
+              11.5
             ],
             [
               16,
-              12
+              13
             ]
           ]
         },
-        "icon-text-fit": "width",
         "icon-size": {
           "stops": [
             [
               7,
-              0.45
+              0.55
             ],
             [
               12,
-              0.55
+              0.6
             ],
             [
               15,
-              0.55
+              0.6
             ],
             [
               16,
-              0.6
+              0.7
             ]
           ]
         },
         "symbol-placement": "line",
-        "icon-image": "shield-rectangle-white-long",
+        "icon-image": "shield-rectangle-white",
         "text-font": [
           "AmazonEmber_Bd"
         ],
-        "symbol-spacing": 500,
-        "text-transform": "uppercase",
-        "text-letter-spacing": 0,
-        "icon-text-fit-padding": [
-          0,
-          34,
-          0,
-          34
-        ],
-        "text-offset": [
-          0,
-          0.2
-        ],
-        "text-rotation-alignment": "viewport",
-        "visibility": "visible"
+        "visibility": "none"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 1)",
@@ -10472,6 +10653,1558 @@
             ],
             [
               7.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-generic-5-7",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 7,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "motorway",
+          "trunk",
+          "primary",
+          "secondary"
+        ],
+        [
+          "!in",
+          "network",
+          "e-road",
+          "FR:01:D-road",
+          "FR:51:D-road",
+          "FR:52:D-road",
+          "FR:55:D-road",
+          "FR:A-road",
+          "ES:A-road",
+          "JP:prefectural",
+          "jp:prefectural",
+          "JP:prefectural:gunma",
+          "JP:prefectural:kagawa",
+          "IT:A-road",
+          "IT:BI",
+          "iT:CR",
+          "IT:GR",
+          "IT:MO",
+          "IT:PD",
+          "IT:PN",
+          "IT:PR",
+          "IT:PT",
+          "IT:PU",
+          "IT:PV",
+          "IT:RA",
+          "IT:RE",
+          "IT:RN",
+          "IT:RO",
+          "IT:SI",
+          "IT:SO",
+          "IT:SP",
+          "IT:TN",
+          "IT:TO",
+          "IT:TS",
+          "IT:TV",
+          "IT:UD",
+          "IT:VA",
+          "IT:VB",
+          "IT:VC",
+          "IT:VE",
+          "IT:VR",
+          "IT:VT",
+          "IT:MI",
+          "IT:VI",
+          "IT:Piemonte",
+          "IT:Umbria",
+          "IT:Veneto",
+          "IT:Toscana",
+          "IT:B-road"
+        ],
+        [
+          "!has",
+          "is_link"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0,
+        "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-size": {
+          "stops": [
+            [
+              7,
+              10.5
+            ],
+            [
+              12,
+              11.5
+            ],
+            [
+              15,
+              11.5
+            ],
+            [
+              16,
+              13
+            ]
+          ]
+        },
+        "icon-size": {
+          "stops": [
+            [
+              7,
+              0.55
+            ],
+            [
+              12,
+              0.6
+            ],
+            [
+              15,
+              0.6
+            ],
+            [
+              16,
+              0.7
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-white",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-width": 1,
+        "icon-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              0.85
+            ],
+            [
+              10,
+              0.85
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-generic-4",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 7,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "motorway",
+          "trunk",
+          "primary",
+          "secondary"
+        ],
+        [
+          "!in",
+          "network",
+          "e-road",
+          "FR:01:D-road",
+          "FR:51:D-road",
+          "FR:52:D-road",
+          "FR:55:D-road",
+          "FR:A-road",
+          "ES:A-road",
+          "JP:prefectural",
+          "jp:prefectural",
+          "JP:prefectural:gunma",
+          "JP:prefectural:kagawa",
+          "IT:A-road",
+          "IT:BI",
+          "iT:CR",
+          "IT:GR",
+          "IT:MO",
+          "IT:PD",
+          "IT:PN",
+          "IT:PR",
+          "IT:PT",
+          "IT:PU",
+          "IT:PV",
+          "IT:RA",
+          "IT:RE",
+          "IT:RN",
+          "IT:RO",
+          "IT:SI",
+          "IT:SO",
+          "IT:SP",
+          "IT:TN",
+          "IT:TO",
+          "IT:TS",
+          "IT:TV",
+          "IT:UD",
+          "IT:VA",
+          "IT:VB",
+          "IT:VC",
+          "IT:VE",
+          "IT:VR",
+          "IT:VT",
+          "IT:MI",
+          "IT:VI",
+          "IT:Piemonte",
+          "IT:Umbria",
+          "IT:Veneto",
+          "IT:Toscana",
+          "IT:B-road"
+        ],
+        [
+          "!has",
+          "is_link"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0,
+        "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-size": {
+          "stops": [
+            [
+              7,
+              10.5
+            ],
+            [
+              12,
+              11.5
+            ],
+            [
+              15,
+              11.5
+            ],
+            [
+              16,
+              13
+            ]
+          ]
+        },
+        "icon-size": {
+          "stops": [
+            [
+              7,
+              0.55
+            ],
+            [
+              12,
+              0.6
+            ],
+            [
+              15,
+              0.6
+            ],
+            [
+              16,
+              0.7
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-white",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-width": 1,
+        "icon-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              0.85
+            ],
+            [
+              10,
+              0.85
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-generic-1-3",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 7,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "motorway",
+          "trunk",
+          "primary",
+          "secondary"
+        ],
+        [
+          "!in",
+          "network",
+          "e-road",
+          "FR:01:D-road",
+          "FR:51:D-road",
+          "FR:52:D-road",
+          "FR:55:D-road",
+          "FR:A-road",
+          "ES:A-road",
+          "JP:prefectural",
+          "jp:prefectural",
+          "JP:prefectural:gunma",
+          "JP:prefectural:kagawa",
+          "IT:A-road",
+          "IT:BI",
+          "iT:CR",
+          "IT:GR",
+          "IT:MO",
+          "IT:PD",
+          "IT:PN",
+          "IT:PR",
+          "IT:PT",
+          "IT:PU",
+          "IT:PV",
+          "IT:RA",
+          "IT:RE",
+          "IT:RN",
+          "IT:RO",
+          "IT:SI",
+          "IT:SO",
+          "IT:SP",
+          "IT:TN",
+          "IT:TO",
+          "IT:TS",
+          "IT:TV",
+          "IT:UD",
+          "IT:VA",
+          "IT:VB",
+          "IT:VC",
+          "IT:VE",
+          "IT:VR",
+          "IT:VT",
+          "IT:MI",
+          "IT:VI",
+          "IT:Piemonte",
+          "IT:Umbria",
+          "IT:Veneto",
+          "IT:Toscana",
+          "IT:B-road"
+        ],
+        [
+          "!has",
+          "is_link"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-transform": "uppercase",
+        "text-letter-spacing": 0,
+        "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-size": {
+          "stops": [
+            [
+              7,
+              10.5
+            ],
+            [
+              12,
+              11.5
+            ],
+            [
+              15,
+              11.5
+            ],
+            [
+              16,
+              13
+            ]
+          ]
+        },
+        "icon-size": {
+          "stops": [
+            [
+              7,
+              0.55
+            ],
+            [
+              12,
+              0.6
+            ],
+            [
+              15,
+              0.6
+            ],
+            [
+              16,
+              0.7
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-white",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ]
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-width": 1,
+        "icon-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              0.85
+            ],
+            [
+              10,
+              0.85
+            ],
+            [
+              12,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-eu-route",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "==",
+          "network",
+          "e-road"
+        ],
+        [
+          "!has",
+          "is_link"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{shield_text}",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-green-light",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          24,
+          0,
+          24
+        ],
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport",
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-de-motorways",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 7,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ],
+        [
+          "==",
+          "network",
+          "DE:BAB"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              12,
+              13
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              9,
+              0.5
+            ],
+            [
+              12,
+              0.6
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-DE-Autobahn",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          20,
+          0,
+          20
+        ],
+        "text-offset": [
+          0,
+          0.15
+        ],
+        "text-rotation-alignment": "viewport"
+      },
+      "paint": {
+        "text-halo-color": "rgba(12, 57, 26, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5,
+        "icon-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              7.4,
+              0
+            ],
+            [
+              7.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-es-a-road",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 6,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "==",
+          "network",
+          "ES:A-road"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              6,
+              8
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              14,
+              10.5
+            ],
+            [
+              15,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-blue",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": {
+          "stops": [
+            [
+              6,
+              [
+                0,
+                20,
+                0,
+                20
+              ]
+            ],
+            [
+              7,
+              [
+                0,
+                15,
+                0,
+                15
+              ]
+            ]
+          ]
+        },
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport"
+      },
+      "paint": {
+        "text-halo-color": "rgba(8, 8, 93, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5,
+        "icon-opacity": {
+          "stops": [
+            [
+              6.45,
+              0
+            ],
+            [
+              6.5,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              6.45,
+              0
+            ],
+            [
+              6.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-fr-d-roads",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "in",
+          "network",
+          "FR:01:D-road",
+          "FR:51:D-road",
+          "FR:52:D-road",
+          "FR:55:D-road"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-yellow",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          15,
+          0,
+          15
+        ],
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport"
+      },
+      "paint": {
+        "text-halo-color": "rgba(255, 255, 255, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(0, 0, 0, 1)",
+        "text-halo-width": 0.5,
+        "icon-opacity": {
+          "stops": [
+            [
+              8.4,
+              0
+            ],
+            [
+              8.5,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              8.4,
+              0
+            ],
+            [
+              8.5,
+              1
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "id": "shields-fr-autoroute",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ],
+        [
+          "==",
+          "network",
+          "FR:A-road"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{shield_text}",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-red",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          15,
+          0,
+          15
+        ],
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport",
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-it-autostrade-3",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "in",
+          "network",
+          "IT:A-road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.6
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-IT-Autostrade",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          13,
+          0,
+          13
+        ],
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport",
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-it-autostrade-1-2-copy",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "<=",
+          "length",
+          2
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-letter-spacing": 0.1,
+        "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.6
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-IT-Autostrade",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-it-autostrade-1-2",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "in",
+          "network",
+          "IT:A-road"
+        ],
+        [
+          "==",
+          "kind_detail",
+          "motorway"
+        ],
+        [
+          "<=",
+          "length,ref",
+          2
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "symbol-spacing": 500,
+        "text-letter-spacing": 0.1,
+        "text-field": "{ref}",
+        "text-offset": [
+          0,
+          0.1
+        ],
+        "text-rotation-alignment": "viewport",
+        "text-size": {
+          "stops": [
+            [
+              8,
+              10
+            ],
+            [
+              13,
+              12
+            ]
+          ]
+        },
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.6
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-IT-Autostrade",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "visibility": "none"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-uk-a-trunk",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 8,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "trunk"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "in",
+          "network",
+          "GB:A-road-white"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              14,
+              10.5
+            ],
+            [
+              15,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              9,
+              0.55
+            ],
+            [
+              14,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-green-light",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": [
+          0,
+          15,
+          0,
+          15
+        ],
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport"
+      },
+      "paint": {
+        "text-halo-color": "rgba(18, 33, 17, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 212, 28, 1)",
+        "text-halo-width": 0.5
+      }
+    },
+    {
+      "id": "shields-uk-motorway",
+      "type": "symbol",
+      "source": "berlin",
+      "source-layer": "roads",
+      "minzoom": 6,
+      "maxzoom": 24,
+      "filter": [
+        "all",
+        [
+          "==",
+          "$type",
+          "LineString"
+        ],
+        [
+          "has",
+          "ref"
+        ],
+        [
+          "in",
+          "kind_detail",
+          "motorway"
+        ],
+        [
+          "!has",
+          "is_link"
+        ],
+        [
+          "in",
+          "network",
+          "GB:M-road",
+          "GB:GB"
+        ]
+      ],
+      "layout": {
+        "icon-rotation-alignment": "viewport",
+        "text-field": "{ref}",
+        "text-size": {
+          "stops": [
+            [
+              6,
+              8
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              14,
+              10.5
+            ],
+            [
+              15,
+              12
+            ]
+          ]
+        },
+        "icon-text-fit": "width",
+        "icon-size": {
+          "stops": [
+            [
+              6,
+              0.4
+            ],
+            [
+              9,
+              0.55
+            ],
+            [
+              13,
+              0.65
+            ]
+          ]
+        },
+        "symbol-placement": "line",
+        "icon-image": "shield-rectangle-blue",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "symbol-spacing": 500,
+        "text-letter-spacing": -0.03,
+        "icon-text-fit-padding": {
+          "stops": [
+            [
+              6,
+              [
+                0,
+                20,
+                0,
+                20
+              ]
+            ],
+            [
+              7,
+              [
+                0,
+                15,
+                0,
+                15
+              ]
+            ]
+          ]
+        },
+        "text-offset": [
+          0,
+          0.2
+        ],
+        "text-rotation-alignment": "viewport",
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(8, 8, 93, 0.8)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(255, 255, 255, 1)",
+        "text-halo-width": 0.5,
+        "icon-opacity": {
+          "stops": [
+            [
+              6.45,
+              0
+            ],
+            [
+              6.5,
+              1
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              6.45,
+              0
+            ],
+            [
+              6.5,
               1
             ]
           ]
@@ -10810,7 +12543,7 @@
       }
     },
     {
-      "id": "neighborhood-hamlet",
+      "id": "neighborhood-hamlet-quarter",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
@@ -10829,17 +12562,7 @@
         "text-line-height": 1.1,
         "text-max-width": 6,
         "text-letter-spacing": 0.16,
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
+        "text-field": "{name}",
         "text-size": {
           "stops": [
             [
@@ -10889,410 +12612,83 @@
       }
     },
     {
-      "id": "citylabel-capital-B",
+      "id": "neighborhood-suburb",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
-      "minzoom": 4,
-      "maxzoom": 14,
+      "minzoom": 12,
+      "maxzoom": 15,
       "filter": [
         "all",
         [
-          "has",
-          "region_capital"
-        ],
-        [
           "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "==",
-          "kind_detail",
-          "city"
+          "kind",
+          "borough"
         ]
       ],
       "layout": {
-        "text-line-height": 1,
-        "text-max-width": 5,
-        "text-letter-spacing": 0,
-        "text-field": "{name:en}",
-        "text-offset": [
-          0,
-          -0.3
-        ],
+        "text-transform": "uppercase",
+        "text-line-height": 1.2,
+        "text-max-width": 6,
+        "text-letter-spacing": 0.1,
+        "text-field": "{name}",
         "text-size": {
           "stops": [
             [
-              5,
-              11
-            ],
-            [
-              6,
-              13
-            ],
-            [
-              8,
-              16
-            ],
-            [
-              10,
-              20
-            ],
-            [
-              13,
-              24
-            ]
-          ]
-        },
-        "text-anchor": "bottom",
-        "icon-size": {
-          "stops": [
-            [
-              4,
-              0.4
-            ],
-            [
-              6.5,
-              0.6
-            ]
-          ]
-        },
-        "icon-image": "citydot-open",
-        "text-font": [
-          "AmazonEmber_Bd"
-        ],
-        "visibility": "none"
-      },
-      "paint": {
-        "text-halo-color": "rgba(240, 240, 240, 1)",
-        "icon-halo-width": 2,
-        "icon-halo-color": "rgba(255, 255, 255, 0.8)",
-        "text-halo-blur": 0.5,
-        "text-color": "rgba(6, 6, 6, 1)",
-        "text-halo-width": {
-          "stops": [
-            [
-              6,
-              0.8
-            ],
-            [
-              8,
-              1.25
-            ]
-          ]
-        },
-        "icon-opacity": {
-          "stops": [
-            [
-              4.5,
-              0
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              8.5,
-              0
-            ]
-          ]
-        },
-        "text-opacity": {
-          "stops": [
-            [
-              4.5,
-              0
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              13.5,
-              1
-            ],
-            [
-              14,
-              0
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "citylabel-A",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "minzoom": 4,
-      "maxzoom": 14,
-      "filter": [
-        "all",
-        [
-          "!has",
-          "region_capital"
-        ],
-        [
-          "==",
-          "$type",
-          "Point"
-        ],
-        [
-          "==",
-          "kind_detail",
-          "city"
-        ]
-      ],
-      "layout": {
-        "text-max-width": 10,
-        "text-letter-spacing": 0.03,
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-offset": [
-          0,
-          -0.1
-        ],
-        "text-size": {
-          "stops": [
-            [
-              4,
+              12.5,
               12
             ],
             [
-              8,
-              16
-            ],
-            [
-              10,
-              20
-            ],
-            [
-              13,
-              24
-            ]
-          ]
-        },
-        "text-anchor": "bottom",
-        "icon-size": {
-          "stops": [
-            [
-              4,
-              0.45
-            ],
-            [
-              7,
-              0.6
-            ]
-          ]
-        },
-        "icon-image": "citydot",
-        "text-font": [
-          "AmazonEmber_Bd"
-        ]
-      },
-      "paint": {
-        "text-halo-color": "rgba(236, 236, 236, 1)",
-        "text-halo-blur": 0.5,
-        "text-color": "rgba(6, 6, 6, 1)",
-        "text-halo-width": {
-          "stops": [
-            [
-              6,
-              0.8
-            ],
-            [
-              8,
-              1
-            ]
-          ]
-        },
-        "icon-opacity": {
-          "stops": [
-            [
-              4,
-              0
-            ],
-            [
-              4.5,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              8.5,
-              0
-            ]
-          ]
-        },
-        "text-opacity": {
-          "stops": [
-            [
-              4,
-              0
-            ],
-            [
-              4.5,
-              1
-            ],
-            [
               13.5,
-              1
-            ],
-            [
-              14,
-              0
-            ]
-          ]
-        }
-      }
-    },
-    {
-      "id": "citylabel-capital-A",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "minzoom": 4,
-      "maxzoom": 14,
-      "filter": [
-        "all",
-        [
-          "has",
-          "region_capital"
-        ],
-        [
-          "==",
-          "$type",
-          "Point"
-        ]
-      ],
-      "layout": {
-        "text-max-width": 10,
-        "text-letter-spacing": 0.03,
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-offset": [
-          0,
-          -0.2
-        ],
-        "text-size": {
-          "stops": [
-            [
-              4,
               12
             ],
             [
-              8,
+              14,
               16
             ],
             [
-              10,
-              20
-            ],
-            [
-              13,
-              24
+              15,
+              23
             ]
           ]
         },
         "text-anchor": "bottom",
-        "icon-size": {
-          "stops": [
-            [
-              4,
-              0.45
-            ],
-            [
-              7,
-              0.6
-            ]
-          ]
-        },
-        "icon-image": "citydot-open",
+        "text-padding": 1,
         "text-font": [
-          "AmazonEmber_Bd"
+          "AmazonEmberDisplay_He"
         ]
       },
       "paint": {
-        "text-halo-color": "rgba(236, 236, 236, 1)",
-        "text-halo-blur": 0.5,
-        "text-color": "rgba(6, 6, 6, 1)",
+        "text-halo-color": "rgba(255, 255, 255, 1)",
+        "text-color": "rgba(59, 72, 112, 0.75)",
         "text-halo-width": {
           "stops": [
             [
-              4,
-              1.4
+              13,
+              0.6
             ],
             [
-              6,
-              0.8
-            ],
-            [
-              8,
-              1
-            ]
-          ]
-        },
-        "icon-opacity": {
-          "stops": [
-            [
-              3.9,
-              0
-            ],
-            [
-              4,
-              1
-            ],
-            [
-              8,
-              1
-            ],
-            [
-              8.5,
-              0
+              14,
+              0.7
             ]
           ]
         },
         "text-opacity": {
           "stops": [
             [
-              3.9,
+              12.49,
               0
             ],
             [
-              4,
+              12.5,
               1
             ],
             [
-              13.5,
+              14.5,
               1
             ],
             [
-              14,
+              14.9,
               0
             ]
           ]
@@ -11347,7 +12743,7 @@
           ]
         },
         "text-font": [
-          "Fira GO Regular"
+          "Amazon_Ember_Rg"
         ],
         "visibility": "none"
       },
@@ -11420,7 +12816,7 @@
           ]
         },
         "text-font": [
-          "Fira GO Regular"
+          "Amazon_Ember_Rg"
         ],
         "visibility": "none"
       },
@@ -11497,7 +12893,7 @@
           ]
         },
         "text-font": [
-          "Fira GO Regular"
+          "Amazon_Ember_Rg"
         ],
         "visibility": "none",
         "text-max-width": 24
@@ -11524,322 +12920,247 @@
       }
     },
     {
-      "id": "locality-label-400k",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "minzoom": 3,
-      "filter": [
-        "all",
-        [
-          "==",
-          "kind",
-          "locality"
-        ],
-        [
-          ">",
-          "population",
-          400000
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-size": {
-          "stops": [
-            [
-              3,
-              12
-            ],
-            [
-              6,
-              18
-            ],
-            [
-              8,
-              26
-            ],
-            [
-              11,
-              28
-            ]
-          ]
-        },
-        "text-font": [
-          "Fira GO Regular"
-        ],
-        "visibility": "none",
-        "text-allow-overlap": false,
-        "text-max-width": 22
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": {
-          "stops": [
-            [
-              3,
-              0.5
-            ],
-            [
-              5,
-              1
-            ],
-            [
-              7,
-              1.5
-            ],
-            [
-              9,
-              2
-            ],
-            [
-              11,
-              3
-            ]
-          ]
-        },
-        "text-color": "rgba(65, 64, 59, 1)"
-      }
-    },
-    {
-      "id": "locality-label-1million",
+      "id": "citylabel-a-b",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
       "filter": [
         "any",
         [
-          "==",
-          "region_capital",
-          true
-        ],
-        [
-          ">",
+          ">=",
           "population",
           1000000
         ]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
+        "text-max-width": 10,
+        "text-letter-spacing": 0.03,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.1
         ],
         "text-size": {
           "stops": [
             [
-              3,
-              13
-            ],
-            [
-              6,
-              16
+              4,
+              12
             ],
             [
               8,
-              24
+              16
             ],
             [
               10,
-              32
+              20
             ],
             [
-              12,
-              16
+              13,
+              24
             ]
           ]
         },
-        "text-font": [
-          "Fira GO Regular"
-        ],
-        "visibility": "none"
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": {
+        "text-anchor": "bottom",
+        "icon-size": {
           "stops": [
             [
-              3,
-              0.5
+              4,
+              0.45
             ],
             [
               7,
-              1.5
+              0.6
+            ]
+          ]
+        },
+        "icon-image": "citydot",
+        "text-font": [
+          "AmazonEmber_Bd"
+        ],
+        "visibility": "visible"
+      },
+      "paint": {
+        "text-halo-color": "rgba(236, 236, 236, 1)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(6, 6, 6, 1)",
+        "text-halo-width": {
+          "stops": [
+            [
+              6,
+              0.8
             ],
             [
-              9,
-              2
-            ],
-            [
-              10,
-              3
-            ],
-            [
-              12,
+              8,
               1
             ]
           ]
         },
-        "text-color": "rgba(65, 64, 59, 1)"
+        "icon-opacity": {
+          "stops": [
+            [
+              4,
+              0
+            ],
+            [
+              4.5,
+              1
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8.5,
+              0
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              4,
+              0
+            ],
+            [
+              4.5,
+              1
+            ],
+            [
+              13.5,
+              1
+            ],
+            [
+              14,
+              0
+            ]
+          ]
+        }
       }
     },
     {
-      "id": "locality-label-10million-capital",
+      "id": "citylabel-capital",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
-      "minzoom": 1,
+      "minzoom": 4,
+      "maxzoom": 14,
       "filter": [
         "any",
         [
           "==",
           "country_capital",
           true
-        ],
-        [
-          ">",
-          "population",
-          10000000
         ]
       ],
       "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
+        "text-max-width": 10,
+        "text-letter-spacing": 0.03,
+        "text-field": "{name}",
+        "text-offset": [
+          0,
+          -0.2
         ],
         "text-size": {
           "stops": [
             [
-              1,
-              10
-            ],
-            [
-              3,
-              14
-            ],
-            [
-              5,
-              18
-            ],
-            [
-              7,
-              24
-            ],
-            [
-              9,
-              28
-            ]
-          ]
-        },
-        "text-font": [
-          "Fira GO Bold"
-        ],
-        "visibility": "none",
-        "symbol-placement": "point",
-        "text-allow-overlap": false,
-        "text-ignore-placement": false
-      },
-      "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": {
-          "stops": [
-            [
-              1,
-              0.5
-            ],
-            [
-              3,
-              1.5
-            ],
-            [
-              5,
-              2
-            ],
-            [
-              7,
-              3
-            ],
-            [
-              9,
-              3
-            ]
-          ]
-        },
-        "text-color": "rgba(65, 64, 59, 1)"
-      }
-    },
-    {
-      "id": "locality-label-10million",
-      "type": "symbol",
-      "source": "berlin",
-      "source-layer": "places",
-      "minzoom": 1,
-      "filter": [
-        "any",
-        [
-          ">",
-          "population",
-          10000000
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name:en"
-          ],
-          [
-            "get",
-            "name"
-          ]
-        ],
-        "text-size": {
-          "stops": [
-            [
-              3,
+              4,
               12
             ],
             [
-              5,
-              18
+              8,
+              16
+            ],
+            [
+              10,
+              20
+            ],
+            [
+              13,
+              24
             ]
           ]
         },
-        "text-font": [ 
-          "Fira GO Regular"
+        "text-anchor": "bottom",
+        "icon-size": {
+          "stops": [
+            [
+              4,
+              0.45
+            ],
+            [
+              7,
+              0.6
+            ]
+          ]
+        },
+        "icon-image": "citydot-open",
+        "text-font": [
+          "AmazonEmber_Bd"
         ],
-        "visibility": "none",
-        "symbol-placement": "point"
+        "visibility": "visible"
       },
       "paint": {
-        "text-halo-color": "rgba(255, 255, 255, 0.5)",
-        "text-halo-width": 1,
-        "text-color": "rgba(65, 64, 59, 1)"
+        "text-halo-color": "rgba(236, 236, 236, 1)",
+        "text-halo-blur": 0.5,
+        "text-color": "rgba(6, 6, 6, 1)",
+        "text-halo-width": {
+          "stops": [
+            [
+              4,
+              1.4
+            ],
+            [
+              6,
+              0.8
+            ],
+            [
+              8,
+              1
+            ]
+          ]
+        },
+        "icon-opacity": {
+          "stops": [
+            [
+              3.9,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              8,
+              1
+            ],
+            [
+              8.5,
+              0
+            ]
+          ]
+        },
+        "text-opacity": {
+          "stops": [
+            [
+              3.9,
+              0
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              13.5,
+              1
+            ],
+            [
+              14,
+              0
+            ]
+          ]
+        }
       }
     }
   ],
-  "id": "berlin"
+  "id": "here-az"
 }
