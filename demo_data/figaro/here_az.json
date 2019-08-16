@@ -9751,7 +9751,18 @@
         ]
       ],
       "layout": {
-        "text-line-height": 1.5,
+        "text-line-height": {
+          "stops": [
+            [
+              1,
+              1.5
+            ],
+            [
+              4,
+              1
+            ]
+          ]
+        },
         "text-letter-spacing": 0.2,
         "text-max-width": 5,
         "text-field": "{name:en}",
@@ -9763,7 +9774,11 @@
             ],
             [
               4,
-              25
+              10
+            ],
+            [
+              6,
+              24
             ]
           ]
         },
@@ -10561,6 +10576,28 @@
         [
           "!has",
           "is_link"
+        ],
+        [
+          "<=",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            14
+        ],
+        [
+          ">=",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            8
         ]
       ],
       "layout": {
@@ -10619,7 +10656,7 @@
         "text-font": [
           "AmazonEmber_Bd"
         ],
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 1)",
@@ -10739,6 +10776,28 @@
         [
           "!has",
           "is_link"
+        ],
+        [
+          "<=",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            7
+        ],
+        [
+          ">=",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            5
         ]
       ],
       "layout": {
@@ -10797,7 +10856,7 @@
         "text-font": [
           "AmazonEmber_Bd"
         ],
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 1)",
@@ -10917,6 +10976,17 @@
         [
           "!has",
           "is_link"
+        ],
+        [
+          "==",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            4
         ]
       ],
       "layout": {
@@ -10975,7 +11045,7 @@
         "text-font": [
           "AmazonEmber_Bd"
         ],
-        "visibility": "none"
+        "visibility": "visible"
       },
       "paint": {
         "text-halo-color": "rgba(255, 255, 255, 1)",
@@ -11095,6 +11165,17 @@
         [
           "!has",
           "is_link"
+        ],
+        [
+          "<=",
+          [
+            "length",
+            [
+              "get",
+              "ref"
+            ]
+          ],
+            3
         ]
       ],
       "layout": {
