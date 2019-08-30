@@ -9436,7 +9436,7 @@
       }
     },
     {
-      "id": "state-label",
+      "id": "statelabel",
       "type": "symbol",
       "source": "berlin",
       "source-layer": "places",
