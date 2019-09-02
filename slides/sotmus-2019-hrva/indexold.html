@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Build a web map with open source tools!</title>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <link href='big.css' rel='stylesheet' type='text/css' />
+  <style>
+    .sotmus {
+      background-image: url(./images/sotmus.png);
+      background-repeat: no-repeat;
+      background-position: center 5px;
+      background-size: 40%;
+      text-shadow: 3px 3px 5px #000;
+    }
+
+    .southeast {
+      background-image: url(./images/southeast_va.jpg);
+      background-repeat: no-repeat;
+      background-position: center 5px;
+      background-size: 50%;
+      text-shadow: 3px 3px 5px #000;
+    }
+
+    .suffolk1 {
+      background-image: url(./images/suffolk-1.jpg);
+      background-repeat: no-repeat;
+      background-position: center 75px;
+      background-size: 50%;
+      text-shadow: 3px 3px 5px #000;
+    }
+
+    .suffolk2 {
+      background-image: url(./images/suffolk-2.png);
+      background-repeat: no-repeat;
+      background-position: center 200px;
+      background-size: 60%;
+      text-shadow: 3px 3px 5px #000;
+    }
+  </style>
+  <script src='big.js'></script>
+</head>
+
+<body>
+  <div>Hampton Roads <br><strong>A Million Buildings Later</strong><br></div>
+  <div>Hi! 👋
+    <br>GIS & Cartography
+    <br>OSM US Board Member
+    <p><font size='7'><a target='blank' href='https://twitter.com/jonahadkins'>@jonahadkins</a> | <a target='blank' href='http://jonahadkins.com'>jonahadkins.com</a></font>
+  </div>
+
+  <div>follow along at
+    <br><a target='blank' href='http://jonahadkins.com/slides/sotmus-2019-hrva'>jonahadkins.com/slides/sotmus-2019-hrva</a>
+    <br>words in <strong>YELLOW</strong> are links
+  </div>
+  <div>What/Where
+    <br> is
+    <br>"Hampton Roads" ?</div>
+  <div data-bodyclass='southeast'></div>
+  <div>
+    #1
+    <br><a target='blank' href='https://github.com/jonahadkins/chesapeake-OSM-imports'>CHESAPEAKE</a>
+    <br> November 2014
+    <br> 108k buildings, 92k addresses
+  </div>
+  <div>
+    just did it
+  </div>
+  <div>
+    #2
+    <br><a target='blank' href='https://github.com/jonahadkins/newportnews-OSM-imports'>NEWPORT NEWS</a>
+    <br> March 2015
+    <br> 82k buildings, 53k addresses
+    <br>
+    <font size='7'>running total 190k | 145k</font>
+  </div>
+  <div>
+    just did it
+    <br><a target='blank' href='https://www.openstreetmap.org/changeset/29605578#map=15/37.0784/-76.5116'>got caught</a>
+    <br>
+  </div>
+  <div>
+    #3
+    <br><a target='blank' href='https://github.com/jonahadkins/yorkcounty-OSM-imports'>YORK COUNTY</a>
+    <br> August 2015
+    <br> 25k buildings, 17k addresses
+    <br>
+    <font size='7'>running total 215k | 162k
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2015-August/000705.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/City_of_York_County_Buildings/Address_Import'>wiki
+      page</a></font>
+  </div>
+  <div>
+    <pre>
+      "..York County’s FOIA policy
+      still allows our department
+      to charge for GIS data,
+      however we have decided
+      to provide some GIS data
+      to not for profit organizations.."
+    </pre>
+  </div>
+  <div>
+    #4
+    <br><a target='blank' href='https://github.com/jonahadkins/suffolk-OSM-imports'>SUFFOLK</a>
+    <br> November 2015
+    <br> 42k buildings, 24k addresses
+    <br>
+    <font size='7'>running total 257k | 186k
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2015-November/000744.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/City_of_Suffolk_Buildings_Import'>wiki page</a>
+  </div></font>
+  <div data-bodyclass='suffolk1'></div>
+  <div data-bodyclass='suffolk2'></div>
+  <div>
+    #5
+    <br><a target='blank' href='https://github.com/jonahadkins/poquoson-OSM-imports'>POQUOSON</a>
+    <br> December 2015
+    <br> 6k buildings, 4k addresses
+    <br>
+    <font size='7'>running total 263k | 190k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2015-December/000750.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/City_of_Poquoson_Buildings/Address_Import'>wiki
+      page</a>
+  </div>
+  <div>
+    #6
+    <br><a target='blank' href='https://github.com/jonahadkins/hampton-OSM-imports'>HAMPTON</a>
+    <br> December 2015
+    <br> 59k buildings, 43k addresses
+    <br>
+    <font size='7'>running total 322k | 233k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2015-December/000755.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/City_of_Hampton_Buildings/Address_Import'>wiki
+      page</a>
+  </div>
+  <div>
+    #7
+    <br><a target='blank' href='https://github.com/jonahadkins/virginia-beach-OSM-imports'>VIRGINIA BEACH</a>
+    <br> March 2016
+    <br> 142k buildings, 115k addresses
+    <br>
+    <font size='7'>running total 464k | 348k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2016-March/000763.html'>mailing list proposal | </a> <a target='blank'
+      href='https://wiki.openstreetmap.org/wiki/City_of_Virginia_Beach_Buildings/Address_Import'>wiki page</a>
+  </div>
+  <div>
+    #8
+    <br><a target='blank' href='https://github.com/jonahadkins/norfolk-OSM-imports'>NORFOLK</a>
+    <br> July 2016
+    <br> 80k buildings, 53k addresses
+    <br>
+    <font size='7'>running total 544k | 401k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2016-March/000771.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/City_of_Norfolk'>wiki page</a>
+  </div>
+  <div>
+    #9
+    <br><a target='blank' href='https://github.com/jonahadkins/darecounty_OSM_imports'>DARE COUNTY</a>
+    <br> August 2017
+    <br> 18k buildings, 14k addresses
+    <br>
+    <font size='7'>running total 453k | 325k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2017-August/000824.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/Dare_County_Building_Import'>wiki page</a>
+  </div>
+  <div>
+    #10
+    <br><a target='blank' href='https://github.com/jonahadkins/portsmouth-osm-imports'>PORTSMOUTH</a>
+    <br> August 2017
+    <br> 49k buildings, 48k addresses
+    <br>
+    <font size='7'>running total 502k | 374k</font>
+    <br><a target='blank' href='https://lists.openstreetmap.org/pipermail/imports-us/2019-June/000907.html'>mailing list proposal | </a> <a target='blank' href='https://wiki.openstreetmap.org/wiki/Dare_County_Building_Import'>wiki page</a>
+  </div>
+  <div>
+    first import with help from another community member!
+  </div>
+
+
+
+  <div>OSM is a <br><strong>community!</strong><br></div>
+  <div>large database <br><a target='blank' href='https://planet.osm.org'>913-66-40gb</a><br></div>
+  <div>defined by <strong>elements</strong><br> points-lines-polygons-relations*</div>
+  <div>and more importantly, <strong>TAGS</strong><br>boundary=national<br>amenity=childcare<br>natural=peak<br>barrier=fence</div>
+  <div>fully <strong>searchable</strong> and <strong>queryable</strong></div>
+  <div><strong><a target='blank' href='https://nominatim.openstreetmap.org'>Nominatim</a></strong> searches name tags and addresses</div>
+  <div><strong><a target='blank' href='http://overpass-turbo.eu'>Overpass-Turbo</a></strong> searches, filters, and exports!<br></div>
+  <div>
+    <pre>
+(
+node
+[amenity=clinic]
+({{bbox}});
+);
+out;
+</pre>
+  </div>
+
+  <div> 🎃 Any Questions? 🎃 </div>
+</body>
+
+</html>
