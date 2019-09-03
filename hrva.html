@@ -1,28 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8' />
-    <title>hampton roads imports </title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
-</head>
-<body>
 
-<div id='map'></div>
-<script>
-mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/jonahadkins/ck01f0uei5etc1cqlhzi7nipq',
-    center: [-76.016,36.787],
-    zoom: 7
-});
-</script>
+<head>
+  <meta charset='utf-8' />
+  <title>hampton roads imports </title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap' rel='stylesheet'>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <style>
+    #title {
+      position: absolute;
+      top: 65%;
+      right: 1%;
+      bottom: 0;
+      width: 450px;
+      height: 200px;
+      box-sizing: border-box;
+      border-color: rgba(69, 69, 69, 0.9);
+      border-width: medium;
+      border-style: solid;
+      padding: 8px 24px;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 9pt;
+      color: rgba(230, 230, 230, 0.9);
+      text-align: center;
+      background: rgba(52, 51, 50, 0.9);
+      -webkit-border-radius: 4px;
+      border-radius: 4px;
+      z-index: 9999;
+      overflow: auto;
+    }
+
+    a {
+      color: rgba(229, 229, 216, 0.9);
+    }
+
+    .myButton {
+      -moz-box-shadow: inset 0px -3px 7px 0px #29bbff;
+      -webkit-box-shadow: inset 0px -3px 7px 0px #29bbff;
+      box-shadow: inset 0px -3px 7px 0px #29bbff;
+      background-color: #2dabf9;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 1px;
+      border: 1px solid #0b0e07;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: 'Bubblegum Sans', cursive;
+      font-size: 16px;
+      padding: 5px 10px;
+
+    }
+
+    .myButton:hover {
+      background-color: #0688fa;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+  </style>
+  <div id='map'></div>
+  <div id='title'>
+    <font size='6'>Hampton Roads Imports</font size>
+    <br>
+    <font size='3'><a target="blank" href="https://www.jonahadkins.com/slides/sotmus-2019-hrva/#0"> Maps for a SOTMUS Talk</a>
+      <br>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+
+      <br>
+      <input id='mapbox://styles/jonahadkins/ck01f0uei5etc1cqlhzi7nipq' class='myButton' type='button' name='myButton' value='Imports by City' checked='checked'>
+      <input id='mapbox://styles/jonahadkins/ck03u67927o6a1cql222i6fjf' class='myButton' type='button' name='myButton' value='Buildings with Addresses'>
+      <input id='mapbox://styles/jonahadkins/ck03vlzxd5hhe1cpc1i3c4nmd' class='myButton' type='button' name='myButton' value='Building != Yes'>
+      <input id='mapbox://styles/jonahadkins/ck03w1vfr0z3u1co9lu54io4b' class='myButton' type='button' name='myButton' value='Has Amenity / Name'>
+      <input id='mapbox://styles/jonahadkins/ck02lxeqv60511cmjwwlz34x8' class='myButton' type='button' name='myButton' value='Fixes to Imports'>
+      <br> thanks to anyone that's ever edited in HRVA!
+
+  </div>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/jonahadkins/ck01f0uei5etc1cqlhzi7nipq',
+      center: [-76.401, 37.039],
+      zoom: 9
+    });
+
+    var layerList = document.getElementById('title');
+    var inputs = layerList.getElementsByTagName('input');
+
+    function switchLayer(layer) {
+      var layerId = layer.target.id;
+      map.setStyle(layerId);
+    }
+
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].onclick = switchLayer;
+    }
+    // Add zoom and rotation controls to the map.
+    map.addControl(new mapboxgl.Navigation());
+  </script>
 
 </body>
+
 </html>
