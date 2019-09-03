@@ -16,6 +16,7 @@
 | Norfolk  | Jul. 2016 | 80,000 | 53,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2016-March/000771.html)  |  [Wiki](https://wiki.openstreetmap.org/wiki/City_of_Norfolk) |  [Github](https://github.com/jonahadkins/norfolk-OSM-imports) |
 | Dare County | Aug. 2017 | 18,000 | 14,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2017-August/000824.html)  | [Wiki](https://wiki.openstreetmap.org/wiki/Dare_County_Building_Import)  | [Github](https://github.com/jonahadkins/darecounty_OSM_imports)  |
 | Portsmouth  | Jul. 2019 | 49,000 | 48,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2019-June/000907.html)  | [Wiki](https://wiki.openstreetmap.org/wiki/Dare_County_Building_Import) |  [Github](https://github.com/jonahadkins/portsmouth-osm-imports) |
-| Gloucester  |   |   |   |   |   |   |
+| Gloucester  | Soon  | 30,000  | 24,000 |   | [Wiki](https://wiki.openstreetmap.org/wiki/Gloucester_County_Buildings/Address_Import)  | [Github](https://github.com/jonahadkins/gloucester-osm-imports)  |
+| **Totals**  |   |   |   |   |   |   |
 
 
