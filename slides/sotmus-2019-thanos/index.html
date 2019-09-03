@@ -1,95 +1,85 @@
-<!DOCTYPE html><html><head><title>Build a web map with open source tools!</title><meta charset='utf-8'><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<link href='big.css' rel='stylesheet' type='text/css' />
-<style>
-.noland {
-  background-image: url(./images/noland.jpg);
-  background-repeat: repeat;
-  background-position: center 5px;
-  background-size: 65%;
-  text-shadow: 3px 3px 5px #000;
-}
-.pmedits {
-  background-image: url(./images/pm_edits.png);
-  background-repeat: repeat;
-  background-position: center 5px;
-  background-size: 100%;
-  text-shadow: 3px 3px 5px #000;
-}
-.gaia {
-  background-image: url(./images/gaia.png);
-  background-repeat: repeat;
-  background-position: center 5px;
-  background-size: 100%;
-  text-shadow: 3px 3px 5px #000;
-}
-</style>
-<script src='big.js'></script>
-</head><body>
+<!DOCTYPE html>
+<html>
 
-<div>Let's Talk About <br><strong>OpenStreetMap</strong><br></div>
-<div>Hi 👋
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <title></title>
+  <link href="big.css" rel="stylesheet" type="text/css" />
+  <script src="big.js"></script>
+</head>
 
-  <br>GIS & Cartography
-  <br>OSM US Board Member
-  <br>Website: <a target='blank' href='http://jonahadkins.com'>jonahadkins.com</a>
-  <br>🐦 <a target='blank' href='https://twitter.com/jonahadkins'>@jonahadkins</a>
-
-
+<body>
+  <!--
+    SLIDE 1
+  -->
+  <div>
+    <em>Build Your Own Infinity Gauntlet</em>
+  </div>
+  <!--
+    SLIDE 2
+  -->
+  <div>Hi! 👋
+    <br>GIS & Cartography
+    <br>OSM US Board Member
+    <p>
+      <font size='5'><a target='blank' href='https://twitter.com/jonahadkins'>@jonahadkins</a> <em>
+          <->
+        </em> <a target='blank' href='http://jonahadkins.com'>jonahadkins.com</a></font>
+  </div>
+  <!--
+    SLIDE 3
+  -->
+  <div>follow along at
+    <br><a target='blank' href='http://jonahadkins.com/slides/sotmus-2019-thanos'>jonahadkins.com/slides/sotmus-2019-thanos</a>
+  </div>
+  <!--
+    SLIDE 4
+  -->
+  <div data-body-style="background-image:url(./images/infinity-gauntlet.gif)">
 </div>
-
-<div>follow along at <a target='blank' href='http://jonahadkins.com/osm-talk'>jonahadkins.com/osm-talk</a>
-  <br>words in <strong>yellow</strong> are links
-</div>
-<div>OSM is a <br><strong>community!</strong><br></div>
-<div>large database <br><a target='blank' href='https://planet.osm.org'>913-66-40gb</a><br></div>
-<div>defined by <strong>elements</strong><br> points-lines-polygons-relations*</div>
-<div>and more importantly, <strong>TAGS</strong><br>boundary=national<br>amenity=childcare<br>natural=peak<br>barrier=fence</div>
-<div>fully <strong>searchable</strong> and <strong>queryable</strong></div>
-<div><strong><a target='blank' href='https://nominatim.openstreetmap.org'>Nominatim</a></strong> searches name tags and addresses</div>
-<div><strong><a target='blank' href='http://overpass-turbo.eu'>Overpass-Turbo</a></strong> searches, filters, and exports!<br></div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>EDITORS</em>
+  </div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>TAGS</em>
+  </div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>EXTRACTS</em>
+  </div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>QUERIES</em>
+  </div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>USER TOOLS</em>
+  </div>
+  <!--
+    SLIDE 6
+  -->
+  <div>
+    <em>OTHER UTILITIES</em>
+  </div>
+<!--
+  SLIDE 20
+-->
 <div>
-  <pre>
-(
-node
-[amenity=clinic]
-({{bbox}});
-);
-out;
-</pre></div>
-<div>all you need to edit is an <strong>account</strong> and <strong>time</strong></div>
-<div><strong><a target='blank' href='https://www.openstreetmap.org'>iD</a></strong> is the default editor on openstreetmap.org</div>
-<div>advanced editing, importing and other things can be done in <strong><a target='blank' href='https://josm.openstreetmap.de'>JOSM</a></strong></div>
-<div>every OSM thing not on openstreetmap.org uses<strong> exports</strong></div>
-<div>reminder! OSM is free but is <a target='blank' href='https://wiki.osmfoundation.org/wiki/Licence/Licence_and_Legal_FAQ'>licensed ODBL v1.0</a></div>
-<div>maps made with OSM data require this attribtion: <br><strong>Map data © OpenStreetMap contributors</strong></div>
-<div>best done with <strong>extracts</strong> like
-  <br><a target='blank' href='http://download.bbbike.org/osm/bbbike/'>bbbike</a>
-  <br><a target='blank' href='https://www.geofabrik.de'>geofabrik</a>
-  <br><a target='blank' href='https://www.interline.io/osm/extracts/'>interline (RIP Mapzen)</a>
+  ??????????????????????
 </div>
-<div>which can be replicated to your own <strong>database</strong></div>
-<div>lets 👀 at some examples</div>
-<div>
-  for small areas
-  <br><a target='blank' href='http://jonahadkins.com/cartography/esri/2015/07/01/noland-second.html'>Project: The Noland Trail</a>
-  <br>extract to shapefiles (<a target='blank' href='http://learnosm.org/en/osm-data/osm-in-qgis/'>QGIS or</a><a target='blank' href='https://www.esri.com/en-us/arcgis/products/arcgis-editor-for-openstreetmap'>ArcGIS</a>)
-</div>
-<div data-bodyclass='noland'></div>
-<div>
-  for large areas
-  <br><a target='blank' href='http://jonahadkins.com/pm_edits.html'>Project: A Year of Edits</a>
-  <br>extract (<a target='blank' href='https://osmlab.github.io/osm-qa-tiles/'>QATiles,</a> <a target='blank' href='https://github.com/mapbox/mbtiles-extracts'>MBTiles-Extracts</a>)
-  <br>filter(<a target='blank' href='https://github.com/mapbox/osm-tag-stats'>OSM-Tag-Stats,</a><a target='blank' href='http://www.gdal.org/index.html'>GDAL</a>)
-  <br>style (<a target='blank' href='https://github.com/mapbox/tippecanoe'>tippecanoe, MapboxGL</a>)
-</div>
-<div data-bodyclass='pmedits'></div>
-<div>for the world
-  <br><a target='blank' href='https://www.gaiagps.com/map/?layer=GaiaTopoRasterFeet'>Project: GAIA GPS</a>
-  <br>extract (<a target='blank' href='https://www.geofabrik.de'>Geofabrik</a>)
-  <br>load & filter (<a target='blank' href='https://www.postgresql.org/download/'>PostGres / PostGIS</a>, <a target='blank' href='https://github.com/openstreetmap/osm2pgsql'>osm2pgsql</a>)
-  <br>vector tiles (<a target='blank' href='https://github.com/maputnik'>Maputnik</a>, TileSquirrel, TileLive)
-</div>
-<div data-bodyclass='gaia'></div>
-<div> 🎃 Any Questions? 🎃 </div>
 </body>
+
 </html>
