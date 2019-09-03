@@ -7,7 +7,8 @@
 | Williamsburg | Oct. 2014 | 5,500 | 4,500 |  |   |   |
 | Chesapeake | Nov. 2014 | 108,000 | 92,000 |  |   |  [Github](https://github.com/jonahadkins/chesapeake-OSM-imports) |
 | Newport News | Mar. 2015 | 82,000 | 53,000 |   |   |  [Github](https://github.com/jonahadkins/newportnews-OSM-imports) |
-| York County | Aug. 2015| 25,000 | 17,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2015-August/000705.html)  | [Wiki](https://wiki.openstreetmap.org/wiki/City_of_York_County_Buildings/Address_Import)  |  [Github](https://github.com/jonahadkins/yorkcounty-OSM-imports) |
+| James City County | Sep. 2015| 30,000 | 25,000 |  | [Wiki](https://wiki.openstreetmap.org/wiki/James_City_County_Buildings_Import)  |  [Github](https://github.com/jonahadkins/jamescity-OSM-imports) |
+| York County | Sep. 2015| 25,000 | 17,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2015-August/000705.html)  | [Wiki](https://wiki.openstreetmap.org/wiki/City_of_York_County_Buildings/Address_Import)  |  [Github](https://github.com/jonahadkins/yorkcounty-OSM-imports) |
 | Suffolk | Nov. 2015 | 42,000 | 24,000 |  [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2015-November/000744.html) |  [Wiki](https://wiki.openstreetmap.org/wiki/City_of_Suffolk_Buildings_Import) |  [Github](https://github.com/jonahadkins/suffolk-OSM-imports) |
 | Poquoson | Dec. 2015 | 6,000 | 4,000 | [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2015-December/000750.html)  |  [Wiki](https://wiki.openstreetmap.org/wiki/City_of_Poquoson_Buildings/Address_Import) |  [Github](https://github.com/jonahadkins/poquoson-OSM-imports) |
 | Hampton | Dec. 2015 | 59,000 | 43,000 |  [Mailing List](https://lists.openstreetmap.org/pipermail/imports-us/2015-December/000755.html) |  [Wiki](https://wiki.openstreetmap.org/wiki/City_of_Hampton_Buildings/Address_Import) | [Github](https://github.com/jonahadkins/hampton-OSM-imports)  |
