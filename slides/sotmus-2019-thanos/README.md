@@ -12,9 +12,12 @@ state of the map us 2019 workshop
 - iD (https://www.openstreetmap.org/#map=10/37.1041/-76.5121)
   - do the walkthrough!
   - Participate
-    - Name Suggestion Index (http://osmlab.github.io/name-suggestion-index/)
+    - Name Suggestion Index (http://osmlab.github.io/name-suggestion-index
+      - Like This (https://github.com/osmlab/name-suggestion-index/commit/05bfc34547b637925347315cf1bc1d478ac46c52)
     - Community Index (https://community.osm.be)
+      - Like This (https://github.com/osmlab/osm-community-index/commit/564f55bf96239920028a40779f2de235ea33a769)
     - Editor Layer Index (https://osmlab.github.io/editor-layer-index/)
+      - Like This (https://github.com/osmlab/editor-layer-index/commit/0b9b252c6cbe88ee524a92f64ec8381a4a2e60b4)
 - JOSM
   - Download (https://josm.openstreetmap.de)
   - walkthoughs @ https://learnosm.org/en/josm/start-josm/
@@ -41,9 +44,10 @@ state of the map us 2019 workshop
 - OSM Fight (https://osmfight.neis-one.org) - compare two mappers
 - How Do You Contribute to OSM (https://hdyc.neis-one.org)
 - OSMUS Slack (https://osmus.slack.com/)
-- OSMCha (https://osmcha.mapbox.com)
 
 ### Other Utilities
+- Add Weird Basemaps (https://ags-proxy.openstreetmap.us/)
+- Make Your Own! (https://github.com/jonahadkins/commonwealth)
 - Field Papers (http://fieldpapers.org)
 - OSM US Tasking Manager (https://tasks.openstreetmap.us/contribute?difficulty=ALL)
 - Learn OSM Guides (https://github.com/hotosm/learnosm/wiki/English-Learning-Guides)
