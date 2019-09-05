@@ -44,6 +44,7 @@ state of the map us 2019 workshop
     - https://mapsaregreat.com/geographic-data-mining-and-visualisation-for-beginners/overpass-turbo-tutorial.html
 - OSM Tag Stats: https://github.com/mapbox/osm-tag-stats
   - A command line tool for querying an `.mbtiles` file of OSM data. Uses Mapbox filter expressions and exports to GeoJSON.
+    - Mapbox GL Filters: https://docs.mapbox.com/mapbox-gl-js/style-spec/#other-filter
 - QGIS
   - A full featured open source GIS desktop. Reads and converts between most geospatial formats. Does SO. MUCH. MORE.
 - GDAL (ogrinfo)
