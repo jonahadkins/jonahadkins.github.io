@@ -82,18 +82,18 @@ state of the map us 2019 workshop
 
 ## Other Utilities
 - Add Weird Basemaps: https://ags-proxy.openstreetmap.us/
- - Add ESRI MapServer URLS & Trace in ID, JOSM
+  - Add ESRI MapServer URLS & Trace in ID, JOSM
 - Make Your Own!: https://github.com/jonahadkins/commonwealth
- - Build a cooool list of all your go-to data sources and share it!
+  - Build a cooool list of all your go-to data sources and share it!
 - Field Papers: http://fieldpapers.org
- - Easily print maps for field markup, then add them back to trace in ID, JOSM
+  - Easily print maps for field markup, then add them back to trace in ID, JOSM
 - HOTOSM Tasking Manager:https://tasks.hotosm.org/contribute
- - map for those in need!
+  - map for those in need!
 - OSM US Tasking Manager: https://tasks.openstreetmap.us/contribute?difficulty=ALL
- - Directed editing tasks.
+  - Directed editing tasks.
 - Learn OSM Guides: https://github.com/hotosm/learnosm/wiki/English-Learning-Guides
- - Great place to learn OSM info and workflows.
+  - Great place to learn OSM info and workflows.
 - Error Inspector: https://www.keepright.at/
- - Shows common map errors, and provides quick access to fix them.
+  - Shows common map errors, and provides quick access to fix them.
 - Map Roulette: https://maproulette.org/browse/challenges
- - Directed map editing challenges. Allows for super quick editing of features.
+  - Directed map editing challenges. Allows for super quick editing of features.
