@@ -1,6 +1,10 @@
 # build your own infinity gauntlet
 state of the map us 2019 workshop
 
+![](https://github.com/jonahadkins/jonahadkins.github.io/blob/master/slides/sotmus-2019-thanos/images/infinity-gauntlet.gif)
+
+Slides: [https://www.jonahadkins.com/slides/sotmus-2019-thanos/#0](https://www.jonahadkins.com/slides/sotmus-2019-thanos/#0)
+
 - Welcome
  - introduction
  - follow along
