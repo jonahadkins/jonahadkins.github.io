@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>this is halloween</title>
+
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-common.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-core.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-display.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-plugins.min.js"></script>
+  <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+
+  <style type="text/css">
+    #map {
+      position: absolute;
+      overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #title {
+      position: absolute;
+      top: 2%;
+      left: 2%;
+      bottom: 0;
+      font-family: 'Slackey', cursive;
+      font-size: 10pt;
+
+      text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+      color: #fff;
+      z-index: 9999;
+      overflow: auto;
+    }
+    a {
+  color: #fff;
+}
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <div id='title'>
+    <font size='20'>this
+    <br>is
+    <br>halloween
+  </font>
+    <br><font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+  <!--  <br><a target="blank" href="https://github.com/jonahadkins/jonahadkins.github.io/blob/master/woahhh.html">see code</a></font></div>-->
+
+  <script type="application/javascript">
+    var YOUR_ACCESS_TOKEN = window.parent.YOUR_ACCESS_TOKEN;
+
+    var layers = [
+      new here.xyz.maps.layers.MVTLayer({
+        name: 'mvt-world-layer',
+        remote: {
+          url: 'https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97'
+          // optional settings:
+          // max  : 16,     // max level for loading data
+          // min  : 1       // min level for loading data
+          // tileSize : 512 // 512|256 defines mvt tilesize in case it can't be automatically detected in url..
+        },
+        min: 1,
+        max: 20,
+
+        style: {
+
+          backgroundColor: '#612d05',
+
+          strokeWidthZoomScale: function(level) {
+            return level > 17 ? 1 : level > 14 ? .5 : .25
+          },
+
+          styleGroups: {
+
+            'earth': [{
+              zIndex: 0,
+              type: 'Polygon',
+              fill: '#612d05'
+            }],
+            'water': [{
+              zIndex: 2,
+              type: 'Polygon',
+              fill: '#2d1514'
+            }],
+            'landuse': [{
+              zIndex: 3,
+              type: 'Polygon',
+              fill: '#612d05'
+            }],
+            'roads': [{
+              zIndex: 4,
+              type: 'Line',
+              stroke: '#090300',
+              strokeWidth: 4
+            }],
+            'roadshighway': [{
+              zIndex: 5,
+              type: 'Line',
+              stroke: '#2d1514',
+              strokeWidth: 6
+            }],
+            'buildings': [{
+              zIndex: 7,
+              type: 'Polygon',
+              fill: '#612d05'
+            }]
+          },
+
+          assign: function(feature, level) {
+            var props = feature.properties;
+            var kind = props.kind;
+            var layer = props.layer; // the data layer of the feature
+            var geom = feature.geometry.type;
+
+            if (layer == 'water') {
+              if (geom == 'LineString' || geom == 'MultiLineString') {
+                return;
+              }
+            }
+            if (layer == 'roads') {
+              if (kind == 'rail' || kind == 'ferry') {
+                return;
+              }
+              if (kind == 'highway') {
+                return layer + kind;
+              }
+            }
+            return layer;
+          }
+        }
+      }),
+      new here.xyz.maps.layers.TileLayer({
+        name: 'halloween_city',
+        min: 1,
+        max: 20,
+        provider: new here.xyz.maps.providers.SpaceProvider({
+          name: 'SpaceProvider',
+          level: 1,
+          space: 'A7IXKZs9',
+          credentials: {
+            access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
+          }
+        }),
+        style: {
+          styleGroups: {
+            style: [{
+              zIndex: 0,
+              type: "Image",
+              src: "/img/pink.gif",
+              width: 20,
+              height: 20
+            }]
+          },
+
+          assign: function(feature) {
+            return "style";
+          }
+        }
+      }),
+      new here.xyz.maps.layers.TileLayer({
+        name: 'spirit_halloween',
+        min: 1,
+        max: 20,
+        provider: new here.xyz.maps.providers.SpaceProvider({
+          name: 'SpaceProvider',
+          level: 1,
+          space: 'FxEVzZfc',
+          credentials: {
+            access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
+          }
+        }),
+        style: {
+          styleGroups: {
+            style: [{
+              zIndex: 0,
+              type: "Image",
+              src: "/img/teal.gif",
+              width: 20,
+              height: 20
+            }]
+          },
+
+          assign: function(feature) {
+            return "style";
+          }
+        }
+      })
+    ]
+    window.display = new here.xyz.maps.Map(document.getElementById("map"), {
+      zoomLevel: 4,
+      center: {
+        longitude: -96.76883,
+        latitude: 39.6104
+      },
+      layers: layers
+    });
+  </script>
+</body>
+
+</html>
