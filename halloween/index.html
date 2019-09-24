@@ -12,120 +12,56 @@
   <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
 
   <style type="text/css">
-  body {
+    body {
+      margin: 0;
+      padding: 0;
+    }
 
-        margin:0;
-        padding:0;
-        -webkit-font-smoothing:antialiased;
-      }
+    #map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
 
-      * {
-        -webkit-box-sizing:border-box;
-        -moz-box-sizing:border-box;
-        box-sizing:border-box;
-      }
-
-      .sidebar {
-        position:absolute;
-        width:33.3333%;
-        height:100%;
-        top:0;left:0;
-        overflow:hidden;
-        border-right:1px solid rgba(0,0,0,0.25);
-      }
-      .pad2 {
-        padding:20px;
-      }
-
-      .map {
-        position:absolute;
-        left:33.3333%;
-        width:66.6666%;
-        top:0;bottom:0;
-      }
-
-      h1 {
-        font-size:45px;
-        text-align: center;
-        margin:0;
-        font-weight:400;
-        line-height: 20px;
-        padding: 20px 2px;
-      }
-
-      a {
-        color:#404040;
-        text-decoration:none;
-      }
-
-      a:hover {
-        color:#101010;
-      }
-
-      .heading {
-        font-family: 'Creepster', cursive;
-        font-size: 24pt;
-        text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
-        color: #fff;
-        background:#fff;
-        border-bottom:1px solid #eee;
-        min-height:60px;
-        line-height:60px;
-        padding:0 10px;
-        background-color: #000;
-      }
-
-      .info {
-        background-color: rgba(50, 50, 50, 0.5);
-        color: #000;
-        font-family: 'Averia Gruesa Libre', cursive;
-        font-size: 24px;
-        line-height: 75%;
-        text-align: center;
-        letter-spacing: 0.8px;
-        width: 100%;
-        height:100%;
-        overflow:auto;
-        padding-bottom:60px;
-      }
-      ::-webkit-scrollbar {
-        width:3px;
-        height:3px;
-        border-left:0;
-        background:rgba(0,0,0,0.1);
-      }
-      ::-webkit-scrollbar-track {
-        background:none;
-      }
-      ::-webkit-scrollbar-thumb {
-        background:#00853e;
-        border-radius:0;
-      }
-
-      .clearfix { display:block; }
-      .clearfix:after {
-        content:'.';
-        display:block;
-        height:0;
-        clear:both;
-        visibility:hidden;
-      }
-
+    #sidebar {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      bottom: 15px;
+      width: 250px;
+      overflow: auto;
+      background-color: rgba(50, 50, 50, 0.5);
+      color: #000;
+      font-family: 'Averia Gruesa Libre', cursive;
+      font-size: 18px;
+      text-align: center;
+      padding-left: 10px;
+    }
+    h1 {
+      font-family: 'Creepster', cursive;
+      font-size: 36pt;
+      text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+      color: rgb(20,20,20);
+    }
   </style>
 </head>
 
 <body>
-  <div class='sidebar'>
-      <div class='heading'>
-        <h1>This is Halloween</h1>
-      </div>
-    <div id='info' class='info '>
-    lets put some text here about what this is
-  </br> and why
-</br> and maybe how
+  <div id='map'></div>
+  <div id='sidebar'>
+    <h1>This is Halloween</h1>
+    <h3>some text About
+      </br> who
+      </br> wat
+      </br> how
+      </br> why</h3>
+    <div id='geocode'>
+      find your address
+      </br> with this cool geocode function</div>
+    <div id="info"></div>
   </div>
-    </div>
-    <div id='map' class='map'> </div>
+
 
   <script type="application/javascript">
     var YOUR_ACCESS_TOKEN = window.parent.YOUR_ACCESS_TOKEN;
@@ -283,7 +219,7 @@
       if (evt.target) {
         var properties = evt.target.properties;
         document.getElementById('info').innerHTML =
-          "<img src=" + properties.logo + ">" + "<hr>" +
+          "<img src=" + properties.logo + ">" +
           properties.addr_full + "</br>" +
           properties.addr_city + "," +
           properties.addr_state + "</br>" +
