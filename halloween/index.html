@@ -19,6 +19,7 @@
       width: 100%;
       height: 100%;
     }
+
     #title {
       position: absolute;
       top: 2%;
@@ -26,28 +27,48 @@
       bottom: 0;
       font-family: 'Slackey', cursive;
       font-size: 10pt;
-
       text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
       color: #fff;
       z-index: 9999;
       overflow: auto;
     }
+
     a {
-  color: #fff;
-}
+      color: #fff;
+    }
+
+    #info {
+      position: absolute;
+      background-color: rgba(50, 50, 50, 0.5);
+      color: #000;
+      font-family: 'Slackey', cursive;
+      font-size: 18px;
+      line-height: 75%;
+      text-align: center;
+      letter-spacing: 0.8px;
+      width: 250px;
+      height: 200px;
+      padding: 15px;
+      bottom: 45px;
+      left: 10px;
+      border: #000 solid 2px;
+    }
   </style>
 </head>
 
 <body>
   <div id="map"></div>
   <div id='title'>
+      <!--  <br><a target="blank" href="https://github.com/jonahadkins/jonahadkins.github.io/blob/master/woahhh.html">see code</a></font></div>-->
+  </div>
+  <div id='info'>
     <font size='20'>this
-    <br>is
-    <br>halloween
-  </font>
-    <br><font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
-  <!--  <br><a target="blank" href="https://github.com/jonahadkins/jonahadkins.github.io/blob/master/woahhh.html">see code</a></font></div>-->
-
+      <br>is
+      <br>halloween
+    </font>
+    <br>
+    <font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+  </div>
   <script type="application/javascript">
     var YOUR_ACCESS_TOKEN = window.parent.YOUR_ACCESS_TOKEN;
 
@@ -138,7 +159,7 @@
         provider: new here.xyz.maps.providers.SpaceProvider({
           name: 'SpaceProvider',
           level: 1,
-          space: 'A7IXKZs9',
+          space: 'ZQuY98FS',
           credentials: {
             access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
           }
@@ -166,7 +187,7 @@
         provider: new here.xyz.maps.providers.SpaceProvider({
           name: 'SpaceProvider',
           level: 1,
-          space: 'FxEVzZfc',
+          space: 'dhGZiRwZ',
           credentials: {
             access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
           }
@@ -196,6 +217,30 @@
       },
       layers: layers
     });
+
+
+    var infoTag = document.querySelector("#info");
+    function eventHandler(evt){
+      if(evt.target){
+      var properties = evt.target.properties;
+      document.getElementById('info').innerHTML =
+          "<img src=" + properties.logo + ">" + "<hr>" +
+                        properties.addr_full + "</br>" +
+                        properties.addr_city + "," +
+                        properties.addr_state + "</br>" +
+                        "<a href=" + properties.website + ">" + "Store Link</a>"
+    	}
+    	else{
+    		document.getElementById('info').innerHTML =
+            "<font size='16'>" +
+            'this is halloween' +
+            "</font>" +
+            "<br>" +
+            "<font face='Helvetica'>" + 'Made by <a target="blank" href="https://twitter.com/jonahadkins">' +
+            'Jonah Adkins</a></p>'
+    	}
+    }
+    display.addEventListener('pointerup', eventHandler);
   </script>
 </body>
 
