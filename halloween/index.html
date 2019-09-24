@@ -8,67 +8,125 @@
   <script src="https://xyz.api.here.com/maps/latest/xyz-maps-core.min.js" type="text/javascript" charset="UTF-8"></script>
   <script src="https://xyz.api.here.com/maps/latest/xyz-maps-display.min.js" type="text/javascript" charset="UTF-8"></script>
   <script src="https://xyz.api.here.com/maps/latest/xyz-maps-plugins.min.js"></script>
-  <link href='https://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Creepster&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
 
   <style type="text/css">
-    #map {
-      position: absolute;
-      overflow: hidden;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+  body {
 
-    #title {
-      position: absolute;
-      top: 2%;
-      left: 2%;
-      bottom: 0;
-      font-family: 'Slackey', cursive;
-      font-size: 10pt;
-      text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
-      color: #fff;
-      z-index: 9999;
-      overflow: auto;
-    }
+        margin:0;
+        padding:0;
+        -webkit-font-smoothing:antialiased;
+      }
 
-    a {
-      color: #fff;
-    }
+      * {
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+      }
 
-    #info {
-      position: absolute;
-      background-color: rgba(50, 50, 50, 0.5);
-      color: #000;
-      font-family: 'Slackey', cursive;
-      font-size: 18px;
-      line-height: 75%;
-      text-align: center;
-      letter-spacing: 0.8px;
-      width: 250px;
-      height: 200px;
-      padding: 15px;
-      bottom: 45px;
-      left: 10px;
-      border: #000 solid 2px;
-    }
+      .sidebar {
+        position:absolute;
+        width:33.3333%;
+        height:100%;
+        top:0;left:0;
+        overflow:hidden;
+        border-right:1px solid rgba(0,0,0,0.25);
+      }
+      .pad2 {
+        padding:20px;
+      }
+
+      .map {
+        position:absolute;
+        left:33.3333%;
+        width:66.6666%;
+        top:0;bottom:0;
+      }
+
+      h1 {
+        font-size:45px;
+        text-align: center;
+        margin:0;
+        font-weight:400;
+        line-height: 20px;
+        padding: 20px 2px;
+      }
+
+      a {
+        color:#404040;
+        text-decoration:none;
+      }
+
+      a:hover {
+        color:#101010;
+      }
+
+      .heading {
+        font-family: 'Creepster', cursive;
+        font-size: 24pt;
+        text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
+        color: #fff;
+        background:#fff;
+        border-bottom:1px solid #eee;
+        min-height:60px;
+        line-height:60px;
+        padding:0 10px;
+        background-color: #000;
+      }
+
+      .info {
+        background-color: rgba(50, 50, 50, 0.5);
+        color: #000;
+        font-family: 'Averia Gruesa Libre', cursive;
+        font-size: 24px;
+        line-height: 75%;
+        text-align: center;
+        letter-spacing: 0.8px;
+        width: 100%;
+        height:100%;
+        overflow:auto;
+        padding-bottom:60px;
+      }
+      ::-webkit-scrollbar {
+        width:3px;
+        height:3px;
+        border-left:0;
+        background:rgba(0,0,0,0.1);
+      }
+      ::-webkit-scrollbar-track {
+        background:none;
+      }
+      ::-webkit-scrollbar-thumb {
+        background:#00853e;
+        border-radius:0;
+      }
+
+      .clearfix { display:block; }
+      .clearfix:after {
+        content:'.';
+        display:block;
+        height:0;
+        clear:both;
+        visibility:hidden;
+      }
+
   </style>
 </head>
 
 <body>
-  <div id="map"></div>
-  <div id='title'>
-      <!--  <br><a target="blank" href="https://github.com/jonahadkins/jonahadkins.github.io/blob/master/woahhh.html">see code</a></font></div>-->
+  <div class='sidebar'>
+      <div class='heading'>
+        <h1>This is Halloween</h1>
+      </div>
+    <div id='info' class='info '>
+    lets put some text here about what this is
+  </br> and why
+</br> and maybe how
   </div>
-  <div id='info'>
-    <font size='20'>this
-      <br>is
-      <br>halloween
-    </font>
-    <br>
-    <font face='Helvetica'>Made by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
-  </div>
+    </div>
+    <div id='map' class='map'> </div>
+
   <script type="application/javascript">
     var YOUR_ACCESS_TOKEN = window.parent.YOUR_ACCESS_TOKEN;
 
@@ -220,25 +278,20 @@
 
 
     var infoTag = document.querySelector("#info");
-    function eventHandler(evt){
-      if(evt.target){
-      var properties = evt.target.properties;
-      document.getElementById('info').innerHTML =
+
+    function eventHandler(evt) {
+      if (evt.target) {
+        var properties = evt.target.properties;
+        document.getElementById('info').innerHTML =
           "<img src=" + properties.logo + ">" + "<hr>" +
-                        properties.addr_full + "</br>" +
-                        properties.addr_city + "," +
-                        properties.addr_state + "</br>" +
-                        "<a href=" + properties.website + ">" + "Store Link</a>"
-    	}
-    	else{
-    		document.getElementById('info').innerHTML =
-            "<font size='16'>" +
-            'this is halloween' +
-            "</font>" +
-            "<br>" +
-            "<font face='Helvetica'>" + 'Made by <a target="blank" href="https://twitter.com/jonahadkins">' +
-            'Jonah Adkins</a></p>'
-    	}
+          properties.addr_full + "</br>" +
+          properties.addr_city + "," +
+          properties.addr_state + "</br>" +
+          "<a href=" + properties.website + ">" + "Store Link</a>"
+      } else {
+        document.getElementById('info').innerHTML =
+          "you chose wrong"
+      }
     }
     display.addEventListener('pointerup', eventHandler);
   </script>
