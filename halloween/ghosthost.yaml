@@ -1,0 +1,86 @@
+
+global:
+    language:                en
+    language_text_source:    |
+        function() {
+            return (global.language && feature['name:'+global.language]) || feature.name;
+        }
+    sort_rank:               |
+        function() {
+            return (feature.sort_rank)
+            }
+##set map background color
+scene:
+    background:
+        color:               [0.247, 0.247, 0.239, 1.00]
+## all texture code is credited Geraldine Sarmiento
+## from the repo https://github.com/sensescape/bw-texture/blob/master/scene.yaml
+## texture images are credited to Mike Hearn
+## from the repo https://github.com/mike-hearn/transparent-textures
+styles:
+    agua:
+        base:                polygons
+        material:
+            normal:
+                texture:     https://gitcdn.link/repo/atlemo/SubtlePatterns/gh-pages/concrete_wall_2.png
+                mapping:     uv
+                scale:       0.5
+            #ambient:        0.8
+            diffuse:         green
+            #specular:       0
+
+sources:
+    here:
+        type:                MVT
+        url:                 https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97
+    hcity:
+        url:                 https://xyz.api.here.com/hub/spaces/ZQuY98FS/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token:    AAUbSz5dHyw5tTcORSwp9ME
+            clip:            true
+        type:                GeoJSON
+    spirit:
+        url:                 https://xyz.api.here.com/hub/spaces/dhGZiRwZ/tile/web/{z}_{x}_{y}
+        url_params:
+            access_token:    AAUbSz5dHyw5tTcORSwp9ME
+            clip:            true
+        type:                GeoJSON
+
+layers:
+    water-texture:
+        data: { source: here, layer: water }
+        filter:
+            - $geometry:     polygon
+        draw:
+            polygons:
+                order:       2
+                style:       agua
+                color:       white
+    water fill:
+        data: { source: here, layer: water }
+        filter:
+            - $geometry:     polygon
+        draw:
+            polygons:
+                order:       1
+                color:       [0.141, 0.086, 0.788, 0.1]
+    hcity:
+        data: {source:       hcity}
+        enabled:             true
+        _all:
+            draw:
+                points:
+                    collide: false
+                    color:   "#000000"
+                    size:    5
+                    interactive: true
+    spirit:
+        data: {source:       spirit}
+        enabled:             true
+        _all:
+            draw:
+                points:
+                    collide: false
+                    color:   [0.953, 0.031, 0.031, 1.00]
+                    size:    5
+                    interactive: true
