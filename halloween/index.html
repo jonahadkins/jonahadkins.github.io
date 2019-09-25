@@ -26,23 +26,32 @@
 
     #sidebar {
       position: absolute;
-      top: 15px;
+      top: 50px;
       left: 15px;
-      bottom: 15px;
+      bottom: 50px;
       width: 250px;
       overflow: auto;
-      background-color: rgba(50, 50, 50, 0.5);
+      background: #fff;
       color: #000;
       font-family: 'Averia Gruesa Libre', cursive;
-      font-size: 18px;
+      font-size: 16px;
+      align-items: center;
       text-align: center;
-      padding-left: 10px;
+      padding-left: 9px;
+      padding-right: 9px;
+      outline: 2px solid #CEFF00;
+      outline-offset: -5px;
+      margin: 0;
     }
+
     h1 {
       font-family: 'Creepster', cursive;
-      font-size: 36pt;
+      font-size: 48px;
       text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
-      color: rgb(20,20,20);
+      color: rgb(20, 20, 20);
+      line-height: 90%;
+      margin: 0;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -51,37 +60,34 @@
   <div id='map'></div>
   <div id='sidebar'>
     <h1>This is Halloween</h1>
-    <h3>some text About
-      </br> who
-      </br> wat
-      </br> how
-      </br> why</h3>
+    </br>
+    It's that special time of year, and the right costume is key to celebrating the season in style.
+    We assembled a seance and the spirits presented us with locations for the 2 major
+    pop-up costume retailers, Spirt Halloween and Halloween City. Might be worth saying a few more words
+    here. Click around or find yourself using the places geocoder below.
+    </br>
+    </br>
     <div id='geocode'>
       find your address
       </br> with this cool geocode function</div>
+    </br>
     <div id="info"></div>
   </div>
 
 
   <script type="application/javascript">
-    var YOUR_ACCESS_TOKEN = window.parent.YOUR_ACCESS_TOKEN;
-
     var layers = [
       new here.xyz.maps.layers.MVTLayer({
         name: 'mvt-world-layer',
         remote: {
           url: 'https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97'
-          // optional settings:
-          // max  : 16,     // max level for loading data
-          // min  : 1       // min level for loading data
-          // tileSize : 512 // 512|256 defines mvt tilesize in case it can't be automatically detected in url..
         },
         min: 1,
         max: 20,
 
         style: {
 
-          backgroundColor: '#612d05',
+          backgroundColor: '#252138',
 
           strokeWidthZoomScale: function(level) {
             return level > 17 ? 1 : level > 14 ? .5 : .25
@@ -92,28 +98,23 @@
             'earth': [{
               zIndex: 0,
               type: 'Polygon',
-              fill: '#612d05'
+              fill: '#252138'
             }],
             'water': [{
               zIndex: 2,
               type: 'Polygon',
-              fill: '#2d1514'
-            }],
-            'landuse': [{
-              zIndex: 3,
-              type: 'Polygon',
-              fill: '#612d05'
+              fill: '#38315F'
             }],
             'roads': [{
               zIndex: 4,
               type: 'Line',
-              stroke: '#090300',
+              stroke: '#375A80',
               strokeWidth: 4
             }],
             'roadshighway': [{
               zIndex: 5,
               type: 'Line',
-              stroke: '#2d1514',
+              stroke: '#375A80',
               strokeWidth: 6
             }],
             'buildings': [{
@@ -126,7 +127,7 @@
           assign: function(feature, level) {
             var props = feature.properties;
             var kind = props.kind;
-            var layer = props.layer; // the data layer of the feature
+            var layer = props.layer;
             var geom = feature.geometry.type;
 
             if (layer == 'water') {
@@ -219,14 +220,16 @@
       if (evt.target) {
         var properties = evt.target.properties;
         document.getElementById('info').innerHTML =
-          "<img src=" + properties.logo + ">" +
+          "<img src=" + properties.logo + ">"  + "</br>" +
           properties.addr_full + "</br>" +
           properties.addr_city + "," +
           properties.addr_state + "</br>" +
           "<a href=" + properties.website + ">" + "Store Link</a>"
       } else {
         document.getElementById('info').innerHTML =
-          "you chose wrong"
+          "you"  + "</br>" +
+          "chose"  + "</br>" +
+          "wrong"
       }
     }
     display.addEventListener('pointerup', eventHandler);
