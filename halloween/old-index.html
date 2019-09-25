@@ -2,17 +2,16 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
   <title>this is halloween</title>
+
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-common.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-core.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-display.min.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="https://xyz.api.here.com/maps/latest/xyz-maps-plugins.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Creepster&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
 
-
-  <style>
+  <style type="text/css">
     body {
       margin: 0;
       padding: 0;
@@ -43,7 +42,6 @@
       outline: 2px solid #CEFF00;
       outline-offset: -5px;
       margin: 0;
-      z-index: 999;
     }
 
     h1 {
@@ -75,41 +73,7 @@
     </br>
     <div id="info"></div>
   </div>
-  <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
-  <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
-  <script>
-    var map = L.map('map', {
-      boxZoom: false
-    });
-    var layer = Tangram.leafletLayer({
-      scene: 'ghosthost.yaml',
-      attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
-        events: {
-              hover: function(selection) {
-                      if (selection.feature) {
-                        document.getElementById('info').innerHTML =
-                          "<img src=" + selection.feature.properties.logo + ">"  + "</br>" +
-                          selection.feature.properties.addr_full + "</br>" +
-                          selection.feature.properties.addr_city + "," +
-                          selection.feature.properties.addr_state + "</br>" +
-                          "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>"
-                      } else {
-                        document.getElementById('info').innerHTML =
-                          "Hover like a ghost"  + "</br>" +
-                          "over the points"  + "</br>" +
-                          "to see beyond"
-                      }
 
-              }
-          }
-});
-    layer.addTo(map);
-    // center of amsterdam
-    map.setView([39.6104, -96.76883], 4);
-
-</script>
-
-  <!--
 
   <script type="application/javascript">
     var layers = [
@@ -256,21 +220,20 @@
       if (evt.target) {
         var properties = evt.target.properties;
         document.getElementById('info').innerHTML =
-          "<img src=" + properties.logo + ">" + "</br>" +
+          "<img src=" + properties.logo + ">"  + "</br>" +
           properties.addr_full + "</br>" +
           properties.addr_city + "," +
           properties.addr_state + "</br>" +
           "<a href=" + properties.website + ">" + "Store Link</a>"
       } else {
         document.getElementById('info').innerHTML =
-          "you" + "</br>" +
-          "chose" + "</br>" +
+          "you"  + "</br>" +
+          "chose"  + "</br>" +
           "wrong"
       }
     }
     display.addEventListener('pointerup', eventHandler);
   </script>
--->
 </body>
 
 </html>
