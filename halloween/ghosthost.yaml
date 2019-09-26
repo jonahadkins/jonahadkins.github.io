@@ -35,10 +35,10 @@ fonts:
 textures:
     pink:
         filtering: mipmap
-        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/pink.gif
+        url: img/pink.gif
     teal:
         filtering: mipmap
-        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/teal.gif
+        url: img/teal.gif
 styles:
     agua:
         base: polygons
