@@ -111,10 +111,13 @@
     layer.addTo(map);
     // center of amsterdam
     map.setView([39.6104, -96.76883], 4);
-L.control.locate({
+map.addControl(L.control.locate({
+  locateOptions: {
   position: 'topright',
   maxZoom: 10
-}).addTo(map);
+  }
+}));
+
 </script>
 </body>
 
