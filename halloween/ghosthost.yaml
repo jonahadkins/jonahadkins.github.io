@@ -35,21 +35,11 @@ fonts:
 textures:
     pink:
         filtering: mipmap
-        url: img/pink.gif
+        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/pink.gif
     teal:
         filtering: mipmap
-        url: img/teal.gif
+        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/teal.gif
 styles:
-    agua:
-        base: polygons
-        material:
-            normal:
-                texture: https://gitcdn.link/repo/atlemo/SubtlePatterns/gh-pages/concrete_wall_2.png
-                mapping: uv
-                scale: 0.1
-            ambient: 0.8
-            diffuse: [0.706, 0.733, 0.706, 1.00]
-            specular: 0
     pink-style:
         base: points
         texture: pink
@@ -125,7 +115,7 @@ layers:
         draw:
             points:
                 interactive: true
-                order: 10
+                order: 1000
                 collide: false
                 style: pink-style
                 size: [
@@ -139,7 +129,7 @@ layers:
         draw:
             points:
                 interactive: true
-                order: 100
+                order: 1000
                 collide: false
                 style: teal-style
                 size: [
@@ -162,8 +152,8 @@ layers:
                     family: Creepster
                     size: [
                         [1, 18],
-                        [4, 18],
-                        [8, 24]
+                        [4, 24],
+                        [8, 36]
                         ]
                     fill: [1.000, 1.000, 1.000, 1.00]
                     stroke: {
@@ -172,3 +162,249 @@ layers:
                         }
                     transform: uppercase
                     weight: 400
+
+    locality_10million_capital:
+        data: { source: here , layer: places}
+        filter: function() { return ((((feature.kind == 'locality' )&& feature.population) && (feature.population > 10000000 || feature.country_capital))&& feature.country_capital)}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 39
+                font:
+                    family: Creepster
+                    weight: bold
+                    size: [
+                        [1, 9.6],
+                        [2, 11.2],
+                        [3, 12.8],
+                        [4, 14.4],
+                        [5, 16],
+                        [6, 19.2],
+                        [7, 22.4],
+                        [8, 25.6],
+                        [9, 28.8],
+                        [10, 32]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    stroke: {
+                        color: '#38315F',
+                        width: 5.5px
+                        }
+    locality_10million:
+        data: { source: here , layer: places}
+        filter: function() { return ((feature.kind == 'locality' && feature.population) && (feature.population > 10000000 || feature.country_capital))}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 39
+                font:
+                    size: [
+                        [1, 9.6],
+                        [2, 11.2],
+                        [3, 12.8],
+                        [4, 14.4],
+                        [5, 16],
+                        [6, 19.2],
+                        [7, 22.4],
+                        [8, 25.6],
+                        [9, 28.8],
+                        [10, 32]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    family: Creepster
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [4, 1.5],
+                            [6, 2],
+                            [10, 4],
+                            [12, 5]
+                        ]
+                        }
+
+    locality_label_1million:
+        data: { source: here , layer: places}
+        filter: function() { return (feature.kind = 'locality' && feature.population && (feature.region_capital || feature.population > 1000000))}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 40
+                font:
+                    size: [
+                        [2, 9.6],
+                        [3, 11.2],
+                        [4, 12.8],
+                        [5, 14.4],
+                        [6, 16],
+                        [7, 19.2],
+                        [8, 22.4],
+                        [9, 25.6],
+                        [10, 28.8],
+                        [11, 32]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    family: Gruesa
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [2, 1],
+                            [4, 1.5],
+                            [6, 2],
+                            [10, 4],
+                            [12, 5]
+                        ]
+                        }
+
+
+    locality_label_400k:
+        data: { source: here , layer: places}
+        filter: function() { return (feature.kind = 'locality' && feature.population && feature.population > 400000)}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 41
+                font:
+                    size: [
+                        [4, 11.2],
+                        [5, 12.8],
+                        [6, 16],
+                        [7, 19.2],
+                        [8, 22.4],
+                        [9, 24],
+                        [10, 25.6],
+                        [11, 27.2]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    family: Gruesa
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [4, 1],
+                            [6, 2],
+                            [8, 3],
+                            [10, 4],
+                            [12, 5]
+                        ]
+                        }
+
+    locality_label_100k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 100000)}
+                - $zoom: {min: 5}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 42
+                font:
+                    family: Gruesa
+                    weight: 400
+                    size: [
+                        [4, 9.6],
+                        [5, 11.2],
+                        [6, 12.8],
+                        [7, 16],
+                        [8, 19.2],
+                        [9, 20.8],
+                        [10, 22.4],
+                        [11, 24],
+                        [12, 25.6]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [5, 1],
+                            [8, 3],
+                            [10, 4],
+                            [12, 5]
+                        ]
+                        }
+
+    locality_label_50k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 50000)}
+                - $zoom: {min: 5}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 43
+                font:
+                    family: Gruesa
+                    size: [
+                        [10, 16],
+                        [11, 19.2],
+                        [12, 22.4],
+                        [13, 24]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [10, 2],
+                            [12, 3]
+                        ]
+                        }
+
+    locality_label_10k:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population > 10000)}
+                - $zoom: {min: 9}
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 44
+                font:
+                    family: Gruesa
+                    size: [
+                        [11, 16],
+                        [12, 17.6],
+                        [13, 19.2],
+                        [14, 20.8],
+                        [15, 22.4]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    stroke: {
+                        color: '#38315F',
+                        width: [
+                            [10, 2],
+                            [12, 3]
+                        ]
+                        }
+
+    locality_label:
+        data: { source: here , layer: places}
+        filter:
+            all:
+                - function() { return (feature.kind = 'locality' && feature.population <= 10000)}
+                - $zoom: {min: 11}
+        draw:
+            text:
+                text_source: global.language_text_source
+                priority: 50
+                font:
+                    size: [
+                        [11, 12.8],
+                        [12, 14.4],
+                        [13, 16],
+                        [14, 17.6],
+                        [15, 19.2]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    family: Gruesa
+                    stroke: {
+                        color: '#38315F',
+                        width: 2px
+                        }
