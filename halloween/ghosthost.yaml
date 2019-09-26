@@ -1,86 +1,174 @@
 
 global:
-    language:                en
-    language_text_source:    |
+    language: en
+    language_text_source: |
         function() {
             return (global.language && feature['name:'+global.language]) || feature.name;
         }
-    sort_rank:               |
+    sort_rank: |
         function() {
             return (feature.sort_rank)
             }
-##set map background color
+    colors:
+        green: '#97DBB6'
+        blue-green: '#46919E'
+        blue: '#375A80'
+        purple: '#38315F'
+        dark-purple: '#252138'
+
+
 scene:
     background:
-        color:               [0.247, 0.247, 0.239, 1.00]
-## all texture code is credited Geraldine Sarmiento
-## from the repo https://github.com/sensescape/bw-texture/blob/master/scene.yaml
-## texture images are credited to Mike Hearn
-## from the repo https://github.com/mike-hearn/transparent-textures
+        color: '#252138'
+
+fonts:
+    Creepster:
+        # regular
+        - weight: 400
+          url: https://cdn.jsdelivr.net/gh/google/fonts/apache/creepstercaps/CreepsterCaps-Regular.ttf
+    Gruesa:
+        #regular
+        - weight: 400
+          url: https://cdn.jsdelivr.net/gh/google/fonts/ofl/averiagruesalibre/AveriaGruesaLibre-Regular.ttf
+
+
+textures:
+    pink:
+        filtering: mipmap
+        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/pink.gif
+    teal:
+        filtering: mipmap
+        url: https://gitcdn.link/repo/jonahadkins/jonahadkins.github.io/master/halloween/img/teal.gif
 styles:
     agua:
-        base:                polygons
+        base: polygons
         material:
             normal:
-                texture:     https://gitcdn.link/repo/atlemo/SubtlePatterns/gh-pages/concrete_wall_2.png
-                mapping:     uv
-                scale:       0.5
-            #ambient:        0.8
-            diffuse:         green
-            #specular:       0
+                texture: https://gitcdn.link/repo/atlemo/SubtlePatterns/gh-pages/concrete_wall_2.png
+                mapping: uv
+                scale: 0.1
+            ambient: 0.8
+            diffuse: [0.706, 0.733, 0.706, 1.00]
+            specular: 0
+    pink-style:
+        base: points
+        texture: pink
+    teal-style:
+        base: points
+        texture: teal
 
 sources:
     here:
-        type:                MVT
-        url:                 https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97
+        type: MVT
+        url: https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97
     hcity:
-        url:                 https://xyz.api.here.com/hub/spaces/ZQuY98FS/tile/web/{z}_{x}_{y}
+        url: https://xyz.api.here.com/hub/spaces/ZQuY98FS/tile/web/{z}_{x}_{y}
         url_params:
-            access_token:    AAUbSz5dHyw5tTcORSwp9ME
-            clip:            true
-        type:                GeoJSON
+            access_token: AAUbSz5dHyw5tTcORSwp9ME
+            clip: true
+        type: GeoJSON
     spirit:
-        url:                 https://xyz.api.here.com/hub/spaces/dhGZiRwZ/tile/web/{z}_{x}_{y}
+        url: https://xyz.api.here.com/hub/spaces/dhGZiRwZ/tile/web/{z}_{x}_{y}
         url_params:
-            access_token:    AAUbSz5dHyw5tTcORSwp9ME
-            clip:            true
-        type:                GeoJSON
+            access_token: AAUbSz5dHyw5tTcORSwp9ME
+            clip: true
+        type: GeoJSON
 
 layers:
-    water-texture:
+    water:
         data: { source: here, layer: water }
-        filter:
-            - $geometry:     polygon
-        draw:
-            polygons:
-                order:       2
-                style:       agua
-                color:       white
-    water fill:
-        data: { source: here, layer: water }
-        filter:
-            - $geometry:     polygon
-        draw:
-            polygons:
-                order:       1
-                color:       [0.141, 0.086, 0.788, 0.1]
-    hcity:
-        data: {source:       hcity}
-        enabled:             true
-        _all:
+        water fill:
+            filter:
+                - $geometry: polygon
             draw:
-                points:
-                    collide: false
-                    color:   "#000000"
-                    size:    5
-                    interactive: true
+                polygons:
+                    order: global.sort_rank
+                    color: '#38315F'
+
+        rivers:
+            filter:
+                all:
+                - $geometry: line
+                - $zoom: { min: 14 }
+            draw:
+                text:
+                    font:
+                        family: Gruesa
+                        text_source: global.language_text_source
+                        text_wrap: 10
+                        order: global.sort_rank
+                        size: [[14, 10px], [17, 14px]]
+                        priority: 100
+                        fill: '#38315F'
+        lakes:
+            filter:
+                all:
+                - function() {return feature.min_zoom + 2 <= ($zoom) }
+                - $geometry: point
+            draw:
+                text:
+                    font:
+                        family: Gruesa
+                        text_source: global.language_text_source
+                        transform: uppercase
+                        text_wrap: 3
+                        order: global.sort_rank
+                        size: [[5, 10px], [10, 24px]]
+                        priority: 100
+                        fill: '#252138'
+
+
+
     spirit:
-        data: {source:       spirit}
-        enabled:             true
-        _all:
-            draw:
-                points:
-                    collide: false
-                    color:   [0.953, 0.031, 0.031, 1.00]
-                    size:    5
-                    interactive: true
+        data: {source: spirit}
+        enabled: true
+        draw:
+            points:
+                interactive: true
+                order: 10
+                collide: false
+                style: pink-style
+                size: [
+                        [3,  '14px'],
+                        [8,  '18px'],
+                        [13, '24px'],
+                        [18, '30px']]
+    hcity:
+        data: {source: hcity}
+        enabled: true
+        draw:
+            points:
+                interactive: true
+                order: 100
+                collide: false
+                style: teal-style
+                size: [
+                        [3,  '14px'],
+                        [8,  '18px'],
+                        [13, '24px'],
+                        [18, '30px']]
+    country:
+        data: { source: here , layer: places }
+        filter:
+            all:
+            - function() {return feature.min_zoom <= ($zoom)}
+            - kind: country
+        draw:
+            text:
+                text_source: global.language_text_source
+                text_wrap: 30
+                priority: 10
+                font:
+                    family: Creepster
+                    size: [
+                        [1, 18],
+                        [4, 18],
+                        [8, 24]
+                        ]
+                    fill: [1.000, 1.000, 1.000, 1.00]
+                    stroke: {
+                        color: '#38315F',
+                        width: 5.5px
+                        }
+                    transform: uppercase
+                    weight: 400

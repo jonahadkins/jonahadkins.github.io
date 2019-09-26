@@ -11,6 +11,8 @@
   <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 
   <style>
     body {
@@ -35,7 +37,7 @@
       background: #fff;
       color: #000;
       font-family: 'Averia Gruesa Libre', cursive;
-      font-size: 16px;
+      font-size: 12px;
       align-items: center;
       text-align: center;
       padding-left: 9px;
@@ -89,11 +91,13 @@
               hover: function(selection) {
                       if (selection.feature) {
                         document.getElementById('info').innerHTML =
+                          "<font size='3'>" +
                           "<img src=" + selection.feature.properties.logo + ">"  + "</br>" +
                           selection.feature.properties.addr_full + "</br>" +
                           selection.feature.properties.addr_city + "," +
                           selection.feature.properties.addr_state + "</br>" +
-                          "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>"
+                          "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>" +
+                          "</font>"
                       } else {
                         document.getElementById('info').innerHTML =
                           "Hover like a ghost"  + "</br>" +
@@ -107,171 +111,11 @@
     layer.addTo(map);
     // center of amsterdam
     map.setView([39.6104, -96.76883], 4);
-L.control.locate().addTo(map);
+L.control.locate({
+  position: 'topright',
+  maxZoom: 10
+}).addTo(map);
 </script>
-
-  <!--
-
-  <script type="application/javascript">
-    var layers = [
-      new here.xyz.maps.layers.MVTLayer({
-        name: 'mvt-world-layer',
-        remote: {
-          url: 'https://vector.hereapi.com/v2/vectortiles/base/mc/{z}/{x}/{y}/omv?xnlp=CL_JSMv3.1.4.0&apikey=Vqc9lMSRjkBhuO_waDvYexsb52_S2E0k8Gn5J_-TsoM&mv=97'
-        },
-        min: 1,
-        max: 20,
-
-        style: {
-
-          backgroundColor: '#252138',
-
-          strokeWidthZoomScale: function(level) {
-            return level > 17 ? 1 : level > 14 ? .5 : .25
-          },
-
-          styleGroups: {
-
-            'earth': [{
-              zIndex: 0,
-              type: 'Polygon',
-              fill: '#252138'
-            }],
-            'water': [{
-              zIndex: 2,
-              type: 'Polygon',
-              fill: '#38315F'
-            }],
-            'roads': [{
-              zIndex: 4,
-              type: 'Line',
-              stroke: '#375A80',
-              strokeWidth: 4
-            }],
-            'roadshighway': [{
-              zIndex: 5,
-              type: 'Line',
-              stroke: '#375A80',
-              strokeWidth: 6
-            }],
-            'buildings': [{
-              zIndex: 7,
-              type: 'Polygon',
-              fill: '#612d05'
-            }]
-          },
-
-          assign: function(feature, level) {
-            var props = feature.properties;
-            var kind = props.kind;
-            var layer = props.layer;
-            var geom = feature.geometry.type;
-
-            if (layer == 'water') {
-              if (geom == 'LineString' || geom == 'MultiLineString') {
-                return;
-              }
-            }
-            if (layer == 'roads') {
-              if (kind == 'rail' || kind == 'ferry') {
-                return;
-              }
-              if (kind == 'highway') {
-                return layer + kind;
-              }
-            }
-            return layer;
-          }
-        }
-      }),
-      new here.xyz.maps.layers.TileLayer({
-        name: 'halloween_city',
-        min: 1,
-        max: 20,
-        provider: new here.xyz.maps.providers.SpaceProvider({
-          name: 'SpaceProvider',
-          level: 1,
-          space: 'ZQuY98FS',
-          credentials: {
-            access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
-          }
-        }),
-        style: {
-          styleGroups: {
-            style: [{
-              zIndex: 0,
-              type: "Image",
-              src: "img/pink.gif",
-              width: 20,
-              height: 20
-            }]
-          },
-
-          assign: function(feature) {
-            return "style";
-          }
-        }
-      }),
-      new here.xyz.maps.layers.TileLayer({
-        name: 'spirit_halloween',
-        min: 1,
-        max: 20,
-        provider: new here.xyz.maps.providers.SpaceProvider({
-          name: 'SpaceProvider',
-          level: 1,
-          space: 'dhGZiRwZ',
-          credentials: {
-            access_token: 'AAUbSz5dHyw5tTcORSwp9ME'
-          }
-        }),
-        style: {
-          styleGroups: {
-            style: [{
-              zIndex: 0,
-              type: "Image",
-              src: "img/teal.gif",
-              width: 20,
-              height: 20
-            }]
-          },
-
-          assign: function(feature) {
-            return "style";
-          }
-        }
-      })
-    ]
-    window.display = new here.xyz.maps.Map(document.getElementById("map"), {
-      zoomLevel: 4,
-      center: {
-        longitude: -96.76883,
-        latitude: 39.6104
-      },
-      layers: layers
-    });
-
-
-    var infoTag = document.querySelector("#info");
-
-    function eventHandler(evt) {
-      if (evt.target) {
-        var properties = evt.target.properties;
-        document.getElementById('info').innerHTML =
-          "<img src=" + properties.logo + ">" + "</br>" +
-          properties.addr_full + "</br>" +
-          properties.addr_city + "," +
-          properties.addr_state + "</br>" +
-          "<a href=" + properties.website + ">" + "Store Link</a>"
-      } else {
-        document.getElementById('info').innerHTML =
-          "you" + "</br>" +
-          "chose" + "</br>" +
-          "wrong"
-      }
-    }
-    display.addEventListener('pointerup', eventHandler);
-  </script>
--->
 </body>
 
 </html>
