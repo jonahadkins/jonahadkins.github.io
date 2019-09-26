@@ -112,13 +112,35 @@ layers:
     spirit:
         data: {source: spirit}
         enabled: true
-        draw:
-            points:
-                interactive: true
-                order: 1000
-                collide: false
-                style: pink-style
-                size: [
+
+        pink-dots:
+            filter:
+            all:
+                - $geometry: point
+                - $zoom: {max: 8}
+            draw:
+                points:
+                    interactive: true
+                    order: 0
+                    color: [1.000, 0.639, 0.894, 1.00]
+                    collide: false
+                    size: [
+                        [3,  '1px'],
+                        [8,  '9px']]
+
+        pink-icon:
+            filter:
+                all:
+                - $geometry: point
+                - $zoom: {min: 8.5}
+            draw:
+                points:
+                    interactive: true
+                    order: 0
+                    color: none
+                    collide: false
+                    style: pink-style
+                    size: [
                         [3,  '14px'],
                         [8,  '18px'],
                         [13, '24px'],
@@ -126,13 +148,35 @@ layers:
     hcity:
         data: {source: hcity}
         enabled: true
-        draw:
-            points:
-                interactive: true
-                order: 1000
-                collide: false
-                style: teal-style
-                size: [
+
+        teal-dots:
+            filter:
+            all:
+                - $geometry: point
+                - $zoom: {max: 8}
+            draw:
+                points:
+                    interactive: true
+                    order: 0
+                    color: [0.094, 0.773, 0.910, 1.00]
+                    collide: false
+                    size: [
+                        [3,  '1px'],
+                        [8,  '9px']]
+
+        teal-icon:
+            filter:
+                all:
+                - $geometry: point
+                - $zoom: {min: 8.5}
+            draw:
+                points:
+                    interactive: true
+                    order: 0
+                    color: none
+                    collide: false
+                    style: teal-style
+                    size: [
                         [3,  '14px'],
                         [8,  '18px'],
                         [13, '24px'],
