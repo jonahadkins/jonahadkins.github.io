@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 
 
   <style>
@@ -27,35 +28,75 @@
       width: 100%;
     }
 
+    #info {
+      text-shadow: -2px 0 2px #97DBB6, 2px 0 2px #46919E;
+    }
+
     #sidebar {
       position: absolute;
-      top: 50px;
-      left: 15px;
-      bottom: 50px;
+      top: 20px;
+      left: 20px;
+      bottom: 20px;
       width: 250px;
       overflow: auto;
-      background: #fff;
-      color: #000;
+      background: rgba(255, 255, 255, 0.8);
+      color: #38315F;
       font-family: 'Averia Gruesa Libre', cursive;
-      font-size: 12px;
+      font-size: 14px;
       align-items: center;
       text-align: center;
-      padding-left: 9px;
-      padding-right: 9px;
-      outline: 2px solid #CEFF00;
+      padding-left: 12px;
+      padding-right: 12px;
+      outline: 2px solid #38315F;
       outline-offset: -5px;
       margin: 0;
       z-index: 999;
     }
 
+    a {
+      color: #252138
+    }
+
     h1 {
       font-family: 'Creepster', cursive;
       font-size: 48px;
-      text-shadow: -3px 0 1px rgb(30, 242, 241), 3px 0 1px rgb(246, 5, 10);
-      color: rgb(20, 20, 20);
+      text-shadow: -3px 0 1px #97DBB6, 3px 0 1px #46919E;
+      color: #252138;
       line-height: 90%;
       margin: 0;
-      margin-top: 10px;
+      margin-top: 20px;
+    }
+
+    .custom-popup .leaflet-popup-content-wrapper {
+      background: rgba(70, 145, 158, 0.7);
+      color: #fff;
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .custom-popup .leaflet-popup-content-wrapper a {
+      color: rgba(255, 255, 255, 0.1);
+    }
+
+    .custom-popup .leaflet-popup-tip-container {
+      margin: 0 auto;
+      width: 40px;
+      height: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .custom-popup .leaflet-popup-tip {
+      width: 15px;
+      height: 15px;
+      padding: 1px;
+      margin: -8px auto 0;
+      -moz-transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      -o-transform: rotate(45deg);
+      transform: rotate(45deg);
+      background: rgba(70, 145, 158, 0.7);
     }
   </style>
 </head>
@@ -67,19 +108,29 @@
     </br>
     It's that special time of year, and the right costume is key to celebrating the season in style.
     We assembled a seance and the spirits presented us with locations for the 2 major
-    pop-up costume retailers, Spirt Halloween and Halloween City. Might be worth saying a few more words
-    here. Click around or find yourself using the places geocoder below.
+    pop-up costume retailers, <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94">Halloween City</font>.
+    </br>
+    </BR>
+    <font size='2'>
+      Store data from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
+      </br>using<a href="https://explore.xyz.here.com/hub" target="_blank"> HERE XYZ Hub</a>
+    </font>
+
     </br>
     </br>
-    <div id='geocode'>
-      find your address
-      </br> with this cool geocode function</div>
     </br>
-    <div id="info"></div>
+    <div id="info">
+      <font size='3'>Hover like a ghost
+        </br>let the points respond
+        </br>look for a message
+        </br> from regions beyond</font>
+    </div>
   </div>
+
   <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
   <script src="https://unpkg.com/tangram/dist/tangram.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.67.0/dist/L.Control.Locate.min.js" charset="utf-8"></script>
+  <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
   <script>
     var map = L.map('map', {
       zoomControl: false
@@ -100,17 +151,19 @@
               "</font>"
           } else {
             document.getElementById('info').innerHTML =
+              "<font size='3'>" +
               "Hover like a ghost" + "</br>" +
-              "over the points" + "</br>" +
-              "to see beyond"
+              "let the points respond" + "</br>" +
+              "look for a message" + "</br>" +
+              "from regions beyond" +
+              "</font>"
           }
 
         }
       }
     });
     layer.addTo(map);
-    // center of amsterdam
-    map.setView([39.6104, -96.76883], 4);
+    map.setView([39, -103], 4.3);
     L.control.locate({
       position: 'topright'
     }).addTo(map);
@@ -119,6 +172,27 @@
         maxZoom: 10
       }
     });
+
+    var onGeocodeResult = function(e) {
+      map.setView(e.geocode.center, 10);
+    }
+
+    geocoder = L.Control.Geocoder.here({
+        app_id: 'cV1JVtCdMWM60dkKY4Fb',
+        app_code: 'r6UXM6RYoc85LT7kA3aMlA'
+      }),
+      L.Control.geocoder({
+        geocoder: geocoder,
+        //defaultMarkGeocode: false,
+        errorMessage: "You moved the bodies but not the headstones",
+        placeholder: "Search the underworld",
+        collapsed: true
+      })
+      .on('markgeocode', onGeocodeResult)
+      .addTo(map);
+
+
+    //    iconUrl: 'https://giffiles.alphacoders.com/417/4171.gif',
   </script>
 </body>
 

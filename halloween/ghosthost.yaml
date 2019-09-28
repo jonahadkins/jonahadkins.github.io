@@ -129,8 +129,8 @@ layers:
                 color: [1.000, 0.639, 0.894, 1.00]
                 collide: false
                 size: [
-                        [3,  '1px'],
-                        [8,  '9px']]
+                        [3,  '2px'],
+                        [8,  '12px']]
     pink-ghosts:
         data: {source: spirit}
         filter:
@@ -161,8 +161,8 @@ layers:
                 color: [0.094, 0.773, 0.910, 1.00]
                 collide: false
                 size: [
-                        [3,  '1px'],
-                        [8,  '9px']]
+                        [3,  '2px'],
+                        [8,  '12px']]
     teal-ghosts:
         data: {source: hcity}
         filter:
@@ -591,9 +591,10 @@ layers:
                         ]
                     fill: '#97DBB6'
                     family: Creepster
+                    weight: 100
                     stroke: {
                         color: '#38315F',
-                        width: 6px
+                        width: 2px
                         }
 
 
@@ -620,7 +621,7 @@ layers:
                     family: Creepster
                     stroke: {
                         color: '#38315F',
-                        width: 6px
+                        width: 2px
                         }
 
     locality_label_100k:
