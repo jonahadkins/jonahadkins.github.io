@@ -87,38 +87,38 @@
     var layer = Tangram.leafletLayer({
       scene: 'ghosthost.yaml',
       attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | &copy; OSM contributors | <a href="https://mapzen.com/" target="_blank">Mapzen</a>',
-        events: {
-              hover: function(selection) {
-                      if (selection.feature) {
-                        document.getElementById('info').innerHTML =
-                          "<font size='3'>" +
-                          "<img src=" + selection.feature.properties.logo + ">"  + "</br>" +
-                          selection.feature.properties.addr_full + "</br>" +
-                          selection.feature.properties.addr_city + "," +
-                          selection.feature.properties.addr_state + "</br>" +
-                          "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>" +
-                          "</font>"
-                      } else {
-                        document.getElementById('info').innerHTML =
-                          "Hover like a ghost"  + "</br>" +
-                          "over the points"  + "</br>" +
-                          "to see beyond"
-                      }
-
-              }
+      events: {
+        hover: function(selection) {
+          if (selection.feature) {
+            document.getElementById('info').innerHTML =
+              "<font size='3'>" +
+              "<img src=" + selection.feature.properties.logo + ">" + "</br>" +
+              selection.feature.properties.addr_full + "</br>" +
+              selection.feature.properties.addr_city + "," +
+              selection.feature.properties.addr_state + "</br>" +
+              "<a href=" + selection.feature.properties.website + ">" + "Store Link</a>" +
+              "</font>"
+          } else {
+            document.getElementById('info').innerHTML =
+              "Hover like a ghost" + "</br>" +
+              "over the points" + "</br>" +
+              "to see beyond"
           }
-});
+
+        }
+      }
+    });
     layer.addTo(map);
     // center of amsterdam
     map.setView([39.6104, -96.76883], 4);
-map.addControl(L.control.locate({
-  locateOptions: {
-  position: 'topright',
-  maxZoom: 10
-  }
-}));
-
-</script>
+    L.control.locate({
+    position: 'topright'
+  }).addTo(map);
+    L.control.locate({
+       locateOptions: {
+               maxZoom: 10
+}});
+  </script>
 </body>
 
 </html>

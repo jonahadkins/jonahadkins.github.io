@@ -16,8 +16,8 @@ global:
         purple: '#38315F'
         dark-purple: '#252138'
 
-
 scene:
+    animated: true
     background:
         color: '#252138'
 
@@ -31,22 +31,26 @@ fonts:
         - weight: 400
           url: https://cdn.jsdelivr.net/gh/google/fonts/ofl/averiagruesalibre/AveriaGruesaLibre-Regular.ttf
 
-
 textures:
     pink:
+        animated: true
         filtering: mipmap
         url: img/pink.gif
     teal:
+        animated: true
         filtering: mipmap
         url: img/teal.gif
 styles:
+
     _transparent:
         base: polygons
-        blend: overlay
+        blend: translucent
     pink-style:
+        animated: true
         base: points
         texture: pink
     teal-style:
+        animated: true
         base: points
         texture: teal
 
@@ -82,6 +86,7 @@ layers:
                 - $zoom: { min: 14 }
             draw:
                 text:
+                    text_wrap: 10
                     font:
                         family: Gruesa
                         text_source: global.language_text_source
@@ -93,20 +98,24 @@ layers:
         lakes:
             filter:
                 all:
-                - function() {return feature.min_zoom + 2 <= ($zoom) }
+                - function() {return feature.min_zoom <= ($zoom) & feature.name.length < 15}
                 - { $zoom: { min: 1, max: 8 } }
                 - $geometry: point
             draw:
                 text:
+                    text_wrap: 3
                     font:
                         family: Gruesa
                         text_source: global.language_text_source
                         transform: uppercase
-                        text_wrap: 3
+
                         fill: '#252138'
+                        stroke: {color: [0.000, 0.000, 0.000, 0.10], width: 2
+                        }
                         order: global.sort_rank
                         size: [[5, 10px], [10, 24px]]
                         priority: 100
+
     pink-dots:
         data: {source: spirit}
         filter:
@@ -115,11 +124,9 @@ layers:
             - { $zoom: { min: 1, max: 8 } }
         draw:
             points:
+                blend_order: -2
                 interactive: true
                 color: [1.000, 0.639, 0.894, 1.00]
-                outline:
-                    width: 1px
-                    color: [1.000, 1.000, 1.000, 0.2]
                 collide: false
                 size: [
                         [3,  '1px'],
@@ -132,11 +139,12 @@ layers:
             - { $zoom: { min: 8, max: 19 } }
         draw:
             points:
-                    interactive: true
-                    color: none
-                    collide: false
-                    style: pink-style
-                    size: [
+                blend_order: -2
+                interactive: true
+                color: none
+                collide: false
+                style: pink-style
+                size: [
                         [8,  '24px'],
                         [13, '48px'],
                         [18, '72px']]
@@ -148,6 +156,7 @@ layers:
             - { $zoom: { min: 1, max: 8 } }
         draw:
             points:
+                blend_order: -2
                 interactive: true
                 color: [0.094, 0.773, 0.910, 1.00]
                 collide: false
@@ -162,11 +171,12 @@ layers:
             - { $zoom: { min: 8, max: 19 } }
         draw:
             points:
-                    interactive: true
-                    color: none
-                    collide: false
-                    style: teal-style
-                    size: [
+                blend_order: -2
+                interactive: true
+                color: none
+                collide: false
+                style: teal-style
+                size: [
                         [8,  '24px'],
                         [13, '48px'],
                         [18, '72px']]
@@ -269,7 +279,7 @@ layers:
                         ]
         label:
             filter:
-                - $zoom: { min: 15 }
+                - $zoom: { min: 10 }
             draw:
                 text:
                     font:
@@ -365,15 +375,15 @@ layers:
         label:
             filter:
                 all:
-                - $zoom: {min: 13}
+                - $zoom: {min: 10}
             draw:
                 text:
-                    repeat_distance: 100px
+                    #repeat_distance: 100px
                     font:
                         text_source: global.language_text_source
                         family: Gruesa
                         size: 12
-                        priority: 25
+                        priority: 15
                         fill: '#FFF'
                         stroke: {color: '#000', width: 1
                         }
@@ -580,7 +590,7 @@ layers:
                         [11, 32]
                         ]
                     fill: '#97DBB6'
-                    family: Gruesa
+                    family: Creepster
                     stroke: {
                         color: '#38315F',
                         width: 6px
@@ -607,7 +617,7 @@ layers:
                         [11, 27.2]
                         ]
                     fill: '#97DBB6'
-                    family: Gruesa
+                    family: Creepster
                     stroke: {
                         color: '#38315F',
                         width: 6px
@@ -713,16 +723,13 @@ layers:
                         [14, 17.6],
                         [15, 19.2]
                         ]
-                    fill: [1.000, 1.000, 1.000, 1.00]
+                    fill: '#97DBB6'
                     family: Gruesa
                     stroke: {
                         color: '#38315F',
                         width: 2px
                         }
 
-    #purple: '#38315F'
-    #dark-purple: '#252138'
-    #blue: '#375A80'
 
     building_outline:
         data: { source: here, layer: buildings }
