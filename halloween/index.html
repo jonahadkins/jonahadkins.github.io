@@ -66,38 +66,6 @@
       margin: 0;
       margin-top: 20px;
     }
-
-    .custom-popup .leaflet-popup-content-wrapper {
-      background: rgba(70, 145, 158, 0.7);
-      color: #fff;
-      font-size: 12px;
-      line-height: 18px;
-    }
-
-    .custom-popup .leaflet-popup-content-wrapper a {
-      color: rgba(255, 255, 255, 0.1);
-    }
-
-    .custom-popup .leaflet-popup-tip-container {
-      margin: 0 auto;
-      width: 40px;
-      height: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .custom-popup .leaflet-popup-tip {
-      width: 15px;
-      height: 15px;
-      padding: 1px;
-      margin: -8px auto 0;
-      -moz-transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-      -o-transform: rotate(45deg);
-      transform: rotate(45deg);
-      background: rgba(70, 145, 158, 0.7);
-    }
   </style>
 </head>
 
@@ -106,14 +74,15 @@
   <div id='sidebar'>
     <h1>This is Halloween</h1>
     </br>
-    It's that special time of year, and the right costume is key to celebrating the season in style.
-    We assembled a seance and the spirits presented us with locations for the 2 major
-    pop-up costume retailers, <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94">Halloween City</font>.
+    It's that special time of year, and the right costume is key to celebrating the season in style. We assembled
+    a seance and the spirits presented us with locations for the 2 major pop-up costume retailers,
+    <font color="B0719E"><b>Spirt Halloween</b></font> and <font color="127E94">Halloween City</font>.
     </br>
-    </BR>
+    </br>
     <font size='2'>
-      Store data from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
+      Store locations from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
       </br>using<a href="https://explore.xyz.here.com/hub" target="_blank"> HERE XYZ Hub</a>
+    </br> Geocode Provider: <a href="https://developer.here.com/documentation/geocoder/topics/what-is.html" target="_blank"> HERE Geocoder API</a>
     </font>
 
     </br>
@@ -137,6 +106,7 @@
     });
     var layer = Tangram.leafletLayer({
       scene: 'ghosthost.yaml',
+      //always add attribution, its !important
       attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a> ',
       events: {
         hover: function(selection) {
@@ -165,7 +135,9 @@
     layer.addTo(map);
     map.setView([39, -103], 4.3);
     L.control.locate({
-      position: 'topright'
+      position: 'topright',
+      drawMarker: false,
+      drawCircle: false
     }).addTo(map);
     L.control.locate({
       locateOptions: {
