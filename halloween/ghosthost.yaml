@@ -98,7 +98,7 @@ layers:
         lakes:
             filter:
                 all:
-                - function() {return feature.min_zoom <= ($zoom) & feature.name.length < 15}
+                - function() {return feature.min_zoom <= ($zoom)}
                 - { $zoom: { min: 1, max: 8 } }
                 - $geometry: point
             draw:
@@ -320,7 +320,6 @@ layers:
         label_low:
             filter:
                 all:
-                - function() { return feature.name.length < 6}
                 - $zoom: {min: 13}
             draw:
                 text:
