@@ -14,6 +14,7 @@ static/.DS_Store
 *.gem
 *.bundle
 *.rb
+vendor/
 vendor/bundle/ruby/2.6.0/bin/commonmarker
 vendor/bundle/ruby/2.6.0/bin/gemoji
 vendor/bundle/ruby/2.6.0/bin/github-pages
@@ -2778,4 +2779,7 @@ vendor/bundle/ruby/2.6.0/specifications/thread_safe-0.3.6.gemspec
 vendor/bundle/ruby/2.6.0/specifications/typhoeus-1.3.1.gemspec
 vendor/bundle/ruby/2.6.0/specifications/tzinfo-1.2.5.gemspec
 vendor/bundle/ruby/2.6.0/specifications/unicode-display_width-1.6.0.gemspec
+.DS_Store
+.DS_Store
+*.lock
 .DS_Store
