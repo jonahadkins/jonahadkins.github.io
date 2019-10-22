@@ -3,84 +3,119 @@
     "height": 48,
     "pixelRatio": 2,
     "width": 45,
-    "x": 1751,
-    "y": 1024
+    "x": 553,
+    "y": 763
   },
   "aviation": {
     "height": 34,
     "pixelRatio": 2,
     "width": 39,
-    "x": 1957,
-    "y": 512
+    "x": 598,
+    "y": 763
   },
   "citydot": {
     "height": 22,
     "pixelRatio": 2,
     "width": 22,
-    "x": 2025,
-    "y": 512
+    "x": 666,
+    "y": 763
   },
   "citydot-open": {
     "height": 29,
     "pixelRatio": 2,
     "width": 29,
-    "x": 1996,
-    "y": 512
+    "x": 637,
+    "y": 763
   },
   "mini-roundabout": {
     "height": 189,
     "pixelRatio": 2,
     "width": 189,
-    "x": 1024,
+    "x": 0,
     "y": 512
   },
   "oneway": {
     "height": 57,
     "pixelRatio": 2,
     "width": 109,
-    "x": 403,
-    "y": 1024
+    "x": 461,
+    "y": 701
   },
   "poi-civic": {
     "height": 18,
     "pixelRatio": 2,
     "width": 18,
-    "x": 0,
-    "y": 1086
+    "x": 688,
+    "y": 763
   },
   "poi-food": {
     "height": 18,
     "pixelRatio": 2,
     "width": 18,
-    "x": 18,
-    "y": 1086
+    "x": 706,
+    "y": 763
   },
   "poi-fuel": {
     "height": 18,
     "pixelRatio": 2,
     "width": 18,
-    "x": 36,
-    "y": 1086
+    "x": 724,
+    "y": 763
   },
   "poi-other": {
     "height": 18,
     "pixelRatio": 2,
     "width": 18,
-    "x": 54,
-    "y": 1086
+    "x": 742,
+    "y": 763
   },
   "poi-prominent": {
     "height": 18,
     "pixelRatio": 2,
     "width": 18,
-    "x": 72,
-    "y": 1086
+    "x": 760,
+    "y": 763
+  },
+  "shield-AU-Metroad": {
+    "height": 59,
+    "pixelRatio": 2,
+    "width": 58,
+    "x": 224,
+    "y": 701
+  },
+  "shield-AU-NatlHiwy": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 53,
+    "x": 627,
+    "y": 512
+  },
+  "shield-AU-NatlRte": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 52,
+    "x": 680,
+    "y": 512
+  },
+  "shield-AU-StRte": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 64,
+    "x": 732,
+    "y": 512
+  },
+  "shield-AU-Tourist": {
+    "height": 62,
+    "pixelRatio": 2,
+    "width": 55,
+    "x": 796,
+    "y": 512
   },
   "shield-CA-TransCanHiwy": {
     "height": 69,
     "pixelRatio": 2,
     "width": 66,
-    "x": 1436,
+    "x": 412,
     "y": 512
   },
   "shield-DE-Autobahn": {
@@ -88,146 +123,90 @@
     "pixelRatio": 2,
     "width": 100,
     "x": 124,
-    "y": 1024
-  },
-  "shield-GreyOval-1-2": {
-    "height": 56,
-    "pixelRatio": 2,
-    "width": 68,
-    "x": 512,
-    "y": 1024
-  },
-  "shield-GreyOval-3": {
-    "height": 62,
-    "pixelRatio": 2,
-    "width": 99,
-    "x": 1651,
-    "y": 512
-  },
-  "shield-GreyOval-4": {
-    "height": 62,
-    "pixelRatio": 2,
-    "width": 108,
-    "x": 1750,
-    "y": 512
+    "y": 701
   },
   "shield-IN-NatlHiwy": {
     "height": 52,
     "pixelRatio": 2,
     "width": 54,
-    "x": 1643,
-    "y": 1024
+    "x": 445,
+    "y": 763
   },
   "shield-IN-StateHiwy": {
     "height": 52,
     "pixelRatio": 2,
     "width": 54,
-    "x": 1697,
-    "y": 1024
+    "x": 499,
+    "y": 763
   },
   "shield-IT-Autostrade": {
     "height": 74,
     "pixelRatio": 2,
     "width": 73,
-    "x": 1293,
+    "x": 269,
     "y": 512
-  },
-  "shield-IT-blue-rectangle": {
-    "height": 56,
-    "pixelRatio": 2,
-    "width": 126,
-    "x": 580,
-    "y": 1024
-  },
-  "shield-IT-green-rectangle": {
-    "height": 56,
-    "pixelRatio": 2,
-    "width": 126,
-    "x": 706,
-    "y": 1024
   },
   "shield-JP-NatlHiwy": {
     "height": 58,
     "pixelRatio": 2,
     "width": 59,
-    "x": 281,
-    "y": 1024
+    "x": 339,
+    "y": 701
   },
   "shield-JP-PrefHiwy": {
     "height": 58,
     "pixelRatio": 2,
     "width": 63,
-    "x": 340,
-    "y": 1024
+    "x": 398,
+    "y": 701
   },
   "shield-JP-UrbanExpwy": {
     "height": 59,
     "pixelRatio": 2,
     "width": 57,
-    "x": 224,
-    "y": 1024
-  },
-  "shield-US-County-1-2": {
-    "height": 42,
-    "pixelRatio": 2,
-    "width": 64,
-    "x": 1972,
-    "y": 1024
-  },
-  "shield-US-County-3": {
-    "height": 45,
-    "pixelRatio": 2,
-    "width": 78,
-    "x": 1796,
-    "y": 1024
-  },
-  "shield-US-County-4": {
-    "height": 45,
-    "pixelRatio": 2,
-    "width": 98,
-    "x": 1874,
-    "y": 1024
+    "x": 282,
+    "y": 701
   },
   "shield-US-Hwy-1-2": {
     "height": 66,
     "pixelRatio": 2,
     "width": 69,
-    "x": 1582,
+    "x": 558,
     "y": 512
   },
   "shield-US-Hwy-3": {
     "height": 67,
     "pixelRatio": 2,
     "width": 80,
-    "x": 1502,
+    "x": 478,
     "y": 512
   },
   "shield-US-Interstate-1-2": {
     "height": 73,
     "pixelRatio": 2,
     "width": 70,
-    "x": 1366,
+    "x": 342,
     "y": 512
   },
   "shield-US-Interstate-3": {
     "height": 77,
     "pixelRatio": 2,
     "width": 80,
-    "x": 1213,
+    "x": 189,
     "y": 512
   },
   "shield-oval-white-1-2": {
     "height": 56,
     "pixelRatio": 2,
     "width": 68,
-    "x": 832,
-    "y": 1024
+    "x": 570,
+    "y": 701
   },
   "shield-oval-white-3": {
     "height": 62,
     "pixelRatio": 2,
     "width": 99,
-    "x": 1858,
+    "x": 851,
     "y": 512
   },
   "shield-oval-white-4": {
@@ -235,97 +214,69 @@
     "pixelRatio": 2,
     "width": 124,
     "x": 0,
-    "y": 1024
+    "y": 701
   },
   "shield-rectangle-blue": {
     "height": 55,
     "pixelRatio": 2,
     "width": 89,
-    "x": 1198,
-    "y": 1024
+    "x": 0,
+    "y": 763
   },
   "shield-rectangle-green-dark": {
     "height": 55,
     "pixelRatio": 2,
     "width": 89,
-    "x": 1287,
-    "y": 1024
+    "x": 89,
+    "y": 763
   },
   "shield-rectangle-green-light": {
     "height": 55,
     "pixelRatio": 2,
     "width": 89,
-    "x": 1376,
-    "y": 1024
+    "x": 178,
+    "y": 763
   },
   "shield-rectangle-red": {
     "height": 55,
     "pixelRatio": 2,
     "width": 89,
-    "x": 1465,
-    "y": 1024
+    "x": 267,
+    "y": 763
   },
   "shield-rectangle-white": {
     "height": 56,
     "pixelRatio": 2,
     "width": 91,
-    "x": 900,
-    "y": 1024
+    "x": 638,
+    "y": 701
   },
   "shield-rectangle-white-long": {
     "height": 56,
     "pixelRatio": 2,
     "width": 207,
-    "x": 991,
-    "y": 1024
+    "x": 729,
+    "y": 701
   },
   "shield-rectangle-yellow": {
     "height": 55,
     "pixelRatio": 2,
     "width": 89,
-    "x": 1554,
-    "y": 1024
-  },
-  "water-blurbase_basic": {
-    "height": 512,
-    "pixelRatio": 2,
-    "width": 512,
-    "x": 0,
-    "y": 0
+    "x": 356,
+    "y": 763
   },
   "water-blurbase_delivery": {
     "height": 512,
     "pixelRatio": 2,
     "width": 512,
-    "x": 512,
-    "y": 0
-  },
-  "water-blurbase_grey": {
-    "height": 512,
-    "pixelRatio": 2,
-    "width": 512,
     "x": 0,
-    "y": 512
-  },
-  "water-wavetexture_basic": {
-    "height": 512,
-    "pixelRatio": 2,
-    "width": 512,
-    "x": 512,
-    "y": 512
+    "y": 0
   },
   "water-wavetexture_delivery": {
     "height": 512,
     "pixelRatio": 2,
     "width": 512,
-    "x": 1024,
-    "y": 0
-  },
-  "water-wavetexture_grey": {
-    "height": 512,
-    "pixelRatio": 2,
-    "width": 512,
-    "x": 1536,
+    "x": 512,
     "y": 0
   }
 }
