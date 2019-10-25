@@ -2783,3 +2783,5 @@ vendor/bundle/ruby/2.6.0/specifications/unicode-display_width-1.6.0.gemspec
 .DS_Store
 *.lock
 .DS_Store
+static/.DS_Store
+.DS_Store

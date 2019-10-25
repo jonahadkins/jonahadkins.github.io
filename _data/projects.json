@@ -1,5 +1,33 @@
 [
 	{
+		"slug": "This Is Halloween",
+		"name": "This Is Halloween",
+		"image": "hell.png",
+		"url": "https://www.jonahadkins.com/cartography/tangram/here/2019/10/25/halloween.html",
+		"date": "Oct 25 2019",
+		"tags": ["cartography","tangram","here"]
+	},{
+		"slug": "NACIS Quilt 2019",
+		"name": "NACIS Quilt 2019",
+		"image": "quilt_2019.jpg",
+		"url": "https://www.jonahadkins.com/cartography/esri/openstreetmap/2019/10/17/nacis-quilt.html",
+		"date": "Oct 17 2019",
+		"tags": ["cartography","esri","openstreetmap"]
+	},{
+		"slug": "Flighty",
+		"name": "Flighty",
+		"image": "flighty_1.JPG",
+		"url": "https://www.jonahadkins.com/cartography/mapbox/2019/10/03/flighty.html",
+		"date": "Oct 03 2019",
+		"tags": ["cartography","mapbox"]
+	},{
+		"slug": "Newport News Green Foundation",
+		"name": "Newport News Green Foundation",
+		"image": "final_nngf_ja.png",
+		"url": "https://www.jonahadkins.com/esri/cartography/openstreetmap/2019/06/14/monochrome",
+		"date": "Jun 14 2019",
+		"tags": ["cartography","openstreetmap","esri"]
+	},{
 		"slug": "QGIS Map Design Volume 2",
 		"name": "QGIS Map Design Volume 2",
 		"image": "qgis_b.jpg",
