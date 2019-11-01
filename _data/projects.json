@@ -7,6 +7,13 @@
 		"date": "Oct 25 2019",
 		"tags": ["cartography","tangram","here"]
 	},{
+		"slug": "It's A Tiled World After All",
+		"name": "It's A Tiled World After All",
+		"image": "nacis19.png",
+		"url": "https://www.youtube.com/watch?v=jMfB0xczaH0",
+		"date": "Oct 17 2019",
+		"tags": ["cartography","esri","openstreetmap","mapbox","tangram"]
+	},{
 		"slug": "NACIS Quilt 2019",
 		"name": "NACIS Quilt 2019",
 		"image": "quilt_2019.jpg",
@@ -21,9 +28,16 @@
 		"date": "Oct 03 2019",
 		"tags": ["cartography","mapbox"]
 	},{
+		"slug": "Hampton Roads: A Million Buildings Later",
+		"name": "Hampton Roads: A Million Buildings Later",
+		"image": "sotmus19.png",
+		"url": "https://www.youtube.com/watch?v=8HnD05kJxKk&t=3s",
+		"date": "Sep 06 2019",
+		"tags": ["cartography","mapbox"]
+	},{
 		"slug": "Newport News Green Foundation",
 		"name": "Newport News Green Foundation",
-		"image": "final_nngf_ja.png",
+		"image": "nngf_sm.png",
 		"url": "https://www.jonahadkins.com/esri/cartography/openstreetmap/2019/06/14/monochrome",
 		"date": "Jun 14 2019",
 		"tags": ["cartography","openstreetmap","esri"]
