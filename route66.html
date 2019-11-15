@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset='utf-8' />
-    <title>Show and hide layers</title>
+    <title>route 66 demo</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
@@ -64,14 +64,14 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGFrdXNwb3J0cyIsImEiOiJjam0yZzZzb2cwM2xiM3ZtbWlhMHFiZ2V3In0.q9MAwyAZiww1MsOQx3GUPw';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/hakusports/ck30ijrtq10yf1do9nhhfdra3',
+    style: 'mapbox://styles/hakusports/ck30pbxts02by1cqcd5crpgrr',
     zoom: 12,
     center: [-95.970,36.1374]
 });
 
 
 
-var toggleableLayerIds = [ 'water-full', 'water-half', 'relay-full', 'medical-full', 'medical-half', 'route66-half', 'route66-full' ];
+var toggleableLayerIds = [ 'hydro-full', 'hydro-half', 'relaypt-full', 'med-full', 'med-half', 'half', 'full' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
