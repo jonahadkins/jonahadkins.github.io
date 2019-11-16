@@ -28,7 +28,7 @@
 
     #menu a {
         font-size: 13px;
-        color: #404040;
+        color: #1955a3;
         display: block;
         margin: 0;
         padding: 0;
@@ -48,12 +48,12 @@
     }
 
     #menu a.active {
-        background-color: #3887be;
-        color: #ffffff;
+        background-color: #c6dbf6;
+        color: #1955a3;
     }
 
     #menu a.active:hover {
-        background: #3074a4;
+        background: #c4c4c4;
     }
 </style>
 
@@ -71,7 +71,7 @@ var map = new mapboxgl.Map({
 
 
 
-var toggleableLayerIds = [ 'hydro-full', 'hydro-half', 'relaypt-full', 'med-full', 'med-half', 'half', 'full' ];
+var toggleableLayerIds = [ 'Race Start', 'Race Finish', 'Half Marathon Course', 'Full Marathon Course', 'Relay Exchange Locations', 'Gatorade Stations - Full Marathon', 'Gatorade Stations - Half Marathon', ' Medical Tents - Full Marathon', ' Medical Tents - Half Marathon' ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
