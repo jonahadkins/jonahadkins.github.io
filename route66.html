@@ -22,19 +22,19 @@
         right: 10px;
         border-radius: 3px;
         width: 120px;
-        border: 1px solid rgb(255,255,255);
+        border: 1px solid rgba(25,85,163,0.5);
         font-family: 'Open Sans', sans-serif;
     }
 
     #menu a {
-        font-size: 13px;
+        font-size: 10px;
         color: #1955a3;
         display: block;
         margin: 0;
         padding: 0;
-        padding: 10px;
+        padding: 8px;
         text-decoration: none;
-        border-bottom: 1px solid rgb(255,255,255);
+        border-bottom: 1px solid rgba(25,85,163,0.5);
         text-align: center;
     }
 
@@ -71,7 +71,16 @@ var map = new mapboxgl.Map({
 
 
 
-var toggleableLayerIds = [ 'Half Marathon Course', 'Full Marathon Course', 'Relay Exchange Locations', 'Gatorade Stations', ' Medical Tents' ];
+var toggleableLayerIds = [ 'Marathon Course',
+                           'Half Marathon Course',
+                           'Marathon Timing Points',
+                           'Half Marathon Timing Points',
+                           'Marathon Mile Markers',
+                           'Half Marathon Mile Markers',
+                           'Relay Locations',
+                           'Gatorade Stations',
+                           'Medical Tents'
+                         ];
 
 for (var i = 0; i < toggleableLayerIds.length; i++) {
     var id = toggleableLayerIds[i];
