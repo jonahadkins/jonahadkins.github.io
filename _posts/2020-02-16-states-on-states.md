@@ -141,6 +141,16 @@ places are sized according to the total count of occurrences for each state name
 
 it's not _exact_ but it's pretty close. All in all, it was a fun little project to experiment and learn some new things on!
 
+### Random Things...
+
+... I should have done/fixed.
+
+- Dissolve duplicate names per state (theres like 10+ instances of Kansas City that all represent Kansas City)
+- my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points.
+- done some better RegEx to limit it to singular instances of state's name (only California, not California Junction or only Indiana, not Indianapolis)
+- styled the dropdown
+- I never think about how it looks on mobile
+
 
 <hr>
 Got questions or comments? Feel free to [email me](mailto:jonahadkins@gmail.com) or hit me up on [twitter](https://twitter.com/jonahadkins).
