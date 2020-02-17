@@ -29,15 +29,12 @@
 
     #title {
       position: absolute;
-      top: 100px;
+      top: 150px;
       left: 20px;
-      bottom: 100px;
+      bottom: 150px;
       width: 250px;
       overflow: auto;
       background: rgba(255, 255, 255, 0.7);
-      color: rgba(55, 55, 55, 1);
-      font-family: 'Oswald', sans-serif;
-      font-size: 9pt;
       align-items: center;
       text-align: center;
       padding-left: 12px;
@@ -50,7 +47,7 @@
 
     h1 {
       font-family: 'Montserrat Subrayada', sans-serif;
-      font-size: 36pt;
+      font-size: 30pt;
       color: hsl(187, 100%, 20%);
       line-height: 90%;
       margin: 0;
@@ -60,7 +57,7 @@
 
     h2 {
       font-family: 'Oswald', sans-serif;
-      font-size: 12pt;
+      font-size: 10pt;
       color: hsl(187, 100%, 20%);
       line-height: 110%;
       margin: 0;
@@ -70,7 +67,7 @@
 
     h3 {
       font-family: 'Oswald', sans-serif;
-      font-size: 10pt;
+      font-size: 8pt;
       color: hsl(187, 100%, 20%);
       line-height: 120%;
       margin: 0;
@@ -204,7 +201,7 @@
       <br>194 instances (Washington)
     </h3>
     <h2>
-      <a target="blank" href="http://jonahadkins.com/cartography/mapbox/here/2020/02/16/states-on-states.html">Read more about it!</a> by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+      <a target="blank" href="https://www.jonahadkins.com/cartography/mapbox/2020/02/16/states-on-states.html">Read more about it!</a> by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
     </h2>
 
   </div>
@@ -236,7 +233,7 @@
         "paint": {
           "fill-color": "hsl(187, 100%, 49%)",
           "fill-opacity": 0.3,
-          "fill-outline-color": "hsl(130, 100%, 53%)"
+          "fill-outline-color": "hsl(187, 100%, 40%)"
         }
       }, 'state-label');
 
@@ -262,9 +259,9 @@
               ["linear"],
               ["get", "FREQUENCY"],
               1,
-              5,
+              4,
               194,
-              10
+              12
             ],
             6,
             [
@@ -272,9 +269,9 @@
               ["linear"],
               ["get", "FREQUENCY"],
               1,
-              10,
+              12,
               194,
-              20
+              24
             ]
           ],
           "circle-color": "hsl(187, 100%, 49%)",
@@ -336,7 +333,9 @@
 
         var coordinates = e.features[0].geometry.coordinates.slice();
         var description = ('<b>' + e.features[0].properties.gaz_name + '</b>' +
-          '<br/>' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ');
+          '<br/>' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
+					'<br/>' + 'Actual: ' + e.features[0].properties.county_nam + ', ' + e.features[0].properties.state_alph
+				);
 
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;

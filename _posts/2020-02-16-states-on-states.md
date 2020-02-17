@@ -32,14 +32,18 @@ So the BGN basically works with other federal orgs and state orgs to determine w
 
 ## QGIS
 
-The text file is easily converted to geographic points in QGIS by using _Layer -> Add Layer -> Add Delimited Text Layer_ and using the dialog to pick the appropriate latitude and longitude fields from the large text file. Then, we're going to run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column.
+The text file is easily converted to geographic points in QGIS by using _Layer -> Add Layer -> Add Delimited Text Layer_ and using the dialog to pick the appropriate latitude and longitude fields from the large text file. We're also going to limit the data to just populated places - the source data has [around 50 categories of named sites](https://geonames.usgs.gov/apex/f?p=gnispq:8:0:::::) ranging from reservoirs and beaches to airports. According to the metadata a populated place is:
+
+_Place or area with clustered or scattered buildings and a permanent human population (city, settlement, town, village). A populated place is usually not incorporated and by definition has no legal boundaries. However, a populated place may have a corresponding "civil" record, the legal boundaries of which may or may not coincide with the perceived populated place. Distinct from Census and Civil classes._
+
+Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column.
 
 There's probably some better and quicker ways to go about it, but this is what worked for me.
 
 
 ## Mapbox
 
-To get this data on the web, we'll upload it Mapbox as a tileset, which will give us programmatic access to it using Mapbox GL JS. The main thing I want to do with this visualization is let the user select a state, and be shown all places that match that state. First I created color-drained basemap consisting of Mapbox imagery, state names, and admin boundries. Up next was adding my new GNIS layer twice, once as styled points, the second as styled labels. For the points, we'll use the `interpolate` property on the circle size using the occurrence count column from our data. This makes the point size small to large based on how many occurrences of that states name. And I also added state boundaries from the new Mapbox [Election dataset](https://www.mapbox.com/elections) - i'm not using any of the election data, just the filled state polygons with their name attributed.
+To get this data on the web, we'll upload it Mapbox as a tileset, which will give us programmatic access to it using Mapbox GL JS. The main thing I want to do with this visualization is let the user select a state, and be shown all places that match that state. First, I created a color-drained basemap consisting of Mapbox imagery, state names, and admin boundries. Up next was adding my new GNIS layer twice, once as styled points, the second as styled labels. For the points, we'll use the `interpolate` property on the circle size using the occurrence count column from our data. This makes the point size small to large based on how many occurrences of that states name. I'll note that its a lot easier to style the data in Studio, then download the `json` file and use the style code from there to add to the `map.addLayer({` part of my GL-JS code. And finally, I added state boundaries from the new Mapbox [Election dataset](https://www.mapbox.com/elections) - i'm not using any of the election data, just the filled state polygons with their name attributed.
 
 
 <hr>  
@@ -80,6 +84,12 @@ prop.addEventListener('change', function() {
 {% endhighlight %}
 
 It's important to include a default of all states so the map is populated with all locations, that's the `if` part, the `else` part looks for matches in the dropdown to my GNIS data and turns the data on for just the matches through `setFilter` and `setLayoutProperty`. Now the user can go back and forth between all states or just a single state. Also, once a single state is selected, the elections data we added shows the state as filled transparent polygon, so the user can see both state and it's similar place names.
+
+<hr>  
+
+![ohio2]({{ site.url }}/static/projects/ohio2.png)  
+
+<hr>
 
 You can see the code for my [one-page app here](https://github.com/jonahadkins/jonahadkins.github.io/blob/master/statesonstates.html).
 
@@ -146,6 +156,7 @@ it's not _exact_ but it's pretty close. All in all, it was a fun little project 
 ... I should have done/fixed.
 
 - Dissolve duplicate names per state (theres like 10+ instances of Kansas City that all represent Kansas City)
+- try OSM first
 - my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points.
 - done some better RegEx to limit it to singular instances of state's name (only California, not California Junction or only Indiana, not Indianapolis)
 - styled the dropdown
