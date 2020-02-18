@@ -332,9 +332,9 @@
         map.getCanvas().style.cursor = 'pointer';
 
         var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = ('<b>' + e.features[0].properties.gaz_name + '</b>' +
-          '<br/>' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
-					'<br/>' + 'Actual: ' + e.features[0].properties.county_nam + ', ' + e.features[0].properties.state_alph
+        var description = ('<b>' + 'Place Name: ' +  e.features[0].properties.gaz_name + '</b>' +
+          '<br/>' + 'Like State Name: ' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
+					'<br/>' + 'County, State: ' + e.features[0].properties.county_nam + ', ' + e.features[0].properties.state_alph
 				);
 
         while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {

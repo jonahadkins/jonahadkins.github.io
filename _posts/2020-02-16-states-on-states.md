@@ -20,7 +20,7 @@ It's been a busy start to the new year, which has meant less time for fun map ex
 
 In their awesome infinite wisdom, the people who name places absolutely __love__ naming places after states. For example, [Kansas, Georgia](https://en.wikipedia.org/wiki/Kansas,_Georgia) or [Florida, Colorado](https://en.wikipedia.org/wiki/Florida,_Colorado).
 
-I'm fairly sure a lot of these aren't _real_ places, more like these weird named things that have existed only because it was put on a map once and never removed in subsequent editions, and i'm curious enough to dig into it more.
+I'm fairly sure a lot of these aren't _real_ places, more like these weird named things that have existed only because it was put on a map once and never removed in subsequent editions, it's also worth noting the [etymologies](https://en.wikipedia.org/wiki/List_of_state_and_territory_name_etymologies_of_the_United_States) of these names that are endlessly re-used.
 
 ## Source Data
 
@@ -36,7 +36,7 @@ The text file is easily converted to geographic points in QGIS by using _Layer -
 
 _Place or area with clustered or scattered buildings and a permanent human population (city, settlement, town, village). A populated place is usually not incorporated and by definition has no legal boundaries. However, a populated place may have a corresponding "civil" record, the legal boundaries of which may or may not coincide with the perceived populated place. Distinct from Census and Civil classes._
 
-Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column.
+Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column. **ALSO** - DC is not included in here, but Guam, and Puerto Rico are.
 
 There's probably some better and quicker ways to go about it, but this is what worked for me.
 
@@ -96,7 +96,7 @@ You can see the code for my [one-page app here](https://github.com/jonahadkins/j
 
 ## Finishing Touches
 
-We'll make this little app presentable by making use of Google Fonts by way of [Kay Decorah's awesome font explorer](https://katydecorah.com/font-library/#!/). Since we used an `interpolate` property in our layer style, we'll want to add a small legend. We can replicate the circle style using css, like this:
+We'll make this little app presentable by making use of Google Fonts by way of [Katy Decorah's awesome font explorer](https://katydecorah.com/font-library/#!/). Since we used an `interpolate` property in our layer style, we'll want to add a small legend. We can replicate the circle style using css, like this:
 
 {% highlight css %}
 
@@ -157,11 +157,13 @@ it's not _exact_ but it's pretty close. All in all, it was a fun little project 
 
 - Dissolve duplicate names per state (theres like 10+ instances of Kansas City that all represent Kansas City)
 - try OSM first
-- my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points.
+- my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points when hovering.
 - done some better RegEx to limit it to singular instances of state's name (only California, not California Junction or only Indiana, not Indianapolis)
 - styled the dropdown
 - I never think about how it looks on mobile
+- Washington DC should be a state, therefore part of this as Columbia and Washington
 
-
+<hr>
+major props to [Vicky](https://twitter.com/hurricanevicky) for proofing all this for me!
 <hr>
 Got questions or comments? Feel free to [email me](mailto:jonahadkins@gmail.com) or hit me up on [twitter](https://twitter.com/jonahadkins).
