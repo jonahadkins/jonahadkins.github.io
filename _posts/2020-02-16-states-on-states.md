@@ -36,9 +36,9 @@ The text file is easily converted to geographic points in QGIS by using _Layer -
 
 _Place or area with clustered or scattered buildings and a permanent human population (city, settlement, town, village). A populated place is usually not incorporated and by definition has no legal boundaries. However, a populated place may have a corresponding "civil" record, the legal boundaries of which may or may not coincide with the perceived populated place. Distinct from Census and Civil classes._
 
-Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column. **ALSO** - DC is not included in here, but Guam, and Puerto Rico are.
+Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column. **ALSO** - DC is not included in here, but Guam, and Puerto Rico are. I also want to style the map to show a difference in places that are in that state they're named like vs. place outside of the state they are named like, so I calculated and `in` or `out` column based on matching the actual state the places is in to the reference for the named like state.
 
-Finally, I deleted duplicate where Place Name, County Name, and State were the same. There were about 100 or so of those. I know there's probably some better and quicker ways to go about it, but this is what worked for me.
+Finally, I deleted duplicates where Place Name, County Name, and State were the same. There were about 100 or so of those. I also removed about 100 instances where _Mobile Home_ and _Trailer Park_ were part of the place name. I know there's probably some better and quicker ways to go about it, but this is what worked for me.
 
 
 ## Mapbox
@@ -48,7 +48,7 @@ To get this data on the web, we'll upload it Mapbox as a tileset, which will giv
 
 <hr>  
 
-![leg]({{ site.url }}/static/projects/states-virginia.png)  
+![leg]({{ site.url }}/static/projects/states-sample.png)  
 
 <hr>
 
@@ -62,24 +62,80 @@ prop.addEventListener('change', function() {
 
 
   if ([prop.value] == 'default') {
-    map.setFilter('points')
-    map.setFilter('labels')
+    map.setFilter('points-in', [
+      "match",
+      ["get", "In_Out"],
+      ["IN"],
+      true,
+      false
+    ])
+    map.setFilter('points-out', [
+      "match",
+      ["get", "In_Out"],
+      ["OUT"],
+      true,
+      false
+    ])
+    map.setFilter('labels-in', [
+      "match",
+      ["get", "In_Out"],
+      ["IN"],
+      true,
+      false
+    ])
+    map.setFilter('labels-out', [
+      "match",
+      ["get", "In_Out"],
+      ["OUT"],
+      true,
+      false
+    ])
     map.setFilter('states')
     map.setLayoutProperty('states', 'visibility', 'none');
-    map.setLayoutProperty('labels', 'visibility', 'none');
+    map.setLayoutProperty('labels-in', 'visibility', 'none');
+    map.setLayoutProperty('labels-out', 'visibility', 'none');
   } else {
-    map.setFilter('points', ["match", ["get", "NameLike"],
-      [prop.value], true, false
+    map.setFilter('points-in', ["all",
+      ["match", ["get", "In_Out"],
+        ["IN"], true, false
+      ],
+      ["match", ["get", "NameLike"],
+        [prop.value], true, false
+      ]
     ])
-    map.setFilter('labels', ["match", ["get", "NameLike"],
-      [prop.value], true, false
+    map.setFilter('points-out', ["all",
+      ["match", ["get", "In_Out"],
+        ["OUT"], true, false
+      ],
+      ["match", ["get", "NameLike"],
+        [prop.value], true, false
+      ]
     ])
+    map.setFilter('labels-in', ["all",
+      ["match", ["get", "In_Out"],
+        ["IN"], true, false
+      ],
+      ["match", ["get", "NameLike"],
+        [prop.value], true, false
+      ]
+    ])
+    map.setFilter('labels-out', ["all",
+      ["match", ["get", "In_Out"],
+        ["OUT"], true, false
+      ],
+      ["match", ["get", "NameLike"],
+        [prop.value], true, false
+      ]
+    ])
+
     map.setFilter('states', ["match", ["get", "name"],
       [prop.value], true, false
     ])
-    map.setLayoutProperty('labels', 'visibility', 'visible')
+    map.setLayoutProperty('labels-in', 'visibility', 'visible')
+    map.setLayoutProperty('labels-out', 'visibility', 'visible')
     map.setLayoutProperty('states', 'visibility', 'visible');
   }
+});
 
 {% endhighlight %}
 
@@ -100,7 +156,7 @@ We'll make this little app presentable by making use of Google Fonts by way of [
 
 {% highlight css %}
 
-.dot-small {
+.dot-left-small {
   height: 5px;
   width: 5px;
   background-color: hsl(187, 100%, 49%);
@@ -110,7 +166,7 @@ We'll make this little app presentable by making use of Google Fonts by way of [
   filter: blur(2px);
 }
 
-.dot-medium {
+.dot-left-medium {
   height: 10px;
   width: 10px;
   background-color: hsl(187, 100%, 49%);
@@ -120,7 +176,7 @@ We'll make this little app presentable by making use of Google Fonts by way of [
   filter: blur(2px)
 }
 
-.dot-large {
+.dot-left-large {
   height: 20px;
   width: 20px;
   background-color: hsl(187, 100%, 49%);
@@ -137,9 +193,9 @@ and then in the html, we add:
 {% highlight html %}
 
 places are sized according to the total count of occurrences for each state name
-<br> 0 instances (Carolinas)
+<br> 1 instance (Louisiana)
 <br><span class="dot-small"> </span> <span class="dot-medium"> </span> <span class="dot-large"></span>
-<br>194 instances (Washington)
+<br>187 instances (Washington)
 
 {% endhighlight %}
 

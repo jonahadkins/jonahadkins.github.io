@@ -2,387 +2,614 @@
 <html>
 
 <head>
-  <meta charset='utf-8' />
-  <title>states on states</title>
-  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-  <script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
-  <link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada&display=swap" rel="stylesheet">
+	<meta charset='utf-8' />
+	<title>states on states</title>
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+	<script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
 
-    #map {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-    }
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
 
-    a {
-      color: hsl(187, 100%, 30%);
-    }
+		a {
+			color: hsl(187, 0%, 33%);
+		}
 
-    #title {
-      position: absolute;
-      top: 150px;
-      left: 20px;
-      bottom: 150px;
-      width: 250px;
-      overflow: auto;
-      background: rgba(255, 255, 255, 0.7);
-      align-items: center;
-      text-align: center;
-      padding-left: 12px;
-      padding-right: 12px;
-      outline: 2px solid rgba(255, 255, 255, 0.7);
-      outline-offset: -5px;
-      margin: 0;
-      z-index: 999;
-    }
+		#title {
+			position: absolute;
+			top: 150px;
+			left: 40px;
+			bottom: 150px;
+			width: 250px;
+			overflow: auto;
+			background: rgba(255, 255, 255, 0.7);
+			align-items: center;
+			text-align: center;
+			padding-left: 12px;
+			padding-right: 12px;
+			outline: 2px solid rgba(255, 255, 255, 0.9);
+			outline-offset: -5px;
+			margin: 0;
+			z-index: 999;
+		}
 
-    h1 {
-      font-family: 'Montserrat Subrayada', sans-serif;
-      font-size: 30pt;
-      color: hsl(187, 100%, 20%);
-      line-height: 90%;
-      margin: 0;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+		h1 {
+			font-family: 'Montserrat Subrayada', sans-serif;
+			font-size: 30pt;
+			color: hsl(187, 0%, 13%);
+			line-height: 90%;
+			margin: 0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 
-    h2 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 10pt;
-      color: hsl(187, 100%, 20%);
-      line-height: 110%;
-      margin: 0;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+		h2 {
+			font-family: 'Nunito', sans-serif;
+			font-size: 10pt;
+			color: hsl(187, 0%, 33%);
+			line-height: 110%;
+			margin: 0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 
-    h3 {
-      font-family: 'Oswald', sans-serif;
-      font-size: 8pt;
-      color: hsl(187, 100%, 20%);
-      line-height: 120%;
-      margin: 0;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+		h3 {
+			font-family: 'Nunito', sans-serif;
+			font-size: 8pt;
+			color: hsl(187, 0%, 33%);
+			line-height: 120%;
+			margin: 0;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
 
-    .map-overlay-inner {}
+		.map-overlay-inner {}
 
-    .map-overlay-inner fieldset {
-      border: none;
-      padding: 0;
-      margin: 0 0 10px;
-      z-index: 1;
-    }
+		.map-overlay-inner fieldset {
+			border: none;
+			padding: 0;
+			margin: 0 0 10px;
+			z-index: 1;
+		}
 
-    .dot-small {
-      height: 5px;
-      width: 5px;
-      background-color: hsl(187, 100%, 49%);
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
-      filter: blur(2px);
-    }
+		.dot-left-small {
+			height: 5px;
+			width: 5px;
+			background-color: hsl(187, 100%, 49%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
+			filter: blur(2px);
+		}
 
-    .dot-medium {
-      height: 10px;
-      width: 10px;
-      background-color: hsl(187, 100%, 49%);
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
-      filter: blur(2px)
-    }
+		.dot-left-medium {
+			height: 10px;
+			width: 10px;
+			background-color: hsl(187, 100%, 49%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
+			filter: blur(2px)
+		}
 
-    .dot-large {
-      height: 20px;
-      width: 20px;
-      background-color: hsl(187, 100%, 49%);
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
-      filter: blur(3px)
-    }
+		.dot-left-large {
+			height: 20px;
+			width: 20px;
+			background-color: hsl(187, 100%, 49%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(187, 100%, 40%);
+			filter: blur(3px)
+		}
 
-    .mapboxgl-popup {
-      color: #000;
-      font-size: 12px;
-      line-height: 18px;
-      font-family: 'Oswald', sans-serif;
-    }
-  </style>
+		.dot-right-small {
+			height: 5px;
+			width: 5px;
+			background-color: hsl(26, 89%, 57%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(25, 100%, 49%);
+			filter: blur(2px);
+		}
+
+		.dot-right-medium {
+			height: 10px;
+			width: 10px;
+			background-color: hsl(26, 89%, 57%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(25, 100%, 49%);
+			filter: blur(2px)
+		}
+
+		.dot-right-large {
+			height: 20px;
+			width: 20px;
+			background-color: hsl(26, 89%, 57%);
+			border-radius: 50%;
+			display: inline-block;
+			box-shadow: 0 0 1px 1px hsl(25, 100%, 49%);
+			filter: blur(3px)
+		}
+
+
+		.mapboxgl-popup {
+			color: #000;
+			font-size: 12px;
+			line-height: 18px;
+			font-family: 'Oswald', sans-serif;
+		}
+	</style>
 </head>
 
 <body>
-  <div id='map'></div>
-  <div id='title'>
-    <h1><b>States On States</b></h1>
-    <h2>
-      a quick look a state names withn states with Mapbox GL and <a target="blank" href="https://www.usgs.gov/core-science-systems/ngp/board-on-geographic-names/download-gnis-data">GNIS Place Names</a>
-      <br>
-      <br>
-      <div class='map-overlay-inner'>
-        <fieldset>
-          <label>Choose a state to see occurrences of each state name around the U.S.</label>
-          <br>
-          <br>
-          <select id='prop' name='prop'>
-            <option value='default'>All</option>
-            <option value='Alabama'>Alabama</option>
-            <option value='Alaska'>Alaska</option>
-            <option value='Arizona'>Arizona</option>
-            <option value='Arkansas'>Arkansas</option>
-            <option value='California'>California</option>
-            <option value='Colorado'>Colorado</option>
-            <option value='Connecticut'>Connecticut</option>
-            <option value='Delaware'>Delaware</option>
-            <option value='Florida'>Florida</option>
-            <option value='Georgia'>Georgia</option>
-            <option value='Guam'>Guam</option>
-            <option value='Hawaii'>Hawaii</option>
-            <option value='Idaho'>Idaho</option>
-            <option value='Illinois'>Illinois</option>
-            <option value='Indiana'>Indiana</option>
-            <option value='Iowa'>Iowa</option>
-            <option value='Kansas'>Kansas</option>
-            <option value='Kentucky'>Kentucky</option>
-            <option value='Louisiana'>Louisiana</option>
-            <option value='Maine'>Maine</option>
-            <option value='Maryland'>Maryland</option>
-            <option value='Massachusetts'>Massachusetts</option>
-            <option value='Michigan'>Michigan</option>
-            <option value='Minnesota'>Minnesota</option>
-            <option value='Mississippi'>Mississippi</option>
-            <option value='Missouri'>Missouri</option>
-            <option value='Montana'>Montana</option>
-            <option value='Nebraska'>Nebraska</option>
-            <option value='Nevada'>Nevada</option>
-            <option value='New Hampshire'>New Hampshire</option>
-            <option value='New Jersey'>New Jersey</option>
-            <option value='New Mexico'>New Mexico</option>
-            <option value='New York'>New York</option>
-            <option value='North Carolina'>North Carolina</option>
-            <option value='North Dakota'>North Dakota</option>
-            <option value='Ohio'>Ohio</option>
-            <option value='Oklahoma'>Oklahoma</option>
-            <option value='Oregon'>Oregon</option>
-            <option value='Pennsylvania'>Pennsylvania</option>
-            <option value='Puerto Rico'>Puerto Rico</option>
-            <option value='Rhode Island'>Rhode Island</option>
-            <option value='South Carolina'>South Carolina</option>
-            <option value='South Dakota'>South Dakota</option>
-            <option value='Tennessee'>Tennessee</option>
-            <option value='Texas'>Texas</option>
-            <option value='Utah'>Utah</option>
-            <option value='Vermont'>Vermont</option>
-            <option value='Virginia'>Virginia</option>
-            <option value='Washington'>Washington</option>
-            <option value='West Virginia'>West Virginia</option>
-            <option value='Wisconsin'>Wisconsin</option>
-            <option value='Wyoming'>Wyoming</option>
-          </select>
-        </fieldset>
-      </div>
-    </h2>
-    <h3>
-      places are sized according to the total count of occurrences for each state name
-      <br> 0 instances (Carolinas)
-      <br><span class="dot-small"> </span> <span class="dot-medium"> </span> <span class="dot-large"></span>
-      <br>194 instances (Washington)
-    </h3>
-    <h2>
-      <a target="blank" href="https://www.jonahadkins.com/cartography/mapbox/2020/02/16/states-on-states.html">Read more about it!</a> by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
-    </h2>
+	<div id='map'></div>
+	<div id='title'>
+		<h1><b>States On States</b></h1>
+		<h2>
+			A quick look a state names within states with Mapbox GL and <a target="blank" href="https://www.usgs.gov/core-science-systems/ngp/board-on-geographic-names/download-gnis-data">GNIS Place Names</a>
+			<br>
+			<br>
+			<div class='map-overlay-inner'>
+				<fieldset>
+					<label>Choose a state to see occurrences of each state name around the U.S.</label>
+					<br>
+					<br>
+					<select id='prop' name='prop'>
+						<option value='default'>All</option>
+						<option value='Alabama'>Alabama</option>
+						<option value='Alaska'>Alaska</option>
+						<option value='Arizona'>Arizona</option>
+						<option value='Arkansas'>Arkansas</option>
+						<option value='California'>California</option>
+						<option value='Colorado'>Colorado</option>
+						<option value='Connecticut'>Connecticut</option>
+						<option value='Delaware'>Delaware</option>
+						<option value='Florida'>Florida</option>
+						<option value='Georgia'>Georgia</option>
+						<option value='Guam'>Guam</option>
+						<option value='Hawaii'>Hawaii</option>
+						<option value='Idaho'>Idaho</option>
+						<option value='Illinois'>Illinois</option>
+						<option value='Indiana'>Indiana</option>
+						<option value='Iowa'>Iowa</option>
+						<option value='Kansas'>Kansas</option>
+						<option value='Kentucky'>Kentucky</option>
+						<option value='Louisiana'>Louisiana</option>
+						<option value='Maine'>Maine</option>
+						<option value='Maryland'>Maryland</option>
+						<option value='Massachusetts'>Massachusetts</option>
+						<option value='Michigan'>Michigan</option>
+						<option value='Minnesota'>Minnesota</option>
+						<option value='Mississippi'>Mississippi</option>
+						<option value='Missouri'>Missouri</option>
+						<option value='Montana'>Montana</option>
+						<option value='Nebraska'>Nebraska</option>
+						<option value='Nevada'>Nevada</option>
+						<option value='New Hampshire'>New Hampshire</option>
+						<option value='New Jersey'>New Jersey</option>
+						<option value='New Mexico'>New Mexico</option>
+						<option value='New York'>New York</option>
+						<option value='North Carolina'>North Carolina</option>
+						<option value='North Dakota'>North Dakota</option>
+						<option value='Ohio'>Ohio</option>
+						<option value='Oklahoma'>Oklahoma</option>
+						<option value='Oregon'>Oregon</option>
+						<option value='Pennsylvania'>Pennsylvania</option>
+						<option value='Puerto Rico'>Puerto Rico</option>
+						<option value='Rhode Island'>Rhode Island</option>
+						<option value='South Carolina'>South Carolina</option>
+						<option value='South Dakota'>South Dakota</option>
+						<option value='Tennessee'>Tennessee</option>
+						<option value='Texas'>Texas</option>
+						<option value='Utah'>Utah</option>
+						<option value='Vermont'>Vermont</option>
+						<option value='Virginia'>Virginia</option>
+						<option value='Washington'>Washington</option>
+						<option value='West Virginia'>West Virginia</option>
+						<option value='Wisconsin'>Wisconsin</option>
+						<option value='Wyoming'>Wyoming</option>
+					</select>
+				</fieldset>
+			</div>
+		</h2>
+		<h3>
+			Places are sized according to the total count of occurrences for each state name.
+			<br>
+			<br>A <font color=#008799><strong>BLUE dot</strong></font> indicates a place <font color=#008799><strong>OUTSIDE</strong></font> of the state it's named like.
+			An <font color=#FA6800><strong>ORANGE dot</strong></font> indicates a place <font color=#FA6800><strong>INSIDE</strong></font> of the state it's named like.
+			<br>
+			<br>
+			1 instances (Louisiana)
+			<br><span class="dot-left-small"> </span> <span class="dot-left-medium"> </span> <span class="dot-left-large">  </span> <span class="dot-right-large">  </span><span class="dot-right-medium"> </span> <span class="dot-right-small"> </span>
+			<br>187 instances (Washington)
+		</h3>
+		<h2>
+			<a target="blank" href="https://www.jonahadkins.com/cartography/mapbox/2020/02/16/states-on-states.html">Read more about it!</a> by <a target="blank" href="https://twitter.com/jonahadkins">Jonah Adkins</a>
+		</h2>
 
-  </div>
+	</div>
 
-  <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
-    var map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/jonahadkins/ck6o6ueb91mb71intws5nf6ds',
-      center: [-105, 39],
-      minZoom: 2,
-      zoom: 3.5
-    });
+	<script>
+		mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
+		var map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/jonahadkins/ck6o6ueb91mb71intws5nf6ds',
+			center: [-102, 39],
+			minZoom: 2,
+			zoom: 3.5
+		});
 
-    map.on('load', function() {
+		map.on('load', function() {
 
-      map.addSource('stated', {
-        type: 'vector',
-        url: 'mapbox://mapbox.hist-pres-election-state'
-      });
-      map.addLayer({
-        "id": "states",
-        "type": "fill",
-        "source": "stated",
-        "source-layer": "historical_pres_elections_state",
-        "layout": {
-          "visibility": "none"
-        },
-        "paint": {
-          "fill-color": "hsl(187, 100%, 49%)",
-          "fill-opacity": 0.3,
-          "fill-outline-color": "hsl(187, 100%, 40%)"
-        }
-      }, 'state-label');
+			map.addSource('stated', {
+				type: 'vector',
+				url: 'mapbox://mapbox.hist-pres-election-state'
+			});
+			map.addLayer({
+				"id": "states",
+				"type": "fill",
+				"source": "stated",
+				"source-layer": "historical_pres_elections_state",
+				"layout": {
+					"visibility": "none"
+				},
+				"paint": {
+					"fill-color": "hsl(187, 100%, 49%)",
+					"fill-opacity": 0.3,
+					"fill-outline-color": "hsl(26, 89%, 57%)"
+				}
+			}, 'state-label');
 
-      map.addSource('overlays', {
-        type: 'vector',
-        url: 'mapbox://jonahadkins.cwaz6kkr'
-      });
+			map.addSource('overlays', {
+				type: 'vector',
+				url: 'mapbox://jonahadkins.cwaz6kkr'
+			});
 
-      map.addLayer({
-        "id": "points",
-        "type": "circle",
-        "source": "overlays",
-        "source-layer": "named_names_plus-9hozov",
-        "layout": {},
-        "paint": {
-          "circle-radius": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            3,
-            [
-              "interpolate",
-              ["linear"],
-              ["get", "FREQUENCY"],
-              1,
-              4,
-              194,
-              12
-            ],
-            6,
-            [
-              "interpolate",
-              ["linear"],
-              ["get", "FREQUENCY"],
-              1,
-              12,
-              214,
-              24
-            ]
-          ],
-          "circle-color": "hsl(187, 100%, 49%)",
-          "circle-stroke-color": "hsl(187, 100%, 40%)",
-          "circle-stroke-width": 2,
-          "circle-blur": 1,
-          "circle-stroke-opacity": 0.5
-        }
-      }, 'state-label');
+			map.addLayer({
+				"id": "points-in",
+				"type": "circle",
+				"source": "overlays",
+				"source-layer": "named_names_plus-9hozov",
+				"layout": {},
+				"paint": {
+					"circle-radius": [
+						"interpolate",
+						["linear"],
+						["zoom"],
+						3,
+						[
+							"interpolate",
+							["linear"],
+							["get", "FREQUENCY"],
+							1,
+							4,
+							187,
+							12
+						],
+						6,
+						[
+							"interpolate",
+							["linear"],
+							["get", "FREQUENCY"],
+							1,
+							12,
+							187,
+							24
+						]
+					],
+					"circle-color": "hsl(26, 89%, 57%)",
+					"circle-stroke-color": "hsl(25, 100%, 49%)",
+					"circle-stroke-width": 2,
+					"circle-blur": 1,
+					"circle-stroke-opacity": 0.5
+				}
+			}, 'state-label');
 
-      map.addLayer({
-        "id": "labels",
-        "type": "symbol",
-        "source": "overlays",
-        "source-layer": "named_names_plus-9hozov",
-        "layout": {
-          "text-line-height": 1,
-          "text-size": [
-            "interpolate",
-            ["linear"],
-            ["zoom"],
-            3,
-            10,
-            8,
-            20
-          ],
-          "text-variable-anchor": [
-            "bottom-left",
-            "left",
-            "top-left",
-            "top-right",
-            "right",
-            "bottom-right"
-          ],
-          "text-font": ["Open Sans SemiBold", "Arial Unicode MS Regular"],
-          "text-justify": "auto",
-          "text-offset": [0.5, -0.5],
-          "text-anchor": "bottom-left",
-          "text-field": ["get", "gaz_name"],
-          "text-max-width": 4,
-          "visibility": "none"
-        },
-        "paint": {
-          "text-color": "hsl(134, 100%, 100%)",
-          "text-halo-color": "hsl(187, 90%, 23%)",
-          "text-halo-width": 2,
-          "text-halo-blur": 1
-        }
-      });
 
-      var popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: false
-      });
 
-      map.on('mouseenter', 'points', function(e) {
+			map.addLayer({
+				"id": "points-out",
+				"type": "circle",
+				"source": "overlays",
+				"source-layer": "named_names_plus-9hozov",
+				"layout": {},
+				"paint": {
+					"circle-radius": [
+						"interpolate",
+						["linear"],
+						["zoom"],
+						3,
+						[
+							"interpolate",
+							["linear"],
+							["get", "FREQUENCY"],
+							1,
+							4,
+							187,
+							12
+						],
+						6,
+						[
+							"interpolate",
+							["linear"],
+							["get", "FREQUENCY"],
+							1,
+							12,
+							187,
+							24
+						]
+					],
+					"circle-color": "hsl(187, 100%, 49%)",
+					"circle-stroke-color": "hsl(187, 100%, 40%)",
+					"circle-stroke-width": 2,
+					"circle-blur": 1,
+					"circle-stroke-opacity": 0.5
+				}
+			}, 'state-label');
 
-        map.getCanvas().style.cursor = 'pointer';
+			map.addLayer({
+				"id": "labels-in",
+				"type": "symbol",
+				"source": "overlays",
+				"source-layer": "named_names_plus-9hozov",
+				"layout": {
+					"text-line-height": 1,
+					"text-size": [
+						"interpolate",
+						["linear"],
+						["zoom"],
+						3,
+						10,
+						8,
+						20
+					],
+					"text-variable-anchor": [
+						"bottom-left",
+						"left",
+						"top-left",
+						"top-right",
+						"right",
+						"bottom-right"
+					],
+					"text-font": ["Open Sans SemiBold", "Arial Unicode MS Regular"],
+					"text-justify": "auto",
+					"text-offset": [0.5, -0.5],
+					"text-anchor": "bottom-left",
+					"text-field": ["get", "gaz_name"],
+					"text-max-width": 4,
+					"visibility": "none"
+				},
+				"paint": {
+					"text-color": "hsl(134, 100%, 100%)",
+					"text-halo-color": "hsl(25, 100%, 49%)",
+					"text-halo-width": 2,
+					"text-halo-blur": 1
+				}
+			});
 
-        var coordinates = e.features[0].geometry.coordinates.slice();
-        var description = ('<b>' + 'Place Name: ' +  e.features[0].properties.gaz_name + '</b>' +
-          '<br/>' + 'Like State Name: ' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
+			map.addLayer({
+				"id": "labels-out",
+				"type": "symbol",
+				"source": "overlays",
+				"source-layer": "named_names_plus-9hozov",
+				"layout": {
+					"text-line-height": 1,
+					"text-size": [
+						"interpolate",
+						["linear"],
+						["zoom"],
+						3,
+						10,
+						8,
+						20
+					],
+					"text-variable-anchor": [
+						"bottom-left",
+						"left",
+						"top-left",
+						"top-right",
+						"right",
+						"bottom-right"
+					],
+					"text-font": ["Open Sans SemiBold", "Arial Unicode MS Regular"],
+					"text-justify": "auto",
+					"text-offset": [0.5, -0.5],
+					"text-anchor": "bottom-left",
+					"text-field": ["get", "gaz_name"],
+					"text-max-width": 4,
+					"visibility": "none"
+				},
+				"paint": {
+					"text-color": "hsl(134, 100%, 100%)",
+					"text-halo-color": "hsl(187, 100%, 40%)",
+					"text-halo-width": 2,
+					"text-halo-blur": 1
+				}
+			});
+
+			map.setFilter('points-in', [
+				"match",
+				["get", "In_Out"],
+				["IN"],
+				true,
+				false
+			])
+			map.setFilter('points-out', [
+				"match",
+				["get", "In_Out"],
+				["OUT"],
+				true,
+				false
+			])
+
+			map.setFilter('labels-in', [
+				"match",
+				["get", "In_Out"],
+				["IN"],
+				true,
+				false
+			])
+			map.setFilter('labels-out', [
+				"match",
+				["get", "In_Out"],
+				["OUT"],
+				true,
+				false
+			])
+
+
+			var popup = new mapboxgl.Popup({
+				closeButton: false,
+				closeOnClick: false
+			});
+
+			map.on('mouseenter', 'points-in', function(e) {
+
+				map.getCanvas().style.cursor = 'pointer';
+
+				var coordinates = e.features[0].geometry.coordinates.slice();
+				var description = ('<b>' + 'Place Name: ' + e.features[0].properties.gaz_name + '</b>' +
+					'<br/>' + 'Like State Name: ' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
 					'<br/>' + 'County, State: ' + e.features[0].properties.county_nam + ', ' + e.features[0].properties.state_alph
 				);
 
-        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-          coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-        }
-        popup
-          .setLngLat(coordinates)
-          .setHTML(description)
-          .addTo(map);
-      });
+				while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+				}
+				popup
+					.setLngLat(coordinates)
+					.setHTML(description)
+					.addTo(map);
+			});
 
-      map.on('mouseleave', 'points', function() {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-      });
+			map.on('mouseleave', 'points-in', function() {
+				map.getCanvas().style.cursor = '';
+				popup.remove();
+			});
 
-    });
+			map.on('mouseenter', 'points-out', function(e) {
+
+				map.getCanvas().style.cursor = 'pointer';
+
+				var coordinates = e.features[0].geometry.coordinates.slice();
+				var description = ('<b>' + 'Place Name: ' + e.features[0].properties.gaz_name + '</b>' +
+					'<br/>' + 'Like State Name: ' + e.features[0].properties.NameLike + ' (' + e.features[0].properties.FREQUENCY + ') ' +
+					'<br/>' + 'County, State: ' + e.features[0].properties.county_nam + ', ' + e.features[0].properties.state_alph
+				);
+
+				while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+					coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+				}
+				popup
+					.setLngLat(coordinates)
+					.setHTML(description)
+					.addTo(map);
+			});
+
+			map.on('mouseleave', 'points-out', function() {
+				map.getCanvas().style.cursor = '';
+				popup.remove();
+			});
+
+		});
 
 
-    map.addControl(new mapboxgl.NavigationControl());
+		map.addControl(new mapboxgl.NavigationControl());
 
 
-    var prop = document.getElementById('prop');
-    prop.addEventListener('change', function() {
+		var prop = document.getElementById('prop');
+		prop.addEventListener('change', function() {
 
 
-      if ([prop.value] == 'default') {
-        map.setFilter('points')
-        map.setFilter('labels')
-        map.setFilter('states')
-        map.setLayoutProperty('states', 'visibility', 'none');
-        map.setLayoutProperty('labels', 'visibility', 'none');
-      } else {
-        map.setFilter('points', ["match", ["get", "NameLike"],
-          [prop.value], true, false
-        ])
-        map.setFilter('labels', ["match", ["get", "NameLike"],
-          [prop.value], true, false
-        ])
-        map.setFilter('states', ["match", ["get", "name"],
-          [prop.value], true, false
-        ])
-        map.setLayoutProperty('labels', 'visibility', 'visible')
-        map.setLayoutProperty('states', 'visibility', 'visible');
-      }
-    });
+			if ([prop.value] == 'default') {
+				map.setFilter('points-in', [
+					"match",
+					["get", "In_Out"],
+					["IN"],
+					true,
+					false
+				])
+				map.setFilter('points-out', [
+					"match",
+					["get", "In_Out"],
+					["OUT"],
+					true,
+					false
+				])
+				map.setFilter('labels-in', [
+					"match",
+					["get", "In_Out"],
+					["IN"],
+					true,
+					false
+				])
+				map.setFilter('labels-out', [
+					"match",
+					["get", "In_Out"],
+					["OUT"],
+					true,
+					false
+				])
+				map.setFilter('states')
+				map.setLayoutProperty('states', 'visibility', 'none');
+				map.setLayoutProperty('labels-in', 'visibility', 'none');
+				map.setLayoutProperty('labels-out', 'visibility', 'none');
+			} else {
+				map.setFilter('points-in', ["all",
+					["match", ["get", "In_Out"],
+						["IN"], true, false
+					],
+					["match", ["get", "NameLike"],
+						[prop.value], true, false
+					]
+				])
+				map.setFilter('points-out', ["all",
+					["match", ["get", "In_Out"],
+						["OUT"], true, false
+					],
+					["match", ["get", "NameLike"],
+						[prop.value], true, false
+					]
+				])
+				map.setFilter('labels-in', ["all",
+					["match", ["get", "In_Out"],
+						["IN"], true, false
+					],
+					["match", ["get", "NameLike"],
+						[prop.value], true, false
+					]
+				])
+				map.setFilter('labels-out', ["all",
+					["match", ["get", "In_Out"],
+						["OUT"], true, false
+					],
+					["match", ["get", "NameLike"],
+						[prop.value], true, false
+					]
+				])
 
-  </script>
+				map.setFilter('states', ["match", ["get", "name"],
+					[prop.value], true, false
+				])
+				map.setLayoutProperty('labels-in', 'visibility', 'visible')
+				map.setLayoutProperty('labels-out', 'visibility', 'visible')
+				map.setLayoutProperty('states', 'visibility', 'visible');
+			}
+		});
+	</script>
 </body>
 
 </html>
