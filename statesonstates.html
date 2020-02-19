@@ -7,7 +7,7 @@
 	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 	<script src="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.js"></script>
 	<link href="https://api.mapbox.com/mapbox-gl-js/v1.7.0/mapbox-gl.css" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat+Subrayada&display=swap" rel="stylesheet">
 
 	<style>
@@ -233,7 +233,7 @@
 			<br>
 			<br>
 			1 instances (Louisiana)
-			<br><span class="dot-left-small"> </span> <span class="dot-left-medium"> </span> <span class="dot-left-large">  </span> <span class="dot-right-large">  </span><span class="dot-right-medium"> </span> <span class="dot-right-small"> </span>
+			<br><span class="dot-left-small"> </span> <span class="dot-left-medium"> </span> <span class="dot-left-large"> </span> <span class="dot-right-large"> </span><span class="dot-right-medium"> </span> <span class="dot-right-small"> </span>
 			<br>187 instances (Washington)
 		</h3>
 		<h2>
@@ -244,16 +244,20 @@
 
 	<script>
 		mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWhhZGtpbnMiLCJhIjoiRlVVVkx3VSJ9.9sdVEK_B_VkEXPjssU5MqA';
-		var map = new mapboxgl.Map({
-			container: 'map',
-			style: 'mapbox://styles/jonahadkins/ck6o6ueb91mb71intws5nf6ds',
-			center: [-102, 39],
-			minZoom: 2,
-			zoom: 3.5
-		});
+		//check for browser support
+		if (!mapboxgl.supported()) {
+			alert('Your browser does not support Mapbox GL');
+		} else {
+			var map = new mapboxgl.Map({
+				container: 'map',
+				style: 'mapbox://styles/jonahadkins/ck6o6ueb91mb71intws5nf6ds',
+				center: [-102, 39],
+				zoom: 3.5
+			});
+		}
 
 		map.on('load', function() {
-
+			//load elections state polygons source
 			map.addSource('stated', {
 				type: 'vector',
 				url: 'mapbox://mapbox.hist-pres-election-state'
@@ -272,7 +276,7 @@
 					"fill-outline-color": "hsl(26, 89%, 57%)"
 				}
 			}, 'state-label');
-
+			// load my places data source
 			map.addSource('overlays', {
 				type: 'vector',
 				url: 'mapbox://jonahadkins.cwaz6kkr'
@@ -283,7 +287,7 @@
 				"type": "circle",
 				"source": "overlays",
 				"source-layer": "named_names_plus-9hozov",
-				"minzoom":1,
+				"minzoom": 1,
 				"layout": {},
 				"paint": {
 					"circle-radius": [
@@ -326,7 +330,7 @@
 				"type": "circle",
 				"source": "overlays",
 				"source-layer": "named_names_plus-9hozov",
-				"minzoom":1,
+				"minzoom": 1,
 				"layout": {},
 				"paint": {
 					"circle-radius": [
@@ -367,7 +371,7 @@
 				"type": "symbol",
 				"source": "overlays",
 				"source-layer": "named_names_plus-9hozov",
-				"minzoom":1,
+				"minzoom": 1,
 				"layout": {
 					"text-line-height": 1,
 					"text-size": [
@@ -408,7 +412,7 @@
 				"type": "symbol",
 				"source": "overlays",
 				"source-layer": "named_names_plus-9hozov",
-				"minzoom":1,
+				"minzoom": 1,
 				"layout": {
 					"text-line-height": 1,
 					"text-size": [
@@ -443,7 +447,7 @@
 					"text-halo-blur": 1
 				}
 			});
-
+			//set a default filter on each, but not in the style so i can change it on the fly
 			map.setFilter('points-in', [
 				"match",
 				["get", "In_Out"],
@@ -479,7 +483,7 @@
 				closeButton: false,
 				closeOnClick: false
 			});
-
+			// add popup hover for points-in
 			map.on('mouseenter', 'points-in', function(e) {
 
 				map.getCanvas().style.cursor = 'pointer';
@@ -503,7 +507,7 @@
 				map.getCanvas().style.cursor = '';
 				popup.remove();
 			});
-
+			// add popup hover for points-out
 			map.on('mouseenter', 'points-out', function(e) {
 
 				map.getCanvas().style.cursor = 'pointer';
@@ -532,12 +536,11 @@
 
 
 		map.addControl(new mapboxgl.NavigationControl());
-
-
+		// add magic to make the dropdown work with the map
 		var prop = document.getElementById('prop');
 		prop.addEventListener('change', function() {
 
-
+			//set the default filter state of the states
 			if ([prop.value] == 'default') {
 				map.setFilter('points-in', [
 					"match",
@@ -568,10 +571,12 @@
 					false
 				])
 				map.setFilter('states')
+				//set default visibility of layers i dont want to see until i choose from dropdown
 				map.setLayoutProperty('states', 'visibility', 'none');
 				map.setLayoutProperty('labels-in', 'visibility', 'none');
 				map.setLayoutProperty('labels-out', 'visibility', 'none');
 			} else {
+				// use the dropdown to set the filter for the selected layer
 				map.setFilter('points-in', ["all",
 					["match", ["get", "In_Out"],
 						["IN"], true, false
@@ -608,11 +613,15 @@
 				map.setFilter('states', ["match", ["get", "name"],
 					[prop.value], true, false
 				])
+				//turn layers on once a selection is made
 				map.setLayoutProperty('labels-in', 'visibility', 'visible')
 				map.setLayoutProperty('labels-out', 'visibility', 'visible')
 				map.setLayoutProperty('states', 'visibility', 'visible');
 			}
 		});
+
+		//profit
+		// did you know you can hire me? send me an email jonahadkins@gmail.com
 	</script>
 </body>
 
