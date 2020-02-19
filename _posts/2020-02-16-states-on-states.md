@@ -38,7 +38,7 @@ _Place or area with clustered or scattered buildings and a permanent human popul
 
 Next, we'll run through a bunch of string searches for each state name, and apply matches as a new column called `nameLike`. So if we searched the place name column for `'%Virginia%'`, every match would get `Virginia` added in the new column. Once we're done with that, we cant count every occurrence of each state name and add that count to a new column. **ALSO** - DC is not included in here, but Guam, and Puerto Rico are.
 
-There's probably some better and quicker ways to go about it, but this is what worked for me.
+Finally, I deleted duplicate where Place Name, County Name, and State were the same. There were about 100 or so of those. I know there's probably some better and quicker ways to go about it, but this is what worked for me.
 
 
 ## Mapbox
@@ -155,9 +155,8 @@ it's not _exact_ but it's pretty close. All in all, it was a fun little project 
 
 ... I should have done/fixed.
 
-- Dissolve duplicate names per state (theres like 10+ instances of Kansas City that all represent Kansas City)
 - try OSM first
-- my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points when hovering.
+- my Mapbox tileset returns  `Error: Invalid LngLat object: (NaN, NaN)` or `Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>}, or an array of [<lng>, <lat>]` for some of the points when hovering. This was probably because there were some random multipoint geometries, which have since been fixed.
 - done some better RegEx to limit it to singular instances of state's name (only California, not California Junction or only Indiana, not Indianapolis)
 - styled the dropdown
 - I never think about how it looks on mobile
