@@ -1,0 +1,310 @@
+{
+  "airport": {
+    "height": 48,
+    "pixelRatio": 2,
+    "width": 45,
+    "x": 760,
+    "y": 764
+  },
+  "aviation": {
+    "height": 34,
+    "pixelRatio": 2,
+    "width": 39,
+    "x": 805,
+    "y": 764
+  },
+  "citydot": {
+    "height": 22,
+    "pixelRatio": 2,
+    "width": 22,
+    "x": 873,
+    "y": 764
+  },
+  "citydot-open": {
+    "height": 29,
+    "pixelRatio": 2,
+    "width": 29,
+    "x": 844,
+    "y": 764
+  },
+  "mini-roundabout": {
+    "height": 189,
+    "pixelRatio": 2,
+    "width": 189,
+    "x": 0,
+    "y": 512
+  },
+  "oneway": {
+    "height": 57,
+    "pixelRatio": 2,
+    "width": 109,
+    "x": 679,
+    "y": 701
+  },
+  "poi-civic": {
+    "height": 18,
+    "pixelRatio": 2,
+    "width": 18,
+    "x": 895,
+    "y": 764
+  },
+  "poi-food": {
+    "height": 18,
+    "pixelRatio": 2,
+    "width": 18,
+    "x": 913,
+    "y": 764
+  },
+  "poi-fuel": {
+    "height": 18,
+    "pixelRatio": 2,
+    "width": 18,
+    "x": 931,
+    "y": 764
+  },
+  "poi-other": {
+    "height": 18,
+    "pixelRatio": 2,
+    "width": 18,
+    "x": 949,
+    "y": 764
+  },
+  "poi-prominent": {
+    "height": 18,
+    "pixelRatio": 2,
+    "width": 18,
+    "x": 967,
+    "y": 764
+  },
+  "shield-AU-Metroad": {
+    "height": 59,
+    "pixelRatio": 2,
+    "width": 58,
+    "x": 442,
+    "y": 701
+  },
+  "shield-AU-NatlHiwy": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 53,
+    "x": 867,
+    "y": 512
+  },
+  "shield-AU-NatlRte": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 52,
+    "x": 920,
+    "y": 512
+  },
+  "shield-AU-StRte": {
+    "height": 63,
+    "pixelRatio": 2,
+    "width": 64,
+    "x": 0,
+    "y": 701
+  },
+  "shield-AU-Tourist": {
+    "height": 62,
+    "pixelRatio": 2,
+    "width": 55,
+    "x": 64,
+    "y": 701
+  },
+  "shield-CA-TransCanHiwy": {
+    "height": 69,
+    "pixelRatio": 2,
+    "width": 66,
+    "x": 652,
+    "y": 512
+  },
+  "shield-DE-Autobahn": {
+    "height": 61,
+    "pixelRatio": 2,
+    "width": 100,
+    "x": 342,
+    "y": 701
+  },
+  "shield-IN-NatlHiwy": {
+    "height": 52,
+    "pixelRatio": 2,
+    "width": 54,
+    "x": 652,
+    "y": 764
+  },
+  "shield-IN-StateHiwy": {
+    "height": 52,
+    "pixelRatio": 2,
+    "width": 54,
+    "x": 706,
+    "y": 764
+  },
+  "shield-IT-Autostrade": {
+    "height": 74,
+    "pixelRatio": 2,
+    "width": 73,
+    "x": 454,
+    "y": 512
+  },
+  "shield-JP-NatlHiwy": {
+    "height": 58,
+    "pixelRatio": 2,
+    "width": 59,
+    "x": 557,
+    "y": 701
+  },
+  "shield-JP-PrefHiwy": {
+    "height": 58,
+    "pixelRatio": 2,
+    "width": 63,
+    "x": 616,
+    "y": 701
+  },
+  "shield-JP-UrbanExpwy": {
+    "height": 59,
+    "pixelRatio": 2,
+    "width": 57,
+    "x": 500,
+    "y": 701
+  },
+  "shield-MX-Federal": {
+    "height": 86,
+    "pixelRatio": 2,
+    "width": 65,
+    "x": 254,
+    "y": 512
+  },
+  "shield-MX-State": {
+    "height": 88,
+    "pixelRatio": 2,
+    "width": 65,
+    "x": 189,
+    "y": 512
+  },
+  "shield-UAE-DRte": {
+    "height": 74,
+    "pixelRatio": 2,
+    "width": 55,
+    "x": 527,
+    "y": 512
+  },
+  "shield-UAE-ERte": {
+    "height": 75,
+    "pixelRatio": 2,
+    "width": 55,
+    "x": 399,
+    "y": 512
+  },
+  "shield-US-Hwy-1-2": {
+    "height": 66,
+    "pixelRatio": 2,
+    "width": 69,
+    "x": 798,
+    "y": 512
+  },
+  "shield-US-Hwy-3": {
+    "height": 67,
+    "pixelRatio": 2,
+    "width": 80,
+    "x": 718,
+    "y": 512
+  },
+  "shield-US-Interstate-1-2": {
+    "height": 73,
+    "pixelRatio": 2,
+    "width": 70,
+    "x": 582,
+    "y": 512
+  },
+  "shield-US-Interstate-3": {
+    "height": 77,
+    "pixelRatio": 2,
+    "width": 80,
+    "x": 319,
+    "y": 512
+  },
+  "shield-oval-white-1-2": {
+    "height": 56,
+    "pixelRatio": 2,
+    "width": 68,
+    "x": 788,
+    "y": 701
+  },
+  "shield-oval-white-3": {
+    "height": 62,
+    "pixelRatio": 2,
+    "width": 99,
+    "x": 119,
+    "y": 701
+  },
+  "shield-oval-white-4": {
+    "height": 62,
+    "pixelRatio": 2,
+    "width": 124,
+    "x": 218,
+    "y": 701
+  },
+  "shield-rectangle-blue": {
+    "height": 55,
+    "pixelRatio": 2,
+    "width": 89,
+    "x": 207,
+    "y": 764
+  },
+  "shield-rectangle-green-dark": {
+    "height": 55,
+    "pixelRatio": 2,
+    "width": 89,
+    "x": 296,
+    "y": 764
+  },
+  "shield-rectangle-green-light": {
+    "height": 55,
+    "pixelRatio": 2,
+    "width": 89,
+    "x": 385,
+    "y": 764
+  },
+  "shield-rectangle-red": {
+    "height": 55,
+    "pixelRatio": 2,
+    "width": 89,
+    "x": 474,
+    "y": 764
+  },
+  "shield-rectangle-white": {
+    "height": 56,
+    "pixelRatio": 2,
+    "width": 91,
+    "x": 856,
+    "y": 701
+  },
+  "shield-rectangle-white-long": {
+    "height": 56,
+    "pixelRatio": 2,
+    "width": 207,
+    "x": 0,
+    "y": 764
+  },
+  "shield-rectangle-yellow": {
+    "height": 55,
+    "pixelRatio": 2,
+    "width": 89,
+    "x": 563,
+    "y": 764
+  },
+  "water-blurbase_delivery": {
+    "height": 512,
+    "pixelRatio": 2,
+    "width": 512,
+    "x": 0,
+    "y": 0
+  },
+  "water-wavetexture_delivery": {
+    "height": 512,
+    "pixelRatio": 2,
+    "width": 512,
+    "x": 512,
+    "y": 0
+  }
+}
