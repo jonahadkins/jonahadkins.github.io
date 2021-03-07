@@ -1,5 +1,26 @@
 [
 	{
+		"slug": "The Facebook Map",
+		"name": "The Facebook Map",
+		"image": "fb_map.png",
+		"url": "https://hi.stamen.com/launching-the-facebook-map-8d028c4f0e0e",
+		"date": "Feb 22 2021",
+		"tags": ["cartography"]
+	},{
+		"slug": "Meals To Go",
+		"name": "Meals To Go",
+		"image": "mealstogo.png",
+		"url": "https://www.jonahadkins.com/school-meals/",
+		"date": "Mar 25 2020",
+		"tags": ["cartography","mapbox"]
+	},{
+		"slug": "States On States",
+		"name": "States On States",
+		"image": "states-sample.png",
+		"url": "http://www.jonahadkins.com/cartography/mapbox/2020/02/16/states-on-states.html",
+		"date": "Feb 16 2020",
+		"tags": ["cartography","mapbox"]
+	},{
 		"slug": "This Is Halloween",
 		"name": "This Is Halloween",
 		"image": "hell.png",
