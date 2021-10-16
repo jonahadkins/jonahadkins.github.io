@@ -115,10 +115,10 @@
           if (selection.feature) {
             document.getElementById('info').innerHTML =
               "<font size='3'>" +
-              "<img src=" + selection.feature.properties.logo + ">" + "</br>" +
-              selection.feature.properties.addr_full + "</br>" +
-              selection.feature.properties.addr_city + "," +
-              selection.feature.properties.addr_state + "</br>" +
+              "<img src=/halloween2/img/" + selection.feature.properties['@spider'] + ".jpg>" + "</br>" +
+              selection.feature.properties['addr:full'] + "</br>" +
+              selection.feature.properties['addr:city'] + "," +
+              selection.feature.properties['addr:state'] + "</br>" +
               "<a href=" + selection.feature.properties.website + ' " target="_blank" ' + ">" + "Store Link</a>" +
               "</font>"
           } else {

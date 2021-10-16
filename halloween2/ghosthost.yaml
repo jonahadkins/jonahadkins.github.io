@@ -34,17 +34,15 @@ fonts:
 textures:
     pink:
         animated: true
-        filtering: mipmap
-        url: img/pink.gif
+        url: https://cdn.jsdelivr.net/gh/jonahadkins/jonahadkins.github.io@master/halloween2/img/pink.gif?raw=true
     teal:
         animated: true
         filtering: mipmap
-        url: img/teal.gif
+        url: https://cdn.jsdelivr.net/gh/jonahadkins/jonahadkins.github.io@master/halloween2/img/teal.gif?raw=true
 styles:
-
     _transparent:
         base: polygons
-        blend: translucent
+        blend: opaque
     pink-style:
         animated: true
         base: points
@@ -62,14 +60,10 @@ sources:
         type: MVT
         url: https://api.maptiler.com/tiles/v3/{z}/{x}/{y}.pbf?key=p41h4rA12BGTJ06cRHuR
     hcity:
-        url: https://xyz.api.here.com/hub/spaces/ZQuY98FS/tile/web/{z}_{x}_{y}
-        url_params:
-            access_token: AAUbSz5dHyw5tTcORSwp9ME
+        url: https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/halloween2/data/halloween-city.geojson
         type: GeoJSON
     spirit:
-        url: https://xyz.api.here.com/hub/spaces/dhGZiRwZ/tile/web/{z}_{x}_{y}
-        url_params:
-            access_token: AAUbSz5dHyw5tTcORSwp9ME
+        url: https://raw.githubusercontent.com/jonahadkins/jonahadkins.github.io/master/halloween2/data/spirit-halloween.geojson
         type: GeoJSON
 
 layers:
@@ -88,7 +82,7 @@ layers:
             - { $zoom: { min: 1, max: 8 } }
         draw:
             points:
-                blend_order: -2
+                blend_order: -4
                 interactive: true
                 color: [1.000, 0.639, 0.894, 1.00]
                 collide: false
@@ -103,7 +97,7 @@ layers:
             - { $zoom: { min: 8, max: 19 } }
         draw:
             points:
-                blend_order: -2
+                blend_order: -4
                 interactive: true
                 color: none
                 collide: false
