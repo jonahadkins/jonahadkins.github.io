@@ -1,5 +1,12 @@
 [
 	{
+		"slug": "This Is Halloween II",
+		"name": "This Is Halloween II",
+		"image": "hell2.png",
+		"url": "https://www.jonahadkins.com/cartography/tangram/2021/10/16/halloween2.html",
+		"date": "Oct 18 2021",
+		"tags": ["cartography","tangram"]
+	},{
 		"slug": "The Facebook Map",
 		"name": "The Facebook Map",
 		"image": "fb_map.png",
