@@ -53,7 +53,7 @@ styles:
         texture: teal
 
 sources:
-    here:
+    protomaps:
         type: MVT
         url: https://api.protomaps.com/tiles/v2/{z}/{x}/{y}.pbf?key=2aa144ac9bf15280
     maptiler:
@@ -68,7 +68,7 @@ sources:
 
 layers:
     water:
-        data: { source: here}
+        data: { source: protomaps}
         draw:
             polygons:
                 order: 2
@@ -149,7 +149,7 @@ layers:
                 color: [0.169, 0.153, 0.243, 1.00]
                 order: 8
     aerodrome:
-        data: { source: here , layer: landuse}
+        data: { source: protomaps , layer: landuse}
         filter:
             all:
             - $geometry: polygon
@@ -159,7 +159,7 @@ layers:
                 color: '#375A80'
                 order: 3
     runway:
-        data: { source: here , layer: landuse}
+        data: { source: protomaps , layer: landuse}
         filter:
             all:
             - $geometry: polygon
@@ -169,7 +169,7 @@ layers:
                 color: '#46919E'
                 order: 10
     runwayline:
-        data: { source: here , layer: transit}
+        data: { source: protomaps , layer: transit}
         filter:
             all:
             - $geometry: line
@@ -184,7 +184,7 @@ layers:
                         [14, 5px]
                         ]
     minor_road:
-        data: {source: here, layer: roads}
+        data: {source: protomaps, layer: roads}
         filter:
             - pmap:kind: minor_road
 
@@ -212,7 +212,7 @@ layers:
                         stroke: {color: '#000', width: 1
                         }
     medium:
-        data: {source: here, layer: roads}
+        data: {source: protomaps, layer: roads}
         filter:
             - pmap:kind: medium_road
         draw:
@@ -240,7 +240,7 @@ layers:
                         }
 
     major:
-        data: {source: here, layer: roads}
+        data: {source: protomaps, layer: roads}
         filter:
             - pmap:kind: major_road
         draw:
@@ -269,7 +269,7 @@ layers:
                         stroke: {color: '#000', width: 1
                         }
     highway:
-        data: {source: here, layer: roads}
+        data: {source: protomaps, layer: roads}
         filter:
             - pmap:kind: highway
         draw:
@@ -298,7 +298,7 @@ layers:
                         stroke: {color: '#000', width: 1
                         }
     country_border:
-        data: { source: here, layer: boundaries }
+        data: { source: protomaps, layer: boundaries }
         filter:
             - pmap:min_admin_level: 2
         draw:
@@ -344,7 +344,7 @@ layers:
 
 
     state:
-        data: { source: here, layer: boundaries }
+        data: { source: protomaps, layer: boundaries }
         filter:
             - pmap:min_admin_level: 4
         draw:
@@ -358,7 +358,7 @@ layers:
                         [17, 8px]
                         ]
     country:
-        data: { source: here , layer: places }
+        data: { source: protomaps , layer: places }
         filter:
             - pmap:kind: country
         draw:
@@ -381,37 +381,10 @@ layers:
                     transform: uppercase
                     weight: 400
 
-    locality_10million_capital:
-        data: { source: here , layer: places}
-        filter: function() { return ((((feature.kind == 'locality' )&& feature.population) && (feature.population > 10000000 || feature.country_capital))&& feature.country_capital)}
-        draw:
-            text:
-                text_source: global.language_text_source
-                text_wrap: 30
-                priority: 39
-                font:
-                    family: Creepster
-                    weight: bold
-                    size: [
-                        [1, 9.6],
-                        [2, 11.2],
-                        [3, 12.8],
-                        [4, 14.4],
-                        [5, 16],
-                        [6, 19.2],
-                        [7, 22.4],
-                        [8, 25.6],
-                        [9, 28.8],
-                        [10, 32]
-                        ]
-                    fill: '#97DBB6'
-                    stroke: {
-                        color: '#38315F',
-                        width: 8px
-                        }
+
     locality_10million:
-        data: { source: here , layer: places}
-        filter: function() { return ((feature.kind == 'locality' && feature.population) && (feature.population > 10000000 || feature.country_capital))}
+        data: { source: protomaps , layer: places}
+        filter: function() { return (feature.population && feature.population > 10000000)}
         draw:
             text:
                 text_source: global.language_text_source
@@ -438,8 +411,8 @@ layers:
                         }
 
     locality_label_1million:
-        data: { source: here , layer: places}
-        filter: function() { return (feature.kind = 'locality' && feature.population && (feature.region_capital || feature.population > 1000000))}
+        data: { source: protomaps , layer: places}
+        filter: function() { return (feature.population && feature.population > 1000000)}
         draw:
             text:
                 text_source: global.language_text_source
@@ -468,7 +441,7 @@ layers:
 
 
     locality_label_400k:
-        data: { source: here , layer: places}
+        data: { source: protomaps , layer: places}
         filter:
             all:
                 - function() { return (feature.population && feature.population > 400000)}
@@ -497,7 +470,7 @@ layers:
                         }
 
     locality_label_100k:
-        data: { source: here , layer: places}
+        data: { source: protomaps , layer: places}
         filter:
             all:
                 - function() { return (feature.population && feature.population > 100000)}
@@ -528,7 +501,7 @@ layers:
                         }
 
     locality_label_50k:
-        data: { source: here , layer: places}
+        data: { source: protomaps , layer: places}
         filter:
             all:
                 - function() { return (feature.population && feature.population > 50000)}
@@ -553,7 +526,7 @@ layers:
                         }
 
     locality_label_10k:
-        data: { source: here , layer: places}
+        data: { source: protomaps , layer: places}
         filter:
             all:
                 - function() { return (feature.population && feature.population > 10000)}
@@ -579,7 +552,7 @@ layers:
                         }
 
     locality_label:
-        data: { source: here , layer: places}
+        data: { source: protomaps , layer: places}
         filter:
             all:
                 - pmap:kind: neighbourhood
@@ -605,7 +578,7 @@ layers:
 
 
     building_outline:
-        data: { source: here, layer: buildings }
+        data: { source: protomaps, layer: buildings }
         draw:
             lines:
                 color: [1.000, 1.000, 1.000, 1.00]
@@ -613,7 +586,7 @@ layers:
                 width: 1
 
     building_extrusion:
-        data: { source: here , layer: buildings}
+        data: { source: protomaps , layer: buildings}
         draw:
             _transparent:
                 color: [0.216, 0.353, 0.502, 0.70]
