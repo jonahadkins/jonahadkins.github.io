@@ -44,6 +44,7 @@ url: "https://jonahadkins.com/"
 baseurl: ""
 paginate: 20
 per_page: 20
+future: true
 paginate_path: "/page/:num/"
 markdown: kramdown
 plugins:

@@ -81,9 +81,9 @@
     </br>
     <font size='2'>
       This map was made with store locations from <a href="https://www.alltheplaces.xyz" target="_blank">All The Places</a>
-    using<a href="https://github.com/tangrams/tangram" target="_blank"> Tangram JS</a> for map rendering and <a href="https://protomaps.com" target="_blank">Protomaps map tiles.</a>
-      </br> Geocoding was provided by the <a href="https://developer.here.com/documentation/geocoder/topics/what-is.html?cid=Freemium-DeveloperPortal-PJ-0-XYZ-DevPortal-&utm_source=DeveloperPortal&utm_medium=referral&utm_campaign=2019_Halloween_Discovery_Map"
-        target="_blank"> HERE Geocoding API</a>
+    using<a href="https://github.com/tangrams/tangram" target="_blank"> Tangram JS</a> for map rendering and <a href="https://protomaps.com" target="_blank">Protomaps.</a> map tiles
+      </br> Geocoding is provided by the <a href="https://github.com/osm-search/Nominatim"
+        target="_blank"> Nominatim</a> Geocoding API.
     </font>
 
     </br>
@@ -109,7 +109,7 @@
     var layer = Tangram.leafletLayer({
       scene: 'ghosthost.yaml',
       //always add attribution, its !important
-      attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | © <a href="https://legal.here.com/terms" target="_blank">2019 HERE</a> ',
+      attribution: '<a href="https://mapzen.com/tangram" target="_blank">Tangram</a> | <a href="https://protomaps.com" target="_blank">Protomaps</a>',
       events: {
         click: function(selection) {
           if (selection.feature) {
@@ -151,10 +151,7 @@
       map.setView(e.geocode.center, 10);
     }
 
-    geocoder = L.Control.Geocoder.here({
-        app_id: 'cV1JVtCdMWM60dkKY4Fb',
-        app_code: 'r6UXM6RYoc85LT7kA3aMlA'
-      }),
+    geocoder = L.Control.Geocoder.nominatim(),
       L.Control.geocoder({
         geocoder: geocoder,
         defaultMarkGeocode: false,
